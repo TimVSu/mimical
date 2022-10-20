@@ -19,4 +19,8 @@
 
 ### functional
 
+<<<<<<< HEAD
 ### qualitativ
+=======
+### qualitativ
+>>>>>>> 79755fb (changed up project structure to pure expo (no more index.js file))
