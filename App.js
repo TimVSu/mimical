@@ -10,17 +10,10 @@ import RootStack from './stacks/rootStack.js'
 export default function App() {
   // 2. Use at the root of your app
   return (
-<<<<<<< HEAD
-    <View style={styles.container}>
-      <Text>Open up App.js!</Text>
-      <StatusBar style="auto" />
-    </View>
-=======
     <NativeBaseProvider>
     <NavigationContainer>
     <RootStack></RootStack>
     </NavigationContainer>
     </NativeBaseProvider>
->>>>>>> 4b90f4b (camera preview and basic navigation stack)
   );
 }

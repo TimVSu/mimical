@@ -1,5 +1,5 @@
 import { Camera, CameraType, getSupportedRatiosAsync } from 'expo-camera';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {View, StyleSheet, TouchableOpacity, Dimensions, LayoutAnimation, Platform, UIManager} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
@@ -16,9 +16,11 @@ if (
   const camButtonTop = 10;
   let camButtonRight = 10;
 
-  
-
 const LevelLayout = ({navigation}) => {
+
+  const [ratio, setRatio] = useState('4:3');
+  const [decimalRatio, setDecimalRatio] = useState(1.33333);
+
 
   //const camSize = useSharedValue(0);
 
@@ -29,7 +31,34 @@ const LevelLayout = ({navigation}) => {
   //     };
   //});
 
-    
+    const findRatio = async() => {
+      if (Platform.OS === 'android') {
+        const ratios = await camera.getSupportedRatiosAsync();
+        if (('4:3') in ratios){
+          setRatio('4:3');
+          setDecimalRatio(1.33333);
+        }
+        else{
+          let min = 5;
+          let bestRatio;
+        for (let ratio of ratios){
+          const splitted = ratio.split(':');
+          const decimalRatio = parseInt(splitted[0]) / parseInt(splitted[1]);
+          if(Math.abs((4/3)-decimalRatio) < min){
+            min = Math.abs((4/3)-decimalRatio);
+            bestRatio = ratio;
+            setDecimalRatio(decimalRatio);
+          }
+        }
+        setRatio(bestRatio);
+      }
+    }
+  }
+  useEffect(() =>{
+    findRatio;
+  });
+
+
     const [camExpanded, setCamExpanded] = useState(false);
     const [camActivated, setCamActivated] = useState(false);
     const [camPosition, setCamPosition] = useState('right');
@@ -58,8 +87,8 @@ const LevelLayout = ({navigation}) => {
         <View style={styles.container}>
        
        {camActivated ? 
-        <View style={styles.camContainer}>
-        <Camera style={styles.camera} type={CameraType.front} ratio={'1:1'}>
+        <View style={[styles.camContainer, {height: wp('50%') * 1.33333,}]}>
+        <Camera style={styles.camera} type={CameraType.front} ratio={ratio}>
             <TouchableOpacity style={styles.button} onPress={toggleCam} >
                 <CloseIcon/>
             </TouchableOpacity>
@@ -80,6 +109,7 @@ const LevelLayout = ({navigation}) => {
     );
 }
 
+
 const styles = StyleSheet.create({ 
     container: {
     flex: 1,
@@ -92,7 +122,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     right: 0,
-    height: wp('50%'),
     width: wp('50%'),
     borderRadius: 25,
     overflow: 'hidden',
