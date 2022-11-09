@@ -1,3 +1,8 @@
+import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+// import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+
 // return navigation bar @maxim
 const NavBar = () => {
   return (
@@ -9,3 +14,18 @@ const NavBar = () => {
 }
 
 export default NavBar;
+
+const styles = StyleSheet.create({
+  nav_bar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 16,
+    paddingTop: 64,
+    borderBottomWidth: 1,
+    borderColor: gray5
+  },
+  page_title: {
+    fontSize: 34,
+    fontWeight: 'bold'
+  }
+});

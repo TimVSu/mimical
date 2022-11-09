@@ -1,3 +1,7 @@
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import Scenario from './components/scenario.js';
+
 // return scenario list @maxim
 const ScenarioList = (props) => {
   return (
@@ -20,3 +24,15 @@ const ScenarioList = (props) => {
 }
 
 export default ScenarioList;
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginLeft: 16
+  },
+  scenario_list: {
+    marginTop: 16,
+    marginBottom: 16
+  }
+});
