@@ -44,9 +44,7 @@ const LevelLayout = ({navigation,}) => {
   //an array of the face landmarks
   const [landmarks, setLandmarks] = useState([]);
 
-  const [x, setX] = useState(0);
-  const [y, setY] = useState(0);
-
+  // called in high frequency ehen a face is detected and in low frequency when it isn't
   const handleFacesDetected = ({faces}) => {
 
     //this method sometimes gets called even when no faces are detected, this has to be checked for in order to prevent errors
@@ -54,7 +52,6 @@ const LevelLayout = ({navigation,}) => {
 
     //mapping the input to an array of the structure [{"x": value, "y": value} ...]
     //still looking for a better way to do this 
-    console.log(faces[0]["LEFT_EYE"]["x"])
     var BOTTOM_MOUTH = faces[0]['BOTTOM_MOUTH'];
     var LEFT_CHEEK = faces[0]['LEFT_CHEEK'];
     var LEFT_EAR = faces[0]['LEFT_EAR'];
@@ -78,13 +75,13 @@ const LevelLayout = ({navigation,}) => {
     landmarksTemp[7] = RIGHT_EAR;
     landmarksTemp[8] = RIGHT_EYE;
     landmarksTemp[9] = RIGHT_MOUTH;
-   console.log(faces);
+
    console.log(landmarksTemp);
-   setX(landmarksTemp[3]["x"]);
-   setY(landmarksTemp[3]["y"]);
+
     setLandmarks(landmarksTemp);
     setFaceDetected(true);
     setLandmarks(landmarksTemp);
+    console.log(landmarks)
     }
     else{
       setLandmarks([]);
