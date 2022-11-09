@@ -4,7 +4,9 @@ import {View, StyleSheet, TouchableOpacity, Dimensions, LayoutAnimation, Platfor
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import { Feather } from '@expo/vector-icons';
-import { CloseIcon } from 'native-base';
+import { CloseIcon, CircleIcon } from 'native-base';
+
+import * as FaceDetector from 'expo-face-detector';
 
 if (
     Platform.OS === "android" &&
@@ -16,14 +18,61 @@ if (
   const camButtonTop = 10;
   let camButtonRight = 10;
 
-const LevelLayout = ({navigation}) => {
+const LevelLayout = ({navigation,}) => {
+
+  const [faceDetected, setFaceDetected] = useState(false);
 
   const [ratio, setRatio] = useState('4:3');
   const [decimalRatio, setDecimalRatio] = useState(1.33333);
 
+  const [landmarks, setLandmarks] = useState([]);
+
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+
+  const handleFacesDetected = ({faces}) => {
+    if(typeof faces !== 'undefined' && typeof faces[0] !== 'undefined'){
+    console.log(faces[0]["LEFT_EYE"]["x"])
+    var BOTTOM_MOUTH = faces[0]['BOTTOM_MOUTH'];
+    var LEFT_CHEEK = faces[0]['LEFT_CHEEK'];
+    var LEFT_EAR = faces[0]['LEFT_EAR'];
+  
+    var LEFT_EYE = faces[0]["LEFT_EYE"];
+    var LEFT_MOUTH = faces[0]['LEFT_MOUTH'];
+    var NOSE_BASE = faces[0]['NOSE_BASE'];
+    var RIGHT_CHEEK = faces[0]['RIGHT_CHEEK'];
+    var RIGHT_EAR = faces[0]['RIGHT_EAR'];
+    var RIGHT_EYE = faces[0]['RIGHT_EYE'];
+    var RIGHT_MOUTH = faces[0]['RIGHT_MOUTH'];
+  
+    let landmarksTemp = [10];
+    landmarksTemp[0] = BOTTOM_MOUTH;
+    landmarksTemp[1] = LEFT_CHEEK;
+    landmarksTemp[2] = LEFT_EAR;
+    landmarksTemp[3] = LEFT_EYE;
+    landmarksTemp[4] = LEFT_MOUTH;
+    landmarksTemp[5] = NOSE_BASE;
+    landmarksTemp[6] = RIGHT_CHEEK;
+    landmarksTemp[7] = RIGHT_EAR;
+    landmarksTemp[8] = RIGHT_EYE;
+    landmarksTemp[9] = RIGHT_MOUTH;
+   console.log(faces);
+   console.log(landmarksTemp);
+   setX(landmarksTemp[3]["x"]);
+   setY(landmarksTemp[3]["y"]);
+    setLandmarks(landmarksTemp);
+    setFaceDetected(true);
+    //setLandmarks(faces.slice(0,9))
+    }
+    else{
+      setLandmarks([]);
+      setFaceDetected(false)
+    }
+  }
+  
 
   //const camSize = useSharedValue(0);
-
+  //var landmarks = false;
   //const style = useAnimatedStyle(() => {
   //  return { 
   //    width: withSpring(camSize.value),
@@ -83,15 +132,32 @@ const LevelLayout = ({navigation}) => {
     // will later be needed for device cam permission
     //const [permission, requestPermission] = Camera.useCameraPermissions();
 
+
     return(
         <View style={styles.container}>
        
        {camActivated ? 
         <View style={[styles.camContainer, {height: wp('50%') * 1.33333,}]}>
-        <Camera style={styles.camera} type={CameraType.front} ratio={ratio}>
+        <Camera style={styles.camera} type={CameraType.front} ratio={ratio} 
+onFacesDetected={handleFacesDetected}
+          faceDetectorSettings={{
+             mode: FaceDetector.FaceDetectorMode.fast,
+             detectLandmarks: FaceDetector.FaceDetectorLandmarks.all,
+             runClassifications: FaceDetector.FaceDetectorClassifications.none,
+             minDetectionInterval: 0,
+             tracking: true,
+    }}>
             <TouchableOpacity style={styles.button} onPress={toggleCam} >
                 <CloseIcon/>
             </TouchableOpacity>
+            {faceDetected && 
+            <>
+            <CircleIcon size={2} style={{top: landmarks[0]["y"]-1, left: landmarks[0]["x"]-1}}/>
+            <CircleIcon size={2} style={{top: landmarks[4]["y"]-1, left: landmarks[4]["x"]-1}}/>
+
+            </>
+            }            
+
         </Camera>
           
         </View>:

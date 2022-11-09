@@ -3963,6 +3963,11 @@ expo-error-recovery@~3.2.0:
   resolved "https://registry.yarnpkg.com/expo-error-recovery/-/expo-error-recovery-3.2.0.tgz#3a4543382904a5e70829cb41d7fc0f022c2bef6e"
   integrity sha512-XZ630ks5HNxa9oc2Ya1hEn1ez031Cy4VnyxerPC2o9fKNKSrD/64cRqGF9NkGM3X2uf8+PCB9adxVflAIXBf6w==
 
+expo-face-detector@~11.3.0:
+  version "11.3.0"
+  resolved "https://registry.yarnpkg.com/expo-face-detector/-/expo-face-detector-11.3.0.tgz#b8202e67c891e0b1604c4233c349aeb371e426e8"
+  integrity sha512-XmDEHwXsazryRZtG8u5pqrk73sSNGeCSGINENRwZhoMAAlhh1QkDUaYfM7CuMBTsXGapw29Hv1n8jEpNNbC0Og==
+
 expo-file-system@~14.1.0:
   version "14.1.0"
   resolved "https://registry.yarnpkg.com/expo-file-system/-/expo-file-system-14.1.0.tgz#4fa410873ef12ac8bec873593f7489f4305a14b8"
