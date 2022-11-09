@@ -1,8 +1,8 @@
 //@author: Tim Suchan
 import { Camera, CameraType, getSupportedRatiosAsync } from 'expo-camera';
 import { useEffect, useState } from 'react';
-import {View, StyleSheet, TouchableOpacity, Dimensions, LayoutAnimation, Platform, UIManager} from 'react-native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { View, StyleSheet, TouchableOpacity, Dimensions, LayoutAnimation, Platform, UIManager}  from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import { Feather } from '@expo/vector-icons';
 import { CloseIcon, CircleIcon } from 'native-base';
@@ -92,6 +92,7 @@ const LevelLayout = ({navigation,}) => {
     // this method finds the searches the devices camera supported image ratios to get the closest match to the default 4:3
     // Only releavant on android 
     // the ratio is used for camera rendering this way the image is never distorted but the displayed ratios can differ 
+    // @author: Tim Suchan
     const findRatio = async() => {
       if (Platform.OS === 'android') {
         const ratios = await camera.getSupportedRatiosAsync();
