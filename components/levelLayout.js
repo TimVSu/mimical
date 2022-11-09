@@ -1,3 +1,4 @@
+//@author: Tim Suchan
 import { Camera, CameraType, getSupportedRatiosAsync } from 'expo-camera';
 import { useEffect, useState } from 'react';
 import {View, StyleSheet, TouchableOpacity, Dimensions, LayoutAnimation, Platform, UIManager} from 'react-native';
@@ -18,20 +19,41 @@ if (
   const camButtonTop = 10;
   let camButtonRight = 10;
 
+//@author: Tim Suchan
+//this funtion returns an array of circle markers at the positions of the face landmarks
+//the position coordinates are relative to the parent component which means that the function has to be placed inside a 'Camera' component
+//it does not quite work yet as the programm strugles with displaying more than three points at the same time
+const displayFaceLandmarks = ({landmarks}) => (
+    <>
+      {landmarks.map((landmark, index) => (
+            <CircleIcon size={2} style={{top: landmark["y"]-1, left: landmark["x"]-1}}/>
+            ))}
+    </>
+); 
+  
+//author: Tim Suchan
 const LevelLayout = ({navigation,}) => {
+
 
   const [faceDetected, setFaceDetected] = useState(false);
 
+  //ratios used to prevent camera distortion on android
   const [ratio, setRatio] = useState('4:3');
   const [decimalRatio, setDecimalRatio] = useState(1.33333);
 
+  //an array of the face landmarks
   const [landmarks, setLandmarks] = useState([]);
 
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
 
   const handleFacesDetected = ({faces}) => {
+
+    //this method sometimes gets called even when no faces are detected, this has to be checked for in order to prevent errors
     if(typeof faces !== 'undefined' && typeof faces[0] !== 'undefined'){
+
+    //mapping the input to an array of the structure [{"x": value, "y": value} ...]
+    //still looking for a better way to do this 
     console.log(faces[0]["LEFT_EYE"]["x"])
     var BOTTOM_MOUTH = faces[0]['BOTTOM_MOUTH'];
     var LEFT_CHEEK = faces[0]['LEFT_CHEEK'];
@@ -62,7 +84,7 @@ const LevelLayout = ({navigation,}) => {
    setY(landmarksTemp[3]["y"]);
     setLandmarks(landmarksTemp);
     setFaceDetected(true);
-    //setLandmarks(faces.slice(0,9))
+    setLandmarks(landmarksTemp);
     }
     else{
       setLandmarks([]);
@@ -70,16 +92,9 @@ const LevelLayout = ({navigation,}) => {
     }
   }
   
-
-  //const camSize = useSharedValue(0);
-  //var landmarks = false;
-  //const style = useAnimatedStyle(() => {
-  //  return { 
-  //    width: withSpring(camSize.value),
-  //    height: withSpring(camSize.value), 
-  //     };
-  //});
-
+    // this method finds the searches the devices camera supported image ratios to get the closest match to the default 4:3
+    // Only releavant on android 
+    // the ratio is used for camera rendering this way the image is never distorted but the displayed ratios can differ 
     const findRatio = async() => {
       if (Platform.OS === 'android') {
         const ratios = await camera.getSupportedRatiosAsync();
@@ -103,15 +118,21 @@ const LevelLayout = ({navigation,}) => {
       }
     }
   }
+
+  // by using the useEffect ratio the ratio has to be calculated only once at the start of the app
   useEffect(() =>{
     findRatio;
   });
 
-
+    // camExpanded could later be useful for animations otherwise ill delete it
     const [camExpanded, setCamExpanded] = useState(false);
+
     const [camActivated, setCamActivated] = useState(false);
+
+    // will be used in case the camera should be able to move from left to right in case the user prefers a different placement
     const [camPosition, setCamPosition] = useState('right');
  
+    // function to toggle cam on or off, also configures animation accordingly
     const toggleCam = () =>{
         LayoutAnimation.configureNext({
             create: {duration: 500, type: "spring", springDamping: 0.5, property: "scaleXY"},
@@ -134,18 +155,20 @@ const LevelLayout = ({navigation,}) => {
 
 
     return(
+
         <View style={styles.container}>
        
        {camActivated ? 
+
         <View style={[styles.camContainer, {height: wp('50%') * 1.33333,}]}>
         <Camera style={styles.camera} type={CameraType.front} ratio={ratio} 
-onFacesDetected={handleFacesDetected}
-          faceDetectorSettings={{
-             mode: FaceDetector.FaceDetectorMode.fast,
-             detectLandmarks: FaceDetector.FaceDetectorLandmarks.all,
-             runClassifications: FaceDetector.FaceDetectorClassifications.none,
-             minDetectionInterval: 0,
-             tracking: true,
+            onFacesDetected={handleFacesDetected}
+            faceDetectorSettings={{
+               mode: FaceDetector.FaceDetectorMode.fast,
+               detectLandmarks: FaceDetector.FaceDetectorLandmarks.all,
+               runClassifications: FaceDetector.FaceDetectorClassifications.none,
+               minDetectionInterval: 0,
+               tracking: true,
     }}>
             <TouchableOpacity style={styles.button} onPress={toggleCam} >
                 <CloseIcon/>
