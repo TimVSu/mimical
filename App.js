@@ -24,7 +24,7 @@ import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
-import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
+// import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
 import { faSquare } from '@fortawesome/free-solid-svg-icons';
 import { faToggleOn } from '@fortawesome/free-solid-svg-icons';
 import { faToggleOff } from '@fortawesome/free-solid-svg-icons';
@@ -87,7 +87,7 @@ const NavBar = () => {
 }
 
 // return tab bar @maxim
-const TabBar = () => {
+const TabBar = (props) => {
   return (
     <View style={styles.tab_bar}>
       <FontAwesomeIcon icon={faHouse} color={props.home} size={32} />
@@ -133,7 +133,7 @@ const HomePage = () => {
           <StatusBar style="auto" />
         </View>
       </ScrollView>
-      <TabBar></TabBar>
+      <TabBar home={blue} stats={gray4} settings={gray4} />
     </View>
   );
 }
