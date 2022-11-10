@@ -24,7 +24,14 @@ import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
+import { faSquare } from '@fortawesome/free-solid-svg-icons';
+import { faToggleOn } from '@fortawesome/free-solid-svg-icons';
+import { faToggleOff } from '@fortawesome/free-solid-svg-icons';
+import { faCamera } from '@fortawesome/free-solid-svg-icons';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
 
+const green = 'rgb(52, 199, 89)';
 const blue = 'rgb(0, 122, 255)';
 const gray4 = 'rgb(209, 209, 214)';
 const gray5 = 'rgb(229, 229, 234)';
@@ -83,15 +90,25 @@ const NavBar = () => {
 const TabBar = () => {
   return (
     <View style={styles.tab_bar}>
-      <FontAwesomeIcon icon={faHouse} color={blue} size={32} />
-      <FontAwesomeIcon icon={faChartSimple} color={gray4} size={32} />
-      <FontAwesomeIcon icon={faGear} color={gray4} size={32} />
+      <FontAwesomeIcon icon={faHouse} color={props.home} size={32} />
+      <FontAwesomeIcon icon={faChartSimple} color={props.stats} size={32} />
+      <FontAwesomeIcon icon={faGear} color={props.settings} size={32} />
     </View>
   );
 }
 
-export default function App() {
-  const [isUnlocked, setIsUnlocked] = useState(false);
+const SettingsItem = (props) => {
+  return (
+    <View style={styles.settings_item}>
+      <FontAwesomeIcon icon={props.icon} size={32} />
+      <Text style={styles.label}>{props.label}</Text>
+      <FontAwesomeIcon icon={props.toggle} size={32} color={props.toggle_color} />
+    </View>
+  );
+}
+
+// return home page @maxim
+const HomePage = () => {
   return (
     <View style={{ flex: 1 }}>
       <NavBar></NavBar>
@@ -118,6 +135,35 @@ export default function App() {
       </ScrollView>
       <TabBar></TabBar>
     </View>
+  );
+}
+
+// return settings page @maxim
+const SettingsPage = () => {
+  return (
+    <View style={{ flex: 1 }}>
+      <NavBar page_title="Settings" />
+      <ScrollView>
+        <SettingsItem icon={faCamera} label="Camera" toggle={faToggleOn} toggle_color={green} />
+        <SettingsItem icon={faBell} label="Reminders" toggle={faToggleOff} toggle_color={gray4} />
+        <SettingsItem icon={faSquare} label="Label" toggle={faToggleOff} toggle_color={gray4} />
+        <SettingsItem icon={faSquare} label="Label" toggle={faToggleOff} toggle_color={gray4} />
+        <SettingsItem icon={faSquare} label="Label" toggle={faToggleOff} toggle_color={gray4} />
+        <SettingsItem icon={faSquare} label="Label" toggle={faToggleOff} toggle_color={gray4} />
+        <SettingsItem icon={faSquare} label="Label" toggle={faToggleOff} toggle_color={gray4} />
+        <SettingsItem icon={faSquare} label="Label" toggle={faToggleOff} toggle_color={gray4} />
+      </ScrollView>
+      <TabBar home={gray4} stats={gray4} settings={blue} />
+    </View>
+  );
+}
+
+export default function App() {
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  return (
+    // <HomePage></HomePage>
+    // <BadgesPage></BadgesPage>
+    <SettingsPage></SettingsPage>
   );
 }
 
@@ -172,5 +218,13 @@ const styles = StyleSheet.create({
   page_title: {
     fontSize: 34,
     fontWeight: 'bold'
+  },
+  settings_item: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 16,
+    borderBottomWidth: 1,
+    borderColor: gray5
   }
 });
