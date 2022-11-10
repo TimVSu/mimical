@@ -1,7 +1,7 @@
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import React, { useState, useEffect, useRef } from "react";
-import { Text, View, Button, Platform } from "react-native";
+import { Text, View, Button, Platform, Alert } from "react-native";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -48,7 +48,7 @@ export default function Notification() {
         justifyContent: "space-around",
       }}
     >
-      <Text>Your expo push token: {expoPushToken}</Text>
+      <Text>Einstellungen für Benachrichtigungen: {expoPushToken}</Text>
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Text>
           Title: {notification && notification.request.content.title}{" "}
@@ -60,17 +60,29 @@ export default function Notification() {
         </Text>
       </View>
       <Button
-        title="Ich möchte tägliche Errinerungen bekommen"
+        title="Ich möchte tägliche Reminder"
         onPress={async () => {
           await schedulePushNotification();
         }}
       />
-      {/* <Button
-        title="Press to cancel  notification"
-        onPress={async () => {
-          await cancelScheduledNotificationAsync(id);
+      <Button
+        title="Ich möchte keine Benachrichtigungen"
+        onPress={() => {
+          Alert.alert("Benachrichtigungen ausschalten", "Sind Sie sicher?", [
+            {
+              text: "Ja",
+              onPress: () => {
+                console.log("Notifications cancelled"),
+                  Notifications.cancelAllScheduledNotificationsAsync();
+              },
+            },
+            {
+              text: "Abbrechen",
+              onPress: () => console.log("Continued notifications"),
+            },
+          ]);
         }}
-      /> */}
+      />
     </View>
   );
 }
@@ -84,7 +96,6 @@ async function schedulePushNotification(time) {
     },
     trigger: { seconds: 10, repeats: false },
   });
-  // await Notifications.cancelScheduledNotificationAsync(id);
 }
 
 async function registerForPushNotificationsAsync() {
@@ -122,6 +133,7 @@ async function registerForPushNotificationsAsync() {
 
   return token;
 }
-// export async function cancelNotification(id) {
-//   await Notifications.cancelScheduledNotificationAsync(id);
-// }
+
+//async function CancelPushNotifications() {
+//  await Notifications.cancelAllScheduledNotificationsAsync();
+//}
