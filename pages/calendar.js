@@ -1,193 +1,76 @@
-// Add Event in Device’s Calendar from React Native App for Android and iOS
-// https://aboutreact.com/react-native-add-event-in-device-calendar/
+import React, { useEffect } from "react";
+import { View, StyleSheet, Image, Text, TouchableOpacity } from "react-native";
+import * as Calendar from "expo-calendar";
 
-// import React in our code
-import React, { useState } from "react";
-
-// import all the components we are going to use
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
-
-//Import library for AddCalendarEvent
-import * as AddCalendarEvent from "react-native-add-calendar-event";
-
-//Import moment.js to deal with time
-import moment from "moment";
-
-const EVENT_TITLE = "Termin";
-const TIME_NOW_IN_UTC = moment.utc();
-
-const utcDateToString = (momentInUTC) => {
-  let s = moment.utc(momentInUTC).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
-  return s;
-};
-
-const addToCalendar = (title, startDateUTC) => {
-  const eventConfig = {
-    title,
-    startDate: utcDateToString(startDateUTC),
-    endDate: utcDateToString(moment.utc(startDateUTC).add(1, "hours")),
-    notes: "Auswahl treffen",
-    navigationBarIOS: {
-      tintColor: "orange",
-      backgroundColor: "green",
-      titleColor: "blue",
-    },
-  };
-
-  AddCalendarEvent.presentEventCreatingDialog(eventConfig)
-    .then((eventInfo) => {
-      alert("eventInfo -> " + JSON.stringify(eventInfo));
-    })
-    .catch((error) => {
-      // handle error such as when user rejected permissions
-      alert("Error -> " + error);
-    });
-};
-
-const editCalendarEventWithId = (eventId) => {
-  if (!eventId) {
-    alert("Event Id hinzufügen");
-    return;
-  }
-  const eventConfig = {
-    eventId,
-  };
-
-  AddCalendarEvent.presentEventEditingDialog(eventConfig)
-    .then((eventInfo) => {
-      alert("eventInfo -> " + JSON.stringify(eventInfo));
-    })
-    .catch((error) => {
-      alert("Error -> " + error);
-    });
-};
-
-const showCalendarEventWithId = (eventId) => {
-  if (!eventId) {
-    alert("Event Id hinzufügen");
-    return;
-  }
-  const eventConfig = {
-    eventId,
-    allowsEditing: true,
-    allowsCalendarPreview: true,
-    navigationBarIOS: {
-      tintColor: "orange",
-      backgroundColor: "green",
-    },
-  };
-
-  AddCalendarEvent.presentEventViewingDialog(eventConfig)
-    .then((eventInfo) => {
-      alert("eventInfo -> " + JSON.stringify(eventInfo));
-    })
-    .catch((error) => {
-      alert("Error -> " + error);
-    });
-};
-
-const App = () => {
-  const [text, setText] = useState("");
-
+function Kalender() {
+  useEffect(() => {
+    (async () => {
+      const { status } = await Calendar.requestCalendarPermissionsAsync();
+      if (status === "granted") {
+        // const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
+        console.log("calender access granted");
+        //  console.log({ calendars });
+      }
+    })();
+  }, []);
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
-        <Text style={styles.titleStyle}>
-          Example to Add Event in Google Calendar from React Native App
-        </Text>
-        <Text style={styles.heading}>
-          Event title: {EVENT_TITLE}
-          {"\n"}
-          Event Date Time: {moment.utc(TIME_NOW_IN_UTC).local().format("lll")}
-        </Text>
-        <TouchableOpacity
-          style={[styles.buttonStyle, { minWidth: "100%" }]}
-          onPress={() => {
-            addToCalendar(EVENT_TITLE, TIME_NOW_IN_UTC);
-          }}
-        >
-          <Text style={styles.buttonTextStyle}>Zu Kalendar hinzufügen</Text>
-        </TouchableOpacity>
-        <TextInput
-          style={styles.inputStyle}
-          placeholder="event id hinzufügen"
-          onChangeText={(text) => setText(text)}
-          value={text}
-        />
-        <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={() => {
-              editCalendarEventWithId(text);
-            }}
-          >
-            <Text style={styles.buttonTextStyle}>Termin bearbeiten</Text>
-          </TouchableOpacity>
-          <View style={{ margin: 5 }} />
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={() => {
-              showCalendarEventWithId(text);
-            }}
-          >
-            <Text style={styles.buttonTextStyle}>Termin sehen</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </SafeAreaView>
+    <TouchableOpacity onPress={() => createCalendar()}>
+      <Text> Zu Kalendar hinzufügen </Text>
+    </TouchableOpacity>
   );
-};
-export default App;
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#307ecc",
-    padding: 16,
-  },
-  heading: {
-    color: "white",
-    fontSize: 16,
-    textAlign: "center",
-    margin: 10,
-  },
-  buttonStyle: {
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    backgroundColor: "#f5821f",
-    margin: 15,
-  },
-  buttonTextStyle: {
-    color: "white",
-    textAlign: "center",
-  },
-  buttonHalfStyle: {
-    alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 10,
-    flex: 1,
-  },
-  titleStyle: {
-    color: "white",
-    textAlign: "center",
-    fontSize: 20,
-    marginBottom: 20,
-  },
-  inputStyle: {
-    height: 40,
-    minWidth: "100%",
-    marginBottom: 10,
-    marginTop: 30,
-    padding: 10,
-    backgroundColor: "#ffe6e6",
-  },
-});
+async function getDefaultCalendarSource() {
+  const defaultCalendar = await Calendar.getDefaultCalendarAsync();
+  return defaultCalendar.source;
+}
+
+async function createCalendar(playdate, teamname, location) {
+  console.log(playdate);
+  const defaultCalendarSource =
+    Platform.OS === "ios"
+      ? await getDefaultCalendarSource()
+      : { isLocalAccount: true, name: "CalendarName" };
+  const newCalendarID = await Calendar.createCalendarAsync({
+    title: "CalendarName",
+    color: "red",
+    timeZone: "GMT+1",
+    status: Calendar.EventStatus.CONFIRMED,
+    entityType: Calendar.EntityTypes.EVENT,
+    sourceId: defaultCalendarSource.id,
+    source: defaultCalendarSource,
+    name: "internalCalendarName",
+    ownerAccount: "personal",
+    accessLevel: Calendar.CalendarAccessLevel.OWNER,
+    //recurrenceRule: Calendar.Frequency.DAILY,
+
+    //frequency: Calendar.Frequency.DAILY,
+    //recurrenceRule: { frequency: "DAILY", occurrence: 2 },
+    // reccurenceRule: {
+    //   frequency: Calendar.Frequency.DAILY,
+    //   interval: 1,
+    //   occurence: 4,
+    // },
+  });
+
+  console.log(`Your new calendar ID is: ${newCalendarID}`);
+  alert("Im Kalender gespeichert");
+
+  // creating event with calendar ID
+  let getcalid = newCalendarID;
+
+  const newevent = await Calendar.createEventAsync(getcalid, {
+    title: "EmotionAI Übung",
+    startDate: new Date("2022-11-10T11:00:00.000Z"),
+    endDate: new Date("2022-11-10T11:00:00.000Z"),
+    //occurrence: 3,
+    timeZone: "GMT+1",
+    //location: "Germany",
+    alarms: [{ relativeOffset: -15 }],
+    status: Calendar.EventStatus.CONFIRMED,
+    accessLevel: Calendar.CalendarAccessLevel.OWNER,
+    //recurrenceRule: Calendar.Frequency.DAILY,
+  });
+}
+
+export default Kalender;

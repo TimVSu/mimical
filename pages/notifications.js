@@ -60,7 +60,7 @@ export default function Notification() {
         </Text>
       </View>
       <Button
-        title="Press to schedule a notification"
+        title="Ich möchte tägliche Errinerungen bekommen"
         onPress={async () => {
           await schedulePushNotification();
         }}
@@ -79,8 +79,8 @@ async function schedulePushNotification(time) {
   await Notifications.scheduleNotificationAsync({
     content: {
       title: "Benachrichtigung eingestellt",
-      body: "Sie bekommen eine Benachrichtigung",
-      data: { data: "goes here" },
+      body: "Es ist Zeit für eine Übung!",
+      data: { data: "45 Tage Serie" },
     },
     trigger: { seconds: 10, repeats: false },
   });

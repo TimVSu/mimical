@@ -25,6 +25,13 @@ const Home = ({ navigation }) => {
           onPress={() => navigation.navigate("Notifications")}
         />
       </Center>
+      <Center mt="10">
+        <Button
+          mt="5"
+          title="Calendar"
+          onPress={() => navigation.navigate("Calendar")}
+        />
+      </Center>
     </>
   );
 };

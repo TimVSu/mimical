@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LevelLayout from "../components/levelLayout.js";
 import Notification from "../pages/notifications.js";
+import Kalender from "../pages/calendar.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ const RootStack = () => {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Level" component={LevelLayout} />
       <Stack.Screen name="Notifications" component={Notification} />
+      <Stack.Screen name="Calendar" component={Kalender} />
     </Stack.Navigator>
   );
 };
