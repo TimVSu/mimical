@@ -1,17 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faHouse } from '@fortawesome/free-solid-svg-icons';
-import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
-import { faGear } from '@fortawesome/free-solid-svg-icons';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
-import { faSquare } from '@fortawesome/free-solid-svg-icons';
-import { faToggleOn } from '@fortawesome/free-solid-svg-icons';
-import { faToggleOff } from '@fortawesome/free-solid-svg-icons';
-import { faCamera } from '@fortawesome/free-solid-svg-icons';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { ScrollView, View } from 'react-native';
+import React from 'react';
+import NavBar from '../components/nav_bar.js';
+import TabBar from '../components/tab_bar.js';
+import ScenarioList from '../components/scenario_list.js';
 
 const green = 'rgb(52, 199, 89)';
 const blue = 'rgb(0, 122, 255)';
