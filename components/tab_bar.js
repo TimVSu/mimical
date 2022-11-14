@@ -10,12 +10,12 @@ const gray4 = 'rgb(209, 209, 214)';
 const gray5 = 'rgb(229, 229, 234)';
 
 // return tab bar @maxim
-const TabBar = () => {
+const TabBar = (props) => {
   return (
     <View style={styles.tab_bar}>
-      <FontAwesomeIcon icon={faHouse} color={blue} size={32} />
-      <FontAwesomeIcon icon={faChartSimple} color={gray4} size={32} />
-      <FontAwesomeIcon icon={faGear} color={gray4} size={32} />
+      <FontAwesomeIcon icon={faHouse} color={props.home} size={32} />
+      <FontAwesomeIcon icon={faChartSimple} color={props.stats} size={32} />
+      <FontAwesomeIcon icon={faGear} color={props.settings} size={32} />
     </View>
   );
 }
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 32,
     borderTopWidth: 1,
-    borderColor: gray5
+    borderColor: gray5,
+    backgroundColor: 'white'
   }
 });

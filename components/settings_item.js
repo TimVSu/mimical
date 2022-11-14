@@ -12,7 +12,7 @@ const gray5 = 'rgb(229, 229, 234)';
 const SettingsItem = (props) => {
   return (
     <View style={styles.settings_item}>
-      <FontAwesomeIcon icon={props.icon} size={32} />
+      {/* <FontAwesomeIcon icon={props.icon} size={32} /> */}
       <Text style={styles.label}>{props.label}</Text>
       <FontAwesomeIcon icon={props.toggle} size={32} color={props.toggle_color} />
     </View>
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
     borderBottomWidth: 1,
-    borderColor: gray5
+    borderColor: gray5,
+    backgroundColor: 'white'
   }
 });

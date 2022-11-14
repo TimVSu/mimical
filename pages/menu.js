@@ -15,7 +15,7 @@ const gray6 = 'rgb(242, 242, 247)';
 const HomePage = () => {
   return (
     <View style={{ flex: 1 }}>
-      <NavBar></NavBar>
+      <NavBar page_title="Menu" />
       <ScrollView>
         <View style={styles.container}>
           <ScenarioList category="A" />
