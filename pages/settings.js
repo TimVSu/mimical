@@ -6,6 +6,9 @@ import { faToggleOn } from '@fortawesome/free-solid-svg-icons';
 import { faToggleOff } from '@fortawesome/free-solid-svg-icons';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
+import NavBar from '../components/nav_bar.js';
+import TabBar from '../components/tab_bar.js';
+import SettingsItem from '../components/settings_item.js';
 
 const green = 'rgb(52, 199, 89)';
 const blue = 'rgb(0, 122, 255)';

@@ -1,6 +1,8 @@
 import { StyleSheet, View } from 'react-native';
 import React from 'react';
 
+const gray6 = 'rgb(242, 242, 247)';
+
 // return square @maxim
 const Square = () => {
   return (

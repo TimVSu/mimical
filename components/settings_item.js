@@ -1,11 +1,13 @@
 import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 // import { faSquare } from '@fortawesome/free-solid-svg-icons';
 // import { faToggleOn } from '@fortawesome/free-solid-svg-icons';
 // import { faToggleOff } from '@fortawesome/free-solid-svg-icons';
 // import { faCamera } from '@fortawesome/free-solid-svg-icons';
 // import { faBell } from '@fortawesome/free-solid-svg-icons';
+
+const gray5 = 'rgb(229, 229, 234)';
 
 const SettingsItem = (props) => {
   return (

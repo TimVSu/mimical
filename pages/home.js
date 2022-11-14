@@ -21,6 +21,22 @@ const Home = ({ navigation }) => {
         }
       />
     </Center>
+    <Center mt="10">
+      <Button mt="5"
+        title="Menu"
+        onPress={() =>
+          navigation.navigate('Menu')
+        }
+      />
+    </Center>
+    <Center mt="10">
+      <Button mt="5"
+        title="Settings"
+        onPress={() =>
+          navigation.navigate('Settings')
+        }
+      />
+    </Center>
     </>
     );
   };

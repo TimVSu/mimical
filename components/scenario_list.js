@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import Scenario from './components/scenario.js';
+import Scenario from './scenario.js';
 
 // return scenario list @maxim
 const ScenarioList = (props) => {

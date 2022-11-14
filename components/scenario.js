@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import Square from './components/square.js';
+import Square from './square.js';
 
 // return scenario @maxim
 const Scenario = (props) => {

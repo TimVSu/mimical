@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, View } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 import React from 'react';
 import NavBar from '../components/nav_bar.js';
 import TabBar from '../components/tab_bar.js';
@@ -31,3 +31,13 @@ const HomePage = () => {
 }
 
 export default HomePage;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    // alignItems: 'center',
+    justifyContent: 'center',
+    // marginTop: 64
+  }
+});
