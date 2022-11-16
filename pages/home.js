@@ -1,4 +1,4 @@
-import { Button, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Square from '../components/square';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +6,7 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
+import Button from '../components/button';
 
 const green = 'rgb(52, 199, 89)';
 const blue = 'rgb(0, 122, 255)';
@@ -19,6 +20,8 @@ const Home = ({ navigation }) => {
       <View style={styles.square}>
         <Text style={styles.label}>Scenario</Text>
       </View>
+      {/* <Button icon={faPlay} text="Continue Scenario" />
+      <Button icon={faHouse} text="Menu" /> */}
       <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]}>
         <FontAwesomeIcon style={{ marginRight: 8 }} icon={faPlay} color='white' />
         <Text style={styles.text}>Continue Scenario</Text>
