@@ -1,3 +1,5 @@
+// @author: Tim Suchan
+
 import Login from "../pages/login.js";
 import Home from "../pages/home.js";
 import * as React from "react";
@@ -8,12 +10,13 @@ import Notification from "../pages/notifications.js";
 import Kalender from "../pages/calendar.js";
 import Menu from "../pages/menu.js";
 import Settings from "../pages/settings.js";
+import Task from "../components/task.js";
 
 const Stack = createNativeStackNavigator();
 
 const RootStack = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen
         name="Home"
         component={Home}
@@ -25,6 +28,7 @@ const RootStack = () => {
       <Stack.Screen name="Calendar" component={Kalender} />
       <Stack.Screen name="Menu" component={Menu} />
       <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="Task" component={Task} />
     </Stack.Navigator>
   );
 };

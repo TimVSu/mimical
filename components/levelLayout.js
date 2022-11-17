@@ -1,9 +1,17 @@
 //@author: Tim Suchan
-import { Camera, CameraType, getSupportedRatiosAsync } from 'expo-camera';
+import { Camera, CameraType, getSupportedRatiosAsync, WhiteBalance } from 'expo-camera';
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Dimensions, LayoutAnimation, Platform, UIManager}  from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Dimensions, LayoutAnimation, Platform, UIManager, Text}  from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-
+import { AntDesign } from '@expo/vector-icons'; 
+import Animated, {
+  useSharedValue,
+  withTiming,
+  useAnimatedStyle,
+  Easing,
+  withSpring,
+} from 'react-native-reanimated';
+import Task from './task.js'
 import { Feather } from '@expo/vector-icons';
 import { CloseIcon, CircleIcon } from 'native-base';
 
@@ -16,145 +24,68 @@ if (
     UIManager.setLayoutAnimationEnabledExperimental(true);
   }
 
-  const camButtonTop = 10;
-  let camButtonRight = 10;
-
-//@author: Tim Suchan
-//this funtion returns an array of circle markers at the positions of the face landmarks
-//the position coordinates are relative to the parent component which means that the function has to be placed inside a 'Camera' component
-//it does not quite work yet as the programm strugles with displaying more than three points at the same time
-const displayFaceLandmarks = ({landmarks}) => (
-    <>
-      {landmarks.map((landmark, index) => (
-            <CircleIcon size={2} style={{top: landmark["y"]-1, left: landmark["x"]-1}}/>
-            ))}
-    </>
-); 
   
 //author: Tim Suchan
 const LevelLayout = ({navigation,}) => {
 
+  // Variables:
+  //=========================================================================================================
+  //used for the anomation off the falldown effect when a task is called
+  const offset = useSharedValue(-hp('80%'));
 
-  const [faceDetected, setFaceDetected] = useState(false);
+  // used for the info button/ to decide wether the infocomponent is expanded or not
+  const [infoExpanded, setInfoExpanded] = useState(false)
 
-  //ratios used to prevent camera distortion on android
-  const [ratio, setRatio] = useState('4:3');
-  const [decimalRatio, setDecimalRatio] = useState(1.33333);
+  // used to create and delete task when needed
+  const [taskCreated, setTaskCreated] = useState(false);
 
-  //an array of the face landmarks
-  const [landmarks, setLandmarks] = useState([]);
+  //==========================================================================================================
 
-  // called in high frequency ehen a face is detected and in low frequency when it isn't
-  const handleFacesDetected = ({faces}) => {
-
-    //this method sometimes gets called even when no faces are detected, this has to be checked for in order to prevent errors
-    if(typeof faces !== 'undefined' && typeof faces[0] !== 'undefined'){
-
-    //mapping the input to an array of the structure [{"x": value, "y": value} ...]
-    //still looking for a better way to do this 
-    var BOTTOM_MOUTH = faces[0]['BOTTOM_MOUTH'];
-    var LEFT_CHEEK = faces[0]['LEFT_CHEEK'];
-    var LEFT_EAR = faces[0]['LEFT_EAR'];
-  
-    var LEFT_EYE = faces[0]["LEFT_EYE"];
-    var LEFT_MOUTH = faces[0]['LEFT_MOUTH'];
-    var NOSE_BASE = faces[0]['NOSE_BASE'];
-    var RIGHT_CHEEK = faces[0]['RIGHT_CHEEK'];
-    var RIGHT_EAR = faces[0]['RIGHT_EAR'];
-    var RIGHT_EYE = faces[0]['RIGHT_EYE'];
-    var RIGHT_MOUTH = faces[0]['RIGHT_MOUTH'];
-  
-    let landmarksTemp = [10];
-    landmarksTemp[0] = BOTTOM_MOUTH;
-    landmarksTemp[1] = LEFT_CHEEK;
-    landmarksTemp[2] = LEFT_EAR;
-    landmarksTemp[3] = LEFT_EYE;
-    landmarksTemp[4] = LEFT_MOUTH;
-    landmarksTemp[5] = NOSE_BASE;
-    landmarksTemp[6] = RIGHT_CHEEK;
-    landmarksTemp[7] = RIGHT_EAR;
-    landmarksTemp[8] = RIGHT_EYE;
-    landmarksTemp[9] = RIGHT_MOUTH;
-
-   console.log(landmarksTemp);
-
-    setLandmarks(landmarksTemp);
-    setFaceDetected(true);
-    setLandmarks(landmarksTemp);
-    console.log(landmarks)
+  //Functions:
+  //==========================================================================================================
+  //returns animatedStyle for the falldown effect
+  //@author: Tim Suchan
+  const fallDownStyle = useAnimatedStyle(() => {
+    return{
+      top: offset.value
     }
-    else{
-      setLandmarks([]);
-      setFaceDetected(false)
-    }
-  }
-  
-    // this method finds the searches the devices camera supported image ratios to get the closest match to the default 4:3
-    // Only releavant on android 
-    // the ratio is used for camera rendering this way the image is never distorted but the displayed ratios can differ 
-    // @author: Tim Suchan
-    const findRatio = async() => {
-      if (Platform.OS === 'android') {
-        const ratios = await camera.getSupportedRatiosAsync();
-        if (('4:3') in ratios){
-          setRatio('4:3');
-          setDecimalRatio(1.33333);
-        }
-        else{
-          let min = 5;
-          let bestRatio;
-        for (let ratio of ratios){
-          const splitted = ratio.split(':');
-          const decimalRatio = parseInt(splitted[0]) / parseInt(splitted[1]);
-          if(Math.abs((4/3)-decimalRatio) < min){
-            min = Math.abs((4/3)-decimalRatio);
-            bestRatio = ratio;
-            setDecimalRatio(decimalRatio);
-          }
-        }
-        setRatio(bestRatio);
-      }
-    }
-  }
-
-  // by using the useEffect ratio the ratio has to be calculated only once at the start of the app
-  useEffect(() =>{
-    findRatio;
   });
 
-    // camExpanded could later be useful for animations otherwise ill delete it
-    const [camExpanded, setCamExpanded] = useState(false);
+  //@Author: Tim Suchan
+  // creates the respective task for the level
+  const createTask = (taskDescription) => {
 
-    const [camActivated, setCamActivated] = useState(false);
+    offset.value = -hp('100%');
+    setTaskCreated(true);
+    offset.value = withSpring(hp('10%')
+    );
 
-    // will be used in case the camera should be able to move from left to right in case the user prefers a different placement
-    const [camPosition, setCamPosition] = useState('right');
- 
-    // function to toggle cam on or off, also configures animation accordingly
-    const toggleCam = () =>{
-        LayoutAnimation.configureNext({
-            create: {duration: 500, type: "spring", springDamping: 0.5, property: "scaleXY"},
-            delete: {duration: 200, type: "easeout", springDamping: 0.4, property: "scaleXY"},
-        });
-       camActivated ? setCamActivated(false) : setCamActivated(true);
-    }
+  } 
 
-    //für linkshänder später wenn ich mal zeit hab wird aber aktuell nicht benutzt
-    //const toggleCamPosition = () => {
-    //    LayoutAnimation.configureNext({
-    //        update: {duration: 400, type: 'linear'}
-    //    });
-    //    setCamPosition(camPosition === 'left' ? 'right' : 'left');
-    //}
-
-
-    // will later be needed for device cam permission
-    //const [permission, requestPermission] = Camera.useCameraPermissions();
-
+  //@author: Tim Suchan
+  // currentl just moves task out of screen for testing but will later start nthe next level
+  const nextLevel = () => {
+    offset.value = withSpring(-hp('80%'));
+  }
+  //==========================================================================================================
 
     return(
 
+      
         <View style={styles.container}>
+        {taskCreated &&
+      <Animated.View style={fallDownStyle}>
+      <Task taskDescription='kneifen sie ihre augen zusammen'>
+        <TouchableOpacity style={{bottom: '5%', left: 0}} onPress={nextLevel}>
+        <AntDesign name="rightsquareo" size={24} color="black" />
+        </TouchableOpacity>
+      </Task>
+      </Animated.View>
+ }
+
+          <TouchableOpacity onPress={navigation.goBack} style={styles.buttonLeft}>
+          <AntDesign name="left" size={wp('8%')} color="black" />
+          </TouchableOpacity>
        
        {camActivated ? 
 
@@ -168,8 +99,8 @@ const LevelLayout = ({navigation,}) => {
                minDetectionInterval: 0,
                tracking: true,
     }}>
-            <TouchableOpacity style={styles.button} onPress={toggleCam} >
-                <CloseIcon/>
+            <TouchableOpacity style={{top: wp('4%'), left: '80%'}} onPress={toggleCam} >
+                <CloseIcon size={wp('6%')}/>
             </TouchableOpacity>
             {faceDetected && 
             <>
@@ -182,15 +113,15 @@ const LevelLayout = ({navigation,}) => {
         </Camera>
           
         </View>:
-
-        
           
-        <TouchableOpacity style={styles.button} onPress={toggleCam}>
-            <Feather name='camera' size={20} color='black'/>
+        <TouchableOpacity style={styles.buttonRight} onPress={toggleCam}>
+            <Feather name='camera' size={wp('8%')} color='black'/>
         </TouchableOpacity>
           }
-        
-        
+
+          <TouchableOpacity style={styles.taskButton} onPress={() => {createTask('asjfoiajf')}}>
+            <Text style={{color: 'white', justifyContent: 'center'}}>Üben</Text>
+          </TouchableOpacity>
 
       </View>
     );
@@ -200,7 +131,7 @@ const LevelLayout = ({navigation,}) => {
 const styles = StyleSheet.create({ 
     container: {
     flex: 1,
-    padding: 24,
+    padding: 0,
     backgroundColor: '#eaeaea',
    
   },
@@ -222,14 +153,32 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     overflow: 'hidden',
   },
-  button: {
+  buttonRight: {
     position: 'absolute',
-    top: camButtonTop,
-    right: camButtonRight,
-    height: 20,
-    width: 20,
+    top: hp('5%'),
+    right: wp('5%'),
     flexDirection: 'row',
     color: 'black',
+  },
+  buttonLeft: {
+    position: 'absolute',
+    top: hp('5%'),
+    left: wp('5%'),
+    flexDirection: 'row',
+    color: 'black',
+  },
+  taskButton: {
+    position: 'absolute',
+    bottom: hp('5%'),
+    left: wp('40%'),
+    width: wp('20%'),
+    height: hp('5%'),
+    flexDirection: 'row',
+    color: 'black',
+    backgroundColor: '#59C1BD',
+    alignItems: 'center',
+    borderRadius: 30,
+    justifyContent: 'center',
   },
   invisiCam: {
     top: 0,
