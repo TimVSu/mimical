@@ -15,13 +15,18 @@ const gray6 = 'rgb(242, 242, 247)';
 const HomePage = () => {
   return (
     <View style={{ flex: 1 }}>
-      <NavBar page_title="Menu" />
+      <NavBar page_title="Übersicht" />
       <ScrollView>
         <View style={styles.container}>
-          <ScenarioList category="A" />
-          <ScenarioList category="B" />
-          <ScenarioList category="C" />
-          <ScenarioList category="D" />
+          <ScenarioList title="Der erste Schnee" progress={0} exercises={7} />
+          <ScenarioList title="Besuch im botanischen Garten" progress={0} exercises={9} />
+          <ScenarioList title="Stadtbummel" progress={0} exercises={8} />
+          <ScenarioList title="Kegeln" progress={0} exercises={8} />
+          <ScenarioList title="Besichtigung einer Kathedrale" progress={0} exercises={7} />
+          <ScenarioList title="Sommerabend auf dem Balkon" progress={0} exercises={7} />
+          <ScenarioList title="Im Biergarten" progress={0} exercises={7} />
+          <ScenarioList title="Einkauf beim Metzger" progress={0} exercises={7} />
+          <ScenarioList title="Laternenumzug" progress={0} exercises={6} />
           <StatusBar style="auto" />
         </View>
       </ScrollView>

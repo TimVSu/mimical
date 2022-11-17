@@ -6,8 +6,8 @@ import Square from './square.js';
 const Scenario = (props) => {
   return (
     <View style={styles.scenario}>
-      <Square></Square>
-      <Text style={styles.label}>Scenario {props.category}{props.level}</Text>
+      <Square icon={props.icon}/>
+      <Text style={styles.label}>Übung {props.level}</Text>
     </View>
   );
 }
