@@ -6,6 +6,8 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import Button from '../components/button';
 
 const green = 'rgb(52, 199, 89)';
@@ -42,6 +44,14 @@ const Home = ({ navigation }) => {
         <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Settings')}>
           <FontAwesomeIcon style={{ marginRight: 8 }} icon={faGear} color='white' />
           <Text style={styles.text}>Settings</Text>
+        </Pressable>
+        <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Notifications')}>
+          <FontAwesomeIcon style={{ marginRight: 8 }} icon={faBell} color='white' />
+          <Text style={styles.text}>Notifications</Text>
+        </Pressable>
+        <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Calendar')}>
+          <FontAwesomeIcon style={{ marginRight: 8 }} icon={faCalendar} color='white' />
+          <Text style={styles.text}>Calendar</Text>
         </Pressable>
       </View>
     </View>
