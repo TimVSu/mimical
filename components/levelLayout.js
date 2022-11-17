@@ -14,6 +14,7 @@ import Animated, {
 import Task from './task.js'
 import { Feather } from '@expo/vector-icons';
 import { CloseIcon, CircleIcon } from 'native-base';
+import Info from './info.js'
 
 import * as FaceDetector from 'expo-face-detector';
 
@@ -28,10 +29,14 @@ if (
 //author: Tim Suchan
 const LevelLayout = ({navigation,}) => {
 
-  // Variables:
+  // variables:
   //=========================================================================================================
   //used for the anomation off the falldown effect when a task is called
   const offset = useSharedValue(-hp('80%'));
+
+  //used for the exand anoimation of the info button
+  const infoWidth = useSharedValue(0);
+  const infoHeight = useSharedValue(0);
 
   // used for the info button/ to decide wether the infocomponent is expanded or not
   const [infoExpanded, setInfoExpanded] = useState(false)
@@ -41,7 +46,7 @@ const LevelLayout = ({navigation,}) => {
 
   //==========================================================================================================
 
-  //Functions:
+  // functions:
   //==========================================================================================================
   //returns animatedStyle for the falldown effect
   //@author: Tim Suchan
@@ -50,6 +55,42 @@ const LevelLayout = ({navigation,}) => {
       top: offset.value
     }
   });
+
+  // @author: TIm Suchan
+  // returns animatedStyle for info expand animation
+  const expandInfoStyle = useAnimatedStyle(() => {
+    return{
+      height: infoHeight.value,
+      width: infoWidth.value,
+    }
+  })
+
+  // @author: Tim Suchan
+  //creates infoExpand animation
+  /*const createInfo = () => {
+    setInfoExpanded(true);
+    infoWidth.value = withTiming(wp('50%'), {
+      duration: 500,
+      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+    });
+    infoHeight.value = withTiming(wp('50%') * 1.3333, {
+      duration: 500,
+      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+    });
+  }
+    // @author: Tim Suchan
+  //creates infoRemove animation
+  const removeInfo = () => {
+    infoWidth.value = withTiming(0, {
+      duration: 500,
+      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+    });
+    infoHeight.value = withTiming(0, {
+      duration: 500,
+      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+    });
+    setInfoExpanded(false);
+  }*/
 
   //@Author: Tim Suchan
   // creates the respective task for the level
@@ -63,7 +104,13 @@ const LevelLayout = ({navigation,}) => {
   } 
 
   //@author: Tim Suchan
-  // currentl just moves task out of screen for testing but will later start nthe next level
+  //toggles info componenton and off
+  const toggleInfo = () => {
+    infoExpanded ? setInfoExpanded(false) : setInfoExpanded(true);
+  }
+
+  //@author: Tim Suchan
+  // currently just moves task out of screen for testing but will later start nthe next level
   const nextLevel = () => {
     offset.value = withSpring(-hp('80%'));
   }
@@ -87,35 +134,13 @@ const LevelLayout = ({navigation,}) => {
           <AntDesign name="left" size={wp('8%')} color="black" />
           </TouchableOpacity>
        
-       {camActivated ? 
+       {infoExpanded ? 
 
-        <View style={[styles.camContainer, {height: wp('50%') * 1.33333,}]}>
-        <Camera style={styles.camera} type={CameraType.front} ratio={ratio} 
-            onFacesDetected={handleFacesDetected}
-            faceDetectorSettings={{
-               mode: FaceDetector.FaceDetectorMode.fast,
-               detectLandmarks: FaceDetector.FaceDetectorLandmarks.all,
-               runClassifications: FaceDetector.FaceDetectorClassifications.none,
-               minDetectionInterval: 0,
-               tracking: true,
-    }}>
-            <TouchableOpacity style={{top: wp('4%'), left: '80%'}} onPress={toggleCam} >
-                <CloseIcon size={wp('6%')}/>
-            </TouchableOpacity>
-            {faceDetected && 
-            <>
-            <CircleIcon size={2} style={{top: landmarks[0]["y"]-1, left: landmarks[0]["x"]-1}}/>
-            <CircleIcon size={2} style={{top: landmarks[4]["y"]-1, left: landmarks[4]["x"]-1}}/>
-
-            </>
-            }            
-
-        </Camera>
-          
+        <View style={[styles.camContainer, {height: wp('50%') * 1.33333, backgroundColor: 'yellow'}]}>
         </View>:
           
-        <TouchableOpacity style={styles.buttonRight} onPress={toggleCam}>
-            <Feather name='camera' size={wp('8%')} color='black'/>
+        <TouchableOpacity style={styles.buttonRight} onPress={toggleInfo}>
+            <AntDesign name="infocirlceo" size={24} color="black" />
         </TouchableOpacity>
           }
 
@@ -134,24 +159,6 @@ const styles = StyleSheet.create({
     padding: 0,
     backgroundColor: '#eaeaea',
    
-  },
-  camContainer: {
-    flex: 1,
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    width: wp('50%'),
-    borderRadius: 25,
-    overflow: 'hidden',
-  },
-  camera: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    height: '100%',
-    width: '100%',
-    borderBottomLeftRadius: 20,
-    overflow: 'hidden',
   },
   buttonRight: {
     position: 'absolute',
@@ -179,13 +186,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 30,
     justifyContent: 'center',
-  },
-  invisiCam: {
-    top: 0,
-    right: 0,
-    width: 0,
-    height: 0,
-    backgroundColor: 'black',
   },
 }); 
 
