@@ -67,7 +67,7 @@ const LevelLayout = ({navigation,}) => {
 
   // @author: Tim Suchan
   //creates infoExpand animation
-  /*const createInfo = () => {
+  const createInfo = () => {
     setInfoExpanded(true);
     infoWidth.value = withTiming(wp('50%'), {
       duration: 500,
@@ -90,7 +90,7 @@ const LevelLayout = ({navigation,}) => {
       easing: Easing.bezier(0.25, 0.1, 0.25, 1),
     });
     setInfoExpanded(false);
-  }*/
+  }
 
   //@Author: Tim Suchan
   // creates the respective task for the level
@@ -136,10 +136,15 @@ const LevelLayout = ({navigation,}) => {
        
        {infoExpanded ? 
 
-        <View style={[styles.camContainer, {height: wp('50%') * 1.33333, backgroundColor: 'yellow'}]}>
-        </View>:
+        <Animated.View style={[expandInfoStyle, {top: wp('5%'), left: wp('45%')}]}>
+          <Info infoText='hier könnte ihre info stehen'>
+            <TouchableOpacity>
+              <CloseIcon size={24} onPress={removeInfo}></CloseIcon>
+            </TouchableOpacity>
+          </Info>
+        </Animated.View>:
           
-        <TouchableOpacity style={styles.buttonRight} onPress={toggleInfo}>
+        <TouchableOpacity style={styles.buttonRight} onPress={createInfo}>
             <AntDesign name="infocirlceo" size={24} color="black" />
         </TouchableOpacity>
           }

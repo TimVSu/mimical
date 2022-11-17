@@ -14,10 +14,10 @@ const Info = ({infoText, children}) => {
 
 const styles = StyleSheet.create({ 
   infoContainer: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
+    backgroundColor: '#59C1BD',
     borderRadius: 25,
+    height: '100%',
+    width: '100%',
     overflow: 'hidden',
   },
 });
