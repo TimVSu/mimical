@@ -1,7 +1,7 @@
 // authors: Tim Suchan, Maxim Torgovitski
 
 // import react native
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 // import components
 import Square from '../components/square';
