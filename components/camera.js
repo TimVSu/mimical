@@ -1,12 +1,8 @@
 //@author: Tim Suchan
-import { Camera, CameraType, getSupportedRatiosAsync } from 'expo-camera';
+import { Camera, CameraType } from 'expo-camera';
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Dimensions, LayoutAnimation, Platform, UIManager}  from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-
-import { Feather } from '@expo/vector-icons';
-import { CloseIcon, CircleIcon } from 'native-base';
-
+import { View, StyleSheet, Platform, UIManager}  from 'react-native';
+import { CircleIcon } from 'native-base';
 import * as FaceDetector from 'expo-face-detector';
 
 // necessary for android devices as explained in the expo-camera doc
@@ -32,7 +28,10 @@ const displayFaceLandmarks = ({landmarks}) => (
 //@author: Tim Suchan
 const CameraScreen = ({size}) => {
 
+  // VARIABLES:
+  //============================================================================================================================================
 
+  // decides wether to call functions to process face detection
   const [faceDetected, setFaceDetected] = useState(false);
 
   //ratios used to prevent camera distortion on android
@@ -42,6 +41,16 @@ const CameraScreen = ({size}) => {
   //an array of the face landmarks
   const [landmarks, setLandmarks] = useState([]);
 
+  // used to turn cam on/off
+  const [camActivated, setCamActivated] = useState(true);
+
+  // will be used in case the camera should be able to move from left to right in case the user prefers a different placement
+  const [camPosition, setCamPosition] = useState('right');
+
+  //=============================================================================================================================================
+
+  // FUNCTIONS:
+  //=============================================================================================================================================
   // called in high frequency ehen a face is detected and in low frequency when it isn't
   const handleFacesDetected = ({faces}) => {
 
@@ -87,55 +96,43 @@ const CameraScreen = ({size}) => {
     }
   }
   
-    // this method finds the searches the devices camera supported image ratios to get the closest match to the default 4:3
-    // Only releavant on android 
-    // the ratio is used for camera rendering this way the image is never distorted but the displayed ratios can differ 
-    // @author: Tim Suchan
-    const findRatio = async() => {
-      if (Platform.OS === 'android') {
-        const ratios = await camera.getSupportedRatiosAsync();
-        if (('4:3') in ratios){
-          setRatio('4:3');
-          setDecimalRatio(1.33333);
-        }
-        else{
-          let min = 5;
-          let bestRatio;
-        for (let ratio of ratios){
-          const splitted = ratio.split(':');
-          const decimalRatio = parseInt(splitted[0]) / parseInt(splitted[1]);
-          if(Math.abs((4/3)-decimalRatio) < min){
-            min = Math.abs((4/3)-decimalRatio);
-            bestRatio = ratio;
-            setDecimalRatio(decimalRatio);
-          }
-        }
-        setRatio(bestRatio);
+  // this method finds the searches the devices camera supported image ratios to get the closest match to the default 4:3
+  // Only releavant for android devices that dont support 4:3 front camera output
+  // the ratio is used for camera rendering this way the image is never distorted but the displayed ratios can differ 
+  // @author: Tim Suchan
+  const findRatio = async() => {
+    if (Platform.OS === 'android') {
+      const ratios = await camera.getSupportedRatiosAsync();
+      if (('4:3') in ratios){
+        setRatio('4:3');
+        setDecimalRatio(1.33333);
       }
+      else{
+        let min = 5;
+        let bestRatio;
+      for (let ratio of ratios){
+        const splitted = ratio.split(':');
+        const decimalRatio = parseInt(splitted[0]) / parseInt(splitted[1]);
+        if(Math.abs((4/3)-decimalRatio) < min){
+          min = Math.abs((4/3)-decimalRatio);
+          bestRatio = ratio;
+          setDecimalRatio(decimalRatio);
+        }
+      }
+      setRatio(bestRatio);
     }
+   }
   }
 
   // by using the useEffect ratio the ratio has to be calculated only once at the start of the app
   useEffect(() =>{
     findRatio;
   });
-
-    // camExpanded could later be useful for animations otherwise ill delete it
-    const [camExpanded, setCamExpanded] = useState(false);
-
-    const [camActivated, setCamActivated] = useState(true);
-
-    // will be used in case the camera should be able to move from left to right in case the user prefers a different placement
-    const [camPosition, setCamPosition] = useState('right');
  
-    // function to toggle cam on or off, also configures animation accordingly
-    const toggleCam = () =>{
-        LayoutAnimation.configureNext({
-            create: {duration: 500, type: "spring", springDamping: 0.5, property: "scaleXY"},
-            delete: {duration: 200, type: "easeout", springDamping: 0.4, property: "scaleXY"},
-        });
-       camActivated ? setCamActivated(false) : setCamActivated(true);
-    }
+  // function to toggle cam on/off
+  const toggleCam = () =>{
+     camActivated ? setCamActivated(false) : setCamActivated(true);
+  }
 
     //für linkshänder später wenn ich mal zeit hab wird aber aktuell nicht benutzt
     //const toggleCamPosition = () => {
@@ -148,7 +145,7 @@ const CameraScreen = ({size}) => {
 
     // will later be needed for device cam permission
     //const [permission, requestPermission] = Camera.useCameraPermissions();
-
+//===============================================================================================================================================
 
     return(
         <View style={[styles.camContainer, {width: size, height: decimalRatio * size}]}>

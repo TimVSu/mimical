@@ -1,19 +1,15 @@
 //@author: Tim Suchan
 import CameraScreen from './camera.js'
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Dimensions, LayoutAnimation, Platform, UIManager, Text}  from 'react-native';
+import { View, StyleSheet, TouchableOpacity }  from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-
-import { Feather } from '@expo/vector-icons';
 import { Heading } from 'native-base';
 import { AntDesign } from '@expo/vector-icons'; 
 
 
-import * as FaceDetector from 'expo-face-detector';
+const Task = ({navigation, taskDescription, children, downFunction, }) => {
 
-
-
-const Task = ({navigation, taskDescription, children, down, pause, play}) => {
+  //!! Play and pause button will be sed to start/pause the exercise respective function will be written once i added the timer!!
 
     return(   
         <View style={styles.container}>
