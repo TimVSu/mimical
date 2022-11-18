@@ -36,7 +36,15 @@ const ScenarioList = ({ title, exercises, progress }) => {
       <Text style={styles.title}>{title}</Text>
       <ProgressBar exercises={exercises} progress={progress} />
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        {array}
+        <Scenario level={1} />
+        <Scenario level={2} />
+        <Scenario level={3} />
+        <Scenario level={4} />
+        <Scenario level={5} />
+        <Scenario level={6} />
+        <Scenario level={7} />
+        <Scenario level={8} />
+        {/* {array} */}
       </ScrollView>
     </View>
   );
