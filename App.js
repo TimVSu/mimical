@@ -4,9 +4,6 @@ import { NativeBaseProvider, Text, Box, FormControl, WarningOutlineIcon, Icon, I
 import { NavigationContainer } from "@react-navigation/native";
 import RootStack from './stacks/rootStack.js'
 
-
-
-
 export default function App() {
   // 2. Use at the root of your app
   return (

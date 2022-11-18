@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // @author: Tim Suchan
 
 import Login from "../pages/login.js";
@@ -11,11 +12,22 @@ import Kalender from "../pages/calendar.js";
 import Menu from "../pages/menu.js";
 import Settings from "../pages/settings.js";
 import Task from "../components/task.js";
+=======
+import Login from '../pages/login.js'
+import Home from '../pages/home.js'
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import LevelLayout from '../components/levelLayout.js'
+import Menu from '../pages/menu.js';
+import Settings from '../pages/settings.js';
+>>>>>>> menu
 
 const Stack = createNativeStackNavigator();
 
 const RootStack = () => {
   return (
+<<<<<<< HEAD
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen
         name="Home"
@@ -30,6 +42,21 @@ const RootStack = () => {
       <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="Task" component={Task} />
     </Stack.Navigator>
+=======
+    
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ title: 'Welcome' }}
+        />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name='Level' component={LevelLayout} />
+        <Stack.Screen name="Menu" component={Menu} />
+        <Stack.Screen name="Settings" component={Settings} />
+      </Stack.Navigator>
+    
+>>>>>>> menu
   );
 };
 
