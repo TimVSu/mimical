@@ -9,6 +9,7 @@ import React from 'react';
 import NavBar from '../components/nav_bar.js';
 import TabBar from '../components/tab_bar.js';
 import ScenarioList from '../components/scenario_list.js';
+import FilterBar from '../components/filter_bar.js';
 
 // colors
 const green = 'rgb(52, 199, 89)';
@@ -22,6 +23,7 @@ const HomePage = () => {
   return (
     <View style={{ flex: 1 }}>
       <NavBar page_title="Übersicht" />
+      <FilterBar></FilterBar>
       <ScrollView>
         <View style={styles.container}>
           <ScenarioList title="Der erste Schnee" progress={0} exercises={7} />
