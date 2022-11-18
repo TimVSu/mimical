@@ -1,15 +1,21 @@
+// author: Maxim Torgovitski
+
+// import react native
 import { StyleSheet, View } from 'react-native';
 import React from 'react';
+
+// import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 
+// colors
 const blue = 'rgb(0, 122, 255)';
 const gray4 = 'rgb(209, 209, 214)';
 const gray5 = 'rgb(229, 229, 234)';
 
-// return tab bar @maxim
+// return tab bar component
 const TabBar = (props) => {
   return (
     <View style={styles.tab_bar}>
@@ -22,6 +28,7 @@ const TabBar = (props) => {
 
 export default TabBar;
 
+// styles
 const styles = StyleSheet.create({
   tab_bar: {
     flexDirection: 'row',

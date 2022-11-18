@@ -1,17 +1,23 @@
+// author: Maxim Torgovitski
+
+// import react native
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, ScrollView, View } from 'react-native';
 import React from 'react';
+
+// import components
 import NavBar from '../components/nav_bar.js';
 import TabBar from '../components/tab_bar.js';
 import ScenarioList from '../components/scenario_list.js';
 
+// colors
 const green = 'rgb(52, 199, 89)';
 const blue = 'rgb(0, 122, 255)';
 const gray4 = 'rgb(209, 209, 214)';
 const gray5 = 'rgb(229, 229, 234)';
 const gray6 = 'rgb(242, 242, 247)';
 
-// return home page @maxim
+// return home page
 const HomePage = () => {
   return (
     <View style={{ flex: 1 }}>
@@ -37,6 +43,8 @@ const HomePage = () => {
 
 export default HomePage;
 
+
+// styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,

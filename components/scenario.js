@@ -1,8 +1,13 @@
+// author: Maxim Torgovitski
+
+// import react native
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+
+// import components
 import Square from './square.js';
 
-// return scenario @maxim
+// return scenario component
 const Scenario = (props) => {
   return (
     <View style={styles.scenario}>
@@ -14,6 +19,7 @@ const Scenario = (props) => {
 
 export default Scenario;
 
+// styles
 const styles = StyleSheet.create({
   scenario: {
     margin: 16

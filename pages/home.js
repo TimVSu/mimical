@@ -1,5 +1,13 @@
+// authors: Tim Suchan, Maxim Torgovitski
+
+// import react native
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+
+// import components
 import Square from '../components/square';
+import Button from '../components/button';
+
+// import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
@@ -8,14 +16,15 @@ import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
-import Button from '../components/button';
 
+// colors
 const green = 'rgb(52, 199, 89)';
 const blue = 'rgb(0, 122, 255)';
 const gray4 = 'rgb(209, 209, 214)';
 const gray5 = 'rgb(229, 229, 234)';
 const gray6 = 'rgb(242, 242, 247)';
 
+// return home page
 const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
@@ -60,6 +69,7 @@ const Home = ({ navigation }) => {
 
 export default Home;
 
+// styles
 const styles = StyleSheet.create({
   container: {
     // borderWidth: 1,

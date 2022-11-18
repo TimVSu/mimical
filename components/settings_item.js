@@ -1,5 +1,10 @@
+// author: Maxim Torgovitski
+
+// import react native
 import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
+
+// import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 // import { faSquare } from '@fortawesome/free-solid-svg-icons';
 // import { faToggleOn } from '@fortawesome/free-solid-svg-icons';
@@ -7,8 +12,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 // import { faCamera } from '@fortawesome/free-solid-svg-icons';
 // import { faBell } from '@fortawesome/free-solid-svg-icons';
 
+// colors
 const gray5 = 'rgb(229, 229, 234)';
 
+// return settings item component
 const SettingsItem = (props) => {
   return (
     <View style={styles.settings_item}>
@@ -21,6 +28,7 @@ const SettingsItem = (props) => {
 
 export default SettingsItem;
 
+// styles
 const styles = StyleSheet.create({
   label: {
     fontSize: 17,

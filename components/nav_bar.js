@@ -1,12 +1,18 @@
+// author: Maxim Torgovitski
+
+// import react native
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+
+// import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
+// colors
 const blue = 'rgb(0, 122, 255)';
 const gray5 = 'rgb(229, 229, 234)';
 
-// return navigation bar @maxim
+// return navigation bar component
 const NavBar = (props) => {
   return (
     <View style={styles.nav_bar}>
@@ -18,6 +24,7 @@ const NavBar = (props) => {
 
 export default NavBar;
 
+// styles
 const styles = StyleSheet.create({
   nav_bar: {
     flexDirection: 'row',
