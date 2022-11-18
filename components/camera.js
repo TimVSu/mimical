@@ -28,6 +28,9 @@ const displayFaceLandmarks = ({landmarks}) => (
 //@author: Tim Suchan
 const CameraScreen = ({size}) => {
 
+  //!! You can seee the face detection api by looking at the terminal where the metro builder is active during camera use,
+  // a list of detected landmarks will be logged to this console.!!
+
   // VARIABLES:
   //============================================================================================================================================
 
