@@ -18,26 +18,26 @@
 ## Sprint 1
 ## App
 * 2022-11-18 -- 1.0.0
-* app created with react native, specifically expo
-* start page (containing: continue practice, scenario overview, log in, cam preview, settings, notifications, calendar)
-* menu (UI design, navigation between pages)
-* settings page (layout)
-* notifications: option to receive notifications as reminders for the exercises; can be set for the morning (11 AM), evening (18 PM), or both; button to deactivate all notifications;
-* calendar: option to create a reminder in device’s calendar app, by importing an event in the calendar submenu
-* front cam preview for exercises
+  * app created with react native, specifically expo
+  * start page (containing: continue practice, scenario overview, log in, cam preview, settings, notifications, calendar)
+  * menu (UI design, navigation between pages)
+  * settings page (layout)
+  * notifications: option to receive notifications as reminders for the exercises; can be set for the morning (11 AM), evening (18 PM), or both; button to deactivate all notifications;
+  * calendar: option to create a reminder in device’s calendar app, by importing an event in the calendar submenu
+  * front cam preview for exercises
 
 * Repository for the app: https://gitlab.com/ciis-capstone-project/winter-2022-2023/team-08/emotional
 
 * How to start the app:
- * Install the Expo Go app
- * Navigate to directory in terminal
- * Enter command: npm start (if the app does not start, you have to enter npm install --legacy-peer-deps first)
- * Follow instructions in terminal
+  * Install the Expo Go app
+  * Navigate to directory in terminal
+  * Enter command: npm start (if the app does not start, you have to enter npm install --legacy-peer-deps first)
+  * Follow instructions in terminal
 
 ## Website
 * How to start the website:
- * Once in the repository, install the necessary dependencies using the "npm install" command
- * After the dependencies are installed use “npm run dev” to start the application
+  * Once in the repository, install the necessary dependencies using the "npm install" command
+  * After the dependencies are installed use “npm run dev” to start the application
 
 
 * 2022-11-18 -- 1.0.0
