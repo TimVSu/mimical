@@ -1,7 +1,7 @@
 // authors: Tim Suchan, Maxim Torgovitski
 
 // import react native
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 // import components
 import Square from '../components/square';
@@ -42,26 +42,28 @@ const Home = ({ navigation }) => {
         <Text style={styles.text}>Menu</Text>
       </Pressable>
       <View style={[{ borderTopWidth: 1 }, { borderTopColor: gray5 }, { width: '100%' }]}>
-        <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginTop: 32 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Login')}>
-          <FontAwesomeIcon style={{ marginRight: 8 }} icon={faUser} color='white' />
-          <Text style={styles.text}>Log in</Text>
-        </Pressable>
-        <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Level')}>
-          <FontAwesomeIcon style={{ marginRight: 8 }} icon={faCamera} color='white' />
-          <Text style={styles.text}>Cam Preview</Text>
-        </Pressable>
-        <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Settings')}>
-          <FontAwesomeIcon style={{ marginRight: 8 }} icon={faGear} color='white' />
-          <Text style={styles.text}>Settings</Text>
-        </Pressable>
-        <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Notifications')}>
-          <FontAwesomeIcon style={{ marginRight: 8 }} icon={faBell} color='white' />
-          <Text style={styles.text}>Notifications</Text>
-        </Pressable>
-        <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Calendar')}>
-          <FontAwesomeIcon style={{ marginRight: 8 }} icon={faCalendar} color='white' />
-          <Text style={styles.text}>Calendar</Text>
-        </Pressable>
+        <ScrollView>
+          <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginTop: 32 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Login')}>
+            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faUser} color='white' />
+            <Text style={styles.text}>Log in</Text>
+          </Pressable>
+          <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Level')}>
+            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faCamera} color='white' />
+            <Text style={styles.text}>Cam Preview</Text>
+          </Pressable>
+          <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Settings')}>
+            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faGear} color='white' />
+            <Text style={styles.text}>Settings</Text>
+          </Pressable>
+          <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Notifications')}>
+            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faBell} color='white' />
+            <Text style={styles.text}>Notifications</Text>
+          </Pressable>
+          <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Calendar')}>
+            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faCalendar} color='white' />
+            <Text style={styles.text}>Calendar</Text>
+          </Pressable>
+        </ScrollView>
       </View>
     </View>
   );
@@ -105,6 +107,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     // borderWidth: 1,
     borderColor: gray4,
+    marginTop: 128,
     marginBottom: 8,
     justifyContent: 'center',
     alignItems: 'center',
