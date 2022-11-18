@@ -1,22 +1,34 @@
+//@Author: Stoil Iliev
 import React, { useEffect } from "react";
-import { View, StyleSheet, Image, Text, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Image, Text, Button } from "react-native";
 import * as Calendar from "expo-calendar";
 
 function Kalender() {
   useEffect(() => {
     (async () => {
+      //Ask for permission
       const { status } = await Calendar.requestCalendarPermissionsAsync();
       if (status === "granted") {
-        // const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
+        //const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
         console.log("calender access granted");
-        //  console.log({ calendars });
+        //console.log({ calendars });
       }
     })();
   }, []);
   return (
-    <TouchableOpacity onPress={() => createCalendar()}>
-      <Text> Zu Kalendar hinzufügen </Text>
-    </TouchableOpacity>
+    <View
+      style={{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "space-around",
+      }}
+    >
+      {/* Add events to device calendar */}
+      <Button
+        title="Termin zum Kalendar hinzufügen"
+        onPress={() => createCalendar()}
+      ></Button>
+    </View>
   );
 }
 
@@ -25,6 +37,7 @@ async function getDefaultCalendarSource() {
   return defaultCalendar.source;
 }
 
+//Creates a new expo calendar
 async function createCalendar(playdate, teamname, location) {
   console.log(playdate);
   const defaultCalendarSource =
@@ -42,34 +55,30 @@ async function createCalendar(playdate, teamname, location) {
     name: "internalCalendarName",
     ownerAccount: "personal",
     accessLevel: Calendar.CalendarAccessLevel.OWNER,
-    //recurrenceRule: Calendar.Frequency.DAILY,
-
-    //frequency: Calendar.Frequency.DAILY,
-    //recurrenceRule: { frequency: "DAILY", occurrence: 2 },
-    // reccurenceRule: {
-    //   frequency: Calendar.Frequency.DAILY,
-    //   interval: 1,
-    //   occurence: 4,
-    // },
   });
 
+  //Inform User that events are saved
   console.log(`Your new calendar ID is: ${newCalendarID}`);
   alert("Im Kalender gespeichert");
 
-  // creating event with calendar ID
+  //Creates event with calendar ID
   let getcalid = newCalendarID;
 
+  //Add events filled with defined data
   const newevent = await Calendar.createEventAsync(getcalid, {
     title: "EmotionAI Übung",
-    startDate: new Date("2022-11-10T11:00:00.000Z"),
-    endDate: new Date("2022-11-10T11:00:00.000Z"),
-    //occurrence: 3,
+    startDate: new Date("2022-11-18T17:00:00.000Z"),
+    endDate: new Date("2022-11-18T17:00:00.000Z"),
     timeZone: "GMT+1",
     //location: "Germany",
     alarms: [{ relativeOffset: -15 }],
     status: Calendar.EventStatus.CONFIRMED,
     accessLevel: Calendar.CalendarAccessLevel.OWNER,
-    //recurrenceRule: Calendar.Frequency.DAILY,
+    recurrenceRule: {
+      frequency: Calendar.Frequency.DAILY,
+      occurence: 4,
+      //interval: 1,
+    },
   });
 }
 

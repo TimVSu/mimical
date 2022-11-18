@@ -1,7 +1,9 @@
+//@Author: Stoil Iliev
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import React, { useState, useEffect, useRef } from "react";
 import { Text, View, Button, Platform, Alert } from "react-native";
+import * as RootNavigation from "../components/root_navigation";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -11,6 +13,7 @@ Notifications.setNotificationHandler({
   }),
 });
 
+//Using expo notifications
 export default function Notification() {
   const [expoPushToken, setExpoPushToken] = useState("");
   const [notification, setNotification] = useState(false);
@@ -25,11 +28,18 @@ export default function Notification() {
     notificationListener.current =
       Notifications.addNotificationReceivedListener((notification) => {
         setNotification(notification);
+        console.log(notification);
       });
 
+    //Check for response
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {
-        console.log(response);
+        //console.log(response);
+        console.log("opened");
+
+        //redirect to Home Screen
+        RootNavigation.navigate("Home");
+        alert("ok");
       });
 
     return () => {
@@ -49,7 +59,7 @@ export default function Notification() {
       }}
     >
       <Text>Einstellungen für Benachrichtigungen: {expoPushToken}</Text>
-      <View style={{ alignItems: "center", justifyContent: "center" }}>
+      {/* <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Text>
           Title: {notification && notification.request.content.title}{" "}
         </Text>
@@ -58,13 +68,15 @@ export default function Notification() {
           Data:{" "}
           {notification && JSON.stringify(notification.request.content.data)}
         </Text>
-      </View>
+      </View> */}
+      {/* Set up Notifications */}
       <Button
         title="Ich möchte tägliche Reminder"
         onPress={async () => {
           await schedulePushNotification();
         }}
       />
+      {/* Cancel all Notifications */}
       <Button
         title="Ich möchte keine Benachrichtigungen"
         onPress={() => {
@@ -87,20 +99,48 @@ export default function Notification() {
   );
 }
 
+//Schedules one or several notifications
 async function schedulePushNotification(time) {
   await Notifications.scheduleNotificationAsync({
+    identifier: "one",
     content: {
-      title: "Benachrichtigung eingestellt",
+      title: "EmotionAI",
       body: "Es ist Zeit für eine Übung!",
-      data: { data: "45 Tage Serie" },
+      data: { data: "tba" },
     },
-    trigger: { seconds: 10, repeats: false },
+    trigger: {
+      // seconds: 10,
+      hour: 18,
+      minute: 0,
+      repeats: true,
+    },
   });
+
+  // await Notifications.scheduleNotificationAsync({
+  //   identifier: "two",
+  //   content: {
+  //     title: "Zeit für Übung",
+  //     subtitle: "Test",
+  //     body: "Test",
+  //     sound: true,
+  //     //data: {
+  //     //  to: "new-log",
+  //     //},
+  //     color: "#000000",
+  //   },
+  //   trigger: {
+  //     hour: 19,
+  //     minute: 54,
+  //     repeats: false,
+  //   },
+  // });
 }
 
+//Registers the notifications on the device
 async function registerForPushNotificationsAsync() {
   let token;
 
+  //Additional settings available only on Android
   if (Platform.OS === "android") {
     await Notifications.setNotificationChannelAsync("default", {
       name: "default",
@@ -113,6 +153,8 @@ async function registerForPushNotificationsAsync() {
     });
   }
 
+  //Notifications work properly only on physical devices
+  //Subsequently ask/check for permissions
   if (Device.isDevice) {
     const { status: existingStatus } =
       await Notifications.getPermissionsAsync();
@@ -134,6 +176,8 @@ async function registerForPushNotificationsAsync() {
   return token;
 }
 
-//async function CancelPushNotifications() {
-//  await Notifications.cancelAllScheduledNotificationsAsync();
-//}
+//Cancels a single scheduled notification
+
+// async function CancelPushNotifications() {
+//   await Notifications.cancelAllScheduledNotificationsAsync("two");
+// }
