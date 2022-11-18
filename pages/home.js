@@ -29,17 +29,18 @@ const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.square}>
-        <Text style={styles.label}>Scenario</Text>
+        <Text style={styles.label}>Szenario</Text>
+        <Text style={[{ fontSize: 16 }, { color: gray4 }]}>Übung</Text>
       </View>
       {/* <Button icon={faPlay} text="Continue Scenario" />
       <Button icon={faHouse} text="Menu" /> */}
       <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]}>
         <FontAwesomeIcon style={{ marginRight: 8 }} icon={faPlay} color='white' />
-        <Text style={styles.text}>Continue Scenario</Text>
+        <Text style={styles.text}>Szenario fortsetzen</Text>
       </Pressable>
       <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginBottom: 32 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Menu')}>
         <FontAwesomeIcon style={{ marginRight: 8 }} icon={faHouse} color='white' />
-        <Text style={styles.text}>Menu</Text>
+        <Text style={styles.text}>Übersicht</Text>
       </Pressable>
       <View style={[{ borderTopWidth: 1 }, { borderTopColor: gray5 }, { width: '100%' }]}>
         <ScrollView>
@@ -53,15 +54,15 @@ const Home = ({ navigation }) => {
           </Pressable>
           <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Settings')}>
             <FontAwesomeIcon style={{ marginRight: 8 }} icon={faGear} color='white' />
-            <Text style={styles.text}>Settings</Text>
+            <Text style={styles.text}>Einstellungen</Text>
           </Pressable>
           <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Notifications')}>
             <FontAwesomeIcon style={{ marginRight: 8 }} icon={faBell} color='white' />
-            <Text style={styles.text}>Notifications</Text>
+            <Text style={styles.text}>Mitteilungen</Text>
           </Pressable>
           <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Calendar')}>
             <FontAwesomeIcon style={{ marginRight: 8 }} icon={faCalendar} color='white' />
-            <Text style={styles.text}>Calendar</Text>
+            <Text style={styles.text}>Kalendar</Text>
           </Pressable>
         </ScrollView>
       </View>
@@ -107,9 +108,10 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     // borderWidth: 1,
     borderColor: gray4,
+    padding: 16,
     marginTop: 128,
     marginBottom: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-end',
+    // alignItems: 'center'
   }
 });

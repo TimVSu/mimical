@@ -14,12 +14,13 @@ import FilterBar from '../components/filter_bar.js';
 // colors
 const green = 'rgb(52, 199, 89)';
 const blue = 'rgb(0, 122, 255)';
+const accessibleBlue = 'rgb(0, 64, 221)'
 const gray4 = 'rgb(209, 209, 214)';
 const gray5 = 'rgb(229, 229, 234)';
 const gray6 = 'rgb(242, 242, 247)';
 
 // return home page
-const HomePage = () => {
+const HomePage = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
       <NavBar page_title="Übersicht" />
@@ -38,7 +39,7 @@ const HomePage = () => {
           <StatusBar style="auto" />
         </View>
       </ScrollView>
-      <TabBar home={blue} stats={gray4} settings={gray4} />
+      <TabBar home={blue} stats={gray4} settings={gray4} navigation={navigation} />
     </View>
   );
 }

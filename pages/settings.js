@@ -25,21 +25,21 @@ const gray5 = 'rgb(229, 229, 234)';
 const gray6 = 'rgb(242, 242, 247)';
 
 // return settings page
-const SettingsPage = () => {
+const SettingsPage = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
-      <NavBar page_title="Settings" />
+      <NavBar page_title="Einstellungen" />
       <ScrollView>
-        <SettingsItem icon={faCamera} label="Camera" toggle={faToggleOn} toggle_color={green} />
-        <SettingsItem icon={faBell} label="Reminders" toggle={faToggleOff} toggle_color={gray4} />
-        <SettingsItem icon={faSquare} label="Label" toggle={faToggleOff} toggle_color={gray4} />
-        <SettingsItem icon={faSquare} label="Label" toggle={faToggleOff} toggle_color={gray4} />
-        <SettingsItem icon={faSquare} label="Label" toggle={faToggleOff} toggle_color={gray4} />
-        <SettingsItem icon={faSquare} label="Label" toggle={faToggleOff} toggle_color={gray4} />
-        <SettingsItem icon={faSquare} label="Label" toggle={faToggleOff} toggle_color={gray4} />
-        <SettingsItem icon={faSquare} label="Label" toggle={faToggleOff} toggle_color={gray4} />
+        <SettingsItem icon={faCamera} label="Einstellung 1" toggle={faToggleOn} toggle_color={green} />
+        <SettingsItem icon={faBell} label="Einstellung 2" toggle={faToggleOff} toggle_color={gray4} />
+        <SettingsItem icon={faSquare} label="Einstellung 3" toggle={faToggleOff} toggle_color={gray4} />
+        <SettingsItem icon={faSquare} label="Einstellung 4" toggle={faToggleOff} toggle_color={gray4} />
+        <SettingsItem icon={faSquare} label="Einstellung 5" toggle={faToggleOff} toggle_color={gray4} />
+        <SettingsItem icon={faSquare} label="Einstellung 6" toggle={faToggleOff} toggle_color={gray4} />
+        <SettingsItem icon={faSquare} label="Einstellung 7" toggle={faToggleOff} toggle_color={gray4} />
+        <SettingsItem icon={faSquare} label="Einstellung 8" toggle={faToggleOff} toggle_color={gray4} />
       </ScrollView>
-      <TabBar home={gray4} stats={gray4} settings={blue} />
+      <TabBar home={gray4} stats={gray4} settings={blue} navigation={navigation} />
     </View>
   );
 }

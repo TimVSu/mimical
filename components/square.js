@@ -15,7 +15,7 @@ const gray6 = 'rgb(242, 242, 247)';
 const Square = (props) => {
   return (
     <View style={styles.square}>
-      <FontAwesomeIcon icon={props.icon} />
+      {/* <FontAwesomeIcon icon={props.icon} /> */}
     </View>
   );
 }

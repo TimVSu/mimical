@@ -6,7 +6,7 @@ import React from 'react';
 
 // import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faHouse } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faHouse } from '@fortawesome/free-solid-svg-icons';
 import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 
@@ -16,9 +16,12 @@ const gray4 = 'rgb(209, 209, 214)';
 const gray5 = 'rgb(229, 229, 234)';
 
 // return tab bar component
-const TabBar = (props, {navigation}) => {
+const TabBar = ({ navigation, ...props }) => {
   return (
     <View style={styles.tab_bar}>
+      <Pressable onPress={() => navigation.popToTop()}>
+        <FontAwesomeIcon icon={faArrowLeft} color={blue} size={32} />
+      </Pressable>
       <Pressable onPress={() => navigation.navigate('Menu')}>
         <FontAwesomeIcon icon={faHouse} color={props.home} size={32} />
       </Pressable>

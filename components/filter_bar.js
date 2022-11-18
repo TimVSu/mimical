@@ -35,10 +35,34 @@ const FilterBar = (props) => {
             <Text style={styles.label}>Wangen</Text>
           </Pressable>
         </View>
+        <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }]}>
+          <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
+            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
+            <Text style={styles.label}>Filter</Text>
+          </Pressable>
+        </View>
+        <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }]}>
+          <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
+            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
+            <Text style={styles.label}>Filter</Text>
+          </Pressable>
+        </View>
+        <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }]}>
+          <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
+            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
+            <Text style={styles.label}>Filter</Text>
+          </Pressable>
+        </View>
+        <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }]}>
+          <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
+            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
+            <Text style={styles.label}>Filter</Text>
+          </Pressable>
+        </View>
         <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }]}>
           <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
             <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-            <Text style={styles.label}>Text</Text>
+            <Text style={styles.label}>Filter</Text>
           </Pressable>
         </View>
       </ScrollView>
