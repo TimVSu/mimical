@@ -13,5 +13,5 @@
   * created navbar with desktop and mobile view for responsiveness
   * created footer with links to facebook, instagram and linkedin
   * added a temporary CSS Layout
-
+  * created homepage and settings page (empty)
 
