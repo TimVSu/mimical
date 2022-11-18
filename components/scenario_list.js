@@ -35,7 +35,7 @@ const ScenarioList = ({ title, exercises, progress }) => {
     <View style={styles.scenario_list}>
       <Text style={styles.title}>{title}</Text>
       <ProgressBar exercises={exercises} progress={progress} />
-      <ScrollView horizontal={true}>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         {array}
       </ScrollView>
     </View>
