@@ -1,5 +1,13 @@
+// authors: Tim Suchan, Maxim Torgovitski
+
+// import react native
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+
+// import components
 import Square from '../components/square';
+import Button from '../components/button';
+
+// import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
