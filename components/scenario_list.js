@@ -3,7 +3,8 @@
 // import react native
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-// import Scenario from './scenario.js';
+
+// import icons
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
 // import components
@@ -32,18 +33,9 @@ const ScenarioList = ({ title, exercises, progress }) => {
   // return scenario list component
   return (
     <View style={styles.scenario_list}>
-      <Text style={styles.title}>{props.title}</Text>
-      <ProgressBar></ProgressBar>
+      <Text style={styles.title}>{title}</Text>
+      <ProgressBar exercises={exercises} progress={progress} />
       <ScrollView horizontal={true}>
-        {/* <Scenario category={props.category} level="1" />
-        <Scenario category={props.category} level="2" />
-        <Scenario category={props.category} level="3" />
-        <Scenario category={props.category} level="4" />
-        <Scenario category={props.category} level="5" />
-        <Scenario category={props.category} level="6" />
-        <Scenario category={props.category} level="7" />
-        <Scenario category={props.category} level="8" />
-        <Scenario category={props.category} level="9" /> */}
         {array}
       </ScrollView>
     </View>
