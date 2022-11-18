@@ -17,6 +17,14 @@
 
 ## Sprint 1
 ## App
+
+* How to start the app:
+  * Install the Expo Go app
+  * Navigate to directory in terminal
+  * Enter command: npm start (if the app does not start, you have to enter npm install --legacy-peer-deps first)
+  * Follow instructions in terminal
+
+  
 * 2022-11-18 -- 1.0.0
   * app created with react native, specifically expo
   * start page (containing: continue practice, scenario overview, log in, cam preview, settings, notifications, calendar)
@@ -27,12 +35,6 @@
   * front cam preview for exercises
 
 * Repository for the app: https://gitlab.com/ciis-capstone-project/winter-2022-2023/team-08/emotional
-
-* How to start the app:
-  * Install the Expo Go app
-  * Navigate to directory in terminal
-  * Enter command: npm start (if the app does not start, you have to enter npm install --legacy-peer-deps first)
-  * Follow instructions in terminal
 
 ## Website
 * How to start the website:
