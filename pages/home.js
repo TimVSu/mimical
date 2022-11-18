@@ -1,11 +1,14 @@
-// authors: Tim Suchan, Maxim Torgovitski
-
-// import react native
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-
-// import components
-import Square from "../components/square";
-import Button from "../components/button";
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import Square from '../components/square';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faHouse } from '@fortawesome/free-solid-svg-icons';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCamera } from '@fortawesome/free-solid-svg-icons';
+import { faGear } from '@fortawesome/free-solid-svg-icons';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import Button from '../components/button';
 
 // import icons
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
