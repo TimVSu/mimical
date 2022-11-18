@@ -71,14 +71,21 @@ export default function Notification() {
       </View> */}
       {/* Set up Notifications */}
       <Button
-        title="Ich möchte tägliche Reminder"
+        title="Ich möchte tägliche Reminder um 11 Uhr"
         onPress={async () => {
-          await schedulePushNotification();
+          await schedulePushMorningNotification();
+        }}
+      />
+      <Button
+        title="Ich möchte einen täglichen Reminder um 18 Uhr"
+        onPress={async () => {
+          await schedulePushEveningNotification();
+          //await Notifications.cancelAllScheduledNotificationsAsync("one");
         }}
       />
       {/* Cancel all Notifications */}
       <Button
-        title="Ich möchte keine Benachrichtigungen"
+        title="Ich möchte keine Benachrichtigungen mehr"
         onPress={() => {
           Alert.alert("Benachrichtigungen ausschalten", "Sind Sie sicher?", [
             {
@@ -100,7 +107,7 @@ export default function Notification() {
 }
 
 //Schedules one or several notifications
-async function schedulePushNotification(time) {
+async function schedulePushMorningNotification(time) {
   await Notifications.scheduleNotificationAsync({
     identifier: "one",
     content: {
@@ -109,31 +116,34 @@ async function schedulePushNotification(time) {
       data: { data: "tba" },
     },
     trigger: {
-      // seconds: 10,
+      //seconds: 5,
+      hour: 11,
+      minute: 0,
+      repeats: true,
+    },
+  });
+}
+
+async function schedulePushEveningNotification(time) {
+  await Notifications.scheduleNotificationAsync({
+    identifier: "two",
+    content: {
+      title: "Zeit für Übung",
+      //subtitle: "Test",
+      body: "Es ist Zeit für eine Übung!",
+      sound: true,
+      //data: {
+      //  to: "new-log",
+      //},
+      color: "#000000",
+    },
+    trigger: {
+      //seconds: 10,
       hour: 18,
       minute: 0,
       repeats: true,
     },
   });
-
-  // await Notifications.scheduleNotificationAsync({
-  //   identifier: "two",
-  //   content: {
-  //     title: "Zeit für Übung",
-  //     subtitle: "Test",
-  //     body: "Test",
-  //     sound: true,
-  //     //data: {
-  //     //  to: "new-log",
-  //     //},
-  //     color: "#000000",
-  //   },
-  //   trigger: {
-  //     hour: 19,
-  //     minute: 54,
-  //     repeats: false,
-  //   },
-  // });
 }
 
 //Registers the notifications on the device
@@ -178,6 +188,6 @@ async function registerForPushNotificationsAsync() {
 
 //Cancels a single scheduled notification
 
-// async function CancelPushNotifications() {
-//   await Notifications.cancelAllScheduledNotificationsAsync("two");
-// }
+async function CancelPushNotifications() {
+  await Notifications.cancelAllScheduledNotificationsAsync();
+}
