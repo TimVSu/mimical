@@ -15,15 +15,6 @@ const gray6 = 'rgb(242, 242, 247)';
 const HomePage = () => {
   return (
     <View style={{ flex: 1 }}>
-<<<<<<< HEAD
-      <NavBar page_title="Menu" />
-      <ScrollView>
-        <View style={styles.container}>
-          <ScenarioList category="A" />
-          <ScenarioList category="B" />
-          <ScenarioList category="C" />
-          <ScenarioList category="D" />
-=======
       <NavBar page_title="Übersicht" />
       <ScrollView>
         <View style={styles.container}>
@@ -36,7 +27,6 @@ const HomePage = () => {
           <ScenarioList title="Im Biergarten" progress={0} exercises={7} />
           <ScenarioList title="Einkauf beim Metzger" progress={0} exercises={7} />
           <ScenarioList title="Laternenumzug" progress={0} exercises={6} />
->>>>>>> menu
           <StatusBar style="auto" />
         </View>
       </ScrollView>

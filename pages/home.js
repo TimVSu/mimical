@@ -1,58 +1,3 @@
-<<<<<<< HEAD
-import { Button } from "react-native";
-import { Center } from "native-base";
-
-const Home = ({ navigation }) => {
-  return (
-    <>
-      <Center mt="10">
-        <Button
-          mt="5"
-          title="login"
-          onPress={() => navigation.navigate("Login")}
-        />
-      </Center>
-      <Center mt="10">
-        <Button
-          mt="5"
-          title="cam Preview"
-          onPress={() => navigation.navigate("Level")}
-        />
-      </Center>
-      <Center mt="10">
-        <Button
-          mt="5"
-          title="Notifications"
-          onPress={() => navigation.navigate("Notifications")}
-        />
-      </Center>
-      <Center mt="10">
-        <Button
-          mt="5"
-          title="Calendar"
-          onPress={() => navigation.navigate("Calendar")}
-        />
-      </Center>
-      <Center mt="10">
-        <Button
-          mt="5"
-          title="Menu"
-          onPress={() => navigation.navigate("Menu")}
-        />
-      </Center>
-      <Center mt="10">
-        <Button
-          mt="5"
-          title="Settings"
-          onPress={() => navigation.navigate("Settings")}
-        />
-      </Center>
-    </>
-  );
-};
-
-export default Home;
-=======
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Square from '../components/square';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -155,4 +100,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   }
 });
->>>>>>> menu

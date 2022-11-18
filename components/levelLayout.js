@@ -96,9 +96,8 @@ const LevelLayout = ({navigation,}) => {
   // creates the respective task for the level
   const createTask = (taskDescription) => {
 
-    offset.value = -hp('100%');
     setTaskCreated(true);
-    offset.value = withSpring(hp('10%')
+    offset.value = withSpring(hp(0)
     );
 
   } 
@@ -112,7 +111,7 @@ const LevelLayout = ({navigation,}) => {
   //@author: Tim Suchan
   // currently just moves task out of screen for testing but will later start nthe next level
   const nextLevel = () => {
-    offset.value = withSpring(-hp('80%'));
+    offset.value = withSpring(-hp('100%'));
   }
   //==========================================================================================================
 

@@ -15,7 +15,7 @@ const Task = ({navigation, taskDescription, children}) => {
 
     return(   
         <View style={styles.container}>
-            <CameraScreen size={wp('95%')} >
+            <CameraScreen size={wp('100%')} >
             </CameraScreen>
             <Heading style={styles.description} size='lg'>{taskDescription}</Heading>
             {children}
@@ -26,10 +26,8 @@ const Task = ({navigation, taskDescription, children}) => {
 
 const styles = StyleSheet.create({ 
     container: {
-    borderRadius: 30,
-    padding: wp('2.5%'),
     width: wp('100%'),
-    height: hp('80%'),
+    height: hp('100%'),
     overFlow: 'hidden',
     backgroundColor: '#0E5E6F',
     alignItems: 'center'
