@@ -24,7 +24,7 @@ const HomePage = () => {
     <View style={{ flex: 1 }}>
       <NavBar page_title="Übersicht" />
       <FilterBar></FilterBar>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <ScenarioList title="Der erste Schnee" progress={0} exercises={7} />
           <ScenarioList title="Besuch im botanischen Garten" progress={0} exercises={9} />

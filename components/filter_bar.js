@@ -16,7 +16,7 @@ const gray5 = 'rgb(229, 229, 234)';
 const FilterBar = (props) => {
   return (
     <View style={styles.filter_bar}>
-      <ScrollView horizontal={true}>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginRight: 8 }]}>
           <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
             <FontAwesomeIcon style={{ marginRight: 8 }} icon={faEye} color='white' />
