@@ -11,19 +11,23 @@ const Stack = createNativeStackNavigator();
 
 const RootStack = () => {
   return (
-    
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ title: 'Welcome' }}
-        />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name='Level' component={LevelLayout} />
-        <Stack.Screen name="Menu" component={Menu} />
-        <Stack.Screen name="Settings" component={Settings} />
-      </Stack.Navigator>
-    
+
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{ title: 'Welcome' }}
+      />
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name='Level' component={LevelLayout} />
+      <Stack.Screen name="Menu" component={Menu} />
+      <Stack.Screen name="Settings" component={Settings} />
+    </Stack.Navigator>
+
   );
 };
 
