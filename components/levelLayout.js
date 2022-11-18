@@ -15,6 +15,7 @@ import Task from './task.js'
 import { Feather } from '@expo/vector-icons';
 import { CloseIcon, CircleIcon } from 'native-base';
 import Info from './info.js'
+import { Timer } from 'react-native-stopwatch-timer'
 
 import * as FaceDetector from 'expo-face-detector';
 
@@ -29,10 +30,13 @@ if (
 //author: Tim Suchan
 const LevelLayout = ({navigation,}) => {
 
+  // !!!the code used for the falldwon animation is not currently used as we scraped this part of the app. however it will likely
+  // be used later which is why it isnt deleted yet!!!
+
   // variables:
   //=========================================================================================================
-  //used for the anomation off the falldown effect when a task is called
-  const offset = useSharedValue(-hp('80%'));
+  //used for the anomation off the floatUp effect when a task is called
+  const offset = useSharedValue(hp('100%'));
 
   //used for the exand anoimation of the info button
   const infoWidth = useSharedValue(0);
@@ -48,9 +52,9 @@ const LevelLayout = ({navigation,}) => {
 
   // functions:
   //==========================================================================================================
-  //returns animatedStyle for the falldown effect
+  //returns animatedStyle for the floatUp effect
   //@author: Tim Suchan
-  const fallDownStyle = useAnimatedStyle(() => {
+  const floatUpStyle = useAnimatedStyle(() => {
     return{
       top: offset.value
     }
@@ -97,8 +101,10 @@ const LevelLayout = ({navigation,}) => {
   const createTask = (taskDescription) => {
 
     setTaskCreated(true);
-    offset.value = withSpring(hp(0)
-    );
+   // offset.value = withSpring(hp('10%'), { damping: 15, stiffness: 300 });
+    offset.value = withTiming(hp('10%'),{duration: 150});
+
+    
 
   } 
 
@@ -111,7 +117,7 @@ const LevelLayout = ({navigation,}) => {
   //@author: Tim Suchan
   // currently just moves task out of screen for testing but will later start nthe next level
   const nextLevel = () => {
-    offset.value = withSpring(-hp('100%'));
+    offset.value = withTiming(hp('110%'), { duration: 150});
   }
   //==========================================================================================================
 
@@ -119,15 +125,6 @@ const LevelLayout = ({navigation,}) => {
 
       
         <View style={styles.container}>
-        {taskCreated &&
-      <Animated.View style={fallDownStyle}>
-      <Task taskDescription='kneifen sie ihre augen zusammen'>
-        <TouchableOpacity style={{bottom: '5%', left: 0}} onPress={nextLevel}>
-        <AntDesign name="rightsquareo" size={24} color="black" />
-        </TouchableOpacity>
-      </Task>
-      </Animated.View>
- }
 
           <TouchableOpacity onPress={navigation.goBack} style={styles.buttonLeft}>
           <AntDesign name="left" size={wp('8%')} color="black" />
@@ -149,8 +146,15 @@ const LevelLayout = ({navigation,}) => {
           }
 
           <TouchableOpacity style={styles.taskButton} onPress={() => {createTask('asjfoiajf')}}>
-            <Text style={{color: 'white', justifyContent: 'center'}}>Üben</Text>
+            <Text style={{color: 'white', justifyContent: 'center', fontSize:24}} >Üben</Text>
           </TouchableOpacity>
+
+          {taskCreated &&
+      <Animated.View style={floatUpStyle}>
+      <Task taskDescription='kneifen sie ihre augen zusammen' down={nextLevel}>
+      </Task>
+      </Animated.View>
+ }
 
       </View>
     );
@@ -181,15 +185,17 @@ const styles = StyleSheet.create({
   taskButton: {
     position: 'absolute',
     bottom: hp('5%'),
-    left: wp('40%'),
-    width: wp('20%'),
-    height: hp('5%'),
+    left: wp('35%'),
+    width: wp('30%'),
+    height: hp('8%'),
     flexDirection: 'row',
     color: 'black',
     backgroundColor: '#59C1BD',
     alignItems: 'center',
     borderRadius: 30,
     justifyContent: 'center',
+    zIndex: 0,
+ 
   },
 }); 
 

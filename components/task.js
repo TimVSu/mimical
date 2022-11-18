@@ -6,19 +6,33 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 import { Feather } from '@expo/vector-icons';
 import { Heading } from 'native-base';
+import { AntDesign } from '@expo/vector-icons'; 
+
 
 import * as FaceDetector from 'expo-face-detector';
 
 
 
-const Task = ({navigation, taskDescription, children}) => {
+const Task = ({navigation, taskDescription, children, down, pause, play}) => {
 
     return(   
         <View style={styles.container}>
-            <CameraScreen size={wp('100%')} >
+            <CameraScreen size={wp('100%')}>
             </CameraScreen>
             <Heading style={styles.description} size='lg'>{taskDescription}</Heading>
             {children}
+            <View style={styles.horizontal}>
+              <TouchableOpacity style={styles.button} onPress={down}>
+                <AntDesign name="downcircleo" size={50} color="white" />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button}>
+                <AntDesign name="pausecircleo" size={50} color="white" />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button}>
+                <AntDesign name="playcircleo" size={50} color="white" />
+              </TouchableOpacity>
+            </View>
+
          </View>
  );
 }
@@ -29,12 +43,26 @@ const styles = StyleSheet.create({
     width: wp('100%'),
     height: hp('100%'),
     overFlow: 'hidden',
-    backgroundColor: '#0E5E6F',
-    alignItems: 'center'
+    backgroundColor: '#59C1BD',
+    alignItems: 'center',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    
   },
   description: {
     color: 'white',
-    margin: 20,
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  horizontal: {
+    flex: 1,
+    flexDirection: 'row',
+    marginBottom: 20,
+
+  },
+  button:{
+    marginLeft: 20,
+    marginRight: 20,
   }
 
 }); 

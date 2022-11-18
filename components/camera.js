@@ -9,15 +9,13 @@ import { CloseIcon, CircleIcon } from 'native-base';
 
 import * as FaceDetector from 'expo-face-detector';
 
+// necessary for android devices as explained in the expo-camera doc
 if (
     Platform.OS === "android" &&
     UIManager.setLayoutAnimationEnabledExperimental
   ) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
   }
-
-  const camButtonTop = 10;
-  let camButtonRight = 10;
 
 //@author: Tim Suchan
 //this funtion returns an array of circle markers at the positions of the face landmarks
@@ -31,7 +29,7 @@ const displayFaceLandmarks = ({landmarks}) => (
     </>
 ); 
   
-//author: Tim Suchan
+//@author: Tim Suchan
 const CameraScreen = ({size}) => {
 
 
