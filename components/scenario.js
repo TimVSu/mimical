@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 17,
-    marginTop: 4
+    marginTop: 8,
+    textAlign: 'center'
   }
 });
