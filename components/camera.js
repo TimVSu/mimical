@@ -86,7 +86,7 @@ const CameraScreen = ({size}) => {
     landmarksTemp[8] = RIGHT_EYE;
     landmarksTemp[9] = RIGHT_MOUTH;
 
-   console.log(landmarksTemp);
+   console.log(faces);
 
     setLandmarks(landmarksTemp);
     setFaceDetected(true);
