@@ -10,7 +10,7 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 import Task from './task.js'
-import { Heading } from 'native-base';
+import { Heading, Modal } from 'native-base';
 import Info from './info.js'
 
 if (
@@ -136,16 +136,19 @@ const LevelLayout = ({navigation,}) => {
             <Text style={{color: 'white', justifyContent: 'center', fontSize:24}} >Üben</Text>
           </TouchableOpacity>
 
-          <View style={{marginTop: hp('15%'), alignContent: 'center', alignItems: 'center'}}>
+
+          
+          <View style={{marginTop: hp('15%'), alignContent: 'center', alignItems: 'center', zIndex: 0, elevation: 0}}>
             <Heading size="2xl">LEVEL HEADING</Heading>    
           </View>
-          <View style={{marginTop: hp('10%'), marginBottom: hp('10%'), marginLeft:hp('5%'), marginRight:hp('10%'),  alignContent: 'center', alignItems: 'center'}}>
+          <View style={{marginTop: hp('10%'), marginBottom: hp('10%'), marginLeft:hp('5%'), zIndex: 0, elevation: 0, marginRight:hp('10%'),  alignContent: 'center', alignItems: 'center'}}>
             <Heading size="2xl">leveltext should later be supplied using markdown files</Heading>    
           </View>
+          
 
 
           {taskCreated &&
-      <Animated.View style={floatUpStyle}>
+      <Animated.View style={[floatUpStyle, {zIndex: 100, elevation: 100, position: 'absolute'}]}>
       <Task taskDescription='kneifen sie ihre augen zusammen' downFunction={nextLevel}>
       </Task>
       </Animated.View>

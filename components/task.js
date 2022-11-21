@@ -18,7 +18,7 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
             <Heading style={styles.description} size='lg'>{taskDescription}</Heading>
             {children}
             <View style={styles.horizontal}>
-              <TouchableOpacity style={styles.button} onPress={down}>
+              <TouchableOpacity style={styles.button} onPress={downFunction}>
                 <AntDesign name="downcircleo" size={50} color="white" />
               </TouchableOpacity>
               <TouchableOpacity style={styles.button}>
