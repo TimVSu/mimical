@@ -18,7 +18,7 @@ const gray5 = 'rgb(229, 229, 234)';
 // return settings item component
 const SettingsItem = (props) => {
   return (
-    <View style={styles.settings_item}>
+    <View style={styles.settingsItem}>
       {/* <FontAwesomeIcon icon={props.icon} size={32} /> */}
       <Text style={styles.label}>{props.label}</Text>
       <FontAwesomeIcon icon={props.toggle} size={32} color={props.toggle_color} />
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     marginTop: 4
   },
-  settings_item: {
+  settingsItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

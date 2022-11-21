@@ -15,8 +15,8 @@ const gray5 = 'rgb(229, 229, 234)';
 // return navigation bar component
 const NavBar = (props) => {
   return (
-    <View style={styles.nav_bar}>
-      <Text style={styles.page_title}>{props.page_title}</Text>
+    <View style={styles.navBar}>
+      <Text style={styles.title}>{props.page_title}</Text>
       <FontAwesomeIcon icon={faCircleInfo} color={blue} size={32} />
     </View>
   );
@@ -26,7 +26,7 @@ export default NavBar;
 
 // styles
 const styles = StyleSheet.create({
-  nav_bar: {
+  navBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     borderColor: gray5,
     backgroundColor: 'white'
   },
-  page_title: {
+  title: {
     fontSize: 34,
     fontWeight: 'bold'
   }

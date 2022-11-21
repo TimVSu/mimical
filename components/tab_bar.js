@@ -12,13 +12,12 @@ import { faGear } from '@fortawesome/free-solid-svg-icons';
 
 // colors
 const blue = 'rgb(0, 122, 255)';
-const gray4 = 'rgb(209, 209, 214)';
 const gray5 = 'rgb(229, 229, 234)';
 
 // return tab bar component
 const TabBar = ({ navigation, ...props }) => {
   return (
-    <View style={styles.tab_bar}>
+    <View style={styles.tabBar}>
       <Pressable onPress={() => navigation.popToTop()}>
         <FontAwesomeIcon icon={faArrowLeft} color={blue} size={32} />
       </Pressable>
@@ -39,7 +38,7 @@ export default TabBar;
 
 // styles
 const styles = StyleSheet.create({
-  tab_bar: {
+  tabBar: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     padding: 16,
