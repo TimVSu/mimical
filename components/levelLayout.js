@@ -24,7 +24,7 @@ if (
 //@author: Tim Suchan
 const LevelLayout = ({navigation,}) => {
 
-  //!! compnent name is still subject of change was initially supposed to be just a layout but will prpably include
+  //!! compnent name is still subject of change was initially supposed to be just a layout but will propably include
   // all of the level functionality in the future !!
 
   // VARIABLES:
