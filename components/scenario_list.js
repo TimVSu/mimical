@@ -32,7 +32,7 @@ const ScenarioList = ({ title, exercises, progress }) => {
 
   // return scenario list component
   return (
-    <View style={styles.scenario_list}>
+    <View style={styles.scenarioList}>
       <Text style={styles.title}>{title}</Text>
       <ProgressBar exercises={exercises} progress={progress} />
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 16
   },
-  scenario_list: {
+  scenarioList: {
     marginTop: 16,
     marginBottom: 16
   }

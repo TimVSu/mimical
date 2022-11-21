@@ -6,7 +6,6 @@ import React from 'react';
 
 // colors
 const blue = 'rgb(0, 122, 255)';
-const gray5 = 'rgb(229, 229, 234)';
 const gray6 = 'rgb(242, 242, 247)';
 
 // return progress bar component
@@ -24,19 +23,4 @@ const ProgressBar = ({ exercises, progress }) => {
 export default ProgressBar;
 
 // styles
-const styles = StyleSheet.create({
-  nav_bar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 16,
-    paddingTop: 64,
-    borderBottomWidth: 1,
-    borderColor: gray5,
-    backgroundColor: 'white'
-  },
-  page_title: {
-    fontSize: 34,
-    fontWeight: 'bold'
-  }
-});
+const styles = StyleSheet.create({});
