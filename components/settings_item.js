@@ -21,7 +21,7 @@ const gray5 = 'rgb(229, 229, 234)';
 // return settings item component
 const SettingsItem = (props) => {
   return (
-    <View style={styles.settingsItem}>
+    <View style={styles.settings_item}>
       {/* <FontAwesomeIcon icon={props.icon} size={32} /> */}
       <Text style={styles.settings_label}>{props.label}</Text>
       <FontAwesomeIcon icon={props.toggle} size={32} color={props.toggle_color} />

@@ -20,7 +20,7 @@ const gray5 = 'rgb(229, 229, 234)';
 // return tab bar component
 const TabBar = ({ navigation, ...props }) => {
   return (
-    <View style={styles.tabBar}>
+    <View style={styles.tab_bar}>
       <Pressable onPress={() => navigation.popToTop()}>
         <FontAwesomeIcon icon={faArrowLeft} color={blue} size={32} />
       </Pressable>
