@@ -21,6 +21,3 @@ const ProgressBar = ({ exercises, progress }) => {
 }
 
 export default ProgressBar;
-
-// styles
-const styles = StyleSheet.create({});
