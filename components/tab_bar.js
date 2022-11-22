@@ -4,6 +4,9 @@
 import { Pressable, StyleSheet, View } from 'react-native';
 import React from 'react';
 
+// import components
+import styles from './styles';
+
 // import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft, faHouse } from '@fortawesome/free-solid-svg-icons';
@@ -17,7 +20,7 @@ const gray5 = 'rgb(229, 229, 234)';
 // return tab bar component
 const TabBar = ({ navigation, ...props }) => {
   return (
-    <View style={styles.tabBar}>
+    <View style={styles.tab_bar}>
       <Pressable onPress={() => navigation.popToTop()}>
         <FontAwesomeIcon icon={faArrowLeft} color={blue} size={32} />
       </Pressable>
@@ -35,16 +38,3 @@ const TabBar = ({ navigation, ...props }) => {
 }
 
 export default TabBar;
-
-// styles
-const styles = StyleSheet.create({
-  tabBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    padding: 16,
-    paddingBottom: 32,
-    borderTopWidth: 1,
-    borderColor: gray5,
-    backgroundColor: 'white'
-  }
-});

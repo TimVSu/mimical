@@ -4,6 +4,9 @@
 import { StyleSheet, View } from 'react-native';
 import React from 'react';
 
+// import components
+import styles from './styles';
+
 // import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
@@ -21,18 +24,3 @@ const Square = (props) => {
 }
 
 export default Square;
-
-// styles
-const styles = StyleSheet.create({
-  square: {
-    backgroundColor: gray6,
-    width: 128,
-    height: 128,
-    borderRadius: 16,
-    // borderWidth: 1,
-    borderColor: gray4,
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    padding: 8
-  }
-});

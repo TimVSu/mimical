@@ -8,7 +8,7 @@ import React from 'react';
 // import components
 import NavBar from '../components/nav_bar.js';
 import TabBar from '../components/tab_bar.js';
-import ScenarioList from '../components/scenario_list.js';
+import Scenario from '../components/scenario.js';
 import FilterBar from '../components/filter_bar.js';
 
 // colors
@@ -27,15 +27,15 @@ const HomePage = ({ navigation }) => {
       <FilterBar></FilterBar>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
-          <ScenarioList title="Der erste Schnee" progress={0} exercises={7} />
-          <ScenarioList title="Besuch im botanischen Garten" progress={0} exercises={9} />
-          <ScenarioList title="Stadtbummel" progress={0} exercises={8} />
-          <ScenarioList title="Kegeln" progress={0} exercises={8} />
-          <ScenarioList title="Besichtigung einer Kathedrale" progress={0} exercises={7} />
-          <ScenarioList title="Sommerabend auf dem Balkon" progress={0} exercises={7} />
-          <ScenarioList title="Im Biergarten" progress={0} exercises={7} />
-          <ScenarioList title="Einkauf beim Metzger" progress={0} exercises={7} />
-          <ScenarioList title="Laternenumzug" progress={0} exercises={6} />
+          <Scenario title="Der erste Schnee" progress={0} exercises={7} />
+          <Scenario title="Besuch im botanischen Garten" progress={0} exercises={9} />
+          <Scenario title="Stadtbummel" progress={0} exercises={8} />
+          <Scenario title="Kegeln" progress={0} exercises={8} />
+          <Scenario title="Besichtigung einer Kathedrale" progress={0} exercises={7} />
+          <Scenario title="Sommerabend auf dem Balkon" progress={0} exercises={7} />
+          <Scenario title="Im Biergarten" progress={0} exercises={7} />
+          <Scenario title="Einkauf beim Metzger" progress={0} exercises={7} />
+          <Scenario title="Laternenumzug" progress={0} exercises={6} />
           <StatusBar style="auto" />
         </View>
       </ScrollView>
