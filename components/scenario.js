@@ -5,13 +5,14 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
 // import icons
-import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCircleCheck, faSnowflake } from '@fortawesome/free-solid-svg-icons';
 
 // import components
 import ProgressBar from './progress_bar.js';
 import Exercise from './exercise.js';
+import styles from './styles.js';
 
-const Scenario = ({ title, exercises, progress }) => {
+const Scenario = ({ navigation, ...props }) => {
 
   // create empty array
   let array = [];
@@ -33,17 +34,17 @@ const Scenario = ({ title, exercises, progress }) => {
   // return scenario list component
   return (
     <View style={styles.scenario}>
-      <Text style={styles.title}>{title}</Text>
-      <ProgressBar exercises={exercises} progress={progress} />
+      <Text style={styles.scenario_title}>{props.title}</Text>
+      <ProgressBar exercises={props.exercises} progress={props.progress} />
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        <Exercise level={1} />
-        <Exercise level={2} />
-        <Exercise level={3} />
-        <Exercise level={4} />
-        <Exercise level={5} />
-        <Exercise level={6} />
-        <Exercise level={7} />
-        <Exercise level={8} />
+        <Exercise level={1} icon={props.icon} color={props.color} navigation={navigation} />
+        <Exercise level={2} icon={props.icon} color={props.color} navigation={navigation} />
+        <Exercise level={3} icon={props.icon} color={props.color} navigation={navigation} />
+        <Exercise level={4} icon={props.icon} color={props.color} navigation={navigation} />
+        <Exercise level={5} icon={props.icon} color={props.color} navigation={navigation} />
+        <Exercise level={6} icon={props.icon} color={props.color} navigation={navigation} />
+        <Exercise level={7} icon={props.icon} color={props.color} navigation={navigation} />
+        <Exercise level={8} icon={props.icon} color={props.color} navigation={navigation} />
         {/* {array} */}
       </ScrollView>
     </View>
@@ -51,16 +52,3 @@ const Scenario = ({ title, exercises, progress }) => {
 }
 
 export default Scenario;
-
-// styles
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginLeft: 16
-  },
-  scenario: {
-    marginTop: 16,
-    marginBottom: 16
-  }
-});
