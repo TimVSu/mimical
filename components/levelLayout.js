@@ -54,7 +54,7 @@ const LevelLayout = ({navigation,}) => {
     }
   });
 
-  // @author: TIm Suchan
+  // @author: Tim Suchan
   // returns animatedStyle for info expand animation
   const expandInfoStyle = useAnimatedStyle(() => {
     return{
@@ -88,15 +88,16 @@ const LevelLayout = ({navigation,}) => {
 
   //@Author: Tim Suchan
   // creates the respective task for the level
-  const createTask = (taskDescription) => {
+  const createTask = () => {
 
     setTaskCreated(true);
    // offset.value = withSpring(hp('10%'), { damping: 15, stiffness: 300 });
     offset.value = withTiming(hp('10%'),{duration: 150});
-
-    
-
   } 
+
+  const toggleTask = () => {
+    taskCreated ? setTaskCreated(false) : setTaskCreated(true);
+  }
 
   //@author: Tim Suchan
   //toggles info componenton and off
@@ -106,14 +107,17 @@ const LevelLayout = ({navigation,}) => {
 
   //@author: Tim Suchan
   // currently just moves task out of screen for testing but will later start nthe next level
-  const nextLevel = () => {
-    offset.value = withTiming(hp('110%'), { duration: 150});
+  function nextLevel() {
+    offset.value = withTiming(hp('110%'), { duration: 150 });
+    setTimeout(toggleTask,150);
+    //animationTimer;
+    //clearTimeout(animationTimer);
+    
   }
   //==============================================================================================================================================
 
     return(
 
-      
         <View style={styles.container}>
 
           <TouchableOpacity onPress={navigation.goBack} style={styles.buttonLeft}>
@@ -132,20 +136,16 @@ const LevelLayout = ({navigation,}) => {
         </TouchableOpacity>
           }
 
-          <TouchableOpacity style={styles.taskButton} onPress={() => {createTask('asjfoiajf')}}>
-            <Text style={{color: 'white', justifyContent: 'center', fontSize:24}} >Üben</Text>
+          <TouchableOpacity style={styles.taskButton} onPress={() => {createTask()}}>
+         <Text style={{color: 'white', justifyContent: 'center', fontSize:24}}>Üben</Text>
           </TouchableOpacity>
 
-
-          
           <View style={{marginTop: hp('15%'), alignContent: 'center', alignItems: 'center', zIndex: 0, elevation: 0}}>
             <Heading size="2xl">LEVEL HEADING</Heading>    
           </View>
           <View style={{marginTop: hp('10%'), marginBottom: hp('10%'), marginLeft:hp('5%'), zIndex: 0, elevation: 0, marginRight:hp('10%'),  alignContent: 'center', alignItems: 'center'}}>
             <Heading size="2xl">leveltext should later be supplied using markdown files</Heading>    
           </View>
-          
-
 
           {taskCreated &&
       <Animated.View style={[floatUpStyle, {zIndex: 100, elevation: 100, position: 'absolute'}]}>

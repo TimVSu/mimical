@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { View, StyleSheet, Platform, UIManager}  from 'react-native';
 import { CircleIcon } from 'native-base';
 import * as FaceDetector from 'expo-face-detector';
+import { Heading } from 'native-base'
 
 // necessary for android devices as explained in the expo-camera doc
 if (
@@ -26,7 +27,7 @@ const displayFaceLandmarks = ({landmarks}) => (
 ); 
   
 //@author: Tim Suchan
-const CameraScreen = ({size}) => {
+const CameraScreen = ({size, children}) => {
 
   //!! You can seee the face detection api by looking at the terminal where the metro builder is active during camera use,
   // a list of detected landmarks will be logged to this console.!!
@@ -36,6 +37,9 @@ const CameraScreen = ({size}) => {
 
   // decides wether to call functions to process face detection
   const [faceDetected, setFaceDetected] = useState(false);
+
+  //used for camera persmission
+  const [permission, requestPermission] = Camera.useCameraPermissions();
 
   //ratios used to prevent camera distortion on android
   const [ratio, setRatio] = useState('4:3');
@@ -49,6 +53,9 @@ const CameraScreen = ({size}) => {
 
   // will be used in case the camera should be able to move from left to right in case the user prefers a different placement
   const [camPosition, setCamPosition] = useState('right');
+
+  // decides how well the user performs in a given task 
+  const [score, setScore] = useState(0);
 
   //=============================================================================================================================================
 
@@ -86,12 +93,15 @@ const CameraScreen = ({size}) => {
     landmarksTemp[8] = RIGHT_EYE;
     landmarksTemp[9] = RIGHT_MOUTH;
 
-   console.log(faces);
+    var leftEyeOpenPropability = faces[0]['leftEyeOpenPropability']
+    var rightEyeOpenPropability = faces[0]['rightEyeOpenPropability']
+
+    setScore(leftEyeOpenPropability-rightEyeOpenPropability)
+
 
     setLandmarks(landmarksTemp);
     setFaceDetected(true);
     setLandmarks(landmarksTemp);
-    console.log(landmarks)
     }
     else{
       setLandmarks([]);
@@ -130,6 +140,7 @@ const CameraScreen = ({size}) => {
   // by using the useEffect ratio the ratio has to be calculated only once at the start of the app
   useEffect(() =>{
     findRatio;
+    permission 
   });
  
   // function to toggle cam on/off
@@ -144,10 +155,8 @@ const CameraScreen = ({size}) => {
     //    });
     //    setCamPosition(camPosition === 'left' ? 'right' : 'left');
     //}
-
-
-    // will later be needed for device cam permission
-    //const [permission, requestPermission] = Camera.useCameraPermissions();
+    
+    
 //===============================================================================================================================================
 
     return(
@@ -157,10 +166,14 @@ const CameraScreen = ({size}) => {
             faceDetectorSettings={{
                mode: FaceDetector.FaceDetectorMode.fast,
                detectLandmarks: FaceDetector.FaceDetectorLandmarks.all,
-               runClassifications: FaceDetector.FaceDetectorClassifications.none,
+               runClassifications: FaceDetector.FaceDetectorClassifications.all,
                minDetectionInterval: 0,
                tracking: true,
     }}>      
+    <Heading>
+      {score}
+    </Heading>
+    {children}
         </Camera>
         </View>
     );
