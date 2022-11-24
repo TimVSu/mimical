@@ -17,6 +17,8 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
   const [currentTime, setCurrentTime] = useState(10);
   const [taskRunning, setTaskRunning] = useState(false);
   const [onPause, setOnPause] = useState(false);
+  const [trainState, setTrainState] = useState(false);
+  const [relaxState, setRelaxState] = useState(false);
  
   const [showDescription, setShowDescription] = useState(true);
 
@@ -25,7 +27,7 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
   //=============================================================================================================================================
   const play = () => {
     if (!onPause){
-    setCurrentTime(10)
+    setCurrentTime(20)
     setTaskRunning(true);
     setOnPause(false);
     }
@@ -33,6 +35,11 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
       setTaskRunning(true);
       setOnPause(false);
     }
+  }
+
+
+  const relax = () => {
+    setCurrentTime(10);
   }
 
   const incrementDown = () =>{
@@ -54,11 +61,15 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
     } else if (!taskRunning) {
       clearInterval(interval);
     }
-    if(currentTime == 0){
-      clearInterval(interval);
+    if(currentTime == 0 && taskRunning && !relaxState){
+      setCurrentTime(10);
+      setRelaxState(true);
+    }
+    if(currentTime == 0 && taskRunning && relaxState){
+      clearInterval(interval)
     }
     return () => clearInterval(interval);
-  }, [taskRunning, currentTime]);
+  }, [taskRunning, currentTime, relaxState]);
 
     return(   
         <View style={styles.container}>
