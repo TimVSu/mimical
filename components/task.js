@@ -7,6 +7,7 @@ import { Heading } from 'native-base';
 import { AntDesign } from '@expo/vector-icons'; 
 
 
+
 const Task = ({navigation, taskDescription, children, downFunction, }) => {
 
   //!! Play and pause button will be sed to start/pause the exercise respective function will be written once i added the timer!!
@@ -14,33 +15,50 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
   //=============================================================================================================================================
 
   const [currentTime, setCurrentTime] = useState(10);
-  let trainTime = 10;
-  const pauseTime = 10;
-  const repititions = 3;
-
+  const [taskRunning, setTaskRunning] = useState(false);
+  const [onPause, setOnPause] = useState(false);
  
   const [showDescription, setShowDescription] = useState(true);
 
+
   // FUNCTIONS:
   //=============================================================================================================================================
-
   const play = () => {
-      setCurrentTime(trainTime);
-      timer(10,0,1000);
-  }
-
-  const incrementTimeDown = () => {
-    setCurrentTime(currentTime - 1);
-    console.log('interval')
-  }
-
-  const timer = (startTime, endTime, delay) =>{
-    
-    const interval = setInterval(() => {incrementTimeDown()},delay);
-    if(currentTime == endTime){
-      clearInterval(interval);
+    if (!onPause){
+    setCurrentTime(10)
+    setTaskRunning(true);
+    setOnPause(false);
+    }
+    else{
+      setTaskRunning(true);
+      setOnPause(false);
     }
   }
+
+  const incrementDown = () =>{
+    setCurrentTime(second);
+    second--;
+  }
+
+  const pause = () =>{
+    setTaskRunning(false);
+    setOnPause(true);
+  }
+
+  useEffect(() => {
+    let interval = null;
+    if (taskRunning) {
+      interval = setInterval(() => {
+        setCurrentTime(currentTime => currentTime - 1);
+      }, 1000);
+    } else if (!taskRunning) {
+      clearInterval(interval);
+    }
+    if(currentTime == 0){
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [taskRunning, currentTime]);
 
     return(   
         <View style={styles.container}>
@@ -54,7 +72,7 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
                 <AntDesign name="downcircleo" size={50} color="white" />
               </TouchableOpacity>
               <TouchableOpacity style={styles.button}>
-                <AntDesign name="pausecircleo" size={50} color="white" />
+                <AntDesign name="pausecircleo" size={50} color="white" onPress={pause}/>
               </TouchableOpacity>
               <TouchableOpacity style={styles.button}>
                 <AntDesign name="playcircleo" size={50} color="white" onPress={play}/>
