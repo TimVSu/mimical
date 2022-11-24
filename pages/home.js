@@ -4,8 +4,8 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 // import components
-import Square from '../components/square';
 import Button from '../components/button';
+import styles from '../components/styles';
 
 // import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -38,9 +38,9 @@ const gray6 = "rgb(242, 242, 247)";
 // return home page
 const Home = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.square}>
-        <Text style={styles.label}>Szenario</Text>
+    <View style={[{ backgroundColor: 'white' }, { flex: 1 }, { justifyContent: 'center' }, { alignItems: 'center' }]}>
+      <View style={[{ backgroundColor: gray6 }, { width: 256 }, { height: 256 }, { borderRadius: 16 }, { borderBottomColor: gray4 }, { padding: 16 }, { marginTop: 128 }, { marginBottom: 8 }, { justifyContent: 'flex-end' }]}>
+        <Text style={[{ fontSize: 32 }, { color: gray4 }]}>Szenario</Text>
         <Text style={[{ fontSize: 16 }, { color: gray4 }]}>Übung</Text>
       </View>
       {/* <Button icon={faPlay} text="Continue Scenario" />
