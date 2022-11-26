@@ -14,11 +14,14 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
   // VARIABLES:
   //=============================================================================================================================================
 
-  const [currentTime, setCurrentTime] = useState(10);
+  const [currentTime, setCurrentTime] = useState(20);
   const [taskRunning, setTaskRunning] = useState(false);
   const [onPause, setOnPause] = useState(false);
   const [trainState, setTrainState] = useState(false);
   const [relaxState, setRelaxState] = useState(false);
+  const [informState, setInformState] = useState(false);
+  const repCounter = 0;
+  const repititions = 3;
  
   const [showDescription, setShowDescription] = useState(true);
 
@@ -28,8 +31,10 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
   const play = () => {
     if (!onPause){
     setCurrentTime(20)
+    
     setTaskRunning(true);
     setOnPause(false);
+    setInformState(false);
     }
     else{
       setTaskRunning(true);
@@ -37,14 +42,9 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
     }
   }
 
-
   const relax = () => {
     setCurrentTime(10);
-  }
-
-  const incrementDown = () =>{
-    setCurrentTime(second);
-    second--;
+    setRelaxState(true);
   }
 
   const pause = () =>{
@@ -57,6 +57,7 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
     if (taskRunning) {
       interval = setInterval(() => {
         setCurrentTime(currentTime => currentTime - 1);
+        console.log('current time ' + currentTime + ' : ' + 'relax ' + relaxState + ' : ' + 'task ' + taskRunning);
       }, 1000);
     } else if (!taskRunning) {
       clearInterval(interval);
@@ -66,15 +67,26 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
       setRelaxState(true);
     }
     if(currentTime == 0 && taskRunning && relaxState){
-      clearInterval(interval)
+      setRelaxState(false);
+      setTaskRunning(false);
+      setInformState(false);
+      clearInterval(interval);
+    }
+    if(currentTime == 3 && taskRunning && relaxState){
+      setInformState(true);
     }
     return () => clearInterval(interval);
-  }, [taskRunning, currentTime, relaxState]);
+  }, [taskRunning, currentTime, relaxState, informState]);
 
     return(   
         <View style={styles.container}>
             <CameraScreen size={wp('100%')}>
-              <Text style={styles.time}>{currentTime}</Text>
+              {!informState ? 
+              <Text style={styles.time}>{currentTime}</Text>:
+              <View style={styles.informView}>
+                <Text style={styles.informText}>{taskDescription + 'in'}</Text>
+              <Text style={styles.informTime}>{currentTime}</Text>
+              </View>}
             </CameraScreen>
             <Heading style={styles.description} size='lg'>{taskDescription}</Heading>
             {children}
@@ -125,6 +137,22 @@ const styles = StyleSheet.create({
     top: '0%',
     color: 'white',
     fontSize: 40,
+  },
+  informTime: {
+    
+    left: '30%',
+    top: '30%',
+    color: 'white',
+    fontSize: 300,
+  },
+  informText: {
+    fontSize: 60,
+    flex: 1,
+    flexDirection: 'column',
+  },
+  informView: {
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 
 }); 
