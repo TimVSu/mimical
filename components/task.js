@@ -20,7 +20,7 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
   const [trainState, setTrainState] = useState(false);
   const [relaxState, setRelaxState] = useState(false);
   const [informState, setInformState] = useState(false);
-  const repCounter = 0;
+  const [repCounter, setRepCounter] = useState(0);
   const repititions = 3;
  
   const [showDescription, setShowDescription] = useState(true);
@@ -67,6 +67,7 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
       setRelaxState(true);
     }
     if(currentTime == 0 && taskRunning && relaxState){
+      if (repCounter < repititions)
       setRelaxState(false);
       setTaskRunning(false);
       setInformState(false);
@@ -94,7 +95,7 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
               <TouchableOpacity style={styles.button} onPress={downFunction}>
                 <AntDesign name="downcircleo" size={50} color="white" />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity style={styles.button} activeOpacity={0.3}>
                 <AntDesign name="pausecircleo" size={50} color="white" onPress={pause}/>
               </TouchableOpacity>
               <TouchableOpacity style={styles.button}>
@@ -139,9 +140,6 @@ const styles = StyleSheet.create({
     fontSize: 40,
   },
   informTime: {
-    
-    left: '30%',
-    top: '30%',
     color: 'white',
     fontSize: 300,
   },
