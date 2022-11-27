@@ -1,7 +1,7 @@
 //@author: Tim Suchan
 import { Camera, CameraType } from 'expo-camera';
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, Platform, UIManager}  from 'react-native';
+import { View, StyleSheet, Platform, UIManager, Text}  from 'react-native';
 import { CircleIcon } from 'native-base';
 import * as FaceDetector from 'expo-face-detector';
 import { Heading } from 'native-base'
@@ -29,6 +29,16 @@ const displayFaceLandmarks = ({landmarks}) => (
 //@author: Tim Suchan
 const CameraScreen = ({size, children}) => {
 
+  const [hasPermission, setHasPermission] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.getCameraPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
+
+  
   //!! You can seee the face detection api by looking at the terminal where the metro builder is active during camera use,
   // a list of detected landmarks will be logged to this console.!!
 
@@ -59,6 +69,9 @@ const CameraScreen = ({size, children}) => {
 
   //=============================================================================================================================================
 
+  /*if(permission.status == 'UNDETERMINED'){
+    Camera.getCameraPermissionsAsync();
+  }*/
   // FUNCTIONS:
   //=============================================================================================================================================
   // called in high frequency ehen a face is detected and in low frequency when it isn't
@@ -158,10 +171,11 @@ const CameraScreen = ({size, children}) => {
     
     
 //===============================================================================================================================================
-
+    if (permission){
     return(
+
         <View style={[styles.camContainer, {width: size, height: decimalRatio * size}]}>
-        <Camera style={styles.camera} type={CameraType.front} ratio={ratio} 
+        <Camera style={styles.camera} type={Camera.type} ratio={ratio} 
             onFacesDetected={handleFacesDetected}
             faceDetectorSettings={{
                mode: FaceDetector.FaceDetectorMode.fast,
@@ -176,7 +190,14 @@ const CameraScreen = ({size, children}) => {
     {children}
         </Camera>
         </View>
-    );
+    );}
+    else{
+      return(
+        <View style={[styles.camContainer, {width: size, height: decimalRatio * size}]}>
+        <Text> missing camera permission </Text>
+      </View>
+      );
+    }
 }
 
 
