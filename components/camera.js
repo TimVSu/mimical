@@ -33,7 +33,7 @@ const CameraScreen = ({size, children}) => {
 
   useEffect(() => {
     (async () => {
-      const { status } = await Camera.getCameraPermissionsAsync();
+      const status = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status === 'granted');
     })();
   }, []);
@@ -171,11 +171,11 @@ const CameraScreen = ({size, children}) => {
     
     
 //===============================================================================================================================================
-    if (permission){
+    if (hasPermission){
     return(
 
         <View style={[styles.camContainer, {width: size, height: decimalRatio * size}]}>
-        <Camera style={styles.camera} type={Camera.type} ratio={ratio} 
+        <Camera style={styles.camera} type={CameraType.Constants.Type.front} ratio={ratio} 
             onFacesDetected={handleFacesDetected}
             faceDetectorSettings={{
                mode: FaceDetector.FaceDetectorMode.fast,
