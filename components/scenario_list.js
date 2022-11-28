@@ -3,7 +3,7 @@
 // import react native
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import Scenario from './scenario.js';
+// import Scenario from './scenario.js';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
 // import components

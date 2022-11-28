@@ -1,13 +1,12 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, ScrollView } from 'react-native';
 import Square from '../components/square';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faHouse } from '@fortawesome/free-solid-svg-icons';
-import { faPlay } from '@fortawesome/free-solid-svg-icons';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { faCamera } from '@fortawesome/free-solid-svg-icons';
-import { faGear } from '@fortawesome/free-solid-svg-icons';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+// import { faHouse } from '@fortawesome/free-solid-svg-icons';
+// import { faPlay } from '@fortawesome/free-solid-svg-icons';
+// import { faUser } from '@fortawesome/free-solid-svg-icons';
+// import { faCamera } from '@fortawesome/free-solid-svg-icons';
+// import { faGear } from '@fortawesome/free-solid-svg-icons';
+// import { faBell } from '@fortawesome/free-solid-svg-icons';
+// import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import Button from '../components/button';
 
 // import icons
