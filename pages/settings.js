@@ -1,7 +1,7 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, Switch, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 
 // import components
@@ -27,21 +27,23 @@ const gray5 = 'rgb(229, 229, 234)';
 const gray6 = 'rgb(242, 242, 247)';
 
 // Languages
-
-const [selected, setSelected] = useState("");
   
 const data = [
-    {key:'1', value:'Mobiles', disabled:true},
-    {key:'2', value:'Appliances'},
-    {key:'3', value:'Cameras'},
-    {key:'4', value:'Computers', disabled:true},
-    {key:'5', value:'Vegetables'},
-    {key:'6', value:'Diary Products'},
-    {key:'7', value:'Drinks'},
+    {key:'1', value:'Deutsch'},
+    {key:'2', value:'Englisch', disabled:true},
+    {key:'3', value:'Französisch', disabled:true},
+    {key:'4', value:'Spanisch', disabled:true},
 ]
 
 // return settings page
 const SettingsPage = ({ navigation }) => {
+
+
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+  const [selected, setSelected] = useState(false); 
+
   return (
     <View style={{ flex: 1 }}>
       <NavBar page_title="Einstellungen" />
@@ -59,9 +61,20 @@ const SettingsPage = ({ navigation }) => {
         <Text></Text>
       </SettingsList> */}
 
+      <View style={styles.container}>
+        <Switch
+          trackColor={{ false: "#767577", true: "#81b0ff" }}
+          thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+        />
+      </View>
+
       <SelectList 
-        setSelected={(val) => setSelected(val)} 
-        data={data} 
+        setSelected={(value) => setSelected(value)} 
+        placeholder={"Wähle eine Sprache"}
+        data={data}
         save="value"
       />
       <TabBar home={gray4} stats={gray4} settings={blue} navigation={navigation} />
@@ -70,3 +83,12 @@ const SettingsPage = ({ navigation }) => {
 }
 
 export default SettingsPage;
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 30,
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  }
+});
