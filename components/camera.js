@@ -34,7 +34,8 @@ const CameraScreen = ({size, children}) => {
   useEffect(() => {
     (async () => {
       const status = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === 'granted');
+      console.log(status);
+      setHasPermission(status["granted"]);
     })();
   }, []);
 
@@ -128,7 +129,7 @@ const CameraScreen = ({size, children}) => {
   // @author: Tim Suchan
   const findRatio = async() => {
     if (Platform.OS === 'android') {
-      const ratios = await camera.getSupportedRatiosAsync();
+      const ratios = await Camera.getSupportedRatiosAsync();
       if (('4:3') in ratios){
         setRatio('4:3');
         setDecimalRatio(1.33333);
@@ -175,7 +176,7 @@ const CameraScreen = ({size, children}) => {
     return(
 
         <View style={[styles.camContainer, {width: size, height: decimalRatio * size}]}>
-        <Camera style={styles.camera} type={CameraType.Constants.Type.front} ratio={ratio} 
+        <Camera style={styles.camera} type={CameraType.front} ratio={ratio} 
             onFacesDetected={handleFacesDetected}
             faceDetectorSettings={{
                mode: FaceDetector.FaceDetectorMode.fast,
