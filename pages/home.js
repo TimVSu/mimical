@@ -16,17 +16,6 @@ import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
-import Button from '../components/button';
-
-// import icons
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faHouse } from "@fortawesome/free-solid-svg-icons";
-import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faCamera } from "@fortawesome/free-solid-svg-icons";
-import { faGear } from "@fortawesome/free-solid-svg-icons";
-import { faBell } from "@fortawesome/free-solid-svg-icons";
-import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 
 // colors
 const green = "rgb(52, 199, 89)";
@@ -198,46 +187,3 @@ const Home = ({ navigation }) => {
 
 export default Home;
 
-// styles
-const styles = StyleSheet.create({
-  container: {
-    // borderWidth: 1,
-    backgroundColor: "white",
-    // padding: 32,
-    // margin: 16,
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  label: {
-    fontSize: 32,
-    // margin: 8,
-    // marginTop: 8,
-    // marginBottom: 8,
-    color: gray4,
-    // textAlign: 'center'
-  },
-  button: {
-    backgroundColor: blue,
-    padding: 16,
-    margin: 8,
-    borderRadius: 8,
-  },
-  text: {
-    fontSize: 16,
-    color: "white",
-  },
-  square: {
-    backgroundColor: gray6,
-    width: 256,
-    height: 256,
-    borderRadius: 16,
-    // borderWidth: 1,
-    borderColor: gray4,
-    padding: 16,
-    marginTop: 128,
-    marginBottom: 8,
-    justifyContent: "flex-end",
-    // alignItems: 'center'
-  },
-});
