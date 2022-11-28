@@ -123,4 +123,17 @@ export default StyleSheet.create({
     fontSize: 34,
     fontWeight: 'bold'
   },
+  title1: {
+    fontSize: 32,
+    fontWeight: 'bold'
+  },
+  title2: {
+    fontSize: 24,
+    fontWeight: 'bold'
+  },
+  body: {
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
+  button: {}
 });
