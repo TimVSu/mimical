@@ -1,10 +1,15 @@
 import React, { useEffect, useRef } from 'react';
+import "../pages/global"
 import {Text, StyleSheet, View, TouchableOpacity, Animated } from 'react-native';
 
 export default function customButton({ text, onPress, color }) {    
     
     const progress = useRef(new Animated.Value(0.5)).current;
     const scale = useRef(new Animated.Value(1)).current;
+
+    const custom_font =
+
+        global.custom_fontsize === "klein" ? styles.klein : styles.gross;
     
     useEffect(() => {
 
@@ -43,7 +48,7 @@ export default function customButton({ text, onPress, color }) {
                     }
                     )
                 }]}> 
-                    <Text style={styles.buttonText}> { text } </Text>
+                    <Text style={[styles.buttonText, custom_font]}> { text } </Text>
                 </Animated.View>
             </View>
         </TouchableOpacity>
@@ -75,5 +80,11 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textAlign: "center",
         fontSize: 10
+    },
+    klein: {
+      fontSize: 14
+    },
+    gross: {
+      fontSize: 24
     }
 })

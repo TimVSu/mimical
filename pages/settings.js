@@ -3,28 +3,29 @@
 // import react native
 import { ScrollView, View, Switch, StyleSheet, Text, TouchableOpacity, Alert, Modal, Animated } from 'react-native';
 import React, { useEffect, useState, useRef } from 'react';
+import "./global"
 
 // import components
 import NavBar from '../components/nav_bar.js';
 import TabBar from '../components/tab_bar.js';
 import CustomButton from '../components/customButton'
-import SettingsItem from '../components/settings_item.js';
+// import SettingsItem from '../components/settings_item.js';
 import { SelectList } from 'react-native-dropdown-select-list'
 
-// import icons
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faSquare } from '@fortawesome/free-solid-svg-icons';
-import { faToggleOn } from '@fortawesome/free-solid-svg-icons';
-import { faToggleOff } from '@fortawesome/free-solid-svg-icons';
-import { faCamera } from '@fortawesome/free-solid-svg-icons';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
+// // import icons
+// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+// import { faSquare } from '@fortawesome/free-solid-svg-icons';
+// import { faToggleOn } from '@fortawesome/free-solid-svg-icons';
+// import { faToggleOff } from '@fortawesome/free-solid-svg-icons';
+// import { faCamera } from '@fortawesome/free-solid-svg-icons';
+// import { faBell } from '@fortawesome/free-solid-svg-icons';
 
-// colors
-const green = 'rgb(52, 199, 89)';
-const blue = 'rgb(0, 122, 255)';
+// // colors
+// const green = 'rgb(52, 199, 89)';
+// const blue = 'rgb(0, 122, 255)';
 const gray4 = 'rgb(209, 209, 214)';
 const gray5 = 'rgb(229, 229, 234)';
-const gray6 = 'rgb(242, 242, 247)';
+// const gray6 = 'rgb(242, 242, 247)';
 
 // Languages
   
@@ -50,9 +51,12 @@ const data_noti = [
 // return settings page
 const SettingsPage = ({ navigation }) => {
 
+  // Switch config
 
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+  // Selectlist Config
 
   const [lang_selected, lang_setSelected] = useState(false);
 
@@ -61,6 +65,14 @@ const SettingsPage = ({ navigation }) => {
   const [noti_selected, noti_setSelected] = useState(false);
 
   const [modalVisible, setModalVisible] = useState(false);
+
+  // Font config
+
+  const custom_font =
+
+    global.custom_fontsize === "klein" ? styles.klein : styles.gross;
+
+
 
   return (
     <View style={{ flex: 1 }}>
@@ -87,34 +99,39 @@ const SettingsPage = ({ navigation }) => {
             <View style={styles.centeredView}>
                 <View style={[styles.modalView, {}]}>
 
-                    <Text style={styles.modalText}>Benachrichtigungen</Text>
+                    <Text style={[styles.modalText, custom_font, custom_mode ]}>Benachrichtigungen</Text>
                     <View style={styles.container}>
                     <SelectList 
-                          setSelected={(value) => lang_setSelected(value)} 
+                          setSelected={(value) => noti_setSelected(value)} 
                           placeholder={"Wie oft wollen Sie benachrichtigt werden?"}
                           data={data_noti}
                           save="value"
                           search={false}
                           boxStyles= {{
-                            // height: 75,
                             marginTop: 40,
                             borderBottomWidth: 0.5,
                             borderColor: gray5,
                             backgroundColor: 'white'
-                          }}
-                          dropdownTextStyles= {{
-                            
                           }}
                           dropdownStyles= {{
                             borderBottomWidth: 0.5,
                             borderColor: gray5,
                             backgroundColor: 'white'
                           }}
+                          inputStyles= {
+                            custom_font
+                          }
+                          dropdownTextStyles= {
+                            custom_font
+                          }
+                          disabledTextStyles= {
+                            custom_font
+                          }
                         />
 
                         <View style={styles.container}>
                           <View style={styles.switchView}>
-                            <Text>Keine Benachrichtigungen</Text>
+                            <Text style={custom_font}>Keine Benachrichtigungen</Text>
                             <Switch
                               trackColor={{ false: "#00ccff", true: "#757575" }}
                               thumbColor={isEnabled ? "#000000" : "#0000ff"}
@@ -151,14 +168,20 @@ const SettingsPage = ({ navigation }) => {
             backgroundColor: 'white',
             alignItems: "center"
           }}
-          dropdownTextStyles= {{
-            
-          }}
           dropdownStyles= {{
             borderBottomWidth: 0.5,
             borderColor: gray5,
             backgroundColor: 'white'
           }}
+          inputStyles= {
+            custom_font
+          }
+          dropdownTextStyles= {
+            custom_font
+          }
+          disabledTextStyles= {
+            custom_font
+          }
         />
 
         <SelectList 
@@ -179,11 +202,20 @@ const SettingsPage = ({ navigation }) => {
             borderColor: gray5,
             backgroundColor: 'white'
           }}
+          inputStyles= {
+            custom_font
+          }
+          dropdownTextStyles= {
+            custom_font
+          }
+          disabledTextStyles= {
+            custom_font
+          }
         />
 
         <View style={styles.container}>
           <View style={styles.switchView}>
-            <Text>  Dark Mode</Text>
+            <Text style={custom_font}>  Dark Mode</Text>
             <Switch
               trackColor={{ false: "#81b0ff", true: "#767577" }}
               thumbColor={isEnabled ? "#f4f3f4" : "skyblue"}
@@ -197,7 +229,7 @@ const SettingsPage = ({ navigation }) => {
         <View style={styles.container}>
           <View style={styles.switchView}>
 
-            <Text>  Benachrichtigungen</Text>
+            <Text style={custom_font}>  Benachrichtigungen</Text>
 
             <TouchableOpacity onPress={() => setModalVisible(true)}>
 
@@ -292,5 +324,11 @@ const styles = StyleSheet.create({
     paddingTop:100,
     flex: 1,
     flexDirection: "row"
+  },
+  klein: {
+    fontSize: 14
+  },
+  gross: {
+    fontSize: 24
   }
 });
