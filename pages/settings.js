@@ -22,7 +22,7 @@ import { SelectList } from 'react-native-dropdown-select-list'
 
 // // colors
 // const green = 'rgb(52, 199, 89)';
-// const blue = 'rgb(0, 122, 255)';
+const blue = 'rgb(0, 122, 255)';
 const gray4 = 'rgb(209, 209, 214)';
 const gray5 = 'rgb(229, 229, 234)';
 // const gray6 = 'rgb(242, 242, 247)';
@@ -68,9 +68,12 @@ const SettingsPage = ({ navigation }) => {
 
   // Font config
 
+  // const [custom_fontsize, setFontsize] = useState('');
+  // setFontsize(global.custom_fontsize);
+
   const custom_font =
 
-    global.custom_fontsize === "klein" ? styles.klein : styles.gross;
+    global.custom_fontsize === "Klein" ? styles.klein : styles.gross;
 
 
 
@@ -99,7 +102,7 @@ const SettingsPage = ({ navigation }) => {
             <View style={styles.centeredView}>
                 <View style={[styles.modalView, {}]}>
 
-                    <Text style={[styles.modalText, custom_font, custom_mode ]}>Benachrichtigungen</Text>
+                    <Text style={[styles.modalText, custom_font ]}>Benachrichtigungen</Text>
                     <View style={styles.container}>
                     <SelectList 
                           setSelected={(value) => noti_setSelected(value)} 
@@ -246,6 +249,7 @@ const SettingsPage = ({ navigation }) => {
 
             <CustomButton
               text='Fertig'
+              // onPress={setFontsize(size_selected)}
               color="skyblue"
             />
 

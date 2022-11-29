@@ -1,2 +1,2 @@
-global.custom_fontsize = "gross";
+global.custom_fontsize = "Klein";
 

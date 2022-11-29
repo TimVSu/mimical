@@ -9,7 +9,7 @@ export default function customButton({ text, onPress, color }) {
 
     const custom_font =
 
-        global.custom_fontsize === "klein" ? styles.klein : styles.gross;
+        global.custom_fontsize === "Klein" ? styles.klein : styles.klein;
     
     useEffect(() => {
 
