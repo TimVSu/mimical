@@ -8,9 +8,8 @@ import { AntDesign } from '@expo/vector-icons';
 
 
 
-const Task = ({navigation, taskDescription, children, downFunction, }) => {
+const Task = ({navigation, taskDescription, children, downFunction, nextLevelFunction}) => {
 
-  //!! Play and pause button will be sed to start/pause the exercise respective function will be written once i added the timer!!
   // VARIABLES:
   //=============================================================================================================================================
 
@@ -28,6 +27,9 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
 
   // FUNCTIONS:
   //=============================================================================================================================================
+
+  //@author: tim suchan
+  //starts/continues one train/pause timer repitiotion, called when play button is pressd or when  
   const play = () => {
     if (!onPause){
     setCurrentTime(20)
@@ -42,16 +44,16 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
     }
   }
 
-  const relax = () => {
-    setCurrentTime(10);
-    setRelaxState(true);
-  }
-
+  //@author: TIm Suchan
+  // pauses a running game timer sequence
   const pause = () =>{
     setTaskRunning(false);
     setOnPause(true);
   }
 
+  //@author: Tim Suchan
+  // The code for the Game Timer 
+  // Using useEffect as the timer changing is a side effect in this case
   useEffect(() => {
     let interval = null;
     if (taskRunning) {
@@ -67,17 +69,24 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
       setRelaxState(true);
     }
     if(currentTime == 0 && taskRunning && relaxState){
-      if (repCounter < repititions)
+      if (repCounter = repititions){
       setRelaxState(false);
       setTaskRunning(false);
       setInformState(false);
       clearInterval(interval);
+    }
+      else{
+      setRepCounter(repCounter => repCounter + 1);
+      play;
+      }
     }
     if(currentTime == 3 && taskRunning && relaxState){
       setInformState(true);
     }
     return () => clearInterval(interval);
   }, [taskRunning, currentTime, relaxState, informState]);
+
+
 
     return(   
         <View style={styles.container}>

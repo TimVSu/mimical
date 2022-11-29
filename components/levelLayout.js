@@ -22,7 +22,7 @@ if (
 
   
 //@author: Tim Suchan
-const LevelLayout = ({navigation,}) => {
+const LevelLayout = ({navigation,nextLevelFunction}) => {
 
   //!! compnent name is still subject of change was initially supposed to be just a layout but will propably include
   // all of the level functionality in the future !!
@@ -107,7 +107,7 @@ const LevelLayout = ({navigation,}) => {
 
   //@author: Tim Suchan
   // currently just moves task out of screen for testing but will later start nthe next level
-  function nextLevel() {
+  function removeTask() {
     offset.value = withTiming(hp('110%'), { duration: 150 });
     setTimeout(toggleTask,150);
     //animationTimer;
@@ -149,7 +149,7 @@ const LevelLayout = ({navigation,}) => {
 
           {taskCreated &&
       <Animated.View style={[floatUpStyle, {zIndex: 100, elevation: 100, position: 'absolute'}]}>
-      <Task taskDescription='kneifen sie ihre augen zusammen' downFunction={nextLevel}>
+      <Task taskDescription='kneifen sie ihre augen zusammen' downFunction={removeTask} nextLevelFunction={nextLevelFunction}>
       </Task>
       </Animated.View>
  }
