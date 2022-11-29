@@ -1,7 +1,7 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native';
 import React from 'react';
 
 // import icons
@@ -13,6 +13,9 @@ import Exercise from './exercise.js';
 import styles from './styles.js';
 
 const Scenario = ({ navigation, ...props }) => {
+  const colorScheme = useColorScheme();
+  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
+  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
 
   // create empty array
   let array = [];
@@ -33,8 +36,8 @@ const Scenario = ({ navigation, ...props }) => {
 
   // return scenario list component
   return (
-    <View style={styles.scenario}>
-      <Text style={styles.scenario_title}>{props.title}</Text>
+    <View style={[styles.scenario, containerColor]}>
+      <Text style={[styles.scenario_title, textColor]}>{props.title}</Text>
       <ProgressBar exercises={props.exercises} progress={props.progress} />
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <Exercise level={1} icon={props.icon} color={props.color} navigation={navigation} />

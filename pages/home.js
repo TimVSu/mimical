@@ -1,7 +1,7 @@
 // authors: Tim Suchan, Maxim Torgovitski
 
 // import react native
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native';
 
 // import components
 import Button from '../components/button';
@@ -26,11 +26,15 @@ const gray6 = "rgb(242, 242, 247)";
 
 // return home page
 const Home = ({ navigation }) => {
+  const colorScheme = useColorScheme();
+  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
+  const squareColor = colorScheme === 'light' ? styles.light_square : styles.dark_square;
+  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
   return (
-    <View style={[{ backgroundColor: 'white' }, { flex: 1 }, { justifyContent: 'center' }, { alignItems: 'center' }]}>
-      <View style={[{ backgroundColor: gray6 }, { width: 256 }, { height: 256 }, { borderRadius: 16 }, { borderBottomColor: gray4 }, { padding: 16 }, { marginTop: 128 }, { marginBottom: 8 }, { justifyContent: 'flex-end' }]}>
-        <Text style={[{ fontSize: 32 }, { color: gray4 }]}>Szenario</Text>
-        <Text style={[{ fontSize: 16 }, { color: gray4 }]}>Übung</Text>
+    <View style={[{ backgroundColor: 'white' }, { flex: 1 }, { justifyContent: 'center' }, { alignItems: 'center' }, containerColor]}>
+      <View style={[{ backgroundColor: gray6 }, { width: 256 }, { height: 256 }, { borderRadius: 16 }, { borderBottomColor: gray4 }, { padding: 16 }, { marginTop: 128 }, { marginBottom: 8 }, { justifyContent: 'flex-end' }, squareColor]}>
+        <Text style={[{ fontSize: 32 }, { color: gray4 }, { opacity: 0.5 }, textColor]}>Szenario</Text>
+        <Text style={[{ fontSize: 16 }, { color: gray4 }, { opacity: 0.5 }, textColor]}>Übung</Text>
       </View>
       {/* <Button icon={faPlay} text="Continue Scenario" />
       <Button icon={faHouse} text="Menu" /> */}
