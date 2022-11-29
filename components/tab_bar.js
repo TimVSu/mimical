@@ -1,7 +1,7 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, useColorScheme, View } from 'react-native';
 import React from 'react';
 
 // import components
@@ -19,8 +19,10 @@ const gray5 = 'rgb(229, 229, 234)';
 
 // return tab bar component
 const TabBar = ({ navigation, ...props }) => {
+  const colorScheme = useColorScheme();
+  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   return (
-    <View style={styles.tab_bar}>
+    <View style={[styles.tab_bar, containerColor]}>
       <Pressable onPress={() => navigation.popToTop()}>
         <FontAwesomeIcon icon={faArrowLeft} color={blue} size={32} />
       </Pressable>
