@@ -66,7 +66,7 @@ const SettingsPage = ({ navigation }) => {
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  // Font config
+  // Font config  
 
   // const [custom_fontsize, setFontsize] = useState('');
   // setFontsize(global.custom_fontsize);
@@ -74,6 +74,16 @@ const SettingsPage = ({ navigation }) => {
   const custom_font =
 
     global.custom_fontsize === "Klein" ? styles.klein : styles.gross;
+
+  const custom_circle =
+
+  global.custom_fontsize === "Klein" ? styles.circle_k : styles.circle_g;
+
+  const updateSize = () => {
+    
+    global.custom_fontsize = size_selected;
+    navigation.navigate('Menu')
+  };
 
 
 
@@ -236,8 +246,8 @@ const SettingsPage = ({ navigation }) => {
 
             <TouchableOpacity onPress={() => setModalVisible(true)}>
 
-              <View style={styles.circle}>
-                <Text> Mehr </Text>
+              <View style={[styles.circle, custom_circle]}>
+                <Text style={custom_font}> Mehr </Text>
               </View>
 
             </TouchableOpacity>
@@ -249,7 +259,7 @@ const SettingsPage = ({ navigation }) => {
 
             <CustomButton
               text='Fertig'
-              // onPress={setFontsize(size_selected)}
+              onPress={updateSize}
               color="skyblue"
             />
 
@@ -284,13 +294,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'white'
   },
   circle: {
-      width: 60,
-      height: 40,
-      borderRadius: 40 / 2,
-      backgroundColor: '#00ccff',
-      alignItems: 'center',
-      justifyContent: 'center'
+    backgroundColor: '#00ccff',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
+  circle_g: {
+    borderRadius: 80 / 2,
+    width: 120,
+    height: 50,
+  },
+  circle_k: {
+    borderRadius: 40 / 2,
+    width: 60,
+    height: 40,
+},
   centeredView: {
     flex: 0.9,
     justifyContent: "center",
