@@ -11,6 +11,7 @@ import styles from './styles';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 // colors
+const gray1 = 'rgb(142, 142, 147)';
 const gray4 = 'rgb(209, 209, 214)';
 const gray6 = 'rgb(242, 242, 247)';
 
@@ -20,7 +21,7 @@ const Square = (props) => {
   const containerColor = colorScheme === 'light' ? styles.light_square : styles.dark_square;
   return (
     <View style={[styles.square, containerColor]}>
-      <FontAwesomeIcon style={{opacity: 1}} icon={props.icon} size={64} color={props.color} />
+      <FontAwesomeIcon style={{opacity: 0.5}} icon={props.icon} size={64} color={gray1} />
     </View>
   );
 }
