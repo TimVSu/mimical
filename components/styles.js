@@ -122,8 +122,8 @@ export default StyleSheet.create({
     // borderWidth: 1,
     // borderColor: gray4,
     borderRadius: 16,
-    justifyContent: 'center',
-    alignItems: 'center'
+    // justifyContent: 'center',
+    // alignItems: 'center'
   },
   tab_bar: {
     backgroundColor: 'white',

@@ -40,14 +40,14 @@ const Scenario = ({ navigation, ...props }) => {
       <Text style={[styles.scenario_title, textColor]}>{props.title}</Text>
       <ProgressBar exercises={props.exercises} progress={props.progress} />
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        <Exercise level={1} icon={props.icon} color={props.color} navigation={navigation} />
-        <Exercise level={2} icon={props.icon} color={props.color} navigation={navigation} />
-        <Exercise level={3} icon={props.icon} color={props.color} navigation={navigation} />
-        <Exercise level={4} icon={props.icon} color={props.color} navigation={navigation} />
-        <Exercise level={5} icon={props.icon} color={props.color} navigation={navigation} />
-        <Exercise level={6} icon={props.icon} color={props.color} navigation={navigation} />
-        <Exercise level={7} icon={props.icon} color={props.color} navigation={navigation} />
-        <Exercise level={8} icon={props.icon} color={props.color} navigation={navigation} />
+        <Exercise level={1} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={true} completed={true} />
+        <Exercise level={2} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={true} completed={false} />
+        <Exercise level={3} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
+        <Exercise level={4} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
+        <Exercise level={5} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
+        <Exercise level={6} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
+        <Exercise level={7} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
+        <Exercise level={8} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
         {/* {array} */}
       </ScrollView>
     </View>

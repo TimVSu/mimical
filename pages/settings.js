@@ -1,7 +1,7 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { ScrollView, View } from 'react-native';
+import { ScrollView, useColorScheme, View } from 'react-native';
 import React from 'react';
 
 // import components
@@ -23,9 +23,14 @@ const blue = 'rgb(0, 122, 255)';
 const gray4 = 'rgb(209, 209, 214)';
 const gray5 = 'rgb(229, 229, 234)';
 const gray6 = 'rgb(242, 242, 247)';
+const dark_blue = 'rgb(10, 132, 255)';
+const dark_gray5 = 'rgb(44, 44, 46)';
 
 // return settings page
 const SettingsPage = ({ navigation }) => {
+  const colorScheme = useColorScheme();
+  const activeIconColor = colorScheme === 'light' ? blue : dark_blue
+  const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5
   return (
     <View style={{ flex: 1 }}>
       <NavBar page_title="Einstellungen" />
@@ -39,7 +44,12 @@ const SettingsPage = ({ navigation }) => {
         <SettingsItem icon={faSquare} label="Einstellung 7" toggle={faToggleOff} toggle_color={gray4} />
         <SettingsItem icon={faSquare} label="Einstellung 8" toggle={faToggleOff} toggle_color={gray4} />
       </ScrollView>
-      <TabBar home={gray4} stats={gray4} settings={blue} navigation={navigation} />
+      <TabBar
+        home={inactiveIconColor}
+        stats={inactiveIconColor}
+        settings={activeIconColor}
+        navigation={navigation}
+      />
     </View>
   );
 }

@@ -23,12 +23,16 @@ const accessibleBlue = 'rgb(0, 64, 221)'
 const gray4 = 'rgb(209, 209, 214)';
 const gray5 = 'rgb(229, 229, 234)';
 const gray6 = 'rgb(242, 242, 247)';
+const dark_blue = 'rgb(10, 132, 255)';
+const dark_gray5 = 'rgb(44, 44, 46)';
 
 // return home page
 const HomePage = ({ navigation }) => {
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+  const activeIconColor = colorScheme === 'light' ? blue : dark_blue
+  const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5
   return (
     <View style={{ flex: 1 }}>
       <NavBar page_title="Übersicht" />
@@ -108,9 +112,9 @@ const HomePage = ({ navigation }) => {
         </View>
       </ScrollView>
       <TabBar
-        home={blue}
-        stats={gray4}
-        settings={gray4}
+        home={activeIconColor}
+        stats={inactiveIconColor}
+        settings={inactiveIconColor}
         navigation={navigation}
       />
     </View>

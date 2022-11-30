@@ -1,7 +1,7 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { Pressable, StyleSheet, useColorScheme, View } from 'react-native';
+import { Pressable, useColorScheme, View } from 'react-native';
 import React from 'react';
 
 // import components
@@ -15,16 +15,17 @@ import { faGear } from '@fortawesome/free-solid-svg-icons';
 
 // colors
 const blue = 'rgb(0, 122, 255)';
-const gray5 = 'rgb(229, 229, 234)';
+const dark_blue = 'rgb(10, 132, 255)';
 
 // return tab bar component
 const TabBar = ({ navigation, ...props }) => {
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
+  const iconColor = colorScheme === 'light' ? blue : dark_blue
   return (
     <View style={[styles.tab_bar, containerColor]}>
       <Pressable onPress={() => navigation.popToTop()}>
-        <FontAwesomeIcon icon={faArrowLeft} color={blue} size={32} />
+        <FontAwesomeIcon icon={faArrowLeft} color={iconColor} size={32} />
       </Pressable>
       <Pressable onPress={() => navigation.navigate('Menu')}>
         <FontAwesomeIcon icon={faHouse} color={props.home} size={32} />
