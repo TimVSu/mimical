@@ -11,12 +11,12 @@ $checkEmail =  mysqli_num_rows($exeSQL);
 if ($checkEmail != 0) {
     $arrayu = mysqli_fetch_array($exeSQL);
     if ($arrayu['UserPw'] != $UserPW) {
-        $Message = "pw WRONG";
+        $Message = "Passwort is falsch";
     } else {
-        $Message = "Success";
+        $Message = "Erfolgreich";
     }
 } else {
-    $Message = "No account yet";
+    $Message = "Sie haben noch kein Konto";
 }
 
 $response[] = array("Message" => $Message);

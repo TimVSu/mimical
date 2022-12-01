@@ -9,7 +9,7 @@ $exeSQL = mysqli_query($conn, $SQL);
 $checkEmail =  mysqli_num_rows($exeSQL);
 
 if ($checkEmail != 0) {
-    $Message = "Already registered";
+    $Message = "Schon registriert";
 } else {
 
     $InsertQuerry = "INSERT INTO newuser(UserEmail, UserPW) VALUES('$UserEmail', '$UserPW')";
@@ -17,9 +17,9 @@ if ($checkEmail != 0) {
     $R = mysqli_query($conn, $InsertQuerry);
 
     if ($R) {
-        $Message = "Complete--!";
+        $Message = "Fertig!";
     } else {
-        $Message = "Error";
+        $Message = "Fehler";
     }
 }
 $response[] = array("Message" => $Message);
