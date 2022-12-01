@@ -35,14 +35,14 @@ const HomePage = ({ navigation }) => {
   const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5
   return (
     <View style={{ flex: 1 }}>
-      <NavBar page_title="Übersicht" />
+      <NavBar page_title="Übersicht" navigation={navigation} />
       <FilterBar></FilterBar>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={[styles.container, containerColor]}>
           {/* <Text style={[styles.title1, textColor]}>Text</Text> */}
           <Scenario
             title="Der erste Schnee"
-            progress={0}
+            progress={1}
             exercises={7}
             icon={faSnowflake}
             color={'white'}
@@ -50,7 +50,7 @@ const HomePage = ({ navigation }) => {
           />
           <Scenario
             title="Besuch im botanischen Garten"
-            progress={0}
+            progress={3}
             exercises={9}
             icon={faTree}
             color={green}
@@ -58,28 +58,28 @@ const HomePage = ({ navigation }) => {
           />
           <Scenario
             title="Stadtbummel"
-            progress={0}
+            progress={6}
             exercises={8}
             icon={faCity}
             navigation={navigation}
           />
           <Scenario
             title="Kegeln"
-            progress={0}
+            progress={3}
             exercises={8}
             icon={faBowlingBall}
             navigation={navigation}
           />
           <Scenario
             title="Besichtigung einer Kathedrale"
-            progress={0}
+            progress={2}
             exercises={7}
             icon={faChurch}
             navigation={navigation}
           />
           <Scenario
             title="Sommerabend auf dem Balkon"
-            progress={0}
+            progress={4}
             exercises={7}
             icon={faSun}
             color={orange}
@@ -87,7 +87,7 @@ const HomePage = ({ navigation }) => {
           />
           <Scenario
             title="Im Biergarten"
-            progress={0}
+            progress={6}
             exercises={7}
             icon={faBeer}
             color={yellow}
@@ -95,7 +95,7 @@ const HomePage = ({ navigation }) => {
           />
           <Scenario
             title="Einkauf beim Metzger"
-            progress={0}
+            progress={5}
             exercises={7}
             icon={faCow}
             color={pink}
@@ -103,7 +103,7 @@ const HomePage = ({ navigation }) => {
           />
           <Scenario
             title="Laternenumzug"
-            progress={0}
+            progress={3}
             exercises={6}
             icon={faLightbulb}
             navigation={navigation}

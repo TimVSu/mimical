@@ -20,35 +20,45 @@ const Scenario = ({ navigation, ...props }) => {
   // create empty array
   let array = [];
 
-  // add scenario component (with check mark) to array using for loop
-  for (let i = 1; i < 2; i++) {
+  // add exercise component (with check mark) to array using for loop
+  for (let i = 0; i < props.progress; i++) {
     array.push(
-      <Exercise level={i} icon={faCircleCheck} />
+      <Exercise level={i + 1} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={true} completed={true} />
     )
   }
 
-  // add scenario component (without check mark) to array using for loop
-  for (let i = 2; i < 8; i++) {
+  // add exercise component (without check mark) to array using for loop
+  for (let i = props.progress; i < props.progress + 1; i++) {
     array.push(
-      <Exercise level={i} />
+      <Exercise level={i + 1} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={true} completed={false} />
     )
   }
 
-  // return scenario list component
+  // add exercise component (with lock) to array using for loop
+  for (let i = props.progress + 1; i < props.exercises; i++) {
+    array.push(
+      <Exercise level={i + 1} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
+    )
+  }
+
+  // return scenario component
   return (
-    <View style={[styles.scenario, containerColor]}>
-      <Text style={[styles.scenario_title, textColor]}>{props.title}</Text>
-      <ProgressBar exercises={props.exercises} progress={props.progress} />
+    <View style={[containerColor, { marginTop: 16 }, { marginBottom: 16 }]}>
+      <Text style={[styles.title2, textColor, { marginLeft: 16 }]}>{props.title}</Text>
+      <View style={[{ flexDirection: 'row' }, { alignItems: 'center' }, { marginTop: 8 }, { marginLeft: 16 }]}>
+        <Text style={[styles.label, textColor, { marginRight: 8 }]}>Fortschritt ({props.progress}/{props.exercises}):</Text>
+        <ProgressBar exercises={props.exercises} progress={props.progress} />
+      </View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        <Exercise level={1} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={true} completed={true} />
+        {/* <Exercise level={1} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={true} completed={true} />
         <Exercise level={2} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={true} completed={false} />
         <Exercise level={3} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
         <Exercise level={4} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
         <Exercise level={5} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
         <Exercise level={6} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
         <Exercise level={7} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
-        <Exercise level={8} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
-        {/* {array} */}
+        <Exercise level={8} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} /> */}
+        {array}
       </ScrollView>
     </View>
   );

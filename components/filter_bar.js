@@ -26,49 +26,49 @@ const FilterBar = (props) => {
         <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginRight: 8 }, buttonColor]}>
           <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
             <FontAwesomeIcon style={{ marginRight: 8 }} icon={faEye} color='white' />
-            <Text style={styles.filter_label}>Augen</Text>
+            <Text style={[styles.label, { color: 'white' }]}>Augen</Text>
           </Pressable>
         </View>
         <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }, buttonColor]}>
           <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
             <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-            <Text style={styles.filter_label}>Mund</Text>
+            <Text style={[styles.label, { color: 'white' }]}>Mund</Text>
           </Pressable>
         </View>
         <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }, buttonColor]}>
           <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
             <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-            <Text style={styles.filter_label}>Wangen</Text>
+            <Text style={[styles.label, { color: 'white' }]}>Wangen</Text>
           </Pressable>
         </View>
         <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }, buttonColor]}>
           <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
             <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-            <Text style={styles.filter_label}>Filter</Text>
+            <Text style={[styles.label, { color: 'white' }]}>Filter</Text>
           </Pressable>
         </View>
         <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }, buttonColor]}>
           <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
             <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-            <Text style={styles.filter_label}>Filter</Text>
+            <Text style={[styles.label, { color: 'white' }]}>Filter</Text>
           </Pressable>
         </View>
         <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }, buttonColor]}>
           <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
             <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-            <Text style={styles.filter_label}>Filter</Text>
+            <Text style={[styles.label, { color: 'white' }]}>Filter</Text>
           </Pressable>
         </View>
         <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }, buttonColor]}>
           <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
             <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-            <Text style={styles.filter_label}>Filter</Text>
+            <Text style={[styles.label, { color: 'white' }]}>Filter</Text>
           </Pressable>
         </View>
         <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, buttonColor]}>
           <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
             <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-            <Text style={styles.filter_label}>Filter</Text>
+            <Text style={[styles.label, { color: 'white' }]}>Filter</Text>
           </Pressable>
         </View>
       </ScrollView>
@@ -77,27 +77,3 @@ const FilterBar = (props) => {
 }
 
 export default FilterBar;
-
-// styles
-// const styles = StyleSheet.create({
-//   filter_bar: {
-//     // flexDirection: 'row',
-//     // justifyContent: 'space-between',
-//     // alignItems: 'center',
-//     // padding: 16,
-//     // paddingTop: 64,
-//     borderBottomWidth: 1,
-//     borderColor: gray5,
-//     backgroundColor: 'white'
-//   },
-//   filter: {
-//     backgroundColor: blue,
-//     padding: 16,
-//     margin: 16,
-//     borderRadius: 8
-//   },
-//   filter_label: {
-//     fontSize: 16,
-//     color: 'white'
-//   }
-// });

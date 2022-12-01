@@ -24,13 +24,10 @@ const TabBar = ({ navigation, ...props }) => {
   const iconColor = colorScheme === 'light' ? blue : dark_blue
   return (
     <View style={[styles.tab_bar, containerColor]}>
-      <Pressable onPress={() => navigation.popToTop()}>
-        <FontAwesomeIcon icon={faArrowLeft} color={iconColor} size={32} />
-      </Pressable>
       <Pressable onPress={() => navigation.navigate('Menu')}>
         <FontAwesomeIcon icon={faHouse} color={props.home} size={32} />
       </Pressable>
-      <Pressable>
+      <Pressable onPress={() => navigation.navigate('Progress')}>
         <FontAwesomeIcon icon={faChartSimple} color={props.stats} size={32} />
       </Pressable>
       <Pressable onPress={() => navigation.navigate('Settings')}>
