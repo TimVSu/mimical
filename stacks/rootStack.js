@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LevelLayout from '../components/levelLayout.js'
 import Menu from '../pages/menu.js';
 import Settings from '../pages/settings.js';
+import Api from '../pages/api.js'
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,7 @@ const RootStack = () => {
       <Stack.Screen name='Level' component={LevelLayout} />
       <Stack.Screen name="Menu" component={Menu} />
       <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="Api" component={Api} />
     </Stack.Navigator>
 
   );

@@ -68,6 +68,10 @@ const Home = ({ navigation }) => {
             <FontAwesomeIcon style={{ marginRight: 8 }} icon={faCalendar} color='white' />
             <Text style={[{ fontSize: 16 }, { color: 'white' }]}>Kalendar</Text>
           </Pressable>
+          <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Api')}>
+            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faCalendar} color='white' />
+            <Text style={[{ fontSize: 16 }, { color: 'white' }]}>API Testing</Text>
+          </Pressable>
         </ScrollView>
       </View>
     </View>
