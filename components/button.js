@@ -17,9 +17,9 @@ const blue = 'rgb(0, 122, 255)';
 // return button component
 const Button = ({ navigation, ...props }) => {
   return (
-    <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Menu')}>
+    <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate(props.target)}>
       <FontAwesomeIcon style={{ marginRight: 8 }} icon={props.icon} color='white' />
-      <Text style={[styles.label, { color: 'white' }]}>{props.text}</Text>
+      <Text style={[styles.label, { color: 'white' }]}>{props.label}</Text>
     </Pressable>
   );
 }

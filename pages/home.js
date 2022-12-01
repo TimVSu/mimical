@@ -31,43 +31,51 @@ const Home = ({ navigation }) => {
   const squareColor = colorScheme === 'light' ? styles.light_square : styles.dark_square;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
   return (
-    <View style={[{ backgroundColor: 'white' }, { flex: 1 }, { justifyContent: 'center' }, { alignItems: 'center' }, containerColor]}>
-      <View style={[{ backgroundColor: gray6 }, { width: 256 }, { height: 256 }, { borderRadius: 16 }, { borderBottomColor: gray4 }, { padding: 16 }, { marginTop: 128 }, { marginBottom: 8 }, { justifyContent: 'flex-end' }, squareColor]}>
-        <Text style={[{ fontSize: 32 }, { color: gray4 }, { opacity: 0.5 }, textColor]}>Szenario</Text>
-        <Text style={[{ fontSize: 16 }, { color: gray4 }, { opacity: 0.5 }, textColor]}>Übung</Text>
+    <View style={[{ flex: 1 }, containerColor]}>
+      <View style={[{ flex: 1 }, containerColor, { justifyContent: 'center' }, { alignItems: 'center' }]}>
+        <View style={[{ backgroundColor: gray6 }, { width: 256 }, { height: 256 }, { borderRadius: 16 }, { borderBottomColor: gray4 }, { padding: 16 }, { margin: 8 }, { justifyContent: 'flex-end' }, squareColor]}>
+          <Text style={[{ fontSize: 32 }, { color: gray4 }, { opacity: 0.5 }, textColor]}>Szenario</Text>
+          <Text style={[{ fontSize: 16 }, { color: gray4 }, { opacity: 0.5 }, textColor]}>Übung</Text>
+        </View>
+        <Button
+          icon={faPlay}
+          label="Szenario fortsetzen"
+          navigation={navigation}
+          target={'Menu'}
+        />
+        <Button
+          icon={faHouse}
+          label="Übersicht"
+          navigation={navigation}
+          target={'Menu'}
+        />
       </View>
-      {/* <Button icon={faPlay} text="Continue Scenario" navigation={navigation} />
-      <Button icon={faHouse} text="Menu" navigation={navigation} /> */}
-      <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]}>
-        <FontAwesomeIcon style={{ marginRight: 8 }} icon={faPlay} color='white' />
-        <Text style={[{ fontSize: 16 }, { color: 'white' }]}>Szenario fortsetzen</Text>
-      </Pressable>
-      <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginBottom: 32 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Menu')}>
-        <FontAwesomeIcon style={{ marginRight: 8 }} icon={faHouse} color='white' />
-        <Text style={[{ fontSize: 16 }, { color: 'white' }]}>Übersicht</Text>
-      </Pressable>
-      <View style={[{ borderTopWidth: 1 }, { borderTopColor: gray5 }, { width: '100%' }]}>
+      <View style={[{ borderTopWidth: 1 }, { width: '100%' }, containerColor]}>
         <ScrollView>
-          <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginTop: 32 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Login')}>
-            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faUser} color='white' />
-            <Text style={[{ fontSize: 16 }, { color: 'white' }]}>Log in</Text>
-          </Pressable>
-          <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Level')}>
-            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faCamera} color='white' />
-            <Text style={[{ fontSize: 16 }, { color: 'white' }]}>Cam Preview</Text>
-          </Pressable>
-          <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Settings')}>
-            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faGear} color='white' />
-            <Text style={[{ fontSize: 16 }, { color: 'white' }]}>Einstellungen</Text>
-          </Pressable>
-          <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Notifications')}>
-            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faBell} color='white' />
-            <Text style={[{ fontSize: 16 }, { color: 'white' }]}>Mitteilungen</Text>
-          </Pressable>
-          <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : blue }, { padding: 16 }, { margin: 8 }, { marginLeft: 16 }, { marginRight: 16 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate('Calendar')}>
-            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faCalendar} color='white' />
-            <Text style={[{ fontSize: 16 }, { color: 'white' }]}>Kalendar</Text>
-          </Pressable>
+          <Button
+            icon={faUser}
+            label="Log in"
+            navigation={navigation}
+            target={'Login'}
+          />
+          <Button
+            icon={faCamera}
+            label="Cam Preview"
+            navigation={navigation}
+            target={'Level'}
+          />
+          <Button
+            icon={faBell}
+            label="Notifications"
+            navigation={navigation}
+            target={'Notifications'}
+          />
+          <Button
+            icon={faCalendar}
+            label="Calendar"
+            navigation={navigation}
+            target={'Calendar'}
+          />
         </ScrollView>
       </View>
     </View>
