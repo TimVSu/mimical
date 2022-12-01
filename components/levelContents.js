@@ -1,4 +1,10 @@
+//@author: Tim Suchan
+//This file is structured in two parts, the Content Data structure and the functions that manage it. 
+//the function part should be written with a mostly functional paradigm forpractical reasons 
+//The Data Structure  part only consists of a very basic class that stores all Information necessary for a task, as
+//well as all tasks stored as such objects. Additionaly those tasks will be 
 
+//@author: tim suchan
 class taskContent{
 
     constructor(tags,text, description){
@@ -14,6 +20,9 @@ class taskContent{
     getTags(){
         return this.tags;
     }
+    getText(){
+        return this.text;
+    }
 }
 
 const taskContent1 = new taskContent(["CHEEKS", "NOSE"],
@@ -27,20 +36,66 @@ const taskContent2 = new taskContent(["LIPS","MOUTH"], ["Alle Kartons sind gepac
  "sperrige Sofa. Sie fragen sich, ob es durch den engen Flur passen wird.", "Besorgt ziehen Sie die Augenbrauen hoch."],
   "ziehen sie die Augenbrauen hoch" );
 
-allContents = {1 : taskContent1, 2 : taskContent2};
 
-const createSequence = (idArray, contentDict) => {
-    const customSequence = {};
-    const keyCounter = 1;
-    for(let i = 0; i < Object.keys(contentDict).length; i++){
-        if (Object.keys(contentDict)[i] in idArray){
-            customSequence.keyCounter = contentDict.i;
-        } 
-    }
-    return customSequence;
+const allContents = {1 : taskContent1, 2 : taskContent2};
+
+const firstList = [1,2];
+let currentContent;
+let currentSequence = [1,2];
+
+
+
+// FUNCTIONS:
+// since javascript doesnt have private/public and we opted against switching to typescript at this progress level
+// i choose to control what can be done with the currentContent
+// variable by only importing specific funtions that handle currentContent when needed
+// this is kind of a mix between procedural and object oriented programming and the goal is to create a global state with a high degree 
+// of control as doing this is usually bad practice
+//===============================================================================================================================================
+
+//@author: tim suchan
+
+const setCurrentContent = (number) => {
+    currentContent = number;
 }
 
-export {allContents, createSequence};
+const incrementCurrentContent = () => {
+    currentContent++;
+}
+
+const setCurrentSequence = (array) => {
+    currentSequence = array;
+}
+
+const getCurrentContent = () => {
+    return currentContent;
+}
+
+const getCurrentSequence = () => {
+    return currentSequence;
+}
+
+const getContent = () => {
+    return allContents[currentContent]["text"];
+}
+
+const getTaskDescription = () => {
+    return allContents[currentContent].getDescription();
+}
+
+const getTags = () => {
+    return allContents[currentContent].getTags();
+}
+const getAllContents = () => {
+    return allContents;
+}
+
+
+
+//===============================================================================================================================================
+
+
+export {getAllContents, setCurrentContent, incrementCurrentContent, setCurrentSequence, getContent, getCurrentContent, getCurrentSequence, getTags, getTaskDescription};
 
 
 

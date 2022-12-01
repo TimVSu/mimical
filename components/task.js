@@ -1,14 +1,11 @@
 //@author: Tim Suchan
 import CameraScreen from './camera.js'
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text }  from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, Button }  from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Heading } from 'native-base';
 import { AntDesign } from '@expo/vector-icons'; 
-
-
-
-const Task = ({navigation, taskDescription, children, downFunction, nextLevelFunction}) => {
+const Task = ({nextLevelFunction, sequence, currentTask, taskDescription, children, downFunction }) => {
 
   // VARIABLES:
   //=============================================================================================================================================
@@ -110,6 +107,8 @@ const Task = ({navigation, taskDescription, children, downFunction, nextLevelFun
               <TouchableOpacity style={styles.button}>
                 <AntDesign name="playcircleo" size={50} color="white" onPress={play}/>
               </TouchableOpacity>
+              <Button style={{flexDirection: 'row'}} onPress={nextLevelFunction} title='WEITER'/>
+
             </View>
          </View>
  );
@@ -160,7 +159,7 @@ const styles = StyleSheet.create({
   informView: {
     alignItems: 'center',
     justifyContent: 'center'
-  }
+  },
 
 }); 
 

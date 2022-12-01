@@ -2,8 +2,9 @@
 
 // import react native
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { StyleSheet, ScrollView, View, TouchableOpacity, Button } from 'react-native';
 import React from 'react';
+import {useState} from 'react'
 
 // import components
 import NavBar from '../components/nav_bar.js';
@@ -12,6 +13,9 @@ import Scenario from '../components/scenario.js';
 import FilterBar from '../components/filter_bar.js';
 import { faBeer, faBowlingBall, faChurch, faCity, faCow, faLightbulb, faSnowflake, faSun, faTree } from '@fortawesome/free-solid-svg-icons';
 import styles from '../components/styles.js';
+import {getAllContents, incrementCurrentContent, getCurrentSequence, setCurrentContent, getCurrentContent} from '../components/levelContents';
+
+
 
 // colors
 const orange = 'rgb(255, 149, 0)';
@@ -26,13 +30,42 @@ const gray6 = 'rgb(242, 242, 247)';
 
 // return home page
 const HomePage = ({ navigation }) => {
+
+    // since this component is higher in hirarchy thatn the level component i use it to control the current content
+    // All contets are stored with unique id's this hook stores the current starting pooint and passes it to the level component
+
+
+    //@author: Tim Suchan
+    // passed to the level component controlling which level will be displayed next
+    // also used to start any level 
+    /*const changeContent = () => {
+      console.log('iscalled')
+      if (currentContent < currentSequence.length){
+        setCurrentContent(currentContent => currentContent + 1);
+        navigation.navigate("Level", {content: allContents.currentContent, nextLevelFunction: changeContent});
+      }
+      else{
+        navigation.navigate("Menu");
+      }
+    }*/
+    setCurrentContent(1);
+    const test2 = getCurrentContent();
+    const go = () => {
+      console.log(getCurrentContent);
+      console.log(getAllContents);
+    }
+
+    const test = getAllContents()[1];
+
   return (
     <View style={{ flex: 1 }}>
       <NavBar page_title="Übersicht" />
       <FilterBar></FilterBar>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
+          <TouchableOpacity>
           <Scenario title="Der erste Schnee" progress={0} exercises={7} icon={faSnowflake} color={'white'} navigation={navigation} />
+          </TouchableOpacity>
           <Scenario title="Besuch im botanischen Garten" progress={0} exercises={9} icon={faTree} color={green} navigation={navigation} />
           <Scenario title="Stadtbummel" progress={0} exercises={8} icon={faCity} navigation={navigation} />
           <Scenario title="Kegeln" progress={0} exercises={8} icon={faBowlingBall} navigation={navigation} />

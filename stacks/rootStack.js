@@ -23,7 +23,7 @@ const RootStack = () => {
         options={{ title: 'Welcome' }}
       />
       <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name='Level' component={LevelLayout} />
+      <Stack.Screen name="Level" component={LevelLayout} />
       <Stack.Screen name="Menu" component={Menu} />
       <Stack.Screen name="Settings" component={Settings} />
     </Stack.Navigator>
