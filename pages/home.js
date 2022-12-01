@@ -1,6 +1,53 @@
-import React, { Component } from "react";
-import { Button } from "react-native";
-import { Center } from "native-base";
+// authors: Tim Suchan, Maxim Torgovitski
+
+// import react native
+
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from "react-native";
+
+// import components
+
+import Button from "../components/button";
+
+import styles from "../components/styles";
+
+// import icons
+
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
+
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
+
+import { faGear } from "@fortawesome/free-solid-svg-icons";
+
+import { faBell } from "@fortawesome/free-solid-svg-icons";
+
+import { faCalendar } from "@fortawesome/free-solid-svg-icons";
+
+// colors
+
+const green = "rgb(52, 199, 89)";
+
+const blue = "rgb(0, 122, 255)";
+
+const gray4 = "rgb(209, 209, 214)";
+
+const gray5 = "rgb(229, 229, 234)";
+
+const gray6 = "rgb(242, 242, 247)";
+
+// return home page
 
 const Home = ({ navigation }) => {
   return (

@@ -54,7 +54,7 @@ export default class SignIn extends Component {
           if (Response[0].Message == "Success") {
             console.log("true");
 
-            this.props.navigation.navigate("Home");
+            this.props.navigation.navigate("HomeL");
           }
           console.log(Data);
         })
