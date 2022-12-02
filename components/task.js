@@ -1,16 +1,12 @@
 //@author: Tim Suchan
 import CameraScreen from './camera.js'
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text }  from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, Button }  from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Heading } from 'native-base';
 import { AntDesign } from '@expo/vector-icons'; 
+const Task = ({nextLevelFunction, sequence, currentTask, taskDescription, children, downFunction }) => {
 
-
-
-const Task = ({navigation, taskDescription, children, downFunction, }) => {
-
-  //!! Play and pause button will be sed to start/pause the exercise respective function will be written once i added the timer!!
   // VARIABLES:
   //=============================================================================================================================================
 
@@ -28,6 +24,9 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
 
   // FUNCTIONS:
   //=============================================================================================================================================
+
+  //@author: tim suchan
+  //starts/continues one train/pause timer repitiotion, called when play button is pressd or when  
   const play = () => {
     if (!onPause){
     setCurrentTime(20)
@@ -42,16 +41,16 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
     }
   }
 
-  const relax = () => {
-    setCurrentTime(10);
-    setRelaxState(true);
-  }
-
+  //@author: TIm Suchan
+  // pauses a running game timer sequence
   const pause = () =>{
     setTaskRunning(false);
     setOnPause(true);
   }
 
+  //@author: Tim Suchan
+  // The code for the Game Timer 
+  // Using useEffect as the timer changing is a side effect in this case
   useEffect(() => {
     let interval = null;
     if (taskRunning) {
@@ -67,17 +66,24 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
       setRelaxState(true);
     }
     if(currentTime == 0 && taskRunning && relaxState){
-      if (repCounter < repititions)
+      if (repCounter = repititions){
       setRelaxState(false);
       setTaskRunning(false);
       setInformState(false);
       clearInterval(interval);
+    }
+      else{
+      setRepCounter(repCounter => repCounter + 1);
+      play;
+      }
     }
     if(currentTime == 3 && taskRunning && relaxState){
       setInformState(true);
     }
     return () => clearInterval(interval);
   }, [taskRunning, currentTime, relaxState, informState]);
+
+
 
     return(   
         <View style={styles.container}>
@@ -101,6 +107,8 @@ const Task = ({navigation, taskDescription, children, downFunction, }) => {
               <TouchableOpacity style={styles.button}>
                 <AntDesign name="playcircleo" size={50} color="white" onPress={play}/>
               </TouchableOpacity>
+              <Button style={{flexDirection: 'row'}} onPress={nextLevelFunction} title='WEITER'/>
+
             </View>
          </View>
  );
@@ -151,7 +159,7 @@ const styles = StyleSheet.create({
   informView: {
     alignItems: 'center',
     justifyContent: 'center'
-  }
+  },
 
 }); 
 

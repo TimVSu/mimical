@@ -4,6 +4,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, ScrollView, Text, View, useColorScheme } from 'react-native';
 import React from 'react';
+import {useState} from 'react'
 
 // import components
 import NavBar from '../components/nav_bar.js';
@@ -12,6 +13,9 @@ import Scenario from '../components/scenario.js';
 import FilterBar from '../components/filter_bar.js';
 import { faBeer, faBowlingBall, faChurch, faCity, faCow, faLightbulb, faSnowflake, faSun, faTree } from '@fortawesome/free-solid-svg-icons';
 import styles from '../components/styles.js';
+import {getAllContents, incrementCurrentContent, getCurrentSequence, setCurrentContent, getCurrentContent, getScenario, setCurrentSequence} from '../components/levelContents';
+
+
 
 // colors
 const orange = 'rgb(255, 149, 0)';
@@ -33,6 +37,37 @@ const HomePage = ({ navigation }) => {
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
   const activeIconColor = colorScheme === 'light' ? blue : dark_blue
   const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5
+
+    // since this component is higher in hirarchy thatn the level component i use it to control the current content
+    // All contets are stored with unique id's this hook stores the current starting pooint and passes it to the level component
+
+
+    //@author: Tim Suchan
+    // passed to the level component controlling which level will be displayed next
+    // also used to start any level 
+    /*const changeContent = () => {
+      console.log('iscalled')
+      if (currentContent < currentSequence.length){
+        setCurrentContent(currentContent => currentContent + 1);
+        navigation.navigate("Level", {content: allContents.currentContent, nextLevelFunction: changeContent});
+      }
+      else{
+        navigation.navigate("Menu");
+      }
+    }*/
+    setCurrentContent(1);
+    const test2 = getCurrentContent();
+    const go = () => {
+    }
+
+    const test = getAllContents()[1];
+
+    const startLevel = (start, scenario) => {
+      setCurrentContent(start);
+      setCurrentSequence(scenario);
+      navigation.navigate("Level");
+    }
+
   return (
     <View style={{ flex: 1 }}>
       <NavBar page_title="Übersicht" navigation={navigation} />

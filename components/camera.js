@@ -29,16 +29,6 @@ const displayFaceLandmarks = ({landmarks}) => (
 //@author: Tim Suchan
 const CameraScreen = ({size, children}) => {
 
-  const [hasPermission, setHasPermission] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      const status = await Camera.requestCameraPermissionsAsync();
-      console.log(status);
-      setHasPermission(status["granted"]);
-    })();
-  }, []);
-
   
   //!! You can seee the face detection api by looking at the terminal where the metro builder is active during camera use,
   // a list of detected landmarks will be logged to this console.!!
@@ -51,6 +41,9 @@ const CameraScreen = ({size, children}) => {
 
   //used for camera persmission
   const [permission, requestPermission] = Camera.useCameraPermissions();
+ 
+  // hook to handle asking for camera permission and conditional rendering
+  const [hasPermission, setHasPermission] = useState(null);
 
   //ratios used to prevent camera distortion on android
   const [ratio, setRatio] = useState('4:3');
@@ -70,11 +63,20 @@ const CameraScreen = ({size, children}) => {
 
   //=============================================================================================================================================
 
-  /*if(permission.status == 'UNDETERMINED'){
-    Camera.getCameraPermissionsAsync();
-  }*/
+
   // FUNCTIONS:
   //=============================================================================================================================================
+
+  //@author: TIm Suchan 
+  // this asynchronous function asks the user for camera permission and sets a booean state hook that later decides wether to display camera
+  useEffect(() => {
+    (async () => {
+      const status = await Camera.getCameraPermissionsAsync();
+      console.log(status);
+      setHasPermission(status["granted"]);
+    })();
+  }, []);
+
   // called in high frequency ehen a face is detected and in low frequency when it isn't
   const handleFacesDetected = ({faces}) => {
 
