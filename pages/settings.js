@@ -28,16 +28,22 @@ const gray5 = 'rgb(229, 229, 234)';
 const gray6 = 'rgb(242, 242, 247)';
 const dark_blue = 'rgb(10, 132, 255)';
 const dark_gray5 = 'rgb(44, 44, 46)';
+const dark_gray6 = 'rgb(28, 28, 30)';
 
+// options component
 const Options = (props) => {
+  const colorScheme = useColorScheme();
+  const containerColor = colorScheme === 'light' ? gray5 : dark_gray5;
+  const selectionColor = colorScheme === 'light' ? 'white' : 'black';
+  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
   if (props.select == 1) {
     return (
-      <View style={[{ backgroundColor: gray6 }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
-        <View style={[{ backgroundColor: 'white' }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
-          <Text style={styles.label}>{props.option1}</Text>
+      <View style={[{ backgroundColor: containerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
+        <View style={[{ backgroundColor: selectionColor }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
+          <Text style={[styles.label, textColor]}>{props.option1}</Text>
         </View>
         <View style={[{ padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
-          <Text style={styles.label}>{props.option2}</Text>
+          <Text style={[styles.label, textColor]}>{props.option2}</Text>
         </View>
       </View>
     );
@@ -56,6 +62,16 @@ const Options = (props) => {
 
 }
 
+// functions
+function getFontSize(x) {
+  console.log("font size: " + x)
+}
+
+function getLanguage(x) {
+  console.log("language: " + x)
+}
+
+// font settings
 const FontSettings = () => {
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
@@ -63,7 +79,7 @@ const FontSettings = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const [fontState, setFontState] = useState("Standard");
   const [fontSize, setFontSize] = useState(17);
-  const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontState(isEnabled ? "Standard" : "Groß"), setFontSize(isEnabled ? 17 : 34)];
+  const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontState(isEnabled ? "Standard" : "Groß"), setFontSize(isEnabled ? 34 : 17), getFontSize(fontSize)];
   return (
     <View style={[styles.settings_item, containerColor]}>
       <View>
@@ -81,6 +97,7 @@ const FontSettings = () => {
   );
 }
 
+// camera settings
 const CameraSettings = () => {
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
@@ -101,6 +118,7 @@ const CameraSettings = () => {
   );
 }
 
+// notifications settings
 const NotificationsSettings = () => {
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
@@ -121,6 +139,8 @@ const NotificationsSettings = () => {
   );
 }
 
+
+// appearance settings
 const AppearanceSettings = () => {
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
@@ -142,6 +162,7 @@ const AppearanceSettings = () => {
   );
 }
 
+// language settings
 const LanguageSettings = () => {
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
