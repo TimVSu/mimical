@@ -8,6 +8,9 @@ import Menu from "../pages/menu.js";
 import Settings from "../pages/settings.js";
 import Progress from "../pages/progress.js";
 import Api from "../pages/api.js";
+import SignIn from "../pages/signin";
+import SignUp from "../pages/signup";
+import Homelogin from "../pages/home_login";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +28,9 @@ const RootStack = () => {
         options={{ title: "Welcome" }}
       />
       <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="HomeL" component={Homelogin} />
+      <Stack.Screen name="Sign In" component={SignIn} />
+      <Stack.Screen name="Sign Up" component={SignUp} />
       <Stack.Screen name="Level" component={LevelLayout} />
       <Stack.Screen name="Menu" component={Menu} />
       <Stack.Screen name="Settings" component={Settings} />

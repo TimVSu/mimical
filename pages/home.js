@@ -119,11 +119,17 @@ const Home = ({ navigation }) => {
       </View>
       <View style={[{ borderTopWidth: 1 }, { width: "100%" }, containerColor]}>
         <ScrollView>
-          <Button
+          {/* <Button
             icon={faUser}
             label="Log in"
             navigation={navigation}
             target={"Login"}
+          /> */}
+          <Button
+            icon={faUser}
+            label="Log in"
+            navigation={navigation}
+            target={"HomeL"}
           />
           <Button
             icon={faCamera}

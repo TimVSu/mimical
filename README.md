@@ -28,6 +28,7 @@
 
 - 2022-12-02 -- 0.0.2
 
+  - added a temporary, but functional Database for users to sign up and sign in into, using XAMPP, MySQL and PHP. The date of the last login is saved, which also updates whenever a user logs in again.
   -
 
 - 2022-11-18 -- 0.0.1
@@ -71,3 +72,13 @@
   - created footer with links to facebook, instagram and linkedin
   - added a temporary CSS Layout
   - created homepage and settings page (empty)
+
+## Database
+
+- How to start the Test Database
+
+1. Install XAMPP
+2. Set up the MySQL database using the provided structure.sql
+3. Place the files, located in the database folder, in the htdocs folder of XAMPP
+4. Run XAMPP and open http://localhost/phpmyadmin/index.php in your browser before running the App
+   Note: Currently the password needs to edited back from hashed to clear text in the database, in order for it to be recognized.
