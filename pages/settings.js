@@ -29,6 +29,66 @@ const gray6 = 'rgb(242, 242, 247)';
 const dark_blue = 'rgb(10, 132, 255)';
 const dark_gray5 = 'rgb(44, 44, 46)';
 
+const FontSettings = () => {
+  const colorScheme = useColorScheme();
+  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
+  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  return (
+    <View style={[styles.settings_item, containerColor]}>
+      <Text style={[styles.label, textColor]}>Große Schrift</Text>
+      <Switch
+        trackColor={{ false: "#767577", true: green }}
+        thumbColor={'white'}
+        // ios_backgroundColor={"#3e3e3e"}
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+      />
+    </View>
+  );
+}
+
+const CameraSettings = () => {
+  const colorScheme = useColorScheme();
+  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
+  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+  const [isEnabled, setIsEnabled] = useState(true);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  return (
+    <View style={[styles.settings_item, containerColor]}>
+      <Text style={[styles.label, textColor]}>Kamera</Text>
+      <Switch
+        trackColor={{ false: "#767577", true: green }}
+        thumbColor={'white'}
+        // ios_backgroundColor={"#3e3e3e"}
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+      />
+    </View>
+  );
+}
+
+const NotificationsSettings = () => {
+  const colorScheme = useColorScheme();
+  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
+  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  return (
+    <View style={[styles.settings_item, containerColor]}>
+      <Text style={[styles.label, textColor]}>Mitteilungen</Text>
+      <Switch
+        trackColor={{ false: "#767577", true: green }}
+        thumbColor={'white'}
+        // ios_backgroundColor={"#3e3e3e"}
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+      />
+    </View>
+  );
+}
+
 // return settings page
 const SettingsPage = ({ navigation }) => {
   const colorScheme = useColorScheme();
