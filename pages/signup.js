@@ -31,11 +31,13 @@ export default class SignUp extends Component {
       /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i
     );
 
+    //Check if Email is provided
     if (Email.length == 0 || Password.length == 0 || ConfirmPw.length == 0) {
       alert("Required Field Is Missing!!!");
     } else if (!checkEmail.test(Email)) {
       alert("invalid email!!!");
     }
+
     // Password validations
     else if (Password.length < 8) {
       alert("Minimum 08 characters required!!!");
@@ -46,7 +48,8 @@ export default class SignUp extends Component {
     } else if (Password !== ConfirmPw) {
       alert("Password doesnot match!!!");
     } else {
-      var InsertAPIURL = "http://10.0.2.2:80/SignUp.php"; //API to render signup
+      //API to render signup screen
+      var InsertAPIURL = "http://10.0.2.2:80/SignUp.php";
 
       var headers = {
         Accept: "application/json",
@@ -58,16 +61,20 @@ export default class SignUp extends Component {
         Password: Password,
       };
 
-      // FETCH func ------------------------------------
+      //Fetch function
       fetch(InsertAPIURL, {
         method: "POST",
         headers: headers,
-        body: JSON.stringify(Data), //convert data to JSON
+        //convert data to JSON
+        body: JSON.stringify(Data),
       })
-        .then((response) => response.json()) //check response type of API (CHECK OUTPUT OF DATA IS IN JSON)
+        //Check response type of API
+        .then((response) => response.json())
         .then((response) => {
-          alert(response[0].Message); // If data is in JSON => Display alert msg
-          this.props.navigation.navigate("Sign In"); //Navigate to next screen if authentications are valid
+          // If data is in JSON -> Display alert message
+          alert(response[0].Message);
+          //Navigate to next screen if authentications are valid
+          this.props.navigation.navigate("Sign In");
         })
         .catch((error) => {
           alert("Error Occured" + error);
@@ -94,7 +101,7 @@ export default class SignUp extends Component {
       <View style={styleu.viewStyle}>
         <View style={styleu.action}>
           <TextInput
-            placeholder="Enter Email"
+            placeholder="Email eingeben"
             placeholderTextColor="#ff0000"
             style={styleu.textInput}
             onChangeText={(email) => this.setState({ email })}
@@ -102,7 +109,7 @@ export default class SignUp extends Component {
         </View>
         <View style={styleu.action}>
           <TextInput
-            placeholder="Enter Password"
+            placeholder="Passwort eingeben"
             placeholderTextColor="#ff0000"
             secureTextEntry={this.state.secureTextEntry ? true : false}
             style={styleu.textInput}
@@ -118,7 +125,7 @@ export default class SignUp extends Component {
         </View>
         <View style={styleu.action}>
           <TextInput
-            placeholder="Confirm Password"
+            placeholder="Passwort wiederholen"
             placeholderTextColor="#ff0000"
             style={styleu.textInput}
             onChangeText={(confirmPw) => this.setState({ confirmPw })}
@@ -142,7 +149,7 @@ export default class SignUp extends Component {
               this.InsertRecord();
             }}
           >
-            <Text style={styleu.text}>Register</Text>
+            <Text style={styleu.text}>Anmelden</Text>
           </Pressable>
         </View>
       </View>

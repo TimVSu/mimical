@@ -1,4 +1,5 @@
--- I used XAMPP and PHP
+--@Author Stoil Iliev
+-- Creates a SQL Database with user IDs (that automatically increase for new users), Email, password and login streak columns
 #structure.sql11
 
 CREATE TABLE newuser(

@@ -1,3 +1,4 @@
+//@Author Stoil Iliev
 import React, { Component } from "react";
 import { Button } from "react-native";
 import { Center } from "native-base";

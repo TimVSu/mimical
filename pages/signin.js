@@ -1,3 +1,4 @@
+//Author Stoil Iliev
 import React, { Component } from "react";
 import {
   View,
@@ -16,7 +17,6 @@ export default class SignIn extends Component {
     this.state = {
       email: "",
       password: "",
-      //streak: "",
       check_textInputChange: false,
       secureTextEntry: true,
     };
@@ -25,11 +25,12 @@ export default class SignIn extends Component {
   InsertRecord = () => {
     var Email = this.state.email;
     var Password = this.state.password;
-    //var Streak = this.state.streak;
 
+    //Check if Email is provided
     if (Email.length == 0 || Password.length == 0) {
       alert("Required Field Is Missing!!!");
     } else {
+      //API to render login screen
       var APIURL = "http://10.0.2.2:80/login.php";
 
       var headers = {
@@ -40,20 +41,23 @@ export default class SignIn extends Component {
       var Data = {
         Email: Email,
         Password: Password,
-        //Streak: Streak,
       };
 
+      //Fetch function
       fetch(APIURL, {
         method: "POST",
         headers: headers,
+        //convert data to JSON
         body: JSON.stringify(Data),
       })
+        //Check response type of API
         .then((Response) => Response.json())
         .then((Response) => {
+          // If data is in JSON -> Display alert message
           alert(Response[0].Message);
           if (Response[0].Message == "Success") {
             console.log("true");
-
+            //Navigate to next screen if authentications are valid
             this.props.navigation.navigate("HomeL");
           }
           console.log(Data);
@@ -76,7 +80,7 @@ export default class SignIn extends Component {
       <View style={stylei.viewStyle}>
         <View style={stylei.action}>
           <TextInput
-            placeholder="Enter Email"
+            placeholder="Ihr Email"
             placeholderTextColor="#ff0000"
             style={stylei.textInput}
             onChangeText={(email) => this.setState({ email })}
@@ -85,7 +89,7 @@ export default class SignIn extends Component {
 
         <View style={stylei.action}>
           <TextInput
-            placeholder="Enter Password"
+            placeholder="Ihr Passwort"
             placeholderTextColor="#ff0000"
             style={stylei.textInput}
             secureTextEntry={this.state.secureTextEntry ? true : false}
@@ -109,7 +113,7 @@ export default class SignIn extends Component {
               this.InsertRecord();
             }}
           >
-            <Text style={stylei.text}>Sign In</Text>
+            <Text style={stylei.text}>Einloggen</Text>
           </Pressable>
         </View>
 
@@ -120,7 +124,7 @@ export default class SignIn extends Component {
               this.props.navigation.navigate("Sign Up");
             }}
           >
-            <Text style={stylei.text}>Create new Account</Text>
+            <Text style={stylei.text}>Anmelden</Text>
           </Pressable>
         </View>
       </View>
