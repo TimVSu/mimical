@@ -15,9 +15,7 @@
 
 - Our team held daily meetings throughout the entire sprint to ensure that everyone was on the same page. Additionally, we held weekly remote meetings with our partners (from Gateway/Humanwissenschaftliche Fakultät) to exchange ideas/discuss our results and an in-person meeting at the beginning of the sprint.
 
-# Change Log
-
-## Sprint 1
+# Sprint Log
 
 ## App
 
