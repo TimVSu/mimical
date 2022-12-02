@@ -12,7 +12,7 @@ import Animated, {
 import Task from './task.js'
 import { Heading, Modal } from 'native-base';
 import Info from './info.js'
-import {getAllContents, incrementCurrentContent, getContent, get, getCurrentContent} from './levelContents'
+import {getAllContents, incrementCurrentContent, getCurrentSequence, getContent, get, getCurrentContent} from './levelContents'
 
 if (
     Platform.OS === "android" &&
@@ -118,13 +118,15 @@ const LevelLayout = ({navigation,nextLevelFunction}) => {
     
   }
   const nextLevel = () => {
-    console.log("here");
-    let test = getCurrentContent();
-    console.log(getCurrentContent);
-    //removeTask();
+    let currentSequence = getCurrentSequence();
+    if (currentContent < currentSequence.length){
     incrementCurrentContent();
     setCurrentContent(getContent());
-    navigation.navigate("Level")
+    removeTask();
+    }
+    else{
+      navigation.navigate("Menu");
+    }
   }
   //==============================================================================================================================================
 
@@ -134,32 +136,29 @@ const LevelLayout = ({navigation,nextLevelFunction}) => {
 
           <TouchableOpacity onPress={navigation.goBack} style={styles.buttonLeft}>
           <AntDesign name="left" size={wp('8%')} color="black" />
-          </TouchableOpacity>
-       
+          </TouchableOpacity>       
        {infoExpanded ? 
-
         <Animated.View style={[expandInfoStyle, {top: hp('5%'), left: wp('45%')}]}>
           <Info closeFunction={removeInfo} infoText='hier könnte ihre info stehen'>
           </Info>
-        </Animated.View>:
-          
+        </Animated.View>:          
         <TouchableOpacity style={styles.buttonRight} onPress={createInfo}>
             <AntDesign name="infocirlceo" size={24} color="black" />
         </TouchableOpacity>
           }
-
           <View style={{marginTop: hp('15%'), alignContent: 'center', alignItems: 'center', zIndex: 0, elevation: 0}}>
             <Heading size="2xl">LEVEL HEADING</Heading>    
           </View>
-          <View style={{marginTop: hp('10%'), marginBottom: hp('10%'), marginLeft:hp('5%'), zIndex: 0, elevation: 0, marginRight:hp('10%'),  alignContent: 'center', alignItems: 'center'}}>
-            <ScrollView>
+            <ScrollView style={{marginBottom: hp('15%'), marginTop: hp('5%')}}
+            contentContainerStyle={{justifyContent: 'center', alignItems: 'center', marginRight: '5%', marginLeft: '5%'}}>
             <Heading size="2xl">{currentContent}</Heading>    
             </ScrollView>
-          </View>
-
+            
           <TouchableOpacity style={styles.taskButton} onPress={() => {createTask()}}>
          <Text style={{color: 'white', justifyContent: 'center', fontSize:24}}>Üben</Text>
           </TouchableOpacity>
+         
+          
 
           {taskCreated &&
       <Animated.View style={[floatUpStyle, {zIndex: 100, elevation: 100, position: 'absolute'}]}>
@@ -167,7 +166,6 @@ const LevelLayout = ({navigation,nextLevelFunction}) => {
       </Task>
       </Animated.View>
  }
-
       </View>
     );
 }
