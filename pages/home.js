@@ -50,6 +50,16 @@ const gray6 = "rgb(242, 242, 247)";
 // return home page
 
 const Home = ({ navigation }) => {
+  const colorScheme = useColorScheme();
+
+  const containerColor =
+    colorScheme === "light" ? styles.light_container : styles.dark_container;
+
+  const squareColor =
+    colorScheme === "light" ? styles.light_square : styles.dark_square;
+
+  const textColor =
+    colorScheme === "light" ? styles.light_text : styles.dark_text;
   return (
     <View style={[{ flex: 1 }, containerColor]}>
       <View
