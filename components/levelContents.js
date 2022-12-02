@@ -1,6 +1,5 @@
 //@author: Tim Suchan
 //This file is structured in two parts, the Content Data structure and the functions that manage it. 
-//the function part should be written with a mostly functional paradigm forpractical reasons 
 //The Data Structure  part only consists of a very basic class that stores all Information necessary for a task, as
 //well as all tasks stored as such objects. Additionaly those tasks will be 
 
@@ -38,8 +37,7 @@ const taskContent2 = new taskContent(["LIPS","MOUTH"], ["Alle Kartons sind gepac
 
 
 const allContents = {1 : taskContent1, 2 : taskContent2};
-
-const firstList = [1,2];
+const defaultScenarios = {"umzug" : [1,2]}
 let currentContent;
 let currentSequence = [1,2];
 
@@ -86,6 +84,11 @@ const getTaskDescription = () => {
 const getTags = () => {
     return allContents[currentContent].getTags();
 }
+
+const getScenario = (key) => {
+    return defaultScenarios[key];
+} 
+
 const getAllContents = () => {
     return allContents;
 }
@@ -95,7 +98,7 @@ const getAllContents = () => {
 //===============================================================================================================================================
 
 
-export {getAllContents, setCurrentContent, incrementCurrentContent, setCurrentSequence, getContent, getCurrentContent, getCurrentSequence, getTags, getTaskDescription};
+export {getAllContents, getScenario, setCurrentContent, incrementCurrentContent, setCurrentSequence, getContent, getCurrentContent, getCurrentSequence, getTags, getTaskDescription};
 
 
 

@@ -13,7 +13,7 @@ import Scenario from '../components/scenario.js';
 import FilterBar from '../components/filter_bar.js';
 import { faBeer, faBowlingBall, faChurch, faCity, faCow, faLightbulb, faSnowflake, faSun, faTree } from '@fortawesome/free-solid-svg-icons';
 import styles from '../components/styles.js';
-import {getAllContents, incrementCurrentContent, getCurrentSequence, setCurrentContent, getCurrentContent} from '../components/levelContents';
+import {getAllContents, incrementCurrentContent, getCurrentSequence, setCurrentContent, getCurrentContent, getScenario, setCurrentSequence} from '../components/levelContents';
 
 
 
@@ -51,11 +51,15 @@ const HomePage = ({ navigation }) => {
     setCurrentContent(1);
     const test2 = getCurrentContent();
     const go = () => {
-      console.log(getCurrentContent);
-      console.log(getAllContents);
     }
 
     const test = getAllContents()[1];
+
+    const startLevel = (start, scenario) => {
+      setCurrentContent(start);
+      setCurrentSequence(scenario);
+      navigation.navigate("Level");
+    }
 
   return (
     <View style={{ flex: 1 }}>
@@ -63,9 +67,8 @@ const HomePage = ({ navigation }) => {
       <FilterBar></FilterBar>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
-          <TouchableOpacity>
-          <Scenario title="Der erste Schnee" progress={0} exercises={7} icon={faSnowflake} color={'white'} navigation={navigation} />
-          </TouchableOpacity>
+          <Scenario title="Der erste Schnee" progress={0} exercises={7} scenario={getScenario("umzug")} startFunction={startLevel}
+          icon={faSnowflake} color={'white'} navigation={navigation} />
           <Scenario title="Besuch im botanischen Garten" progress={0} exercises={9} icon={faTree} color={green} navigation={navigation} />
           <Scenario title="Stadtbummel" progress={0} exercises={8} icon={faCity} navigation={navigation} />
           <Scenario title="Kegeln" progress={0} exercises={8} icon={faBowlingBall} navigation={navigation} />

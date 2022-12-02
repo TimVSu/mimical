@@ -19,7 +19,7 @@
     "@types/react-native": "~0.69.1",
     "expo": "^46.0.16",
     "expo-calendar": "~10.3.0",
-    "expo-camera": "^12.3.0",
+    "expo-camera": "~12.4.0",
     "expo-device": "~4.3.0",
     "expo-face-detector": "~11.3.0",
     "expo-notifications": "~0.16.1",

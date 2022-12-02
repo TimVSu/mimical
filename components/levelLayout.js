@@ -25,10 +25,6 @@ if (
 //@author: Tim Suchan
 const LevelLayout = ({navigation,nextLevelFunction}) => {
 
-
-  //!! compnent name is still subject of change was initially supposed to be just a layout but will propably include
-  // all of the level functionality in the future !!
-
   // VARIABLES:
   //=============================================================================================================================================
   //used for the anomation off the floatUp effect when a task is called
