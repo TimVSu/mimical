@@ -33,6 +33,14 @@
   - fixed the bug that the camera would just return a black screen in ios devices 
   - added a timer that can be started from the task component and times the users exercise. The timer appears in the camera preview and is highlighted shortly before the user has to start exercising again while he is on pause. 
 
+  - the date of the last user login is saved, which also updates whenever a user logs in again
+  -
+  - user can look at progress
+  - menu (unlocked/completed exercises are marked)
+  - settings page (functionality)
+  - light/dark mode
+
+
 - 2022-11-18 -- 0.0.1
 
   - app created with react native, specifically expo
@@ -77,7 +85,10 @@
 
 ## Database
 
-- How to start the Test Database
+- 2022-12-02 -- 0.0.2
+- added a temporary, but functional database for users to sign up and sign in into, using XAMPP, MySQL and PHP
+
+- How to start the Test Database:
 
 1. Install XAMPP
 2. Set up the MySQL database using the provided structure.sql
