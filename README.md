@@ -28,18 +28,14 @@
 
 - 2022-12-02 -- 0.0.2
 
-  - added a temporary, but functional Database for users to sign up and sign in into, using XAMPP, MySQL and PHP. The date of the last login is saved, which also updates whenever a user logs in again.
-  - Added a system so store the level contents and a state that refers to the current level globally. This way the user can navigate through levels and start levels from any given point 
-  - fixed the bug that the camera would just return a black screen in ios devices 
-  - added a timer that can be started from the task component and times the users exercise. The timer appears in the camera preview and is highlighted shortly before the user has to start exercising again while he is on pause. 
-
+  - Added a system so store the level contents and a state that refers to the current level globally. This way the user can navigate through levels and start levels from any given point
+  - fixed the bug that the camera would just return a black screen in ios devices
+  - added a timer that can be started from the task component and times the users exercise. The timer appears in the camera preview and is highlighted shortly before the user has to start exercising again while he is on pause.
   - the date of the last user login is saved, which also updates whenever a user logs in again
-  -
   - user can look at progress
   - menu (unlocked/completed exercises are marked)
   - settings page (functionality)
   - light/dark mode
-
 
 - 2022-11-18 -- 0.0.1
 
