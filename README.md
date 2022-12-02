@@ -28,7 +28,7 @@
 
 - 2022-12-02 -- 0.0.2
 
-  - added a temporary, but functional Database for users to sign up and sign in into, using XAMPP, MySQL and PHP. The date of the last login is saved, which also updates whenever a user logs in again.
+  - the date of the last user login is saved, which also updates whenever a user logs in again
   -
   - user can look at progress
   - menu (unlocked/completed exercises are marked)
@@ -79,7 +79,10 @@
 
 ## Database
 
-- How to start the Test Database
+- 2022-12-02 -- 0.0.2
+- added a temporary, but functional database for users to sign up and sign in into, using XAMPP, MySQL and PHP
+
+- How to start the Test Database:
 
 1. Install XAMPP
 2. Set up the MySQL database using the provided structure.sql
