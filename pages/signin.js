@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Button,
 } from "react-native";
-import stylei from "../styles/stylesi";
+import stylei from "../Database/styles/stylesi";
 import Feather from "react-native-vector-icons/Feather";
 
 export default class SignIn extends Component {

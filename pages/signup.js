@@ -7,7 +7,7 @@ import {
   Pressable,
   Text,
 } from "react-native";
-import styleu from "../styles/stylesu";
+import styleu from "../Database/styles/stylesu";
 import Feather from "react-native-vector-icons/Feather";
 
 export default class SignUp extends Component {
