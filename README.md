@@ -83,6 +83,7 @@
 
 - 2022-12-02 -- 0.0.2
 - added a temporary, but functional database for users to sign up and sign in into, using XAMPP, MySQL and PHP
+ - functional database on a server follows!
 
 - How to start the Test Database:
 
