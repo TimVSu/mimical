@@ -38,6 +38,7 @@ const taskContent2 = new taskContent(["LIPS","MOUTH"], ["Alle Kartons sind gepac
 
 const allContents = {1 : taskContent1, 2 : taskContent2};
 const defaultScenarios = {"umzug" : [1,2]}
+
 let currentContent;
 let currentSequence = [1,2];
 
