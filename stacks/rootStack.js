@@ -1,44 +1,36 @@
-import Login from '../pages/login.js'
-import Home from '../pages/home.js'
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LevelLayout from '../components/levelLayout.js'
-import Menu from '../pages/menu.js';
-import Settings from '../pages/settings.js';
-<<<<<<< HEAD
-import Progress from '../pages/progress.js';
-=======
-import Api from '../pages/api.js'
->>>>>>> settings
+import Login from "../pages/login.js";
+import Home from "../pages/home.js";
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import LevelLayout from "../components/levelLayout.js";
+import Menu from "../pages/menu.js";
+import Settings from "../pages/settings.js";
+import Progress from "../pages/progress.js";
+import Api from "../pages/api.js";
 
 const Stack = createNativeStackNavigator();
 
 const RootStack = () => {
   return (
-
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        animation: 'none'
+        animation: "none",
       }}
     >
       <Stack.Screen
         name="Home"
         component={Home}
-        options={{ title: 'Welcome' }}
+        options={{ title: "Welcome" }}
       />
       <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name='Level' component={LevelLayout} />
+      <Stack.Screen name="Level" component={LevelLayout} />
       <Stack.Screen name="Menu" component={Menu} />
       <Stack.Screen name="Settings" component={Settings} />
-<<<<<<< HEAD
       <Stack.Screen name="Progress" component={Progress} />
-=======
       <Stack.Screen name="Api" component={Api} />
->>>>>>> settings
     </Stack.Navigator>
-
   );
 };
 
