@@ -54,7 +54,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   // component styles
-  button: {},
   tab_bar: {
     backgroundColor: 'white',
     padding: 16,
@@ -74,7 +73,7 @@ export default StyleSheet.create({
   settings_item: {
     backgroundColor: 'white',
     padding: 16,
-    borderBottomWidth: 1,
+    // borderBottomWidth: 1,
     borderColor: gray5,
     flexDirection: 'row',
     justifyContent: 'space-between',

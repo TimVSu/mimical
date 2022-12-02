@@ -34,10 +34,15 @@ const FontSettings = () => {
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
   const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const [fontState, setFontState] = useState("Standard");
+  const [fontSize, setFontSize] = useState(17);
+  const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontState(isEnabled ? "Standard" : "Groß"), setFontSize(isEnabled ? 17 : 34)];
   return (
     <View style={[styles.settings_item, containerColor]}>
-      <Text style={[styles.label, textColor]}>Große Schrift</Text>
+      <View>
+        <Text style={[styles.label, textColor]}>Große Schrift</Text>
+        <Text style={[styles.label, textColor, { opacity: 0.25 }]}>Schriftgröße: {fontState}</Text>
+      </View>
       <Switch
         trackColor={{ false: "#767577", true: green }}
         thumbColor={'white'}
