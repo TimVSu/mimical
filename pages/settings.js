@@ -64,11 +64,12 @@ const Options = (props) => {
 
 // functions
 function getFontSize(x) {
-  console.log("font size: " + x)
+  console.log("font size: " + x);
+  styles.label = { fontSize: x };
 }
 
 function getLanguage(x) {
-  console.log("language: " + x)
+  console.log("language: " + x);
 }
 
 // font settings
