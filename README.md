@@ -30,6 +30,10 @@
 
   - added a temporary, but functional Database for users to sign up and sign in into, using XAMPP, MySQL and PHP. The date of the last login is saved, which also updates whenever a user logs in again.
   -
+  - user can look at progress
+  - menu (unlocked/completed exercises are marked)
+  - settings page (functionality)
+  - light/dark mode
 
 - 2022-11-18 -- 0.0.1
 
