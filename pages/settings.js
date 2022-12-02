@@ -29,6 +29,33 @@ const gray6 = 'rgb(242, 242, 247)';
 const dark_blue = 'rgb(10, 132, 255)';
 const dark_gray5 = 'rgb(44, 44, 46)';
 
+const Options = (props) => {
+  if (props.select == 1) {
+    return (
+      <View style={[{ backgroundColor: gray6 }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
+        <View style={[{ backgroundColor: 'white' }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
+          <Text style={styles.label}>{props.option1}</Text>
+        </View>
+        <View style={[{ padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
+          <Text style={styles.label}>{props.option2}</Text>
+        </View>
+      </View>
+    );
+  } else {
+    return (
+      <View style={[{ backgroundColor: gray6 }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
+        <View style={[{ padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
+          <Text style={styles.label}>{props.option1}</Text>
+        </View>
+        <View style={[{ backgroundColor: 'white' }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
+          <Text style={styles.label}>{props.option2}</Text>
+        </View>
+      </View>
+    );
+  }
+
+}
+
 const FontSettings = () => {
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
@@ -90,6 +117,48 @@ const NotificationsSettings = () => {
         onValueChange={toggleSwitch}
         value={isEnabled}
       />
+    </View>
+  );
+}
+
+const AppearanceSettings = () => {
+  const colorScheme = useColorScheme();
+  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
+  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  return (
+    <View style={[styles.settings_item, containerColor]}>
+      <Text style={[styles.label, textColor]}>Erscheinungsbild</Text>
+      {/* <Switch
+        trackColor={{ false: "#767577", true: green }}
+        thumbColor={'white'}
+        // ios_backgroundColor={"#3e3e3e"}
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+      /> */}
+      <Options option1="Hell" option2="Dunkel" select={1} />
+    </View>
+  );
+}
+
+const LanguageSettings = () => {
+  const colorScheme = useColorScheme();
+  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
+  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  return (
+    <View style={[styles.settings_item, containerColor]}>
+      <Text style={[styles.label, textColor]}>Sprache</Text>
+      {/* <Switch
+        trackColor={{ false: "#767577", true: green }}
+        thumbColor={'white'}
+        // ios_backgroundColor={"#3e3e3e"}
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+      /> */}
+      <Options option1="Deutsch" option2="Englisch" select={1} />
     </View>
   );
 }
