@@ -3,6 +3,7 @@
 // import react native
 import { ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native';
 import React from 'react';
+import { getScenario, getScenarioLength } from './levelContents.js';
 
 // import icons
 import { faCircleCheck, faSnowflake } from '@fortawesome/free-solid-svg-icons';
@@ -19,27 +20,34 @@ const Scenario = ({ navigation, ...props }) => {
 
   // create empty array
   let array = [];
+  let key = props.test;
+  let scenarioLength = getScenarioLength(key);
+  let scenario=getScenario(key);
+  let iterator = [];
+  for (let i = 0; i < scenarioLength; i++){
+    iterator.push(i);
+  }
 
   // add exercise component (with check mark) to array using for loop
-  for (let i = 0; i < props.progress; i++) {
+  /*for (let i = 0; i < props.progress; i++) {
     array.push(
       <Exercise level={i + 1} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={true} completed={true} />
     )
-  }
+  }*/
 
   // add exercise component (without check mark) to array using for loop
-  for (let i = props.progress; i < props.progress + 1; i++) {
+  /*for (let i = props.progress; i < props.progress + 1; i++) {
     array.push(
       <Exercise level={i + 1} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={true} completed={false} />
     )
-  }
+  }*/
 
   // add exercise component (with lock) to array using for loop
-  for (let i = props.progress + 1; i < props.exercises; i++) {
+  /*for (let i = props.progress + 1; i < props.exercises; i++) {
     array.push(
       <Exercise level={i + 1} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
     )
-  }
+  }*/
 
   // return scenario component
   return (
@@ -58,7 +66,10 @@ const Scenario = ({ navigation, ...props }) => {
         <Exercise level={6} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
         <Exercise level={7} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
         <Exercise level={8} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} /> */}
-        {array}
+        {iterator.map ((iterate, index) => 
+        ( 
+        <Exercise level={iterate + 1} scenario={scenario} icon={props.icon} navigation={navigation} 
+        tags={"Tags"} unlocked={true} completed={false}></Exercise> ))}
       </ScrollView>
     </View>
   );

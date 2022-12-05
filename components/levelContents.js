@@ -39,7 +39,7 @@ const taskContent2 = new taskContent(["LIPS","MOUTH"], ["Alle Kartons sind gepac
 const allContents = {1 : taskContent1, 2 : taskContent2};
 const defaultScenarios = {"umzug" : [1,2]}
 
-let currentContent;
+let currentContent = 1;
 let currentSequence = [1,2];
 
 
@@ -75,6 +75,7 @@ const getCurrentSequence = () => {
 }
 
 const getContent = () => {
+    console.log('here ' + currentContent)
     return allContents[currentContent]["text"];
 }
 
@@ -87,6 +88,7 @@ const getTags = () => {
 }
 
 const getScenario = (key) => {
+    console.log(key);
     return defaultScenarios[key];
 } 
 
@@ -94,18 +96,18 @@ const getAllContents = () => {
     return allContents;
 }
 
+const getScenarioLength = (key) => {
+    return defaultScenarios[key].length;
+}
+
+const startLevel = (start, scenario) => {
+    setCurrentContent(start);
+    setCurrentSequence(scenario);
+  }
+
 
 
 //===============================================================================================================================================
 
 
-export {getAllContents, getScenario, setCurrentContent, incrementCurrentContent, setCurrentSequence, getContent, getCurrentContent, getCurrentSequence, getTags, getTaskDescription};
-
-
-
-
-
-  
-
-
-
+export {getAllContents, startLevel, getScenario,getScenarioLength ,setCurrentContent, incrementCurrentContent, setCurrentSequence, getContent, getCurrentContent, getCurrentSequence, getTags, getTaskDescription};

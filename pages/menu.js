@@ -56,9 +56,6 @@ const HomePage = ({ navigation }) => {
       }
     }*/
     setCurrentContent(1);
-    const test2 = getCurrentContent();
-    const go = () => {
-    }
 
     const test = getAllContents()[1];
 
@@ -79,70 +76,12 @@ const HomePage = ({ navigation }) => {
             title="Der erste Schnee"
             progress={1}
             exercises={7}
+            key="umzug"
+            test="umzug"
             icon={faSnowflake}
             color={'white'}
             navigation={navigation}
-          />
-          <Scenario
-            title="Besuch im botanischen Garten"
-            progress={3}
-            exercises={9}
-            icon={faTree}
-            color={green}
-            navigation={navigation}
-          />
-          <Scenario
-            title="Stadtbummel"
-            progress={6}
-            exercises={8}
-            icon={faCity}
-            navigation={navigation}
-          />
-          <Scenario
-            title="Kegeln"
-            progress={3}
-            exercises={8}
-            icon={faBowlingBall}
-            navigation={navigation}
-          />
-          <Scenario
-            title="Besichtigung einer Kathedrale"
-            progress={2}
-            exercises={7}
-            icon={faChurch}
-            navigation={navigation}
-          />
-          <Scenario
-            title="Sommerabend auf dem Balkon"
-            progress={4}
-            exercises={7}
-            icon={faSun}
-            color={orange}
-            navigation={navigation}
-          />
-          <Scenario
-            title="Im Biergarten"
-            progress={6}
-            exercises={7}
-            icon={faBeer}
-            color={yellow}
-            navigation={navigation}
-          />
-          <Scenario
-            title="Einkauf beim Metzger"
-            progress={5}
-            exercises={7}
-            icon={faCow}
-            color={pink}
-            navigation={navigation}
-          />
-          <Scenario
-            title="Laternenumzug"
-            progress={3}
-            exercises={6}
-            icon={faLightbulb}
-            navigation={navigation}
-          />
+            />
           <StatusBar style="auto" />
         </View>
       </ScrollView>

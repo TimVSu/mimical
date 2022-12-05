@@ -3,6 +3,7 @@
 // import react native
 import { Pressable, StyleSheet, Text, useColorScheme, View } from 'react-native';
 import React from 'react';
+import { startLevel } from './levelContents.js';
 
 // import components
 import Square from './square.js';
@@ -27,7 +28,7 @@ const Exercise = ({ navigation, ...props }) => {
   if (props.unlocked) {
     if (props.completed) {
       return (
-        <Pressable onPress={() => navigation.navigate('Level')}>
+        <Pressable onPress={() => {console.log('level ' + props.level), console.log('scenario ' + props.scenario), startLevel(props.level, props.scenario), navigation.navigate("Level")}}>
           <View style={{ margin: 16 }}>
             <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
               <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
@@ -44,7 +45,8 @@ const Exercise = ({ navigation, ...props }) => {
       );
     } else {
       return (
-        <Pressable onPress={() => navigation.navigate('Level')}>
+        
+        <Pressable onPress={() => {console.log('level ' + props.level), console.log('scenario ' + props.scenario), startLevel(props.level, props.scenario), navigation.navigate("Level")}}>
           <View style={{ margin: 16 }}>
             <View style={[styles.square, containerColor, { justifyContent: 'space-between' }, { borderWidth: 4 }, { borderColor: highlightColor }]}>
               <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
