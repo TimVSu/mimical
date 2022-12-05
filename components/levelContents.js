@@ -2,6 +2,8 @@
 //This file is structured in two parts, the Content Data structure and the functions that manage it. 
 //The Data Structure  part only consists of a very basic class that stores all Information necessary for a task, as
 //well as all tasks stored as such objects. Additionaly those tasks will be 
+//this structure will propably be temporary which is why i did not bother too much with optimizing it
+// i try keeping the ways variables like currentContent can be changed in the code minimal, i might also erase that possibility completly
 
 //@author: tim suchan
 class taskContent{
@@ -50,6 +52,8 @@ let currentSequence = [1,2];
 // variable by only importing specific funtions that handle currentContent when needed
 // this is kind of a mix between procedural and object oriented programming and the goal is to create a global state with a high degree 
 // of control as doing this is usually bad practice
+// another advantage of accessing the level contents like this is that once we store the contents in a database all changes that have to be made
+// will be in this js file leaving the rest of the code untouched.
 //===============================================================================================================================================
 
 //@author: tim suchan
@@ -75,7 +79,6 @@ const getCurrentSequence = () => {
 }
 
 const getContent = () => {
-    console.log('here ' + currentContent)
     return allContents[currentContent]["text"];
 }
 

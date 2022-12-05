@@ -71,7 +71,7 @@ const CameraScreen = ({size, children}) => {
   // this asynchronous function asks the user for camera permission and sets a booean state hook that later decides wether to display camera
   useEffect(() => {
     (async () => {
-      const status = await Camera.getCameraPermissionsAsync();
+      const status = await Camera.requestCameraPermissionsAsync();
       console.log(status);
       setHasPermission(status["granted"]);
     })();

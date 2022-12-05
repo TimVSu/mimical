@@ -28,7 +28,7 @@ const Exercise = ({ navigation, ...props }) => {
   if (props.unlocked) {
     if (props.completed) {
       return (
-        <Pressable onPress={() => {console.log('level ' + props.level), console.log('scenario ' + props.scenario), startLevel(props.level, props.scenario), navigation.navigate("Level")}}>
+        <Pressable onPress={() => {startLevel(props.level, props.scenario), navigation.navigate("Level")}}>
           <View style={{ margin: 16 }}>
             <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
               <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
@@ -46,7 +46,7 @@ const Exercise = ({ navigation, ...props }) => {
     } else {
       return (
         
-        <Pressable onPress={() => {console.log('level ' + props.level), console.log('scenario ' + props.scenario), startLevel(props.level, props.scenario), navigation.navigate("Level")}}>
+        <Pressable onPress={() => {startLevel(props.level, props.scenario), navigation.navigate("Level")}}>
           <View style={{ margin: 16 }}>
             <View style={[styles.square, containerColor, { justifyContent: 'space-between' }, { borderWidth: 4 }, { borderColor: highlightColor }]}>
               <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>

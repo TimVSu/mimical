@@ -115,13 +115,15 @@ const LevelLayout = ({navigation,nextLevelFunction}) => {
   }
   const nextLevel = () => {
     let currentSequence = getCurrentSequence();
-    if (currentContent < currentSequence.length){
+    let contentIndex = getCurrentContent();
+    if (contentIndex < currentSequence.length){
     incrementCurrentContent();
     setCurrentContent(getContent());
     removeTask();
     }
     else{
       navigation.navigate("Menu");
+
     }
   }
   //==============================================================================================================================================
