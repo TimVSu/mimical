@@ -1,8 +1,9 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { ScrollView, Switch, Text, useColorScheme, View } from 'react-native';
+import { Button, ScrollView, Switch, Text, useColorScheme, View } from 'react-native';
 import React, { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // import components
 import NavBar from '../components/nav_bar.js';
@@ -68,6 +69,32 @@ function getFontSize(x) {
 
 function getLanguage(x) {
   console.log("language: " + x);
+}
+
+let config = {
+  "language": "german",
+  "fontSize": "default",
+}
+
+const storeData = async () => {
+  try {
+    const jsonValue = JSON.stringify(config);
+    await AsyncStorage.setItem('test', jsonValue);
+  } catch (error) {
+    // error saving value
+  }
+}
+
+const getData = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('test');
+    const value = JSON.parse(jsonValue);
+    if (value !== null) {
+      console.log(value)
+    }
+  } catch (error) {
+    // error retrieving data
+  }
 }
 
 // font settings
@@ -197,6 +224,14 @@ const SettingsPage = ({ navigation }) => {
         <CameraSettings></CameraSettings>
         <NotificationsSettings></NotificationsSettings>
         <AppearanceSettings></AppearanceSettings>
+        <Button
+          title='set data'
+          onPress={storeData}
+        />
+        <Button
+          title='get data'
+          onPress={getData}
+        />
       </ScrollView>
       <TabBar
         home={inactiveIconColor}
