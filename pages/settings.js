@@ -31,10 +31,13 @@ const dark_gray6 = 'rgb(28, 28, 30)';
 
 // options component
 const Options = (props) => {
+
+  // light/dark mode
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? gray5 : dark_gray5;
   const selectionColor = colorScheme === 'light' ? 'white' : 'black';
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+
   if (props.select == 1) {
     return (
       <View style={[{ backgroundColor: containerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
@@ -71,26 +74,39 @@ function getLanguage(x) {
   console.log("language: " + x);
 }
 
+// default config
 let config = {
-  "language": "german",
-  "fontSize": "default",
+  language: 'german',
+  fontSize: 17,
+  // camera: true,
+  // notifications: false
 }
 
+// change config
+function changeLanguage(language) {
+  config.language = language;
+}
+
+function changeFontSize(fontSize) {
+  config.fontSize = fontSize;
+}
+
+// store data
 const storeData = async () => {
   try {
-    const jsonValue = JSON.stringify(config);
-    await AsyncStorage.setItem('test', jsonValue);
+    await AsyncStorage.setItem('test', JSON.stringify(config));
   } catch (error) {
-    // error saving value
+    // error storing data
   }
 }
 
+// retrieve data
 const getData = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem('test');
     const value = JSON.parse(jsonValue);
     if (value !== null) {
-      console.log(value)
+      alert([JSON.stringify(value.language), JSON.stringify(value.fontSize)])
     }
   } catch (error) {
     // error retrieving data
@@ -99,13 +115,18 @@ const getData = async () => {
 
 // font settings
 const FontSettings = () => {
+
+  // light/dark mode
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+
+  // switch
   const [isEnabled, setIsEnabled] = useState(false);
   const [fontState, setFontState] = useState("Standard");
   const [fontSize, setFontSize] = useState(17);
-  const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontState(isEnabled ? "Standard" : "Groß"), setFontSize(isEnabled ? 34 : 17), getFontSize(fontSize)];
+  const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontState(isEnabled ? "Standard" : "Groß"), setFontSize(isEnabled ? 34 : 17), getFontSize(fontSize), changeFontSize(fontSize)];
+
   return (
     <View style={[styles.settings_item, containerColor]}>
       <View>
@@ -121,15 +142,21 @@ const FontSettings = () => {
       />
     </View>
   );
+
 }
 
 // camera settings
 const CameraSettings = () => {
+
+  // light/dark mode
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+
+  // switch
   const [isEnabled, setIsEnabled] = useState(true);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
   return (
     <View style={[styles.settings_item, containerColor]}>
       <Text style={[styles.label, textColor]}>Kamera</Text>
@@ -142,15 +169,21 @@ const CameraSettings = () => {
       />
     </View>
   );
+
 }
 
 // notifications settings
 const NotificationsSettings = () => {
+
+  // light/dark mode
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+
+  // switch
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
   return (
     <View style={[styles.settings_item, containerColor]}>
       <Text style={[styles.label, textColor]}>Mitteilungen</Text>
@@ -163,16 +196,22 @@ const NotificationsSettings = () => {
       />
     </View>
   );
+
 }
 
 
 // appearance settings
 const AppearanceSettings = () => {
+
+  // light/dark mode
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+
+  // switch
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
   return (
     <View style={[styles.settings_item, containerColor]}>
       <Text style={[styles.label, textColor]}>Erscheinungsbild</Text>
@@ -186,15 +225,21 @@ const AppearanceSettings = () => {
       <Options option1="Hell" option2="Dunkel" select={1} />
     </View>
   );
+
 }
 
 // language settings
 const LanguageSettings = () => {
+
+  // light/dark mode
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+
+  // switch
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
   return (
     <View style={[styles.settings_item, containerColor]}>
       <Text style={[styles.label, textColor]}>Sprache</Text>
@@ -208,13 +253,17 @@ const LanguageSettings = () => {
       <Options option1="Deutsch" option2="Englisch" select={1} />
     </View>
   );
+
 }
 
 // return settings page
 const SettingsPage = ({ navigation }) => {
+
+  // light/dark mode
   const colorScheme = useColorScheme();
   const activeIconColor = colorScheme === 'light' ? blue : dark_blue
   const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5
+
   return (
     <View style={{ flex: 1 }}>
       <NavBar page_title="Einstellungen" />
@@ -241,6 +290,7 @@ const SettingsPage = ({ navigation }) => {
       />
     </View>
   );
+
 }
 
 export default SettingsPage;
