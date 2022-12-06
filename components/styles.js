@@ -2,6 +2,7 @@
 
 // import react native
 import { StyleSheet } from 'react-native';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 // default light mode colors
 const red = 'rgb(255, 59, 48)';
@@ -147,5 +148,94 @@ export default StyleSheet.create({
   },
   dark_text: {
     color: 'white'
+  },
+  container: {
+    flex: 1,
+    padding: 0,
+    backgroundColor: '#eaeaea',
+   
+  },
+  buttonRight: {
+    position: 'absolute',
+    top: hp('5%'),
+    right: wp('5%'),
+    flexDirection: 'row',
+    color: 'black',
+  },
+  backButton: {
+    position: 'absolute',
+    top: hp('5%'),
+    left: wp('5%'),
+    flexDirection: 'row',
+    color: 'black',
+  },
+  createTaskButton: {
+    position: 'absolute',
+    bottom: hp('5%'),
+    left: wp('35%'),
+    width: wp('30%'),
+    height: hp('8%'),
+    flexDirection: 'row',
+    color: 'black',
+    backgroundColor: '#59C1BD',
+    alignItems: 'center',
+    borderRadius: 30,
+    justifyContent: 'center',
+    zIndex: 0,
+  },
+  taskContainer: {
+    width: wp('100%'),
+    height: hp('100%'),
+    overFlow: 'hidden',
+    backgroundColor: '#59C1BD',
+    alignItems: 'center',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    
+  },
+  taskDescription: {
+    color: 'white',
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  horizontal: {
+    flex: 1,
+    flexDirection: 'row',
+    marginBottom: 20,
+
+  },
+  taskButton:{
+    marginLeft: 20,
+    marginRight: 20,
+  },
+  time: {
+    left: '80%',
+    top: '0%',
+    color: 'white',
+    fontSize: 40,
+  },
+  informTime: {
+    color: 'white',
+    fontSize: 300,
+  },
+  informText: {
+    fontSize: 60,
+    flex: 1,
+    flexDirection: 'column',
+  },
+  informView: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  camera: {
+    height: '100%',
+    width: '100%',
+    borderRadius: 30,
+    overflow: 'hidden',
+  },
+  camContainer: {
+    borderRadius: 30,
+    overflow: 'hidden',
+    
   },
 });

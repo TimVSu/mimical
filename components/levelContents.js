@@ -78,7 +78,7 @@ const getCurrentSequence = () => {
     return currentSequence;
 }
 
-const getContent = () => {
+const getText = () => {
     return allContents[currentContent]["text"];
 }
 
@@ -113,4 +113,4 @@ const startLevel = (start, scenario) => {
 //===============================================================================================================================================
 
 
-export {getAllContents, startLevel, getScenario,getScenarioLength ,setCurrentContent, incrementCurrentContent, setCurrentSequence, getContent, getCurrentContent, getCurrentSequence, getTags, getTaskDescription};
+export {getAllContents, startLevel, getScenario,getScenarioLength ,setCurrentContent, incrementCurrentContent, setCurrentSequence, getText, getCurrentContent, getCurrentSequence, getTags, getTaskDescription};

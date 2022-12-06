@@ -5,6 +5,7 @@ import { View, StyleSheet, Platform, UIManager, Text}  from 'react-native';
 import { CircleIcon } from 'native-base';
 import * as FaceDetector from 'expo-face-detector';
 import { Heading } from 'native-base'
+import styles from './styles.js'
 
 // necessary for android devices as explained in the expo-camera doc
 if (
@@ -202,22 +203,5 @@ const CameraScreen = ({size, children}) => {
       );
     }
 }
-
-
-const styles = StyleSheet.create({ 
-
-  camera: {
-    height: '100%',
-    width: '100%',
-    borderRadius: 30,
-    overflow: 'hidden',
-  },
-  camContainer: {
-    borderRadius: 30,
-    overflow: 'hidden',
-    
-  },
-
-}); 
 
 export default CameraScreen;

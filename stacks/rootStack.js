@@ -3,7 +3,7 @@ import Home from "../pages/home.js";
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LevelLayout from "../components/levelLayout.js";
+import LevelLayout from "../pages/level.js";
 import Menu from "../pages/menu.js";
 import Settings from "../pages/settings.js";
 import Progress from "../pages/progress.js";
