@@ -1,7 +1,7 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { ScrollView, useColorScheme, View } from 'react-native';
+import { Button, ScrollView, useColorScheme, View } from 'react-native';
 import React from 'react';
 
 // import components
@@ -27,6 +27,19 @@ const gray6 = 'rgb(242, 242, 247)';
 const dark_blue = 'rgb(10, 132, 255)';
 const dark_gray5 = 'rgb(44, 44, 46)';
 
+// retrieve data
+const getData = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('test');
+    const value = JSON.parse(jsonValue);
+    if (value !== null) {
+      alert([JSON.stringify(value.language), JSON.stringify(value.fontSize)])
+    }
+  } catch (error) {
+    // error retrieving data
+  }
+}
+
 // return settings page
 const ProgressPage = ({ navigation }) => {
   const colorScheme = useColorScheme();
@@ -36,6 +49,10 @@ const ProgressPage = ({ navigation }) => {
     <View style={{ flex: 1 }}>
       <NavBar page_title="Fortschritt" />
       <ScrollView>
+        <Button
+          title='get data'
+          onPress={getData}
+        />
         <Badge progress={10} />
         <Badge progress={40} />
         <Badge progress={20} />
