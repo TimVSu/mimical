@@ -8091,6 +8091,11 @@
   "resolved" "https://registry.npmjs.org/use-latest-callback/-/use-latest-callback-0.1.5.tgz"
   "version" "0.1.5"
 
+"use-state-with-layout-animation@^1.0.8":
+  "integrity" "sha512-qqus3biYxMoBxoJ27kobvM22Lj9Zm19MczJoNl+lCE3iZjL/NBIeY10Am6QnidrD70z04JsH3/t0RQob6rja2Q=="
+  "resolved" "https://registry.npmjs.org/use-state-with-layout-animation/-/use-state-with-layout-animation-1.0.8.tgz"
+  "version" "1.0.8"
+
 "use-subscription@^1.8.0":
   "integrity" "sha512-LISuG0/TmmoDoCRmV5XAqYkd3UCBNM0ML3gGBndze65WITcsExCD3DTvXXTLyNcOC0heFQZzluW88bN/oC1DQQ=="
   "resolved" "https://registry.npmjs.org/use-subscription/-/use-subscription-1.8.0.tgz"

@@ -37,6 +37,8 @@ const taskContent2 = new taskContent(["LIPS","MOUTH"], ["Alle Kartons sind gepac
  "sperrige Sofa. Sie fragen sich, ob es durch den engen Flur passen wird.", "Besorgt ziehen Sie die Augenbrauen hoch."],
   "ziehen sie die Augenbrauen hoch" );
 
+//const taskContent3 = new taskContent()
+
 
 const allContents = {1 : taskContent1, 2 : taskContent2};
 const defaultScenarios = {"umzug" : [1,2]}

@@ -209,13 +209,13 @@ export default StyleSheet.create({
     marginRight: 20,
   },
   time: {
-    left: '80%',
-    top: '0%',
+    left: '85%',
     color: 'white',
     fontSize: 40,
   },
   informTime: {
     color: 'white',
+    opacity:0.5,
     fontSize: 300,
   },
   informText: {
@@ -238,4 +238,14 @@ export default StyleSheet.create({
     overflow: 'hidden',
     
   },
+  levelText: {
+    fontSize: 25,
+    lineHeight: 50,
+  },
+  levelHighlightedText: {
+    fontSize: 25,
+    lineHeight: 50,
+    fontWeight: 'bold',
+
+  }
 });

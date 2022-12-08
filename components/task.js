@@ -1,15 +1,19 @@
 //@author: Tim Suchan
-
-import CameraScreen from './camera.js'
+import CameraScreen from './camera.js';
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text, Button }  from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, Button, LayoutAnimation, UIManager }  from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Heading } from 'native-base';
 import { AntDesign } from '@expo/vector-icons'; 
-import styles from './styles'
+import styles from './styles';
+
+if (Platform.OS === 'android') {
+  if (UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+}
 
 const Task = ({nextLevelFunction, taskDescription, children, downFunction, trainDuration, pauseDuration}) => {
-
   // VARIABLES:
   //==============================================================================================================================================
   const [currentTime, setCurrentTime] = useState(trainDuration);
@@ -19,16 +23,16 @@ const Task = ({nextLevelFunction, taskDescription, children, downFunction, train
   const [relaxState, setRelaxState] = useState(false);
   const [informState, setInformState] = useState(false);
   const [repCounter, setRepCounter] = useState(0);
+  const [removed,setRemoved] = useState(false);
   const repititions = 3;
  
   const [showDescription, setShowDescription] = useState(true);
 
-
   // FUNCTIONS:
-  //=============================================================================================================================================
+  //==============================================================================================================================================
 
   //@author: tim suchan
-  //starts/continues one train/pause timer repitiotion, called when play button is pressd or when  
+  //starts/continues one train/pause timer repitition, called when play button is pressd or when  
   const play = () => {
     if (!onPause){
     setCurrentTime(trainDuration)
@@ -41,6 +45,17 @@ const Task = ({nextLevelFunction, taskDescription, children, downFunction, train
       setTaskRunning(true);
       setOnPause(false);
     }
+  }
+
+  const removeIncrementReplace = () => {
+    setRemoved(true);
+    LayoutAnimation.configureNext({
+      duration: 300,
+      create: { type: "spring", property: "scaleY", springDamping: 0.8 },
+    });
+    setCurrentTime(currentTime => currentTime - 1);
+    setRemoved(false);
+
   }
 
   //@author: TIm Suchan
@@ -57,7 +72,7 @@ const Task = ({nextLevelFunction, taskDescription, children, downFunction, train
     let interval = null;
     if (taskRunning) {
       interval = setInterval(() => {
-        setCurrentTime(currentTime => currentTime - 1);
+        removeIncrementReplace();
         console.log('inform state: ' + informState + ' currentTime: ' + currentTime + ' repCounter: ' + repCounter + ' relaxState: ' + relaxState);
       }, 1000);
     } else if (!taskRunning) {
@@ -80,6 +95,9 @@ const Task = ({nextLevelFunction, taskDescription, children, downFunction, train
       play();
       }
     }
+    if(currentTime == 0 && repCounter == repititions - 1){
+      nextLevelFunction();
+    }
     if(currentTime == 3 && taskRunning && relaxState){
       setInformState(true);
     }
@@ -91,12 +109,15 @@ const Task = ({nextLevelFunction, taskDescription, children, downFunction, train
     return(   
         <View style={styles.taskContainer}>
             <CameraScreen size={wp('100%')}>
-              {!informState ? 
-              <Text style={styles.time}>{currentTime}</Text>:
+              {informState ? 
+              !removed && 
               <View style={styles.informView}>
-                <Text style={styles.informText}>{taskDescription + 'in'}</Text>
-              <Text style={styles.informTime}>{currentTime}</Text>
-              </View>}
+              <Text style={styles.informText}>{taskDescription + 'in'}</Text>
+            <Text style={styles.informTime}>{currentTime}</Text>
+            </View>:
+              !removed&&
+              <Text style={styles.time}>{currentTime}</Text>
+              }
             </CameraScreen>
             <Heading style={styles.taskDescription} size='lg'>{taskDescription}</Heading>
             {children}
@@ -110,7 +131,6 @@ const Task = ({nextLevelFunction, taskDescription, children, downFunction, train
               <TouchableOpacity style={styles.taskButton}>
                 <AntDesign name="playcircleo" size={50} color="white" onPress={play}/>
               </TouchableOpacity>
-              <Button style={{flexDirection: 'row'}} onPress={nextLevelFunction} title='WEITER'/>
 
             </View>
          </View>

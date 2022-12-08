@@ -151,7 +151,8 @@ const LevelLayout = ({navigation, nextLevelFunction}) => {
           </View>
             <ScrollView style={{marginBottom: hp('15%'), marginTop: hp('5%')}}
             contentContainerStyle={{justifyContent: 'center', alignItems: 'center', marginRight: '5%', marginLeft: '5%'}}>
-            <Heading size="2xl">{currentText}</Heading>    
+            <Text style={styles.levelText}>{currentText[0]}</Text>    
+            <Text style={styles.levelHighlightedText}>{currentText[1]} </Text>
             </ScrollView>
             
           <TouchableOpacity style={styles.createTaskButton} onPress={() => {createTask()}}>

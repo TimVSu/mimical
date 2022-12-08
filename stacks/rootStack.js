@@ -19,7 +19,7 @@ const RootStack = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        animation: "none",
+        
       }}
     >
       <Stack.Screen

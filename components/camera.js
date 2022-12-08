@@ -189,8 +189,9 @@ const CameraScreen = ({size, children}) => {
                tracking: true,
     }}>      
     <Heading>
-      {score}
+      score 
     </Heading>
+
     {children}
         </Camera>
         </View>

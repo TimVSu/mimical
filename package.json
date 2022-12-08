@@ -42,7 +42,8 @@
     "react-native-settings-list": "^1.8.0",
     "react-native-stopwatch-timer": "^0.0.21",
     "react-native-svg": "^12.3.0",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.3",
+    "use-state-with-layout-animation": "^1.0.8"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
