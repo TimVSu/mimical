@@ -2,6 +2,7 @@
 
 // import react native
 import { StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // default light mode colors
 const red = 'rgb(255, 59, 48)';
@@ -46,6 +47,16 @@ const accessible_gray3 = 'rgb(199, 199, 204)';
 const accessible_gray4 = 'rgb(209, 209, 214)';
 const accessible_gray5 = 'rgb(229, 229, 234)';
 const accessible_gray6 = 'rgb(242, 242, 247)';
+
+// retrieve data
+const getData = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('test');
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch (error) {
+    // error retrieving data
+  }
+}
 
 // styles sorted alphabetically
 export default StyleSheet.create({
@@ -141,6 +152,7 @@ export default StyleSheet.create({
   },
   label: {
     fontSize: 17
+    // fontSize: getData().fontSize
   },
   light_text: {
     color: 'black'

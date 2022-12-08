@@ -65,14 +65,14 @@ const Options = (props) => {
 }
 
 // functions
-function getFontSize(x) {
-  console.log("font size: " + x);
-  styles.label = { fontSize: x };
-}
+// function getFontSize(x) {
+//   console.log("font size: " + x);
+//   styles.label = { fontSize: x };
+// }
 
-function getLanguage(x) {
-  console.log("language: " + x);
-}
+// function getLanguage(x) {
+//   console.log("language: " + x);
+// }
 
 // default config
 let config = {
@@ -106,11 +106,46 @@ const getData = async () => {
     const jsonValue = await AsyncStorage.getItem('test');
     const value = JSON.parse(jsonValue);
     if (value !== null) {
-      alert([JSON.stringify(value.language), JSON.stringify(value.fontSize)])
+      alert("language: " + value.language + "\nfont size: " + value.fontSize)
     }
   } catch (error) {
     // error retrieving data
   }
+}
+
+// language settings
+const LanguageSettings = () => {
+
+  // light/dark mode
+  const colorScheme = useColorScheme();
+  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
+  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+
+  // store data
+  const storeData = async (value) => {
+    try {
+      config.language = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
+
+  // switch
+  const [isEnabled, setIsEnabled] = useState(false);
+  const [language, setLanguage] = useState("german")
+  const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setLanguage(isEnabled ? "german" : "english"), storeData(language)];
+
+  return (
+    <View style={[styles.settings_item, containerColor]}>
+      <Text style={[styles.label, textColor]}>Sprache</Text>
+      <View style={{ flexDirection: 'row' }}>
+        <Button title='Deutsch' disabled={isEnabled} onPress={toggleSwitch} />
+        <Button title='Englisch' disabled={!isEnabled} onPress={toggleSwitch} />
+      </View>
+    </View>
+  );
+
 }
 
 // font settings
@@ -121,11 +156,22 @@ const FontSettings = () => {
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
 
+  // store data
+  const storeData = async (value) => {
+    try {
+      config.fontSize = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
+
   // switch
   const [isEnabled, setIsEnabled] = useState(false);
   const [fontState, setFontState] = useState("Standard");
   const [fontSize, setFontSize] = useState(17);
-  const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontState(isEnabled ? "Standard" : "Groß"), setFontSize(isEnabled ? 34 : 17), getFontSize(fontSize), changeFontSize(fontSize)];
+  // const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontState(isEnabled ? "Standard" : "Groß"), setFontSize(isEnabled ? 34 : 17), getFontSize(fontSize), changeFontSize(fontSize)];
+  const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontState(isEnabled ? "Standard" : "Groß"), setFontSize(isEnabled ? 34 : 17), storeData(fontSize)];
 
   return (
     <View style={[styles.settings_item, containerColor]}>
@@ -223,34 +269,6 @@ const AppearanceSettings = () => {
         value={isEnabled}
       /> */}
       <Options option1="Hell" option2="Dunkel" select={1} />
-    </View>
-  );
-
-}
-
-// language settings
-const LanguageSettings = () => {
-
-  // light/dark mode
-  const colorScheme = useColorScheme();
-  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
-  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
-
-  // switch
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
-  return (
-    <View style={[styles.settings_item, containerColor]}>
-      <Text style={[styles.label, textColor]}>Sprache</Text>
-      {/* <Switch
-        trackColor={{ false: "#767577", true: green }}
-        thumbColor={'white'}
-        // ios_backgroundColor={"#3e3e3e"}
-        onValueChange={toggleSwitch}
-        value={isEnabled}
-      /> */}
-      <Options option1="Deutsch" option2="Englisch" select={1} />
     </View>
   );
 

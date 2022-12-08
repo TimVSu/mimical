@@ -3,6 +3,7 @@
 // import react native
 import { Button, ScrollView, useColorScheme, View } from 'react-native';
 import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // import components
 import NavBar from '../components/nav_bar.js';
@@ -33,7 +34,7 @@ const getData = async () => {
     const jsonValue = await AsyncStorage.getItem('test');
     const value = JSON.parse(jsonValue);
     if (value !== null) {
-      alert([JSON.stringify(value.language), JSON.stringify(value.fontSize)])
+      alert("language: " + value.language + "\nfont size: " + value.fontSize)
     }
   } catch (error) {
     // error retrieving data
