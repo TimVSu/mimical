@@ -30,39 +30,39 @@ const dark_gray5 = 'rgb(44, 44, 46)';
 const dark_gray6 = 'rgb(28, 28, 30)';
 
 // options component
-const Options = (props) => {
+// const Options = (props) => {
 
-  // light/dark mode
-  const colorScheme = useColorScheme();
-  const containerColor = colorScheme === 'light' ? gray5 : dark_gray5;
-  const selectionColor = colorScheme === 'light' ? 'white' : 'black';
-  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+//   // light/dark mode
+//   const colorScheme = useColorScheme();
+//   const containerColor = colorScheme === 'light' ? gray5 : dark_gray5;
+//   const selectionColor = colorScheme === 'light' ? 'white' : 'black';
+//   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
 
-  if (props.select == 1) {
-    return (
-      <View style={[{ backgroundColor: containerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
-        <View style={[{ backgroundColor: selectionColor }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
-          <Text style={[styles.label, textColor]}>{props.option1}</Text>
-        </View>
-        <View style={[{ padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
-          <Text style={[styles.label, textColor]}>{props.option2}</Text>
-        </View>
-      </View>
-    );
-  } else {
-    return (
-      <View style={[{ backgroundColor: gray6 }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
-        <View style={[{ padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
-          <Text style={styles.label}>{props.option1}</Text>
-        </View>
-        <View style={[{ backgroundColor: 'white' }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
-          <Text style={styles.label}>{props.option2}</Text>
-        </View>
-      </View>
-    );
-  }
+//   if (props.select == 1) {
+//     return (
+//       <View style={[{ backgroundColor: containerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
+//         <View style={[{ backgroundColor: selectionColor }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
+//           <Text style={[styles.label, textColor]}>{props.option1}</Text>
+//         </View>
+//         <View style={[{ padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
+//           <Text style={[styles.label, textColor]}>{props.option2}</Text>
+//         </View>
+//       </View>
+//     );
+//   } else {
+//     return (
+//       <View style={[{ backgroundColor: gray6 }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
+//         <View style={[{ padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
+//           <Text style={styles.label}>{props.option1}</Text>
+//         </View>
+//         <View style={[{ backgroundColor: 'white' }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
+//           <Text style={styles.label}>{props.option2}</Text>
+//         </View>
+//       </View>
+//     );
+//   }
 
-}
+// }
 
 // functions
 // function getFontSize(x) {
@@ -77,19 +77,20 @@ const Options = (props) => {
 // default config
 let config = {
   language: 'german',
+  largeFont: false,
   fontSize: 17,
-  // camera: true,
-  // notifications: false
+  camera: true,
+  notifications: false
 }
 
 // change config
-function changeLanguage(language) {
-  config.language = language;
-}
+// function changeLanguage(language) {
+//   config.language = language;
+// }
 
-function changeFontSize(fontSize) {
-  config.fontSize = fontSize;
-}
+// function changeFontSize(fontSize) {
+//   config.fontSize = fontSize;
+// }
 
 // store data
 const storeData = async () => {
@@ -106,7 +107,8 @@ const getData = async () => {
     const jsonValue = await AsyncStorage.getItem('test');
     const value = JSON.parse(jsonValue);
     if (value !== null) {
-      alert("language: " + value.language + "\nfont size: " + value.fontSize)
+      // alert("language: " + value.language + "\nfont size: " + value.fontSize + "\ncamera: " + (value.camera ? "on" : "off") + "\nnotifications: " + (value.notifications ? "on" : "off"))
+      alert("language: " + value.language + "\nlarge font: " + value.largeFont + "\nfont size: " + value.fontSize + "\ncamera: " + value.camera + "\nnotifications: " + value.notifications)
     }
   } catch (error) {
     // error retrieving data
@@ -134,14 +136,14 @@ const LanguageSettings = () => {
   // switch
   const [isEnabled, setIsEnabled] = useState(false);
   const [language, setLanguage] = useState("german")
-  const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setLanguage(isEnabled ? "german" : "english"), storeData(language)];
+  const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setLanguage(isEnabled ? "english" : "german"), storeData(language)];
 
   return (
     <View style={[styles.settings_item, containerColor]}>
       <Text style={[styles.label, textColor]}>Sprache</Text>
       <View style={{ flexDirection: 'row' }}>
-        <Button title='Deutsch' disabled={isEnabled} onPress={toggleSwitch} />
-        <Button title='Englisch' disabled={!isEnabled} onPress={toggleSwitch} />
+        <Button title='Deutsch' disabled={!isEnabled} onPress={toggleSwitch} />
+        <Button title='Englisch' disabled={isEnabled} onPress={toggleSwitch} />
       </View>
     </View>
   );
@@ -157,7 +159,17 @@ const FontSettings = () => {
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
 
   // store data
-  const storeData = async (value) => {
+  const storeData1 = async (value) => {
+    try {
+      config.largeFont = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
+
+  // store data
+  const storeData2 = async (value) => {
     try {
       config.fontSize = value;
       await AsyncStorage.setItem('test', JSON.stringify(config));
@@ -166,18 +178,29 @@ const FontSettings = () => {
     }
   }
 
+  // retrieve data
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('test');
+      const value = JSON.parse(jsonValue);
+      return value.largeFont;
+    } catch (error) {
+      // error retrieving data
+    }
+  }
+
   // switch
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [fontState, setFontState] = useState("Standard");
+  const [isEnabled, setIsEnabled] = useState(getData);
+  // const [fontState, setFontState] = useState("Standard");
   const [fontSize, setFontSize] = useState(17);
   // const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontState(isEnabled ? "Standard" : "Groß"), setFontSize(isEnabled ? 34 : 17), getFontSize(fontSize), changeFontSize(fontSize)];
-  const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontState(isEnabled ? "Standard" : "Groß"), setFontSize(isEnabled ? 34 : 17), storeData(fontSize)];
+  const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontSize(isEnabled ? 34 : 17), storeData1(!isEnabled), storeData2(fontSize)];
 
   return (
     <View style={[styles.settings_item, containerColor]}>
       <View>
         <Text style={[styles.label, textColor]}>Große Schrift</Text>
-        <Text style={[styles.label, textColor, { opacity: 0.25 }]}>Schriftgröße: {fontState}</Text>
+        {/* <Text style={[styles.label, textColor, { opacity: 0.25 }]}>Schriftgröße: {fontState}</Text> */}
       </View>
       <Switch
         trackColor={{ false: "#767577", true: green }}
@@ -199,9 +222,30 @@ const CameraSettings = () => {
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
 
+  // store data
+  const storeData = async (value) => {
+    try {
+      config.camera = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
+
+  // retrieve data
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('test');
+      const value = JSON.parse(jsonValue);
+      return value.camera;
+    } catch (error) {
+      // error retrieving data
+    }
+  }
+
   // switch
-  const [isEnabled, setIsEnabled] = useState(true);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const [isEnabled, setIsEnabled] = useState(getData);
+  const toggleSwitch = () => [setIsEnabled(previousState => !previousState), storeData(!isEnabled)];
 
   return (
     <View style={[styles.settings_item, containerColor]}>
@@ -226,9 +270,19 @@ const NotificationsSettings = () => {
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
 
+  // store data
+  const storeData = async (value) => {
+    try {
+      config.notifications = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
+
   // switch
   const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const toggleSwitch = () => [setIsEnabled(previousState => !previousState), storeData(!isEnabled)];
 
   return (
     <View style={[styles.settings_item, containerColor]}>
@@ -268,7 +322,8 @@ const AppearanceSettings = () => {
         onValueChange={toggleSwitch}
         value={isEnabled}
       /> */}
-      <Options option1="Hell" option2="Dunkel" select={1} />
+      {/* <Options option1="Hell" option2="Dunkel" select={1} /> */}
+      <Text style={[styles.label, textColor]}>{colorScheme === 'light' ? "Hell" : "Dunkel"}</Text>
     </View>
   );
 

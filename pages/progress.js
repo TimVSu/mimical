@@ -34,7 +34,7 @@ const getData = async () => {
     const jsonValue = await AsyncStorage.getItem('test');
     const value = JSON.parse(jsonValue);
     if (value !== null) {
-      alert("language: " + value.language + "\nfont size: " + value.fontSize)
+      alert("language: " + value.language + "\nfont size: " + value.fontSize + "\ncamera: " + (value.camera ? "on" : "off") + "\nnotifications: " + (value.notifications ? "on" : "off"))
     }
   } catch (error) {
     // error retrieving data
