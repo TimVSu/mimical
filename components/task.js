@@ -48,8 +48,7 @@ const Task = ({nextLevelFunction, taskDescription, children, downFunction, train
   }
 
   const test = () => {
-    setTimeout(300);
-    play
+    console.log('test')
   }
 
   const removeIncrementReplace = () => {
@@ -130,11 +129,11 @@ const Task = ({nextLevelFunction, taskDescription, children, downFunction, train
               <TouchableOpacity style={styles.taskButton} onPress={downFunction}>
                 <AntDesign name="downcircleo" size={50} color="white" />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.taskButton} activeOpacity={0.3}>
-                <AntDesign name="pausecircleo" size={50} color="white" onPress={pause}/>
+              <TouchableOpacity style={styles.taskButton} activeOpacity={0.3} onPress={() => pause()}>
+                <AntDesign name="pausecircleo" size={50} color="white"/>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.taskButton}>
-                <AntDesign name="playcircleo" size={50} color="white" onPress={() => {setTimeout(50), play}}/>
+              <TouchableOpacity style={styles.taskButton} onPress={() => play()}>
+                <AntDesign name="playcircleo" size={50} color="white"/>
               </TouchableOpacity>
             </View>
          </View>
