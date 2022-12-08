@@ -1,7 +1,7 @@
 //@author: Tim Suchan
 import CameraScreen from './camera.js';
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text, Button, LayoutAnimation, UIManager }  from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, Button, LayoutAnimation, UIManager, Pressable }  from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Heading } from 'native-base';
 import { AntDesign } from '@expo/vector-icons'; 
@@ -45,6 +45,11 @@ const Task = ({nextLevelFunction, taskDescription, children, downFunction, train
       setTaskRunning(true);
       setOnPause(false);
     }
+  }
+
+  const test = () => {
+    setTimeout(300);
+    play
   }
 
   const removeIncrementReplace = () => {
@@ -129,9 +134,8 @@ const Task = ({nextLevelFunction, taskDescription, children, downFunction, train
                 <AntDesign name="pausecircleo" size={50} color="white" onPress={pause}/>
               </TouchableOpacity>
               <TouchableOpacity style={styles.taskButton}>
-                <AntDesign name="playcircleo" size={50} color="white" onPress={play}/>
+                <AntDesign name="playcircleo" size={50} color="white" onPress={() => {setTimeout(50), play}}/>
               </TouchableOpacity>
-
             </View>
          </View>
  );
