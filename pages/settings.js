@@ -190,7 +190,7 @@ const FontSettings = () => {
   }
 
   // switch
-  const [isEnabled, setIsEnabled] = useState(getData);
+  const [isEnabled, setIsEnabled] = useState(false);
   // const [fontState, setFontState] = useState("Standard");
   const [fontSize, setFontSize] = useState(17);
   // const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontState(isEnabled ? "Standard" : "Groß"), setFontSize(isEnabled ? 34 : 17), getFontSize(fontSize), changeFontSize(fontSize)];
@@ -244,7 +244,7 @@ const CameraSettings = () => {
   }
 
   // switch
-  const [isEnabled, setIsEnabled] = useState(getData);
+  const [isEnabled, setIsEnabled] = useState(true);
   const toggleSwitch = () => [setIsEnabled(previousState => !previousState), storeData(!isEnabled)];
 
   return (
