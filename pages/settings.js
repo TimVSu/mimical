@@ -133,7 +133,7 @@ const LanguageSettings = () => {
     }
   }
 
-  // switch
+  // language switch
   const [isEnabled, setIsEnabled] = useState(false);
   const [language, setLanguage] = useState("german")
   const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setLanguage(isEnabled ? "english" : "german"), storeData(language)];
@@ -158,8 +158,8 @@ const FontSettings = () => {
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
 
-  // store data
-  const storeData1 = async (value) => {
+  // store large font data
+  const storeLargeFontData = async (value) => {
     try {
       config.largeFont = value;
       await AsyncStorage.setItem('test', JSON.stringify(config));
@@ -168,8 +168,8 @@ const FontSettings = () => {
     }
   }
 
-  // store data
-  const storeData2 = async (value) => {
+  // store font size data
+  const storeFontSizeData = async (value) => {
     try {
       config.fontSize = value;
       await AsyncStorage.setItem('test', JSON.stringify(config));
@@ -178,29 +178,38 @@ const FontSettings = () => {
     }
   }
 
-  // retrieve data
-  const getData = async () => {
+  // retrieve font size data
+  const getFontSizeData = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('test');
       const value = JSON.parse(jsonValue);
-      return value.largeFont;
+      console.log("font size: " + value.fontSize);
+      return value.fontSize;
     } catch (error) {
       // error retrieving data
     }
   }
 
-  // switch
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('test');
+      const value = JSON.parse(jsonValue);
+      console.log(value);
+      return value;
+    } catch (error) {
+      // error retrieving data
+    }
+  }
+
+  // font size switch
   const [isEnabled, setIsEnabled] = useState(false);
-  // const [fontState, setFontState] = useState("Standard");
   const [fontSize, setFontSize] = useState(17);
-  // const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontState(isEnabled ? "Standard" : "Groß"), setFontSize(isEnabled ? 34 : 17), getFontSize(fontSize), changeFontSize(fontSize)];
-  const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontSize(isEnabled ? 34 : 17), storeData1(!isEnabled), storeData2(fontSize)];
+  const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontSize(isEnabled ? 34 : 17), storeLargeFontData(!isEnabled), storeFontSizeData(fontSize), getFontSizeData()];
 
   return (
     <View style={[styles.settings_item, containerColor]}>
       <View>
         <Text style={[styles.label, textColor]}>Große Schrift</Text>
-        {/* <Text style={[styles.label, textColor, { opacity: 0.25 }]}>Schriftgröße: {fontState}</Text> */}
       </View>
       <Switch
         trackColor={{ false: "#767577", true: green }}
@@ -222,7 +231,7 @@ const CameraSettings = () => {
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
 
-  // store data
+  // store camera data
   const storeData = async (value) => {
     try {
       config.camera = value;
@@ -232,7 +241,7 @@ const CameraSettings = () => {
     }
   }
 
-  // retrieve data
+  // retrieve camera data
   const getData = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('test');
@@ -243,7 +252,7 @@ const CameraSettings = () => {
     }
   }
 
-  // switch
+  // camera switch
   const [isEnabled, setIsEnabled] = useState(true);
   const toggleSwitch = () => [setIsEnabled(previousState => !previousState), storeData(!isEnabled)];
 
@@ -270,7 +279,7 @@ const NotificationsSettings = () => {
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
 
-  // store data
+  // store notifications data
   const storeData = async (value) => {
     try {
       config.notifications = value;
@@ -280,7 +289,7 @@ const NotificationsSettings = () => {
     }
   }
 
-  // switch
+  // notifications switch
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => [setIsEnabled(previousState => !previousState), storeData(!isEnabled)];
 
@@ -308,7 +317,7 @@ const AppearanceSettings = () => {
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
 
-  // switch
+  // appearance switch
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
