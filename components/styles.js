@@ -48,6 +48,9 @@ const accessible_gray4 = 'rgb(209, 209, 214)';
 const accessible_gray5 = 'rgb(229, 229, 234)';
 const accessible_gray6 = 'rgb(242, 242, 247)';
 
+const light_primary_color = blue;
+const dark_primary_color = dark_blue;
+
 // retrieve data
 const getData = async () => {
   try {
@@ -127,16 +130,16 @@ export default StyleSheet.create({
     backgroundColor: dark_gray6
   },
   light_progress: {
-    backgroundColor: blue
+    backgroundColor: light_primary_color
   },
   dark_progress: {
-    backgroundColor: dark_blue
+    backgroundColor: dark_primary_color
   },
   light_button: {
-    backgroundColor: blue
+    backgroundColor: light_primary_color
   },
   dark_button: {
-    backgroundColor: dark_blue
+    backgroundColor: dark_primary_color
   },
   // text styles
   title1: {

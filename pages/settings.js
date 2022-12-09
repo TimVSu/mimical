@@ -1,7 +1,7 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { Button, ScrollView, Switch, Text, useColorScheme, View } from 'react-native';
+import { Button, Pressable, ScrollView, Switch, Text, useColorScheme, View } from 'react-native';
 import React, { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -30,49 +30,30 @@ const dark_gray5 = 'rgb(44, 44, 46)';
 const dark_gray6 = 'rgb(28, 28, 30)';
 
 // options component
-// const Options = (props) => {
+const Options = (props) => {
 
-//   // light/dark mode
-//   const colorScheme = useColorScheme();
-//   const containerColor = colorScheme === 'light' ? gray5 : dark_gray5;
-//   const selectionColor = colorScheme === 'light' ? 'white' : 'black';
-//   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+  // light/dark mode
+  const colorScheme = useColorScheme();
+  const containerColor = colorScheme === 'light' ? gray5 : dark_gray5;
+  const selectionColor = colorScheme === 'light' ? 'white' : 'black';
+  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
 
-//   if (props.select == 1) {
-//     return (
-//       <View style={[{ backgroundColor: containerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
-//         <View style={[{ backgroundColor: selectionColor }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
-//           <Text style={[styles.label, textColor]}>{props.option1}</Text>
-//         </View>
-//         <View style={[{ padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
-//           <Text style={[styles.label, textColor]}>{props.option2}</Text>
-//         </View>
-//       </View>
-//     );
-//   } else {
-//     return (
-//       <View style={[{ backgroundColor: gray6 }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
-//         <View style={[{ padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
-//           <Text style={styles.label}>{props.option1}</Text>
-//         </View>
-//         <View style={[{ backgroundColor: 'white' }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
-//           <Text style={styles.label}>{props.option2}</Text>
-//         </View>
-//       </View>
-//     );
-//   }
+  const [isEnabled1, setIsEnabled1] = useState(true);
+  const [isEnabled2, setIsEnabled2] = useState(false);
+  const select = () => [setIsEnabled1(previousState => !previousState), setIsEnabled2(previousState => !previousState)];
 
-// }
+  return (
+    <View style={[{ backgroundColor: containerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
+      <Pressable style={[{ backgroundColor: isEnabled1 ? selectionColor : containerColor }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={isEnabled1} onPress={select}>
+        <Text style={[styles.label, textColor]}>{props.option1}</Text>
+      </Pressable>
+      <Pressable style={[{ backgroundColor: isEnabled2 ? selectionColor : containerColor }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={isEnabled2} onPress={select}>
+        <Text style={[styles.label, textColor]}>{props.option2}</Text>
+      </Pressable>
+    </View>
+  );
 
-// functions
-// function getFontSize(x) {
-//   console.log("font size: " + x);
-//   styles.label = { fontSize: x };
-// }
-
-// function getLanguage(x) {
-//   console.log("language: " + x);
-// }
+}
 
 // default config
 let config = {
@@ -82,15 +63,6 @@ let config = {
   camera: true,
   notifications: false
 }
-
-// change config
-// function changeLanguage(language) {
-//   config.language = language;
-// }
-
-// function changeFontSize(fontSize) {
-//   config.fontSize = fontSize;
-// }
 
 // store data
 const storeData = async () => {
@@ -107,7 +79,6 @@ const getData = async () => {
     const jsonValue = await AsyncStorage.getItem('test');
     const value = JSON.parse(jsonValue);
     if (value !== null) {
-      // alert("language: " + value.language + "\nfont size: " + value.fontSize + "\ncamera: " + (value.camera ? "on" : "off") + "\nnotifications: " + (value.notifications ? "on" : "off"))
       alert("language: " + value.language + "\nlarge font: " + value.largeFont + "\nfont size: " + value.fontSize + "\ncamera: " + value.camera + "\nnotifications: " + value.notifications)
     }
   } catch (error) {
@@ -141,6 +112,7 @@ const LanguageSettings = () => {
   return (
     <View style={[styles.settings_item, containerColor]}>
       <Text style={[styles.label, textColor]}>Sprache</Text>
+      {/* <Options option1="Deutsch" option2="Englisch" /> */}
       <View style={{ flexDirection: 'row' }}>
         <Button title='Deutsch' disabled={!isEnabled} onPress={toggleSwitch} />
         <Button title='Englisch' disabled={isEnabled} onPress={toggleSwitch} />
@@ -331,7 +303,7 @@ const AppearanceSettings = () => {
         onValueChange={toggleSwitch}
         value={isEnabled}
       /> */}
-      {/* <Options option1="Hell" option2="Dunkel" select={1} /> */}
+      {/* <Options option1="Hell" option2="Dunkel" /> */}
       <Text style={[styles.label, textColor]}>{colorScheme === 'light' ? "Hell" : "Dunkel"}</Text>
     </View>
   );
