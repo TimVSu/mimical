@@ -1,8 +1,8 @@
 //@author: Tim Suchan
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Platform, UIManager, Text, ScrollView}  from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Platform, UIManager, Text, ScrollView } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { AntDesign } from '@expo/vector-icons'; 
+import { AntDesign } from '@expo/vector-icons';
 import Animated, {
   useSharedValue,
   withTiming,
@@ -12,23 +12,24 @@ import Animated, {
 import Task from '../components/task.js'
 import { Heading, Modal } from 'native-base';
 import Info from '../components/info.js';
-import {getAllContents, incrementCurrentContent, getCurrentSequence, getText, getCurrentContent} from '../components/levelContents';
+import { getAllContents, incrementCurrentContent, getCurrentSequence, getText, getCurrentContent, getHighlightedText } from '../components/levelContents';
 import styles from '../components/styles.js';
 
 if (
-    Platform.OS === "android" &&
-    UIManager.setLayoutAnimationEnabledExperimental
-  ) {
-    UIManager.setLayoutAnimationEnabledExperimental(true);
-  }
+  Platform.OS === "android" &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 //@author: Tim Suchan
-const LevelLayout = ({navigation, nextLevelFunction}) => {
+const LevelLayout = ({ navigation, nextLevelFunction }) => {
 
   // VARIABLES:
   //=============================================================================================================================================
   //used for the anomation off the floatUp effect when a task is called
   const [currentText, setCurrentText] = useState(getText());
+  const [currentHighlightedText, setCurrentHighlightedText] = useState(getHighlightedText);
   const offset = useSharedValue(hp('100%'));
 
   //used for the exand anoimation of the info button
@@ -44,11 +45,11 @@ const LevelLayout = ({navigation, nextLevelFunction}) => {
   //=============================================================================================================================================
 
   // FUNCTIONS:
-  //=============================================================================================================================================
+  //==============================================================================================    return allContents[currentContent]["baseText"];===============================================
   //returns animatedStyle for the floatUp effect
   //@author: Tim Suchan
   const floatUpStyle = useAnimatedStyle(() => {
-    return{
+    return {
       top: offset.value,
     }
   });
@@ -56,7 +57,7 @@ const LevelLayout = ({navigation, nextLevelFunction}) => {
   // @author: Tim Suchan
   // returns animatedStyle for info expand animation
   const expandInfoStyle = useAnimatedStyle(() => {
-    return{
+    return {
       height: infoHeight.value,
     }
   })
@@ -72,7 +73,7 @@ const LevelLayout = ({navigation, nextLevelFunction}) => {
       duration: 150,
     });
   }
-    // @author: Tim Suchan
+  // @author: Tim Suchan
   //creates infoRemove animation
   const removeInfo = () => {
     //infoWidth.value = withTiming(0, {
@@ -90,9 +91,9 @@ const LevelLayout = ({navigation, nextLevelFunction}) => {
   const createTask = () => {
 
     setTaskCreated(true);
-   // offset.value = withSpring(hp('10%'), { damping: 15, stiffness: 300 });
-    offset.value = withTiming(hp('10%'),{duration: 150});
-  } 
+    // offset.value = withSpring(hp('10%'), { damping: 15, stiffness: 300 });
+    offset.value = withTiming(hp('10%'), { duration: 150 });
+  }
 
   const toggleTask = () => {
     taskCreated ? setTaskCreated(false) : setTaskCreated(true);
@@ -108,68 +109,69 @@ const LevelLayout = ({navigation, nextLevelFunction}) => {
   // currently just moves task out of screen for testing but will later start nthe next level
   function removeTask() {
     offset.value = withTiming(hp('110%'), { duration: 150 });
-    setTimeout(toggleTask,150);
+    setTimeout(toggleTask, 150);
     //animationTimer;
     //clearTimeout(animationTimer)
-    
+
   }
   const nextLevel = () => {
     let currentSequence = getCurrentSequence();
     let contentContent = getCurrentContent();
-    if (contentContent < currentSequence.length){
-    incrementCurrentContent();
-    setCurrentText(getText());
-    removeTask();
+    if (contentContent < currentSequence.length) {
+      incrementCurrentContent();
+      setCurrentText(getText());
+      setCurrentHighlightedText(getHighlightedText);
+      removeTask();
     }
-    else{
+    else {
       navigation.navigate("Menu");
 
     }
   }
   //==============================================================================================================================================
 
-    return(
+  return (
 
-        <View style={styles.container}>
+    <View style={styles.container}>
 
-          <TouchableOpacity onPress={navigation.goBack} style={styles.backButton}>
-          <AntDesign name="left" size={wp('8%')} color="black" />
-          </TouchableOpacity>
+      <TouchableOpacity onPress={navigation.goBack} style={styles.backButton}>
+        <AntDesign name="left" size={wp('8%')} color="black" />
+      </TouchableOpacity>
 
-       {infoExpanded ? 
-        <Animated.View style={[expandInfoStyle, {top: hp('5%'), left: wp('45%')}]}>
+      {infoExpanded ?
+        <Animated.View style={[expandInfoStyle, { top: hp('5%'), left: wp('45%') }]}>
           <Info closeFunction={removeInfo} infoText='hier könnte ihre info stehen'>
           </Info>
-        </Animated.View>:          
+        </Animated.View> :
         <TouchableOpacity style={styles.buttonRight} onPress={createInfo}>
-            <AntDesign name="infocirlceo" size={24} color="black" />
+          <AntDesign name="infocirlceo" size={24} color="black" />
         </TouchableOpacity>
-          }
+      }
 
-          <View style={{marginTop: hp('15%'), alignContent: 'center', alignItems: 'center', zIndex: 0, elevation: 0}}>
-            <Heading size="2xl">LEVEL HEADING</Heading>    
-          </View>
-            <ScrollView style={{marginBottom: hp('15%'), marginTop: hp('5%')}}
-            contentContainerStyle={{justifyContent: 'center', alignItems: 'center', marginRight: '5%', marginLeft: '5%'}}>
-            <Text style={styles.levelText}>{currentText[0]}</Text>    
-            <Text style={styles.levelHighlightedText}>{currentText[1]} </Text>
-            </ScrollView>
-            
-          <TouchableOpacity style={styles.createTaskButton} onPress={() => {createTask()}}>
-            <Text style={{color: 'white', justifyContent: 'center', fontSize:24}}>Üben</Text>
-          </TouchableOpacity>
-         
-          
-
-          {taskCreated &&
-      <Animated.View style={[floatUpStyle, {zIndex: 100, elevation: 100, position: 'absolute'}]}>
-      <Task taskDescription='kneifen sie ihre augen zusammen' downFunction={removeTask}
-       nextLevelFunction={nextLevel} trainDuration={3} pauseDuration={3}>
-      </Task>
-      </Animated.View>
-          }
+      <View style={{ marginTop: hp('15%'), alignContent: 'center', alignItems: 'center', zIndex: 0, elevation: 0 }}>
+        <Heading size="2xl">LEVEL HEADING</Heading>
       </View>
-    );
+      <ScrollView style={{ marginBottom: hp('15%'), marginTop: hp('5%') }}
+        contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', marginRight: '5%', marginLeft: '5%' }}>
+        <Text style={styles.levelText}>{currentText}</Text>
+        <Text style={styles.levelHighlightedText}>{currentHighlightedText} </Text>
+      </ScrollView>
+
+      <TouchableOpacity style={styles.createTaskButton} onPress={() => { createTask() }}>
+        <Text style={{ color: 'white', justifyContent: 'center', fontSize: 24 }}>Üben</Text>
+      </TouchableOpacity>
+
+
+
+      {taskCreated &&
+        <Animated.View style={[floatUpStyle, { zIndex: 100, elevation: 100, position: 'absolute' }]}>
+          <Task taskDescription='kneifen sie ihre augen zusammen' downFunction={removeTask}
+            nextLevelFunction={nextLevel} trainDuration={3} pauseDuration={3}>
+          </Task>
+        </Animated.View>
+      }
+    </View>
+  );
 }
 
 export default LevelLayout;

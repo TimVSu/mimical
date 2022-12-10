@@ -22,9 +22,9 @@ const Scenario = ({ navigation, ...props }) => {
   let array = [];
   let key = props.test;
   let scenarioLength = getScenarioLength(key);
-  let scenario=getScenario(key);
+  let scenario = getScenario(key);
   let iterator = [];
-  for (let i = 0; i < scenarioLength; i++){
+  for (let i = 0; i < scenarioLength; i++) {
     iterator.push(i);
   }
 
@@ -66,10 +66,10 @@ const Scenario = ({ navigation, ...props }) => {
         <Exercise level={6} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
         <Exercise level={7} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} />
         <Exercise level={8} icon={props.icon} color={props.color} navigation={navigation} tags={"Tags"} unlocked={false} completed={false} /> */}
-        {iterator.map ((iterate) => 
-        ( 
-        <Exercise level={iterate + 1} scenario={scenario} icon={props.icon} navigation={navigation} 
-        tags={"Tags"} unlocked={true} key={iterate} completed={false}></Exercise> ))}
+        {iterator.map((iterate) =>
+        (
+          <Exercise level={iterate + 1} scenario={scenario} icon={props.icon} navigation={navigation}
+            tags={"Tags"} unlocked={true} key={iterate} completed={false}></Exercise>))}
       </ScrollView>
     </View>
   );

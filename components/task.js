@@ -1,10 +1,10 @@
 //@author: Tim Suchan
 import CameraScreen from './camera.js';
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text, Button, LayoutAnimation, UIManager, Pressable }  from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, Button, LayoutAnimation, UIManager, Pressable } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Heading } from 'native-base';
-import { AntDesign } from '@expo/vector-icons'; 
+import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
 
 if (Platform.OS === 'android') {
@@ -13,7 +13,7 @@ if (Platform.OS === 'android') {
   }
 }
 
-const Task = ({nextLevelFunction, taskDescription, children, downFunction, trainDuration, pauseDuration}) => {
+const Task = ({ nextLevelFunction, taskDescription, children, downFunction, trainDuration, pauseDuration }) => {
   // VARIABLES:
   //==============================================================================================================================================
   const [currentTime, setCurrentTime] = useState(trainDuration);
@@ -23,9 +23,9 @@ const Task = ({nextLevelFunction, taskDescription, children, downFunction, train
   const [relaxState, setRelaxState] = useState(false);
   const [informState, setInformState] = useState(false);
   const [repCounter, setRepCounter] = useState(0);
-  const [removed,setRemoved] = useState(false);
+  const [removed, setRemoved] = useState(false);
   const repititions = 3;
- 
+
   const [showDescription, setShowDescription] = useState(true);
 
   // FUNCTIONS:
@@ -34,14 +34,14 @@ const Task = ({nextLevelFunction, taskDescription, children, downFunction, train
   //@author: tim suchan
   //starts/continues one train/pause timer repitition, called when play button is pressd or when  
   const play = () => {
-    if (!onPause){
-    setCurrentTime(trainDuration)
-    setTaskRunning(true);
-    setOnPause(false);
-    setInformState(false);
-    console.log('should set informState false');
+    if (!onPause) {
+      setCurrentTime(trainDuration)
+      setTaskRunning(true);
+      setOnPause(false);
+      setInformState(false);
+      console.log('should set informState false');
     }
-    else{
+    else {
       setTaskRunning(true);
       setOnPause(false);
     }
@@ -64,7 +64,7 @@ const Task = ({nextLevelFunction, taskDescription, children, downFunction, train
 
   //@author: TIm Suchan
   // pauses a running game timer sequence
-  const pause = () =>{
+  const pause = () => {
     setTaskRunning(false);
     setOnPause(true);
   }
@@ -82,27 +82,27 @@ const Task = ({nextLevelFunction, taskDescription, children, downFunction, train
     } else if (!taskRunning) {
       clearInterval(interval);
     }
-    if(currentTime == 0 && taskRunning && !relaxState){
+    if (currentTime == 0 && taskRunning && !relaxState) {
       setCurrentTime(pauseDuration);
       setRelaxState(true);
     }
-    if(currentTime == 0 && taskRunning && relaxState){
+    if (currentTime == 0 && taskRunning && relaxState) {
       setRelaxState(false);
-      if (repCounter == repititions-1){
-      setRepCounter(0);
-      setTaskRunning(false);     
-      setInformState(false);
-      clearInterval(interval);
-    }
-      else{
-      setRepCounter(repCounter => repCounter + 1);
-      play();
+      if (repCounter == repititions - 1) {
+        setRepCounter(0);
+        setTaskRunning(false);
+        setInformState(false);
+        clearInterval(interval);
+      }
+      else {
+        setRepCounter(repCounter => repCounter + 1);
+        play();
       }
     }
-    if(currentTime == 0 && repCounter == repititions - 1){
+    if (currentTime == 0 && repCounter == repititions - 1) {
       nextLevelFunction();
     }
-    if(currentTime == 3 && taskRunning && relaxState){
+    if (currentTime == 3 && taskRunning && relaxState) {
       setInformState(true);
     }
     return () => clearInterval(interval);
@@ -110,34 +110,34 @@ const Task = ({nextLevelFunction, taskDescription, children, downFunction, train
 
 
 
-    return(   
-        <View style={styles.taskContainer}>
-            <CameraScreen size={wp('100%')}>
-              {informState ? 
-              !removed && 
-              <View style={styles.informView}>
-              <Text style={styles.informText}>{taskDescription + 'in'}</Text>
+  return (
+    <View style={styles.taskContainer}>
+      <CameraScreen size={wp('100%')}>
+        {informState ?
+          !removed &&
+          <View style={styles.informView}>
+            <Text style={styles.informText}>{taskDescription + 'in'}</Text>
             <Text style={styles.informTime}>{currentTime}</Text>
-            </View>:
-              !removed&&
-              <Text style={styles.time}>{currentTime}</Text>
-              }
-            </CameraScreen>
-            <Heading style={styles.taskDescription} size='lg'>{taskDescription}</Heading>
-            {children}
-            <View style={styles.horizontal}>
-              <TouchableOpacity style={styles.taskButton} onPress={downFunction}>
-                <AntDesign name="downcircleo" size={50} color="white" />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.taskButton} activeOpacity={0.3} onPress={() => pause()}>
-                <AntDesign name="pausecircleo" size={50} color="white"/>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.taskButton} onPress={() => play()}>
-                <AntDesign name="playcircleo" size={50} color="white"/>
-              </TouchableOpacity>
-            </View>
-         </View>
- );
+          </View> :
+          !removed &&
+          <Text style={styles.time}>{currentTime}</Text>
+        }
+      </CameraScreen>
+      <Heading style={styles.taskDescription} size='lg'>{taskDescription}</Heading>
+      {children}
+      <View style={styles.horizontal}>
+        <TouchableOpacity style={styles.taskButton} onPress={downFunction}>
+          <AntDesign name="downcircleo" size={50} color="white" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.taskButton} activeOpacity={0.3} onPress={() => pause()}>
+          <AntDesign name="pausecircleo" size={50} color="white" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.taskButton} onPress={() => play()}>
+          <AntDesign name="playcircleo" size={50} color="white" />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
 }
 
 export default Task;
