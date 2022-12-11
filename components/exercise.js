@@ -3,7 +3,7 @@
 // import react native
 import { Pressable, StyleSheet, Text, useColorScheme, View } from 'react-native';
 import React from 'react';
-import { startLevel } from './levelContents.js';
+import { startLevel } from './contentManager.js';
 
 // import components
 import Square from './square.js';

@@ -12,7 +12,7 @@ import Animated, {
 import Task from '../components/task.js'
 import { Heading, Modal } from 'native-base';
 import Info from '../components/info.js';
-import { getAllContents, incrementCurrentContent, getCurrentSequence, getText, getCurrentContent, getHighlightedText } from '../components/levelContents';
+import { getAllContents, incrementCurrentContent, getCurrentSequence, getText, getCurrentContent, getHighlightedText } from '../components/contentManager';
 import styles from '../components/styles.js';
 
 if (

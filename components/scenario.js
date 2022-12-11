@@ -3,7 +3,7 @@
 // import react native
 import { ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native';
 import React from 'react';
-import { getScenario, getScenarioLength } from './levelContents.js';
+import { getScenario, getScenarioLength } from './contentManager.js';
 
 // import icons
 import { faCircleCheck, faSnowflake } from '@fortawesome/free-solid-svg-icons';
