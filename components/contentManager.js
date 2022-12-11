@@ -142,19 +142,236 @@ const umzug16 = {
 
 const umzug17 = {
     "baseText": "Gemeinsam mit Ihren Helfer" +
-    "bestellen Sie beim Lieferservice um die Ecke noch etwas zu Essen und lassen den anstrengenden Tag hinter sich.",
+        "bestellen Sie beim Lieferservice um die Ecke noch etwas zu Essen und lassen den anstrengenden Tag hinter sich.",
 
     "highlightedText": "empty",
 
     "task": "empty"
 }
+
+//===================================================================================================================================0
+const einzug1 = {
+    "baseText": "Einzug in eine neue WohnungSie sind gestern umgezogen und müssen heute alle Umzugskisten auspacken. Um heute das nötigste zu schaffen, sind Sie sehr früh aufgestanden. Noch etwas verschlafen gehen Sie durch die Wohnung und überlegen, wo Sie nur anfangen sollen. ",
+    "highlightedText": "Sie reiben verschlafen Ihr Gesicht mit den Handflächen.",
+    "task": "empty"
+}
+const einzug2 = {
+    "baseText": "Jetzt erst einmal einen Kaffee, denken Sie sich. Vergebens suchen Sie die Kaffeemaschine, können die Kiste mit den Küchensachen aber nirgendwo finden. Da entdecken Sie die Tassen und kramen nach ihrer Lieblingstasse. Oh nein! Ihre Lieblingstasse ist beim Umzug zu Bruch gegangen.  ",
+    "highlightedText": "Entsetzt reißen Sie die Augen weit auf.",
+    "task": "empty"
+}
+const einzug3 = {
+    "baseText": "Sie werfen die Überreste in den Mülleimer und nehmen sich eine beliebig andere Tasse. Sie stellen die Kaffeemaschine an. Die Maschine zeigt den Spülvorgang an. Noch etwas verschlafen, starten Sie unabsichtlich den Spülvorgang. Jetzt dauert es 10 Minuten. Sie ärgern sich und ziehen dabei die Augenbrauen zusammen.Endlich ist der Kaffee fertig und Sie schenken sich eine Tasse ein. Sie setzen sich auf Ihr Sofa und trinken in Ruhe Ihren Kaffee. Noch müde und erschöpft vom Umzug, ",
+    "highlightedText": "kneifen Sie die Augen zu.",
+    "task": "empty"
+}
+const einzug4 = {
+    "baseText": "Es kann losgehen. Sie beschließen, mit dem Ausräumen der Kisten zu beginnen. Es gibt so viel zu tun! Plötzlich klingelt es an der Tür. Erstaunt ",
+    "highlightedText": "ziehen Sie die Augenbrauen hoch.",
+    "task": "empty"
+}
+const einzug5 = {
+    "baseText": "Sie öffnen die Tür und vor Ihnen steht eine Frau, die sich als Ihre Nachbarin vorstellt. Sie beschwert sich, dass Ihr Auto die Garage blockiert. Sie käme nun nicht mehr aus der Garage heraus. Sie wundern sich, weil Sie darauf geachtet haben, niemanden zu hindern. Schnell holen Sie die Autoschlüssel. Am Auto angekommen, sehen Sie, dass Ihre Nachbarin problemlos rausfahren könnte. Verärgert ",
+    "highlightedText": "ziehen Sie die Augenbrauen zusammen.",
+    "task": "empty"
+}
+const einzug6 = {
+    "baseText": "Als Sie wieder zurück in Ihrer Wohnung sind, räumen Sie die Umzugskisten aus. Sie bemerken schnell, dass Sie für die weiteren Umzugskisten im Wohnzimmer das Wandregal aufbauen müssen. Sie bohren dafür die Löcher in die Wand, hängen das Regal auf und Sie gehen anschließend ein Stück weiter weg, um zu prüfen, ob das Wandregal auch gerade hängt. Dazu ",
+    "highlightedText": "kneifen Sie die Augen etwas zu.",
+    "task": "empty"
+}
+const einzug7 = {
+    "baseText": "Das Wandregal scheint gerade zu hängen. Weiter geht es im Badezimmer. Sie bauen den Schrank auf und räumen alle Badutensilien ein. Sie bemerken einen unangenehmen Geruch aus der Dusche. Er kommt vom Abfluss hoch. ",
+    "highlightedText": "Sie rümpfen die Nase.",
+    "task": "empty"
+}
+const einzug8 = {
+    "baseText": "Vermutlich wurde die Dusche seit längerer Zeit nicht mehr benutzt. Sie drehen den Wasserhahn auf und lassen die Dusche eine Zeit laufen, um den Geruch zu beseitigen. Anschließend öffnen Sie das Fenster und lassen frische Luft rein. Schon viel besser. Zufrieden ",
+    "highlightedText": "lächeln Sie.",
+    "task": "empty"
+}
+const einzug9 = {
+    "baseText": "Als nächstes hängen Sie die Bilder im Flur auf. Zwei der drei Bilder haben Sie gefunden. Aber wo ist das Dritte? Sie haben bereits die ganze Wohnung nach dem Bild abgesucht. Sie überlegen, ",
+    "highlightedText": "spitzen dabei die Lippen und bewegen sie nach rechts und links.",
+    "task": "empty"
+}
+const einzug10 = {
+    "baseText": "Mit einem Mal fällt es Ihnen ein. Das Bild könnte oben auf den Dachboden geräumt worden sein. Sie schauen sofort nach.  Oben auf dem Dachboden angekommen, stellen Sie fest, dass der Bilderrahmen etwas verschmutzt ist. Das muss wohl vom Umzug gekommen sein. ",
+    "highlightedText": "Vorsichtig spitzen Sie die Lippen und pusten den Staub weg.",
+    "task": "empty"
+}
+const einzug11 = {
+    "baseText": "Als die drei Bilder im Flur hängen, freuen Sie sich über das Ergebnis. Sie stellen sich etwas weiter weg, um die drei Bilder im Flur zu betrachten. Sie hängen alle auf einer Linie nebeneinander und auch noch ganz gerade. Großartig, ",
+    "highlightedText": "Sie formen mit den Lippen ein Oh.",
+    "task": "empty"
+}
+const einzug12 = {
+    "baseText": "Jetzt gönnen Sie sich erst einmal eine kleine Pause im Wohnzimmer auf dem Sofa. Dazu kochen Sie Kaffee und essen ein Stück Kuchen vom Bäcker, den Sie bereits gestern gekauft hatten. Sie genießen den warmen Kaffee. ",
+    "highlightedText": "Sie spitzen die Lippen und schlürfen das heiße Getränk.",
+    "task": "empty"
+}
+const einzug13 = {
+    "baseText": "Der Kuchen schmeckt sehr gut und Sie freuen sich, dass der Bäcker gleich nebenan ist. Da werden Sie sicherlich häufiger ein leckeres Stück Kuchen kaufen. Um die letzten Krümel noch zu genießen, ",
+    "highlightedText": "lassen Sie die Zunge im Mund kreisen.",
+    "task": "empty"
+}
+
+//===============================================================================================================================================
+
+const urlaub1 = {
+    "baseText": "Endlich ist es soweit. Sie fahren heute in den Urlaub ans Meer. Nach einer langen Reise sind Sie endlich angekommen, stellen die Koffer ins Hotel und machen sich direkt auf den Weg zum Strand. Bereits von Weitem sehen Sie, dass viele Leute schon am Strand liegen. Ob Sie hier noch ein Plätzchen finden werden? ",
+    "highlightedText": "Erstaunt ziehen Sie die Augenbrauen hoch.",
+    "task": "empty"
+}
+const urlaub2 = {
+    "baseText": "Über den Strand hinweg erspähen Sie noch ein ruhiges Plätzchen. Das ist es. Doch als Sie sich in die Richtung bewegen, hat schon eine Familie den Platz belegt. ",
+    "highlightedText": "Genervt ziehen Sie die Augenbrauen zusammen.",
+    "task": "empty"
+}
+const urlaub3 = {
+    "baseText": "Sie halten weiter Ausschau nach einem geeigneten Platz. Die Leute liegen allerdings schon sehr nah aneinander, weil es so voll ist. Sie laufen ein ganzes Stück am Strand entlang. Nach einer Weile haben Sie genau den richtigen Platz gefunden, legen Ihre Decke und das Handtuch aus und wollen die Sonne genießen. Doch die Sonne blendet so stark, dass ",
+    "highlightedText": "Sie die Augen zukneifen müssen.",
+    "task": "empty"
+}
+const urlaub4 = {
+    "baseText": "Sie schließen die Augen. Mit einem Mal merken Sie, wie etwas neben Ihrem Kopf landet. Erschrocken öffnen Sie die Augen und sehen, dass es ein Frisbee ist. Zwei Kinder haben es versehentlich zu Ihnen geworfen. Sie nehmen das Frisbee und lassen Sie zu den beiden zurücksegeln. ",
+    "highlightedText": "Vergnügt, zwinkern Sie den beiden zu.",
+    "task": "empty"
+}
+const urlaub5 = {
+    "baseText": "Sie legen sich wieder auf Ihre Decke. Plötzlich weht Ihnen ein unangenehmer Geruch entgegen. Sie schauen sich um, woher der Gestank kommen könnte. Es kann nur vom nahegelegenen Imbiss kommen. Vermutlich ist das Essen aus Versehen verbrannt und der Geruch weht herüber. ",
+    "highlightedText": "Sie rümpfen die Nase.",
+    "task": "empty"
+}
+const urlaub6 = {
+    "baseText": "Mittlerweile ist Ihnen doch sehr warm. Um sich abzukühlen, entschließen Sie sich, im Meer zu schwimmen. Es ist doch kälter als Sie gedacht hatten. Sie beschließen, einmal komplett unterzutauchen, um sich an die Wassertemperatur zu gewöhnen. Dazu ",
+    "highlightedText": "pusten Sie die Wangen auf und lassen die Luft wieder entweichen.",
+    "task": "empty"
+}
+const urlaub7 = {
+    "baseText": "Das kühle Nass ist frisch und angenehm. Sie schwimmen etwas weiter raus, kehren dann ins seichtere Wasser zurück. Als Sie wieder zurück zum Strand schwimmen und wieder stehen können, blicken Sie noch einmal zurück und genießen die Weite. Sie freuen sich auf die kommenden Wochen am Meer und ",
+    "highlightedText": "lächeln, sodass Ihre Zähne zu sehen sind.",
+    "task": "empty"
+}
+const urlaub8 = {
+    "baseText": "Am Strand zurück, trocknen Sie sich ab und legen sich wieder auf die Decke. Zum Schutz vor der Sonne cremen Sie sich mit Sonnenmilch ein. Auch die Lippen dürfen Sie nicht vergessen und tragen etwas Sonnenmilch auf. Um sie gleichmäßig zu verteilen, ",
+    "highlightedText": "reiben Sie die Lippen aufeinander.",
+    "task": "empty"
+}
+const urlaub9 = {
+    "baseText": "Sie beobachten die Leute am Strand. Viele spielen Frisbee oder Ball, Kinder buddeln im Sand und bauen Burgen und viele liegen einfach da und genießen die Sonne und den Strand. Sie haben Lust auf Eis und gehen zum Imbiss. Vielleicht gibt es dort auch Eis zu kaufen. Als Sie ankommen, staunen Sie über die große Auswahl. Es gibt ganz ausgefallene Eissorten, ",
+    "highlightedText": "Sie formen mit den Lippen ein Oh.",
+    "task": "empty"
+}
+const urlaub10 = {
+    "baseText": "Sie können sich nicht entscheiden und beschließen daher mindestens drei Kugeln Eis zu nehmen. Sie überlegen, welche Sorten es sein sollen. Dabei ",
+    "highlightedText": "spitzen Sie die Lippen und bewegen sie nach rechts und links.",
+    "task": "empty"
+}
+const urlaub11 = {
+    "baseText": "Die Entscheidung ist gefallen und Sie haben doch ganz klassisch Erdbeere, Schokolade und Vanille genommen. Auf dem Weg zurück zu Ihrer Decke genießen Sie das Eis. ",
+    "highlightedText": "Dazu lassen Sie die Zunge im Mund kreisen.",
+    "task": "empty"
+}
+const urlaub12 = {
+    "baseText": " Die oberste Kugel rutscht von der Waffel und landet im Sand. Oh nein. ",
+    "highlightedText": "Enttäuscht schieben Sie die Unterlippe vor.",
+    "task": "empty"
+}
+const urlaub13 = {
+    "baseText": "Na toll. Sie beseitigen die heruntergefallene Kugel mit einer Serviette und werfen sie in den Mülleimer. Auf der Decke genießen Sie noch das restliche Eis. Es ist eine tolle Abkühlung. Sie sind zufrieden und können sich ein ",
+    "highlightedText": "breites Lächeln",
+    "task": "empty"
+}
+
+//=====================================================================================================================================
+
+const einkauf1 = {
+    "baseText": "Sie sind auf dem Weg zum Supermarkt, um Lebensmittel einzukaufen. Es ist früh am Morgen. Sie sind noch etwas verschlafen und bleiben kurz stehen, ",
+    "highlightedText": "um sich mit den Handflächen das Gesicht zu reiben.",
+    "task": "empty"
+}
+const einkauf2 = {
+    "baseText": "Im Supermarkt angekommen, nehmen Sie sich einen Einkaufswagen und suchen Ihren Einkaufszettel. Sie suchen alle Taschen ab, doch sie können ihn nicht finden. Oh nein, der Zettel muss noch auf dem Küchentisch liegen. Wie sollen Sie sich nur an alles, was Sie kaufen wollten, erinnern?  ",
+    "highlightedText": "Entsetzt ziehen Sie die Augenbrauen hoch.",
+    "task": "empty"
+}
+const einkauf3 = {
+    "baseText": "Sie gehen zuversichtlich in den Supermarkt und hoffen, sich an alles zu erinnern. Sie erinnern sich, dass Sie Spaghetti Bolognese machen wollten. Dafür benötigen Sie Zwiebeln, Knoblauch, Möhren, Sellerie und Hackfleisch. Haben Sie noch Zwiebeln zu Hause? Sie überlegen, aber es fällt Ihnen nicht ein. ",
+    "highlightedText": "Sie kneifen die Augen zu, um sich besser zu konzentrieren.",
+    "task": "empty"
+}
+const einkauf4 = {
+    "baseText": "Sie legen vorsichtshalber auch Zwiebeln in den Wagen und gehen weiter zur Fleischtheke. Es hat sich bereits eine lange Schlange gebildet und Sie müssen warten. Als Sie nach einer Weile endlich an der Reihe sind, sagen Sie der Verkäuferin, dass Sie gerne 1 Pfund Gehacktes, halb und halb, haben möchten. Die Verkäuferin sagt Ihnen, dass sie nur noch Rinderhack habe, das Schweinehack habe Sie gerade an den letzten Kunden verkauft. ",
+    "highlightedText": "Verärgert ziehen Sie die Augenbrauen zusammen.",
+    "task": "empty"
+}
+const einkauf5 = {
+    "baseText": " Die Verkäuferin fragt, ob es sonst noch etwas sein dürfe. Sie überlegen. An der Wand hängen noch geräucherte Mettwürstchen. Sie können allerdings nicht erkennen, wie teuer diese sind. ",
+    "highlightedText": "Sie kneifen die Augen zusammen, um das Schild zu lesen.",
+    "task": "empty"
+}
+const einkauf6 = {
+    "baseText": "Um die Warteschlange nicht noch länger aufzuhalten, nehmen Sie die Würstchen mit. Die Verkäuferin packt alles ein. Sie gehen weiter zur Kühlabteilung. Sie benötigen noch Parmesan. Vor Ihnen im Gang ist der ganze Boden mit Joghurt bedeckt. Scheinbar ist jemandem der Becher heruntergefallen. Es riecht unangenehm. ",
+    "highlightedText": "Sie rümpfen die Nase.",
+    "task": "empty"
+}
+const einkauf7 = {
+    "baseText": "Sie machen den nächsten Mitarbeiter ausfindig und weisen ihn daraufhin. Der junge Mann eilt direkt los, holt Lappen und Putzmittel und beseitigt den Joghurt. ",
+    "highlightedText": "Dankbar lächeln Sie.",
+    "task": "empty"
+}
+const einkauf8 = {
+    "baseText": "Sie gehen weiter zum Käseregal und suchen Blauschimmelkäse. Doch Sie können keinen finden. Verwundert wenden Sie sich an den Mitarbeiter, der noch dabei ist, den Joghurt zu beseitigen und der teilt Ihnen mit, dass der Käse ausverkauft sei. ",
+    "highlightedText": "Enttäuscht schieben Sie die Unterlippe vor.",
+    "task": "empty"
+}
+const einkauf9 = {
+    "baseText": "Sie kaufen noch die restlichen Lebensmittel für das Essen ein und alles, was Ihnen sonst noch einfällt. Dann begeben Sie sich zur Kasse. Vor der Kasse bleiben Sie am Kühlregal für Getränke stehen und überlegen, ob Sie noch Limonade mitnehmen sollen. Dazu ",
+    "highlightedText": "spitzen Sie die Lippen und bewegen sie nach rechts und links.",
+    "task": "empty"
+}
+const einkauf10 = {
+    "baseText": "Als Sie die Limonadenflasche aus dem Kühlregal ziehen, stoßen Sie versehentlich gegen die danebenliegenden Dosen mit Cola. Eine fällt runter. Für einen kurzen Moment sind Sie geschockt, ",
+    "highlightedText": "pusten die Wangen auf und lassen die Luft wieder entweichen.",
+    "task": "empty"
+}
+const einkauf11 = {
+    "baseText": "An der Kasse angekommen, warten schon 8 Leute in der Schlange. Die Kassiererin scheint sichtlich überfordert, sie muss ständig die Preise nachschauen und scheint noch relativ neu zu sein. Das kann noch etwas dauern. ",
+    "highlightedText": "Sie schieben die Unterlippe vor.",
+    "task": "empty"
+}
+const einkauf12 = {
+    "baseText": "Eine andere Kassiererin kommt aus der Pause. Zum Glück macht sie eine weitere Kasse auf. Sie stellen sich an und legen die Lebensmittel aufs Band. Als Sie an der Reihe sind, räumen Sie zügig die gescannten Artikel in den Wagen und kramen ihr Portmonee aus der Tasche. Doch es ist nicht wie gewohnt in der Tasche. Nervös ",
+    "highlightedText": "beißen Sie mit den Zähnen auf die Ober-und Unterlippe.",
+    "task": "empty"
+}
+const einkauf13 = {
+    "baseText": "Sie durchwühlen Ihre Taschen. Als Sie das Portmonee endlich finden, sind Sie erleichtert. Sie bezahlen den Einkauf und verlassen den Supermarkt. ",
+    "highlightedText": "Sie lächeln.",
+    "task": "empty"
+}
+
 //const taskContent3 = new taskContent()
 
 
 const allContents = {
     1: umzug1, 2: umzug2, 3: umzug3, 4: umzug4, 5: umzug5, 6: umzug6,
     7: umzug7, 8: umzug8, 9: umzug9, 10: umzug10, 11: umzug11, 12: umzug12,
-    13: umzug13, 14: umzug14, 15: umzug15, 16: umzug16, 17: umzug17
+    13: umzug13, 14: umzug14, 15: umzug15, 16: umzug16, 17: umzug17,
+
+    18: einzug1, 19: einzug2, 20: einzug3, 21: einzug4, 22: einzug5,
+    23: einzug6, 24: einzug7, 25: einzug8, 26: einzug9, 27: einzug10,
+    28: einzug11, 29: einzug12, 30: einzug13,
+
+    31: urlaub1, 32: urlaub2, 33: urlaub3, 34: urlaub4, 35: urlaub5, 36: urlaub6,
+    37: urlaub7, 38: urlaub8, 39: urlaub9, 40: urlaub10, 41: urlaub11,
+    42: urlaub12, 43: urlaub13,
+
+    44: einkauf1, 45: einkauf2, 46: einkauf3, 47: einkauf4, 48: einkauf5,
+    49: einkauf6, 50: einkauf7, 51: einkauf8, 52: einkauf9, 53: einkauf10,
+    54: einkauf11, 55: einkauf12, 56: einkauf13,
+
 };
 
 const defaultScenarios = {
@@ -162,6 +379,18 @@ const defaultScenarios = {
         "tags": ["EYES", "LIPS"],
         "indices": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
     },
+    "einzug": {
+        "tags": ["EYES", "LIPS"],
+        "indices": [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,]
+    },
+    "urlaub": {
+        "tags": ["EYES", "LIPS"],
+        "indices": [31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,]
+    },
+    "einkauf": {
+        "tags": ["EYES", "LIPS"],
+        "indices": [44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,]
+    }
 }
 
 let currentContent = 1;
@@ -199,6 +428,10 @@ const getCurrentContent = () => {
 
 const getCurrentSequence = () => {
     return currentSequence;
+}
+
+const getDefaultScenarios = () => {
+    return defaultScenarios;
 }
 
 const getText = () => {
@@ -239,4 +472,8 @@ const startLevel = (start, scenario) => {
 //===============================================================================================================================================
 
 
-export { getAllContents, startLevel, getScenario, getHighlightedText, getScenarioLength, setCurrentContent, incrementCurrentContent, setCurrentSequence, getText, getCurrentContent, getCurrentSequence, getTags, getTaskDescription };
+export {
+    getAllContents, getDefaultScenarios,
+    startLevel, getScenario, getHighlightedText, getScenarioLength, setCurrentContent, incrementCurrentContent,
+    setCurrentSequence, getText, getCurrentContent, getCurrentSequence, getTags, getTaskDescription
+};

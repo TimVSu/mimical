@@ -19,10 +19,9 @@ const Scenario = ({ navigation, ...props }) => {
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
 
   // create empty array
-  let array = [];
-  let key = props.test;
-  let scenarioLength = getScenarioLength(key);
-  let scenario = getScenario(key);
+  let name = props.name;
+  let scenarioLength = getScenarioLength(name);
+  let scenario = getScenario(name);
   let iterator = [];
   for (let i = 0; i < scenarioLength; i++) {
     iterator.push(i);

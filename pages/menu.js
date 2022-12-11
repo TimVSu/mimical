@@ -13,7 +13,7 @@ import Scenario from '../components/scenario.js';
 import FilterBar from '../components/filter_bar.js';
 import { faBeer, faBowlingBall, faChurch, faCity, faCow, faLightbulb, faSnowflake, faSun, faTree } from '@fortawesome/free-solid-svg-icons';
 import styles from '../components/styles.js';
-import {getAllContents, incrementCurrentContent, getCurrentSequence, setCurrentContent, getCurrentContent, getScenario, setCurrentSequence} from '../components/levelContents';
+import {getAllContents, getDefaultScenarios, setCurrentContent, setCurrentSequence} from '../components/contentManager';
 
 
 
@@ -38,26 +38,9 @@ const HomePage = ({ navigation }) => {
   const activeIconColor = colorScheme === 'light' ? blue : dark_blue
   const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5
 
-    // since this component is higher in hirarchy thatn the level component i use it to control the current content
-    // All contets are stored with unique id's this hook stores the current starting pooint and passes it to the level component
-
-
-    //@author: Tim Suchan
-    // passed to the level component controlling which level will be displayed next
-    // also used to start any level 
-    /*const changeContent = () => {
-      console.log('iscalled')
-      if (currentContent < currentSequence.length){
-        setCurrentContent(currentContent => currentContent + 1);
-        navigation.navigate("Level", {content: allContents.currentContent, nextLevelFunction: changeContent});
-      }
-      else{
-        navigation.navigate("Menu");
-      }
-    }*/
     setCurrentContent(1);
 
-    const test = getAllContents()[1];
+    const keyArray = Object.keys(getDefaultScenarios());
 
     const startLevel = (start, scenario) => {
       setCurrentContent(start);
@@ -72,16 +55,19 @@ const HomePage = ({ navigation }) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={[styles.container, containerColor]}>
           {/* <Text style={[styles.title1, textColor]}>Text</Text> */}
+          {keyArray.map((scenarioKey) =>
+        (
           <Scenario
-            title="Der erste Schnee"
-            progress={1}
-            exercises={7}
-            key="umzug"
-            test="umzug"
+            title={scenarioKey}
+            name={scenarioKey}
+            key={scenarioKey}
             icon={faSnowflake}
             color={'white'}
             navigation={navigation}
-            />
+            progress={1}
+            exercises={7}
+            />))}
+
           <StatusBar style="auto" />
         </View>
       </ScrollView>
