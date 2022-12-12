@@ -48,8 +48,8 @@ const accessible_gray4 = 'rgb(209, 209, 214)';
 const accessible_gray5 = 'rgb(229, 229, 234)';
 const accessible_gray6 = 'rgb(242, 242, 247)';
 
-const light_primary_color = blue;
-const dark_primary_color = dark_blue;
+export const light_primary_color = blue;
+export const dark_primary_color = dark_blue;
 
 // retrieve data
 const getData = async () => {
