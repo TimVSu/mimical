@@ -94,6 +94,8 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     borderBottomWidth: 1,
     borderColor: gray5,
+    flexDirection: 'row',
+    alignSelf: 'center',
   },
   // light/dark mode
   light_container: {
@@ -238,6 +240,10 @@ export default StyleSheet.create({
     overflow: 'hidden',
     
   },
+  btnTabActive: {
+    backgroundColor: "#E6838D",
+    color: "#fff"
+  },
   levelText: {
     fontSize: 25,
     lineHeight: 50,
@@ -246,6 +252,5 @@ export default StyleSheet.create({
     fontSize: 25,
     lineHeight: 50,
     fontWeight: 'bold',
-
-  }
+  },
 });

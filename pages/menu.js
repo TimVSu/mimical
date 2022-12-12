@@ -2,7 +2,7 @@
 
 // import react native
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, ScrollView, Text, View, useColorScheme } from 'react-native';
+import { StyleSheet, ScrollView, Text, View, useColorScheme, TouchableOpacity, FlatList } from 'react-native';
 import React from 'react';
 import {useState} from 'react'
 
@@ -15,7 +15,8 @@ import { faBeer, faBowlingBall, faChurch, faCity, faCow, faLightbulb, faSnowflak
 import styles from '../components/styles.js';
 import {getAllContents, getDefaultScenarios, setCurrentContent, setCurrentSequence} from '../components/contentManager';
 
-
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faCircleInfo, faEye, faFaceSmile } from '@fortawesome/free-solid-svg-icons';
 
 // colors
 const orange = 'rgb(255, 149, 0)';
@@ -30,6 +31,25 @@ const gray6 = 'rgb(242, 242, 247)';
 const dark_blue = 'rgb(10, 132, 255)';
 const dark_gray5 = 'rgb(44, 44, 46)';
 
+const listTag = [
+  {
+tag: 'ALL'
+},
+{
+tag: 'CHEEKS'
+},
+{
+tag: 'NOSE'
+},
+{
+tag: 'LIPS'
+},
+{
+tag: 'MOUTH'
+}
+]
+
+
 // return home page
 const HomePage = ({ navigation }) => {
   const colorScheme = useColorScheme();
@@ -37,21 +57,53 @@ const HomePage = ({ navigation }) => {
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
   const activeIconColor = colorScheme === 'light' ? blue : dark_blue
   const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5
+  const buttonColor = colorScheme === 'light' ? styles.light_button : styles.dark_button;
 
-    setCurrentContent(1);
+  setCurrentContent(1);
 
-    const keyArray = Object.keys(getDefaultScenarios());
+  // const keyArray = Object.keys(getDefaultScenarios());
 
-    const startLevel = (start, scenario) => {
-      setCurrentContent(start);
-      setCurrentSequence(scenario);
-      navigation.navigate("Level");
+  const startLevel = (start, scenario) => {
+    setCurrentContent(start);
+    setCurrentSequence(scenario);
+    navigation.navigate("Level");
+  }
+
+  const [tag, setTag] = useState('All')
+  const [keyArray, setKeyArray] = useState(Object.keys(getDefaultScenarios()))
+  const setTagFilter = tag => {
+
+    console.log(keyArray.toString())
+
+    if(tag !== 'ALL'){
+      setKeyArray([...keyArray.filter(e => e.tags === tag)])
+    } else {
+      setKeyArray(Object.keys(getDefaultScenarios()))
     }
+      setTag(tag)
+  }
+  
+  
 
   return (
     <View style={{ flex: 1 }}>
       <NavBar page_title="Übersicht" navigation={navigation} />
-      <FilterBar></FilterBar>
+      {/* <FilterBar></FilterBar> */}
+
+      <View style={[styles.filter_bar, containerColor]}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          {listTag.map(e => (
+              
+            <View style={[{flexDirection: 'row'},{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginRight: 8 }, buttonColor]}>
+                <TouchableOpacity style={[{ flexDirection: 'row' }, { alignItems: 'center' }, tag === e.tag && styles.btnTabActive]} onPress={() => setTagFilter(e.tag)}>
+                  <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
+                  <Text style={[styles.label, { color: 'white' }]}>{e.tag}</Text>
+                </TouchableOpacity>
+                
+            </View>
+          ))}
+        </ScrollView>
+      </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={[styles.container, containerColor]}>
           {/* <Text style={[styles.title1, textColor]}>Text</Text> */}
