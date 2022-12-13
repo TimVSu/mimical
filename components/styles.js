@@ -48,8 +48,11 @@ const accessible_gray4 = 'rgb(209, 209, 214)';
 const accessible_gray5 = 'rgb(229, 229, 234)';
 const accessible_gray6 = 'rgb(242, 242, 247)';
 
-export const light_primary_color = blue;
-export const dark_primary_color = dark_blue;
+const light_primary_color = blue;
+const dark_primary_color = dark_blue;
+const light_background_color = 'rgb(255, 255, 255)';
+const dark_background_color = 'rgb(0, 0, 0)';
+export { light_primary_color, dark_primary_color, light_background_color, dark_background_color };
 
 // retrieve data
 const getData = async () => {
@@ -110,11 +113,11 @@ export default StyleSheet.create({
   },
   // light/dark mode
   light_container: {
-    backgroundColor: 'white',
+    backgroundColor: light_background_color,
     borderColor: gray5
   },
   dark_container: {
-    backgroundColor: 'black',
+    backgroundColor: dark_background_color,
     borderColor: dark_gray5
   },
   light_square: {
