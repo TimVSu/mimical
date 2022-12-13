@@ -63,7 +63,23 @@ const SettingsPage = ({ navigation }) => {
   const activeIconColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5;
 
+  // language
+  const [isEnabled1, setIsEnabled1] = useState(false);
+  const [language, setLanguage] = useState("german");
+  const toggleSwitch1 = () => [setIsEnabled1(previousState => !previousState), setLanguage(isEnabled1 ? "german" : "english"), storeData(language)];
+
+  // font size
+  const [isEnabled2, setIsEnabled2] = useState(false);
   const [fontSize, setFontSize] = useState(17);
+  const toggleSwitch2 = () => [setIsEnabled2(previousState => !previousState), setFontSize(isEnabled2 ? 17 : 34)];
+
+  // camera
+  const [isEnabled3, setIsEnabled3] = useState(true);
+  const toggleSwitch3 = () => [setIsEnabled3(previousState => !previousState), storeData(!isEnabled3)];
+
+  // notifications
+  const [isEnabled4, setIsEnabled4] = useState(false);
+  const toggleSwitch4 = () => [setIsEnabled4(previousState => !previousState), storeData(!isEnabled4)];
 
   // options component
   const Options = (props) => {
@@ -99,17 +115,17 @@ const SettingsPage = ({ navigation }) => {
     }
 
     // language switch
-    const [isEnabled, setIsEnabled] = useState(false);
-    const [language, setLanguage] = useState("german")
-    const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setLanguage(isEnabled ? "english" : "german"), storeData(language)];
+    // const [isEnabled, setIsEnabled] = useState(false);
+    // const [language, setLanguage] = useState("german");
+    // const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setLanguage(isEnabled ? "english" : "german"), storeData(language)];
 
     return (
       <View style={[styles.settings_item, containerColor]}>
         <Text style={[{ fontSize: fontSize }, textColor]}>Sprache</Text>
         {/* <Options option1="Deutsch" option2="Englisch" /> */}
         <View style={{ flexDirection: 'row' }}>
-          <Button title='Deutsch' disabled={!isEnabled} onPress={toggleSwitch} />
-          <Button title='Englisch' disabled={isEnabled} onPress={toggleSwitch} />
+          <Button title='Deutsch' disabled={!isEnabled1} onPress={toggleSwitch1} />
+          <Button title='Englisch' disabled={isEnabled1} onPress={toggleSwitch1} />
         </View>
       </View>
     );
@@ -163,10 +179,10 @@ const SettingsPage = ({ navigation }) => {
     }
 
     // font size switch
-    const [isEnabled, setIsEnabled] = useState(false);
+    // const [isEnabled, setIsEnabled] = useState(false);
     // const [fontSize, setFontSize] = useState(17);
     // const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontSize(isEnabled ? 34 : 17), storeLargeFontData(!isEnabled), storeFontSizeData(fontSize), getFontSizeData()];
-    const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontSize(isEnabled ? 17 : 34)];
+    // const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontSize(isEnabled ? 17 : 34)];
 
     return (
       <View style={[styles.settings_item, containerColor]}>
@@ -177,8 +193,8 @@ const SettingsPage = ({ navigation }) => {
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
           // ios_backgroundColor={"#3e3e3e"}
-          onValueChange={toggleSwitch}
-          value={isEnabled}
+          onValueChange={toggleSwitch2}
+          value={isEnabled2}
         />
       </View>
     );
@@ -210,8 +226,8 @@ const SettingsPage = ({ navigation }) => {
     }
 
     // camera switch
-    const [isEnabled, setIsEnabled] = useState(true);
-    const toggleSwitch = () => [setIsEnabled(previousState => !previousState), storeData(!isEnabled)];
+    // const [isEnabled, setIsEnabled] = useState(true);
+    // const toggleSwitch = () => [setIsEnabled(previousState => !previousState), storeData(!isEnabled)];
 
     return (
       <View style={[styles.settings_item, containerColor]}>
@@ -220,8 +236,8 @@ const SettingsPage = ({ navigation }) => {
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
           // ios_backgroundColor={"#3e3e3e"}
-          onValueChange={toggleSwitch}
-          value={isEnabled}
+          onValueChange={toggleSwitch3}
+          value={isEnabled3}
         />
       </View>
     );
@@ -242,8 +258,8 @@ const SettingsPage = ({ navigation }) => {
     }
 
     // notifications switch
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => [setIsEnabled(previousState => !previousState), storeData(!isEnabled)];
+    // const [isEnabled, setIsEnabled] = useState(false);
+    // const toggleSwitch = () => [setIsEnabled(previousState => !previousState), storeData(!isEnabled)];
 
     return (
       <View style={[styles.settings_item, containerColor]}>
@@ -252,8 +268,8 @@ const SettingsPage = ({ navigation }) => {
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
           // ios_backgroundColor={"#3e3e3e"}
-          onValueChange={toggleSwitch}
-          value={isEnabled}
+          onValueChange={toggleSwitch4}
+          value={isEnabled4}
         />
       </View>
     );
@@ -264,8 +280,8 @@ const SettingsPage = ({ navigation }) => {
   const AppearanceSettings = () => {
 
     // appearance switch
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    // const [isEnabled, setIsEnabled] = useState(false);
+    // const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
     return (
       <View style={[styles.settings_item, containerColor]}>
