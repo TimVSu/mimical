@@ -52,7 +52,7 @@ const light_primary_color = blue;
 const dark_primary_color = dark_blue;
 const light_background_color = 'rgb(255, 255, 255)';
 const dark_background_color = 'rgb(0, 0, 0)';
-export { light_primary_color, dark_primary_color, light_background_color, dark_background_color };
+export { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, gray5, dark_gray5 };
 
 // retrieve data
 const getData = async () => {
