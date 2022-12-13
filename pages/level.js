@@ -14,6 +14,7 @@ import { Heading, Modal } from 'native-base';
 import Info from '../components/info.js';
 import { getAllContents, incrementCurrentContent, getCurrentSequence, getText, getCurrentContent, getHighlightedText } from '../components/contentManager';
 import styles from '../components/styles.js';
+import { Audio } from 'expo-av';
 
 if (
   Platform.OS === "android" &&
@@ -90,6 +91,7 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
   // creates the respective task for the level
   const createTask = () => {
 
+    stopSound();
     setTaskCreated(true);
     // offset.value = withSpring(hp('10%'), { damping: 15, stiffness: 300 });
     offset.value = withTiming(hp('10%'), { duration: 150 });
@@ -129,6 +131,36 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
     }
   }
   //==============================================================================================================================================
+
+  const [sound, setSound] = useState();
+
+  async function playSound() {
+    console.log('Loading Sound');
+    const { sound } = await Audio.Sound.createAsync( require('../assets/LAKEY_INSPIRED_Better_Days.mp3')
+    );
+    setSound(sound);
+
+    console.log('Playing Sound');
+    await sound.playAsync();
+  }
+
+  async function stopSound() {
+    await sound.unloadAsync();
+  }
+
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log('Unloading Sound');
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
+
+  useEffect(() => {
+    playSound();
+    }, [])
 
   return (
 

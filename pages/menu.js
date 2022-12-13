@@ -52,6 +52,7 @@ tag: 'MOUTH'
 
 // return home page
 const HomePage = ({ navigation }) => {
+  
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
@@ -73,10 +74,10 @@ const HomePage = ({ navigation }) => {
   const [keyArray, setKeyArray] = useState(Object.keys(getDefaultScenarios()))
   const setTagFilter = tag => {
 
-    console.log(keyArray.toString())
+    console.log(keyArray["umzug"])
 
     if(tag !== 'ALL'){
-      setKeyArray([...keyArray.filter(e => e.tags === tag)])
+      setKeyArray([...keyArray.filter((item) => item["tags"] === tag)])
     } else {
       setKeyArray(Object.keys(getDefaultScenarios()))
     }
