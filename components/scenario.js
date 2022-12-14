@@ -43,10 +43,8 @@ const Scenario = ({ navigation, ...props }) => {
   for (let i = 0; i < scenarioLength; i++){
     console.log(scenario[i]);
     retrieveData(scenario[i]).then(
-      (completionState) => {
-        console.log('compstate' + completionState);
-        completionArray[i] = completionState;
-      }
+      function(value) {myDisplayer(completionArray[i] = value);},
+      function(error) {myDisplayer(console.log('missing completion state for exercise in async storage'));}
     );
   }
 
