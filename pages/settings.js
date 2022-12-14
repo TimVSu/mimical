@@ -2,7 +2,7 @@
 
 // import react native
 import { Button, Pressable, ScrollView, Switch, Text, useColorScheme, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // import components
@@ -44,8 +44,9 @@ const getData = async () => {
     const jsonValue = await AsyncStorage.getItem('test');
     const value = JSON.parse(jsonValue);
     if (value !== null) {
-      alert("language: " + value.language + "\nlarge font: " + value.largeFont + "\nfont size: " + value.fontSize + "\ncamera: " + value.camera + "\nnotifications: " + value.notifications)
+      alert("language: " + value.language + "\nlarge font: " + value.largeFont + "\nfont size: " + value.fontSize + "\ncamera: " + value.camera + "\nnotifications: " + value.notifications);
     }
+    // return jsonValue != null ? JSON.parse(jsonValue) : null;
   } catch (error) {
     // error retrieving data
   }
@@ -63,23 +64,78 @@ const SettingsPage = ({ navigation }) => {
   const activeIconColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5;
 
+  // get data on first render
+  useEffect(() => {
+    getData();
+  }, []);
+
+  // store language data
+  const storeLanguageData = async (value) => {
+    try {
+      config.language = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
+
+  // store large font data
+  const storeLargeFontData = async (value) => {
+    try {
+      config.largeFont = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
+
+  // store font size data
+  const storeFontSizeData = async (value) => {
+    try {
+      config.fontSize = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
+
+  // store camera data
+  const storeCameraData = async (value) => {
+    try {
+      config.camera = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
+
+  // store notifications data
+  const storeNotificationsData = async (value) => {
+    try {
+      config.notifications = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
+
   // language
   const [isEnabled1, setIsEnabled1] = useState(false);
   const [language, setLanguage] = useState("german");
-  const toggleSwitch1 = () => [setIsEnabled1(previousState => !previousState), setLanguage(isEnabled1 ? "german" : "english"), storeData(language)];
+  const toggleSwitch1 = () => [setIsEnabled1(previousState => !previousState), setLanguage(isEnabled1 ? "german" : "english"), storeLanguageData(language)];
 
   // font size
   const [isEnabled2, setIsEnabled2] = useState(false);
   const [fontSize, setFontSize] = useState(17);
-  const toggleSwitch2 = () => [setIsEnabled2(previousState => !previousState), setFontSize(isEnabled2 ? 17 : 34)];
+  const toggleSwitch2 = () => [setIsEnabled2(previousState => !previousState), setFontSize(isEnabled2 ? 17 : 34), storeLargeFontData(!isEnabled2), storeFontSizeData(isEnabled2 ? 17 : 34)];
 
   // camera
   const [isEnabled3, setIsEnabled3] = useState(true);
-  const toggleSwitch3 = () => [setIsEnabled3(previousState => !previousState), storeData(!isEnabled3)];
+  const toggleSwitch3 = () => [setIsEnabled3(previousState => !previousState), storeData(!isEnabled3), storeCameraData(!isEnabled3)];
 
   // notifications
   const [isEnabled4, setIsEnabled4] = useState(false);
-  const toggleSwitch4 = () => [setIsEnabled4(previousState => !previousState), storeData(!isEnabled4)];
+  const toggleSwitch4 = () => [setIsEnabled4(previousState => !previousState), storeData(!isEnabled4), storeNotificationsData(!isEnabled4)];
 
   // options component
   const Options = (props) => {
@@ -103,22 +159,6 @@ const SettingsPage = ({ navigation }) => {
 
   // language settings
   const LanguageSettings = () => {
-
-    // store data
-    const storeData = async (value) => {
-      try {
-        config.language = value;
-        await AsyncStorage.setItem('test', JSON.stringify(config));
-      } catch (error) {
-        // error storing data
-      }
-    }
-
-    // language switch
-    // const [isEnabled, setIsEnabled] = useState(false);
-    // const [language, setLanguage] = useState("german");
-    // const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setLanguage(isEnabled ? "english" : "german"), storeData(language)];
-
     return (
       <View style={[styles.settings_item, containerColor]}>
         <Text style={[{ fontSize: fontSize }, textColor]}>Sprache</Text>
@@ -129,31 +169,10 @@ const SettingsPage = ({ navigation }) => {
         </View>
       </View>
     );
-
   }
 
   // font settings
   const FontSettings = () => {
-
-    // store large font data
-    const storeLargeFontData = async (value) => {
-      try {
-        config.largeFont = value;
-        await AsyncStorage.setItem('test', JSON.stringify(config));
-      } catch (error) {
-        // error storing data
-      }
-    }
-
-    // store font size data
-    const storeFontSizeData = async (value) => {
-      try {
-        config.fontSize = value;
-        await AsyncStorage.setItem('test', JSON.stringify(config));
-      } catch (error) {
-        // error storing data
-      }
-    }
 
     // retrieve font size data
     const getFontSizeData = async () => {
@@ -178,12 +197,6 @@ const SettingsPage = ({ navigation }) => {
       }
     }
 
-    // font size switch
-    // const [isEnabled, setIsEnabled] = useState(false);
-    // const [fontSize, setFontSize] = useState(17);
-    // const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontSize(isEnabled ? 34 : 17), storeLargeFontData(!isEnabled), storeFontSizeData(fontSize), getFontSizeData()];
-    // const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontSize(isEnabled ? 17 : 34)];
-
     return (
       <View style={[styles.settings_item, containerColor]}>
         <View>
@@ -204,16 +217,6 @@ const SettingsPage = ({ navigation }) => {
   // camera settings
   const CameraSettings = () => {
 
-    // store camera data
-    const storeData = async (value) => {
-      try {
-        config.camera = value;
-        await AsyncStorage.setItem('test', JSON.stringify(config));
-      } catch (error) {
-        // error storing data
-      }
-    }
-
     // retrieve camera data
     const getData = async () => {
       try {
@@ -224,10 +227,6 @@ const SettingsPage = ({ navigation }) => {
         // error retrieving data
       }
     }
-
-    // camera switch
-    // const [isEnabled, setIsEnabled] = useState(true);
-    // const toggleSwitch = () => [setIsEnabled(previousState => !previousState), storeData(!isEnabled)];
 
     return (
       <View style={[styles.settings_item, containerColor]}>
@@ -246,21 +245,6 @@ const SettingsPage = ({ navigation }) => {
 
   // notifications settings
   const NotificationsSettings = () => {
-
-    // store notifications data
-    const storeData = async (value) => {
-      try {
-        config.notifications = value;
-        await AsyncStorage.setItem('test', JSON.stringify(config));
-      } catch (error) {
-        // error storing data
-      }
-    }
-
-    // notifications switch
-    // const [isEnabled, setIsEnabled] = useState(false);
-    // const toggleSwitch = () => [setIsEnabled(previousState => !previousState), storeData(!isEnabled)];
-
     return (
       <View style={[styles.settings_item, containerColor]}>
         <Text style={[{ fontSize: fontSize }, textColor]}>Mitteilungen</Text>
@@ -273,16 +257,10 @@ const SettingsPage = ({ navigation }) => {
         />
       </View>
     );
-
   }
 
   // appearance settings
   const AppearanceSettings = () => {
-
-    // appearance switch
-    // const [isEnabled, setIsEnabled] = useState(false);
-    // const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
     return (
       <View style={[styles.settings_item, containerColor]}>
         <Text style={[{ fontSize: fontSize }, textColor]}>Erscheinungsbild</Text>
@@ -297,7 +275,6 @@ const SettingsPage = ({ navigation }) => {
         <Text style={[{ fontSize: fontSize }, textColor]}>{colorScheme === 'light' ? "Hell" : "Dunkel"}</Text>
       </View>
     );
-
   }
 
   return (
