@@ -3,6 +3,7 @@
 // import react native
 import { StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 // default light mode colors
 const red = 'rgb(255, 59, 48)';
@@ -172,7 +173,7 @@ export default StyleSheet.create({
     flex: 1,
     padding: 0,
     backgroundColor: '#eaeaea',
-   
+
   },
   buttonRight: {
     position: 'absolute',
@@ -210,7 +211,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    
+
   },
   taskDescription: {
     color: 'white',
@@ -223,7 +224,7 @@ export default StyleSheet.create({
     marginBottom: 20,
 
   },
-  taskButton:{
+  taskButton: {
     marginLeft: 20,
     marginRight: 20,
   },
@@ -234,7 +235,7 @@ export default StyleSheet.create({
   },
   informTime: {
     color: 'white',
-    opacity:0.5,
+    opacity: 0.5,
     fontSize: 300,
   },
   informText: {
@@ -255,7 +256,7 @@ export default StyleSheet.create({
   camContainer: {
     borderRadius: 30,
     overflow: 'hidden',
-    
+
   },
   btnTabActive: {
     backgroundColor: "#E6838D",

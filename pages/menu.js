@@ -4,7 +4,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, ScrollView, Text, View, useColorScheme, TouchableOpacity, FlatList } from 'react-native';
 import React from 'react';
-import {useState} from 'react'
+import { useState } from 'react'
 
 // import components
 import NavBar from '../components/nav_bar.js';
@@ -14,7 +14,7 @@ import FilterBar from '../components/filter_bar.js';
 import { faBeer, faBowlingBall, faChurch, faCity, faCow, faLightbulb, faSnowflake, faSun, faTree } from '@fortawesome/free-solid-svg-icons';
 import styles from '../components/styles.js';
 import { light_primary_color, dark_primary_color } from '../components/styles.js';
-import {getAllContents, incrementCurrentContent, getCurrentSequence, setCurrentContent, getCurrentContent, getScenario, setCurrentSequence} from '../components/levelContents';
+import { getAllContents, incrementCurrentContent, getDefaultScenarios, getCurrentSequence, setCurrentContent, getCurrentContent, getScenario, setCurrentSequence } from '../components/levelContents.js';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCircleInfo, faEye, faFaceSmile } from '@fortawesome/free-solid-svg-icons';
@@ -34,34 +34,34 @@ const dark_gray5 = 'rgb(44, 44, 46)';
 
 const listTag = [
   {
-tag: 'ALL'
-},
-{
-tag: 'CHEEKS'
-},
-{
-tag: 'NOSE'
-},
-{
-tag: 'LIPS'
-},
-{
-tag: 'MOUTH'
-}
+    tag: 'ALL'
+  },
+  {
+    tag: 'CHEEKS'
+  },
+  {
+    tag: 'NOSE'
+  },
+  {
+    tag: 'LIPS'
+  },
+  {
+    tag: 'MOUTH'
+  }
 ]
 
 
 // return home page
 const HomePage = ({ navigation }) => {
-  
+
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
   const activeIconColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5;
 
-    // since this component is higher in hirarchy thatn the level component i use it to control the current content
-    // All contets are stored with unique id's this hook stores the current starting pooint and passes it to the level component
+  // since this component is higher in hirarchy thatn the level component i use it to control the current content
+  // All contets are stored with unique id's this hook stores the current starting pooint and passes it to the level component
 
 
   setCurrentContent(1);
@@ -80,15 +80,13 @@ const HomePage = ({ navigation }) => {
 
     console.log(keyArray["umzug"])
 
-    if(tag !== 'ALL'){
+    if (tag !== 'ALL') {
       setKeyArray([...keyArray.filter((item) => item["tags"] === tag)])
     } else {
       setKeyArray(Object.keys(getDefaultScenarios()))
     }
-      setTag(tag)
+    setTag(tag)
   }
-  
-  
 
   return (
     <View style={{ flex: 1 }}>
@@ -98,13 +96,13 @@ const HomePage = ({ navigation }) => {
       <View style={[styles.filter_bar, containerColor]}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {listTag.map(e => (
-              
-            <View style={[{flexDirection: 'row'},{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginRight: 8 }, buttonColor]}>
-                <TouchableOpacity style={[{ flexDirection: 'row' }, { alignItems: 'center' }, tag === e.tag && styles.btnTabActive]} onPress={() => setTagFilter(e.tag)}>
-                  <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-                  <Text style={[styles.label, { color: 'white' }]}>{e.tag}</Text>
-                </TouchableOpacity>
-                
+
+            <View style={[{ flexDirection: 'row' }, { backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginRight: 8 }]}>
+              <TouchableOpacity style={[{ flexDirection: 'row' }, { alignItems: 'center' }, tag === e.tag && styles.btnTabActive]} onPress={() => setTagFilter(e.tag)}>
+                <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
+                <Text style={[styles.label, { color: 'white' }]}>{e.tag}</Text>
+              </TouchableOpacity>
+
             </View>
           ))}
         </ScrollView>
@@ -113,16 +111,16 @@ const HomePage = ({ navigation }) => {
         <View style={[styles.container, containerColor]}>
           {/* <Text style={[styles.title1, textColor]}>Text</Text> */}
           {keyArray.map((scenarioKey) =>
-        (
-          <Scenario
-            title={scenarioKey}
-            name={scenarioKey}
-            key={scenarioKey}
-            icon={faSnowflake}
-            color={'white'}
-            navigation={navigation}
-            progress={1}
-            exercises={7}
+          (
+            <Scenario
+              title={scenarioKey}
+              name={scenarioKey}
+              key={scenarioKey}
+              icon={faSnowflake}
+              color={'white'}
+              navigation={navigation}
+              progress={1}
+              exercises={7}
             />))}
 
           <StatusBar style="auto" />
