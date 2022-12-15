@@ -2,7 +2,7 @@
 
 // import react native
 import { StyleSheet } from 'react-native';
-import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // default light mode colors
 const red = 'rgb(255, 59, 48)';
@@ -47,6 +47,22 @@ const accessible_gray3 = 'rgb(199, 199, 204)';
 const accessible_gray4 = 'rgb(209, 209, 214)';
 const accessible_gray5 = 'rgb(229, 229, 234)';
 const accessible_gray6 = 'rgb(242, 242, 247)';
+
+const light_primary_color = blue;
+const dark_primary_color = dark_blue;
+const light_background_color = 'rgb(255, 255, 255)';
+const dark_background_color = 'rgb(0, 0, 0)';
+export { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, gray5, dark_gray5 };
+
+// retrieve data
+const getData = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('test');
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch (error) {
+    // error retrieving data
+  }
+}
 
 // styles sorted alphabetically
 export default StyleSheet.create({
@@ -99,11 +115,11 @@ export default StyleSheet.create({
   },
   // light/dark mode
   light_container: {
-    backgroundColor: 'white',
+    backgroundColor: light_background_color,
     borderColor: gray5
   },
   dark_container: {
-    backgroundColor: 'black',
+    backgroundColor: dark_background_color,
     borderColor: dark_gray5
   },
   light_square: {
@@ -119,16 +135,16 @@ export default StyleSheet.create({
     backgroundColor: dark_gray6
   },
   light_progress: {
-    backgroundColor: blue
+    backgroundColor: light_primary_color
   },
   dark_progress: {
-    backgroundColor: dark_blue
+    backgroundColor: dark_primary_color
   },
   light_button: {
-    backgroundColor: blue
+    backgroundColor: light_primary_color
   },
   dark_button: {
-    backgroundColor: dark_blue
+    backgroundColor: dark_primary_color
   },
   // text styles
   title1: {
@@ -144,6 +160,7 @@ export default StyleSheet.create({
   },
   label: {
     fontSize: 17
+    // fontSize: getData().fontSize
   },
   light_text: {
     color: 'black'

@@ -13,7 +13,8 @@ import Scenario from '../components/scenario.js';
 import FilterBar from '../components/filter_bar.js';
 import { faBeer, faBowlingBall, faChurch, faCity, faCow, faLightbulb, faSnowflake, faSun, faTree } from '@fortawesome/free-solid-svg-icons';
 import styles from '../components/styles.js';
-import {getAllContents, getDefaultScenarios, setCurrentContent, setCurrentSequence} from '../components/contentManager';
+import { light_primary_color, dark_primary_color } from '../components/styles.js';
+import {getAllContents, incrementCurrentContent, getCurrentSequence, setCurrentContent, getCurrentContent, getScenario, setCurrentSequence} from '../components/levelContents';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCircleInfo, faEye, faFaceSmile } from '@fortawesome/free-solid-svg-icons';
@@ -56,9 +57,12 @@ const HomePage = ({ navigation }) => {
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
-  const activeIconColor = colorScheme === 'light' ? blue : dark_blue
-  const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5
-  const buttonColor = colorScheme === 'light' ? styles.light_button : styles.dark_button;
+  const activeIconColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
+  const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5;
+
+    // since this component is higher in hirarchy thatn the level component i use it to control the current content
+    // All contets are stored with unique id's this hook stores the current starting pooint and passes it to the level component
+
 
   setCurrentContent(1);
 

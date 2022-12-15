@@ -1,14 +1,16 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { ScrollView, useColorScheme, View } from 'react-native';
+import { Button, ScrollView, useColorScheme, View } from 'react-native';
 import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // import components
 import NavBar from '../components/nav_bar.js';
 import TabBar from '../components/tab_bar.js';
 import SettingsItem from '../components/settings_item.js';
 import Badge from '../components/badge.js';
+import { light_primary_color, dark_primary_color } from '../components/styles.js';
 
 // import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -27,15 +29,32 @@ const gray6 = 'rgb(242, 242, 247)';
 const dark_blue = 'rgb(10, 132, 255)';
 const dark_gray5 = 'rgb(44, 44, 46)';
 
+// retrieve data
+const getData = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('test');
+    const value = JSON.parse(jsonValue);
+    if (value !== null) {
+      alert("language: " + value.language + "\nfont size: " + value.fontSize + "\ncamera: " + (value.camera ? "on" : "off") + "\nnotifications: " + (value.notifications ? "on" : "off"))
+    }
+  } catch (error) {
+    // error retrieving data
+  }
+}
+
 // return settings page
 const ProgressPage = ({ navigation }) => {
   const colorScheme = useColorScheme();
-  const activeIconColor = colorScheme === 'light' ? blue : dark_blue
-  const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5
+  const activeIconColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
+  const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5;
   return (
     <View style={{ flex: 1 }}>
       <NavBar page_title="Fortschritt" />
       <ScrollView>
+        <Button
+          title='get data'
+          onPress={getData}
+        />
         <Badge progress={10} />
         <Badge progress={40} />
         <Badge progress={20} />

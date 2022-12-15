@@ -1,14 +1,16 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { ScrollView, Switch, Text, useColorScheme, View } from 'react-native';
-import React, { useState } from 'react';
+import { Button, Pressable, ScrollView, Switch, Text, useColorScheme, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // import components
 import NavBar from '../components/nav_bar.js';
 import TabBar from '../components/tab_bar.js';
 import SettingsItem from '../components/settings_item.js';
 import styles from '../components/styles.js';
+import { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, gray5, dark_gray5 } from '../components/styles.js';
 
 // import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -18,185 +20,270 @@ import { faToggleOff } from '@fortawesome/free-solid-svg-icons';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 
-// colors
-const green = 'rgb(52, 199, 89)';
-const blue = 'rgb(0, 122, 255)';
-const gray4 = 'rgb(209, 209, 214)';
-const gray5 = 'rgb(229, 229, 234)';
-const gray6 = 'rgb(242, 242, 247)';
-const dark_blue = 'rgb(10, 132, 255)';
-const dark_gray5 = 'rgb(44, 44, 46)';
-const dark_gray6 = 'rgb(28, 28, 30)';
+// let l = false;
+// let f = 34;
+// export { l, f };
 
-// options component
-const Options = (props) => {
-  const colorScheme = useColorScheme();
-  const containerColor = colorScheme === 'light' ? gray5 : dark_gray5;
-  const selectionColor = colorScheme === 'light' ? 'white' : 'black';
+// function setL(x) {
+//   l = x;
+// }
+
+// function setF(x) {
+//   f = x;
+// }
+
+// default config
+let config = {
+  language: 'german',
+  largeFont: false,
+  fontSize: 17,
+  camera: true,
+  notifications: false
+}
+
+// store data
+const storeData = async () => {
+  try {
+    await AsyncStorage.setItem('test', JSON.stringify(config));
+    // await AsyncStorage.setItem('fontSize', '17');
+  } catch (error) {
+    // error storing data
+  }
+}
+
+// retrieve data
+const getData = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('test');
+    const value = JSON.parse(jsonValue);
+    // return await AsyncStorage.getItem('test');
+    // return await AsyncStorage.getItem('fontSize');
+    if (value !== null) {
+      alert("language: " + value.language + "\nlarge font: " + value.largeFont + "\nfont size: " + value.fontSize + "\ncamera: " + value.camera + "\nnotifications: " + value.notifications);
+    }
+  } catch (error) {
+    // error retrieving data
+  }
+}
+
+// return settings page
+const SettingsPage = ({ navigation }) => {
+
+  // light/dark mode
+  const [colorScheme, setColorScheme] = useState(useColorScheme());
+  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
-  if (props.select == 1) {
+  const optionsContainerColor = colorScheme === 'light' ? gray5 : dark_gray5;
+  const selectionColor = colorScheme === 'light' ? light_background_color : dark_background_color;
+  const activeIconColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
+  const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5;
+
+  // get data on first render
+  useEffect(() => {
+    getData();
+  }, []);
+
+  // store language data
+  const storeLanguageData = async (value) => {
+    try {
+      config.language = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
+
+  // store large font data
+  const storeLargeFontData = async (value) => {
+    try {
+      config.largeFont = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
+
+  // store font size data
+  const storeFontSizeData = async (value) => {
+    try {
+      config.fontSize = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
+
+  // store camera data
+  const storeCameraData = async (value) => {
+    try {
+      config.camera = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
+
+  // store notifications data
+  const storeNotificationsData = async (value) => {
+    try {
+      config.notifications = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
+
+  // language
+  const [isEnabled1, setIsEnabled1] = useState(false);
+  const [language, setLanguage] = useState("german");
+  const toggleSwitch1 = () => [setIsEnabled1(previousState => !previousState), setLanguage(isEnabled1 ? "german" : "english"), storeLanguageData(isEnabled1 ? "german" : "english")];
+
+  // font size
+  const [isEnabled2, setIsEnabled2] = useState(false);
+  const [fontSize, setFontSize] = useState(17);
+  const toggleSwitch2 = () => [setIsEnabled2(previousState => !previousState), setFontSize(isEnabled2 ? 17 : 24), storeLargeFontData(!isEnabled2), storeFontSizeData(isEnabled2 ? 17 : 34)];
+
+  // camera
+  const [isEnabled3, setIsEnabled3] = useState(true);
+  const toggleSwitch3 = () => [setIsEnabled3(previousState => !previousState), storeCameraData(!isEnabled3)];
+
+  // notifications
+  const [isEnabled4, setIsEnabled4] = useState(false);
+  const toggleSwitch4 = () => [setIsEnabled4(previousState => !previousState), storeNotificationsData(!isEnabled4)];
+
+  // appearance
+  const [isEnabled5, setIsEnabled5] = useState(false);
+  const toggleSwitch5 = () => [setIsEnabled5(previousState => !previousState), setColorScheme(isEnabled5 ? 'light' : 'dark')];
+
+  // options component
+  const Options = (props) => {
+
+    const [optEnabled1, setOptEnabled1] = useState(true);
+    const [optEnabled2, setOptEnabled2] = useState(false);
+    const select = () => [setOptEnabled1(previousState => !previousState), setOptEnabled2(previousState => !previousState)];
+
     return (
-      <View style={[{ backgroundColor: containerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
-        <View style={[{ backgroundColor: selectionColor }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
-          <Text style={[styles.label, textColor]}>{props.option1}</Text>
-        </View>
-        <View style={[{ padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
-          <Text style={[styles.label, textColor]}>{props.option2}</Text>
-        </View>
+      <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
+        <Pressable style={[{ backgroundColor: optEnabled1 ? selectionColor : optionsContainerColor }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={optEnabled1} onPress={select}>
+          <Text style={[{ fontSize: fontSize }, textColor]}>{props.option1}</Text>
+        </Pressable>
+        <Pressable style={[{ backgroundColor: optEnabled2 ? selectionColor : optionsContainerColor }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={optEnabled2} onPress={select}>
+          <Text style={[{ fontSize: fontSize }, textColor]}>{props.option2}</Text>
+        </Pressable>
       </View>
     );
-  } else {
+
+  }
+
+  // language settings
+  const LanguageSettings = () => {
     return (
-      <View style={[{ backgroundColor: gray6 }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
-        <View style={[{ padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
-          <Text style={styles.label}>{props.option1}</Text>
-        </View>
-        <View style={[{ backgroundColor: 'white' }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]}>
-          <Text style={styles.label}>{props.option2}</Text>
+      <View style={[styles.settings_item, containerColor]}>
+        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Language" : "Sprache"}</Text>
+        <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
+          <Pressable style={({ pressed }) => [{ backgroundColor: !isEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={!isEnabled1} onPress={toggleSwitch1}>
+            <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "German" : "Deutsch"}</Text>
+          </Pressable>
+          <Pressable style={({ pressed }) => [{ backgroundColor: isEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={isEnabled1} onPress={toggleSwitch1}>
+            <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "English" : "Englisch"}</Text>
+          </Pressable>
         </View>
       </View>
     );
   }
 
-}
-
-// functions
-function getFontSize(x) {
-  console.log("font size: " + x);
-  styles.label = { fontSize: x };
-}
-
-function getLanguage(x) {
-  console.log("language: " + x);
-}
-
-// font settings
-const FontSettings = () => {
-  const colorScheme = useColorScheme();
-  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
-  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [fontState, setFontState] = useState("Standard");
-  const [fontSize, setFontSize] = useState(17);
-  const toggleSwitch = () => [setIsEnabled(previousState => !previousState), setFontState(isEnabled ? "Standard" : "Groß"), setFontSize(isEnabled ? 34 : 17), getFontSize(fontSize)];
-  return (
-    <View style={[styles.settings_item, containerColor]}>
-      <View>
-        <Text style={[styles.label, textColor]}>Große Schrift</Text>
-        <Text style={[styles.label, textColor, { opacity: 0.25 }]}>Schriftgröße: {fontState}</Text>
+  // font settings
+  const FontSettings = () => {
+    return (
+      <View style={[styles.settings_item, containerColor]}>
+        <View>
+          <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Large Font" : "Große Schrift"}</Text>
+        </View>
+        <Switch
+          trackColor={{ false: "#767577", true: green }}
+          thumbColor={'white'}
+          // ios_backgroundColor={"#3e3e3e"}
+          onValueChange={toggleSwitch2}
+          value={isEnabled2}
+        />
       </View>
-      <Switch
-        trackColor={{ false: "#767577", true: green }}
-        thumbColor={'white'}
-        // ios_backgroundColor={"#3e3e3e"}
-        onValueChange={toggleSwitch}
-        value={isEnabled}
-      />
-    </View>
-  );
-}
+    );
+  }
 
-// camera settings
-const CameraSettings = () => {
-  const colorScheme = useColorScheme();
-  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
-  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
-  const [isEnabled, setIsEnabled] = useState(true);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  return (
-    <View style={[styles.settings_item, containerColor]}>
-      <Text style={[styles.label, textColor]}>Kamera</Text>
-      <Switch
-        trackColor={{ false: "#767577", true: green }}
-        thumbColor={'white'}
-        // ios_backgroundColor={"#3e3e3e"}
-        onValueChange={toggleSwitch}
-        value={isEnabled}
-      />
-    </View>
-  );
-}
+  // camera settings
+  const CameraSettings = () => {
+    return (
+      <View style={[styles.settings_item, containerColor]}>
+        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Camera" : "Kamera"}</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: green }}
+          thumbColor={'white'}
+          // ios_backgroundColor={"#3e3e3e"}
+          onValueChange={toggleSwitch3}
+          value={isEnabled3}
+        />
+      </View>
+    );
+  }
 
-// notifications settings
-const NotificationsSettings = () => {
-  const colorScheme = useColorScheme();
-  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
-  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  return (
-    <View style={[styles.settings_item, containerColor]}>
-      <Text style={[styles.label, textColor]}>Mitteilungen</Text>
-      <Switch
-        trackColor={{ false: "#767577", true: green }}
-        thumbColor={'white'}
-        // ios_backgroundColor={"#3e3e3e"}
-        onValueChange={toggleSwitch}
-        value={isEnabled}
-      />
-    </View>
-  );
-}
+  // notifications settings
+  const NotificationsSettings = () => {
+    return (
+      <View style={[styles.settings_item, containerColor]}>
+        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Notifications" : "Mitteilungen"}</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: green }}
+          thumbColor={'white'}
+          // ios_backgroundColor={"#3e3e3e"}
+          onValueChange={toggleSwitch4}
+          value={isEnabled4}
+        />
+      </View>
+    );
+  }
 
+  // appearance settings
+  const AppearanceSettings = () => {
+    return (
+      <View style={[styles.settings_item, containerColor]}>
+        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Appearance" : "Erscheinungsbild"}</Text>
+        {/* <Switch
+          trackColor={{ false: "#767577", true: green }}
+          thumbColor={'white'}
+          // ios_backgroundColor={"#3e3e3e"}
+          onValueChange={toggleSwitch5}
+          value={isEnabled5}
+        /> */}
+        {/* <Text style={[{ fontSize: fontSize }, textColor]}>{colorScheme === 'light' ? isEnabled1 ? "Light" : "Hell" : isEnabled1 ? "Dark" : "Dunkel"}</Text> */}
+        <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
+          <Pressable style={({ pressed }) => [{ backgroundColor: !isEnabled5 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={!isEnabled5} onPress={toggleSwitch5}>
+            <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Light" : "Hell"}</Text>
+          </Pressable>
+          <Pressable style={({ pressed }) => [{ backgroundColor: isEnabled5 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={isEnabled5} onPress={toggleSwitch5}>
+            <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Dark" : "Dunkel"}</Text>
+          </Pressable>
+        </View>
+      </View>
+    );
+  }
 
-// appearance settings
-const AppearanceSettings = () => {
-  const colorScheme = useColorScheme();
-  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
-  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  return (
-    <View style={[styles.settings_item, containerColor]}>
-      <Text style={[styles.label, textColor]}>Erscheinungsbild</Text>
-      {/* <Switch
-        trackColor={{ false: "#767577", true: green }}
-        thumbColor={'white'}
-        // ios_backgroundColor={"#3e3e3e"}
-        onValueChange={toggleSwitch}
-        value={isEnabled}
-      /> */}
-      <Options option1="Hell" option2="Dunkel" select={1} />
-    </View>
-  );
-}
-
-// language settings
-const LanguageSettings = () => {
-  const colorScheme = useColorScheme();
-  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
-  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  return (
-    <View style={[styles.settings_item, containerColor]}>
-      <Text style={[styles.label, textColor]}>Sprache</Text>
-      {/* <Switch
-        trackColor={{ false: "#767577", true: green }}
-        thumbColor={'white'}
-        // ios_backgroundColor={"#3e3e3e"}
-        onValueChange={toggleSwitch}
-        value={isEnabled}
-      /> */}
-      <Options option1="Deutsch" option2="Englisch" select={1} />
-    </View>
-  );
-}
-
-// return settings page
-const SettingsPage = ({ navigation }) => {
-  const colorScheme = useColorScheme();
-  const activeIconColor = colorScheme === 'light' ? blue : dark_blue
-  const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5
   return (
     <View style={{ flex: 1 }}>
-      <NavBar page_title="Einstellungen" />
+      <NavBar page_title={isEnabled1 ? "Settings" : "Einstellungen"} />
       <ScrollView>
         <LanguageSettings></LanguageSettings>
         <FontSettings></FontSettings>
         <CameraSettings></CameraSettings>
         <NotificationsSettings></NotificationsSettings>
         <AppearanceSettings></AppearanceSettings>
+        <Button
+          title='set data'
+          onPress={storeData}
+        />
+        <Button
+          title='get data'
+          onPress={getData}
+        />
       </ScrollView>
       <TabBar
         home={inactiveIconColor}
@@ -206,6 +293,7 @@ const SettingsPage = ({ navigation }) => {
       />
     </View>
   );
+
 }
 
 export default SettingsPage;

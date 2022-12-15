@@ -8,6 +8,7 @@ import { startLevel } from './contentManager.js';
 // import components
 import Square from './square.js';
 import styles from './styles.js';
+import { light_primary_color, dark_primary_color } from './styles.js';
 
 // import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -24,11 +25,11 @@ const Exercise = ({ navigation, ...props }) => {
   const containerColor = colorScheme === 'light' ? styles.light_square : styles.dark_square;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
   const iconColor = colorScheme === 'light' ? 'black' : 'white';
-  const highlightColor = colorScheme === 'light' ? blue : dark_blue;
+  const highlightColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   if (props.unlocked) {
     if (props.completed) {
       return (
-        <Pressable onPress={() => {startLevel(props.level, props.scenario), navigation.navigate("Level")}}>
+        <Pressable onPress={() => { startLevel(props.level, props.scenario), navigation.navigate("Level") }}>
           <View style={{ margin: 16 }}>
             <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
               <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
@@ -45,8 +46,7 @@ const Exercise = ({ navigation, ...props }) => {
       );
     } else {
       return (
-        
-        <Pressable onPress={() => {startLevel(props.level, props.scenario), navigation.navigate("Level")}}>
+        <Pressable onPress={() => { startLevel(props.level, props.scenario), navigation.navigate("Level") }}>
           <View style={{ margin: 16 }}>
             <View style={[styles.square, containerColor, { justifyContent: 'space-between' }, { borderWidth: 4 }, { borderColor: highlightColor }]}>
               <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
