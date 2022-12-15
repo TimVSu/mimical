@@ -180,11 +180,6 @@ const SettingsPage = ({ navigation }) => {
     return (
       <View style={[styles.settings_item, containerColor]}>
         <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Language" : "Sprache"}</Text>
-        {/* <Options option1="Deutsch" option2="Englisch" /> */}
-        {/* <View style={{ flexDirection: 'row' }}>
-          <Button title={isEnabled1 ? 'German' : 'Deutsch'} disabled={!isEnabled1} onPress={toggleSwitch1} />
-          <Button title={isEnabled1 ? 'English' : 'Englisch'} disabled={isEnabled1} onPress={toggleSwitch1} />
-        </View> */}
         <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
           <Pressable style={({ pressed }) => [{ backgroundColor: !isEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={!isEnabled1} onPress={toggleSwitch1}>
             <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "German" : "Deutsch"}</Text>
@@ -199,30 +194,6 @@ const SettingsPage = ({ navigation }) => {
 
   // font settings
   const FontSettings = () => {
-
-    // retrieve font size data
-    const getFontSizeData = async () => {
-      try {
-        const jsonValue = await AsyncStorage.getItem('test');
-        const value = JSON.parse(jsonValue);
-        console.log("font size: " + value.fontSize);
-        return value.fontSize;
-      } catch (error) {
-        // error retrieving data
-      }
-    }
-
-    const getData = async () => {
-      try {
-        const jsonValue = await AsyncStorage.getItem('test');
-        const value = JSON.parse(jsonValue);
-        console.log(value);
-        return value;
-      } catch (error) {
-        // error retrieving data
-      }
-    }
-
     return (
       <View style={[styles.settings_item, containerColor]}>
         <View>
@@ -237,23 +208,10 @@ const SettingsPage = ({ navigation }) => {
         />
       </View>
     );
-
   }
 
   // camera settings
   const CameraSettings = () => {
-
-    // retrieve camera data
-    const getData = async () => {
-      try {
-        const jsonValue = await AsyncStorage.getItem('test');
-        const value = JSON.parse(jsonValue);
-        return value.camera;
-      } catch (error) {
-        // error retrieving data
-      }
-    }
-
     return (
       <View style={[styles.settings_item, containerColor]}>
         <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Camera" : "Kamera"}</Text>
@@ -266,7 +224,6 @@ const SettingsPage = ({ navigation }) => {
         />
       </View>
     );
-
   }
 
   // notifications settings
@@ -297,7 +254,6 @@ const SettingsPage = ({ navigation }) => {
           onValueChange={toggleSwitch5}
           value={isEnabled5}
         /> */}
-        {/* <Options option1="Hell" option2="Dunkel" /> */}
         {/* <Text style={[{ fontSize: fontSize }, textColor]}>{colorScheme === 'light' ? isEnabled1 ? "Light" : "Hell" : isEnabled1 ? "Dark" : "Dunkel"}</Text> */}
         <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
           <Pressable style={({ pressed }) => [{ backgroundColor: !isEnabled5 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={!isEnabled5} onPress={toggleSwitch5}>

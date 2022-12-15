@@ -26,7 +26,7 @@ const NavBar = ({ navigation, ...props }) => {
   const iconColor = colorScheme === 'light' ? blue : dark_blue
   return (
     <View style={[styles.nav_bar, containerColor]}>
-      <Text style={[styles.title1, { fontWeight: 'bold' }, textColor]}>{props.page_title}</Text>
+      <Text style={[styles.title1, textColor]}>{props.page_title}</Text>
       {/* <Pressable onPress={() => navigation.popToTop()}>
         <FontAwesomeIcon icon={faCircleArrowLeft} color={iconColor} size={32} />
       </Pressable> */}
