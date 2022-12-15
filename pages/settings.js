@@ -20,6 +20,18 @@ import { faToggleOff } from '@fortawesome/free-solid-svg-icons';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 
+// let l = false;
+// let f = 34;
+// export { l, f };
+
+// function setL(x) {
+//   l = x;
+// }
+
+// function setF(x) {
+//   f = x;
+// }
+
 // default config
 let config = {
   language: 'german',
@@ -33,6 +45,7 @@ let config = {
 const storeData = async () => {
   try {
     await AsyncStorage.setItem('test', JSON.stringify(config));
+    // await AsyncStorage.setItem('fontSize', '17');
   } catch (error) {
     // error storing data
   }
@@ -43,10 +56,11 @@ const getData = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem('test');
     const value = JSON.parse(jsonValue);
+    // return await AsyncStorage.getItem('test');
+    // return await AsyncStorage.getItem('fontSize');
     if (value !== null) {
       alert("language: " + value.language + "\nlarge font: " + value.largeFont + "\nfont size: " + value.fontSize + "\ncamera: " + value.camera + "\nnotifications: " + value.notifications);
     }
-    // return jsonValue != null ? JSON.parse(jsonValue) : null;
   } catch (error) {
     // error retrieving data
   }
@@ -56,7 +70,7 @@ const getData = async () => {
 const SettingsPage = ({ navigation }) => {
 
   // light/dark mode
-  const colorScheme = useColorScheme();
+  const [colorScheme, setColorScheme] = useState(useColorScheme());
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
   const optionsContainerColor = colorScheme === 'light' ? gray5 : dark_gray5;
@@ -122,34 +136,38 @@ const SettingsPage = ({ navigation }) => {
   // language
   const [isEnabled1, setIsEnabled1] = useState(false);
   const [language, setLanguage] = useState("german");
-  const toggleSwitch1 = () => [setIsEnabled1(previousState => !previousState), setLanguage(isEnabled1 ? "german" : "english"), storeLanguageData(language)];
+  const toggleSwitch1 = () => [setIsEnabled1(previousState => !previousState), setLanguage(isEnabled1 ? "german" : "english"), storeLanguageData(isEnabled1 ? "german" : "english")];
 
   // font size
   const [isEnabled2, setIsEnabled2] = useState(false);
   const [fontSize, setFontSize] = useState(17);
-  const toggleSwitch2 = () => [setIsEnabled2(previousState => !previousState), setFontSize(isEnabled2 ? 17 : 34), storeLargeFontData(!isEnabled2), storeFontSizeData(isEnabled2 ? 17 : 34)];
+  const toggleSwitch2 = () => [setIsEnabled2(previousState => !previousState), setFontSize(isEnabled2 ? 17 : 24), storeLargeFontData(!isEnabled2), storeFontSizeData(isEnabled2 ? 17 : 34)];
 
   // camera
   const [isEnabled3, setIsEnabled3] = useState(true);
-  const toggleSwitch3 = () => [setIsEnabled3(previousState => !previousState), storeData(!isEnabled3), storeCameraData(!isEnabled3)];
+  const toggleSwitch3 = () => [setIsEnabled3(previousState => !previousState), storeCameraData(!isEnabled3)];
 
   // notifications
   const [isEnabled4, setIsEnabled4] = useState(false);
-  const toggleSwitch4 = () => [setIsEnabled4(previousState => !previousState), storeData(!isEnabled4), storeNotificationsData(!isEnabled4)];
+  const toggleSwitch4 = () => [setIsEnabled4(previousState => !previousState), storeNotificationsData(!isEnabled4)];
+
+  // appearance
+  const [isEnabled5, setIsEnabled5] = useState(false);
+  const toggleSwitch5 = () => [setIsEnabled5(previousState => !previousState), setColorScheme(isEnabled5 ? 'light' : 'dark')];
 
   // options component
   const Options = (props) => {
 
-    const [isEnabled1, setIsEnabled1] = useState(true);
-    const [isEnabled2, setIsEnabled2] = useState(false);
-    const select = () => [setIsEnabled1(previousState => !previousState), setIsEnabled2(previousState => !previousState)];
+    const [optEnabled1, setOptEnabled1] = useState(true);
+    const [optEnabled2, setOptEnabled2] = useState(false);
+    const select = () => [setOptEnabled1(previousState => !previousState), setOptEnabled2(previousState => !previousState)];
 
     return (
       <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
-        <Pressable style={[{ backgroundColor: isEnabled1 ? selectionColor : optionsContainerColor }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={isEnabled1} onPress={select}>
+        <Pressable style={[{ backgroundColor: optEnabled1 ? selectionColor : optionsContainerColor }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={optEnabled1} onPress={select}>
           <Text style={[{ fontSize: fontSize }, textColor]}>{props.option1}</Text>
         </Pressable>
-        <Pressable style={[{ backgroundColor: isEnabled2 ? selectionColor : optionsContainerColor }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={isEnabled2} onPress={select}>
+        <Pressable style={[{ backgroundColor: optEnabled2 ? selectionColor : optionsContainerColor }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={optEnabled2} onPress={select}>
           <Text style={[{ fontSize: fontSize }, textColor]}>{props.option2}</Text>
         </Pressable>
       </View>
@@ -161,11 +179,19 @@ const SettingsPage = ({ navigation }) => {
   const LanguageSettings = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
-        <Text style={[{ fontSize: fontSize }, textColor]}>Sprache</Text>
+        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Language" : "Sprache"}</Text>
         {/* <Options option1="Deutsch" option2="Englisch" /> */}
-        <View style={{ flexDirection: 'row' }}>
-          <Button title='Deutsch' disabled={!isEnabled1} onPress={toggleSwitch1} />
-          <Button title='Englisch' disabled={isEnabled1} onPress={toggleSwitch1} />
+        {/* <View style={{ flexDirection: 'row' }}>
+          <Button title={isEnabled1 ? 'German' : 'Deutsch'} disabled={!isEnabled1} onPress={toggleSwitch1} />
+          <Button title={isEnabled1 ? 'English' : 'Englisch'} disabled={isEnabled1} onPress={toggleSwitch1} />
+        </View> */}
+        <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
+          <Pressable style={({ pressed }) => [{ backgroundColor: !isEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={!isEnabled1} onPress={toggleSwitch1}>
+            <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "German" : "Deutsch"}</Text>
+          </Pressable>
+          <Pressable style={({ pressed }) => [{ backgroundColor: isEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={isEnabled1} onPress={toggleSwitch1}>
+            <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "English" : "Englisch"}</Text>
+          </Pressable>
         </View>
       </View>
     );
@@ -200,7 +226,7 @@ const SettingsPage = ({ navigation }) => {
     return (
       <View style={[styles.settings_item, containerColor]}>
         <View>
-          <Text style={[{ fontSize: fontSize }, textColor]}>Große Schrift</Text>
+          <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Large Font" : "Große Schrift"}</Text>
         </View>
         <Switch
           trackColor={{ false: "#767577", true: green }}
@@ -230,7 +256,7 @@ const SettingsPage = ({ navigation }) => {
 
     return (
       <View style={[styles.settings_item, containerColor]}>
-        <Text style={[{ fontSize: fontSize }, textColor]}>Kamera</Text>
+        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Camera" : "Kamera"}</Text>
         <Switch
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
@@ -247,7 +273,7 @@ const SettingsPage = ({ navigation }) => {
   const NotificationsSettings = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
-        <Text style={[{ fontSize: fontSize }, textColor]}>Mitteilungen</Text>
+        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Notifications" : "Mitteilungen"}</Text>
         <Switch
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
@@ -263,23 +289,31 @@ const SettingsPage = ({ navigation }) => {
   const AppearanceSettings = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
-        <Text style={[{ fontSize: fontSize }, textColor]}>Erscheinungsbild</Text>
+        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Appearance" : "Erscheinungsbild"}</Text>
         {/* <Switch
-        trackColor={{ false: "#767577", true: green }}
-        thumbColor={'white'}
-        // ios_backgroundColor={"#3e3e3e"}
-        onValueChange={toggleSwitch}
-        value={isEnabled}
-      /> */}
+          trackColor={{ false: "#767577", true: green }}
+          thumbColor={'white'}
+          // ios_backgroundColor={"#3e3e3e"}
+          onValueChange={toggleSwitch5}
+          value={isEnabled5}
+        /> */}
         {/* <Options option1="Hell" option2="Dunkel" /> */}
-        <Text style={[{ fontSize: fontSize }, textColor]}>{colorScheme === 'light' ? "Hell" : "Dunkel"}</Text>
+        {/* <Text style={[{ fontSize: fontSize }, textColor]}>{colorScheme === 'light' ? isEnabled1 ? "Light" : "Hell" : isEnabled1 ? "Dark" : "Dunkel"}</Text> */}
+        <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
+          <Pressable style={({ pressed }) => [{ backgroundColor: !isEnabled5 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={!isEnabled5} onPress={toggleSwitch5}>
+            <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Light" : "Hell"}</Text>
+          </Pressable>
+          <Pressable style={({ pressed }) => [{ backgroundColor: isEnabled5 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={isEnabled5} onPress={toggleSwitch5}>
+            <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Dark" : "Dunkel"}</Text>
+          </Pressable>
+        </View>
       </View>
     );
   }
 
   return (
     <View style={{ flex: 1 }}>
-      <NavBar page_title="Einstellungen" />
+      <NavBar page_title={isEnabled1 ? "Settings" : "Einstellungen"} />
       <ScrollView>
         <LanguageSettings></LanguageSettings>
         <FontSettings></FontSettings>
