@@ -269,6 +269,7 @@ export default StyleSheet.create({
   levelHighlightedText: {
     fontSize: 25,
     lineHeight: 50,
-    fontWeight: 'bold',
-  },
+    color: 'green',
+
+  }
 });

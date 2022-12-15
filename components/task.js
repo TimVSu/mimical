@@ -6,6 +6,8 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { Heading } from 'native-base';
 import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getCurrentContent, getCurrentSequence } from './contentManager.js';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -14,6 +16,7 @@ if (Platform.OS === 'android') {
 }
 
 const Task = ({ nextLevelFunction, taskDescription, children, downFunction, trainDuration, pauseDuration }) => {
+
   // VARIABLES:
   //==============================================================================================================================================
   const [currentTime, setCurrentTime] = useState(trainDuration);
@@ -39,7 +42,6 @@ const Task = ({ nextLevelFunction, taskDescription, children, downFunction, trai
       setTaskRunning(true);
       setOnPause(false);
       setInformState(false);
-      console.log('should set informState false');
     }
     else {
       setTaskRunning(true);
@@ -47,8 +49,14 @@ const Task = ({ nextLevelFunction, taskDescription, children, downFunction, trai
     }
   }
 
-  const test = () => {
-    console.log('test')
+  const saveAsCompleted = async (completedContent) => {
+        try{
+          await AsyncStorage.setItem('state' + completedContent, 'completed');
+          console.log('saved completed succesfull' + ' : ' + completedContent)
+        }
+        catch(error){
+          console.log('cant save data to async storage');
+        }
   }
 
   const removeIncrementReplace = () => {
@@ -100,6 +108,7 @@ const Task = ({ nextLevelFunction, taskDescription, children, downFunction, trai
       }
     }
     if (currentTime == 0 && repCounter == repititions - 1) {
+      saveAsCompleted(getCurrentContent());
       nextLevelFunction();
     }
     if (currentTime == 3 && taskRunning && relaxState) {

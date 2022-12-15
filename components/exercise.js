@@ -1,7 +1,7 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { Pressable, StyleSheet, Text, useColorScheme, View } from 'react-native';
+import { Pressable, StyleSheet, Text, useColorScheme, View, } from 'react-native';
 import React from 'react';
 import { startLevel } from './contentManager.js';
 
@@ -21,6 +21,8 @@ const gray1 = 'rgb(142, 142, 147)';
 
 // return scenario component
 const Exercise = ({ navigation, ...props }) => {
+  console.log(props.level + ' : ' + props.completed)
+
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_square : styles.dark_square;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;

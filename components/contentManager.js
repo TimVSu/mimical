@@ -7,6 +7,8 @@
 
 //@author: tim suchan
 
+import { faTruck, faHouse, faPlane, faStore, faBox, faB } from "@fortawesome/free-solid-svg-icons"
+
 const umzug1 = {
     "baseText": "Es ist Samstagmorgen und Sie ziehen heute in Ihre neue Wohnung ein. Noch ein wenig verschlafen," +
         "laufen Sie durch Ihre alte Wohnung. Sie gehen in Gedanken noch einmal die Umzugsplanung für den heutigen Tag durch.",
@@ -376,21 +378,24 @@ const allContents = {
 
 const defaultScenarios = {
     "umzug": {
-        // "tags": ["EYES", "LIPS"],
-        "tags": "LIPS",
-        "indices": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+        "tags": ["EYES", "LIPS"],
+        "indices": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+        "icon" : faTruck
     },
     "einzug": {
         "tags": ["EYES", "LIPS"],
-        "indices": [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,]
+        "indices": [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,],
+        "icon": faBox
     },
     "urlaub": {
         "tags": ["EYES", "LIPS"],
-        "indices": [31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,]
+        "indices": [31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,],
+        "icon": faPlane
     },
     "einkauf": {
         "tags": ["EYES", "LIPS"],
-        "indices": [44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,]
+        "indices": [44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,],
+        "icon": faStore
     }
 }
 
@@ -413,6 +418,10 @@ let currentSequence = [];
 
 const setCurrentContent = (number) => {
     currentContent = number;
+}
+
+const getIcon = (key) => {
+    return defaultScenarios[key]["icon"]
 }
 
 const incrementCurrentContent = () => {
@@ -474,7 +483,7 @@ const startLevel = (start, scenario) => {
 
 
 export {
-    getAllContents, getDefaultScenarios,
+    getAllContents, getDefaultScenarios, getIcon,
     startLevel, getScenario, getHighlightedText, getScenarioLength, setCurrentContent, incrementCurrentContent,
     setCurrentSequence, getText, getCurrentContent, getCurrentSequence, getTags, getTaskDescription
 };

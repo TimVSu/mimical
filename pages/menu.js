@@ -15,6 +15,8 @@ import { faBeer, faBowlingBall, faChurch, faCity, faCow, faLightbulb, faSnowflak
 import styles from '../components/styles.js';
 import { light_primary_color, dark_primary_color } from '../components/styles.js';
 import { getAllContents, incrementCurrentContent, getDefaultScenarios, getCurrentSequence, setCurrentContent, getCurrentContent, getScenario, setCurrentSequence } from '../components/contentManager';
+import { getEffectiveConstraintOfTypeParameter } from 'typescript';
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCircleInfo, faEye, faFaceSmile } from '@fortawesome/free-solid-svg-icons';
@@ -111,16 +113,16 @@ const HomePage = ({ navigation }) => {
         <View style={[styles.container, containerColor]}>
           {/* <Text style={[styles.title1, textColor]}>Text</Text> */}
           {keyArray.map((scenarioKey) =>
-          (
-            <Scenario
-              title={scenarioKey}
-              name={scenarioKey}
-              key={scenarioKey}
-              icon={faSnowflake}
-              color={'white'}
-              navigation={navigation}
-              progress={1}
-              exercises={7}
+        (
+          <Scenario
+            title={scenarioKey}
+            name={scenarioKey}
+            key={scenarioKey}
+            icon={getIcon(scenarioKey)}
+            color={'white'}
+            navigation={navigation}
+            progress={1}
+            exercises={7}
             />))}
 
           <StatusBar style="auto" />

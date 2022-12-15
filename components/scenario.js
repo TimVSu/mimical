@@ -4,6 +4,7 @@
 import { ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native';
 import React from 'react';
 import { getScenario, getScenarioLength } from './contentManager.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // import icons
 import { faCircleCheck, faSnowflake } from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +15,20 @@ import Exercise from './exercise.js';
 import styles from './styles.js';
 
 const Scenario = ({ navigation, ...props }) => {
+
+  const retrieveData = async (level) => {
+    try {
+      const value = await AsyncStorage.getItem('state' + level.toString());
+      if (value !== null) {
+        console.log('completed level ' + level)
+        // We have data!!
+        return true;
+      }
+    } catch (error) {
+      return false;
+    }
+  };
+
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
@@ -22,6 +37,19 @@ const Scenario = ({ navigation, ...props }) => {
   let name = props.name;
   let scenarioLength = getScenarioLength(name);
   let scenario = getScenario(name);
+
+  const completionArray = [scenarioLength];
+
+  for (let i = 0; i < scenarioLength; i++){
+    console.log(scenario[i]);
+    retrieveData(scenario[i]).then(
+      (completionState) => {
+        console.log('compstate' + completionState);
+        completionArray[i] = completionState;
+      }
+    );
+  }
+
   let iterator = [];
   for (let i = 0; i < scenarioLength; i++) {
     iterator.push(i);
@@ -68,7 +96,7 @@ const Scenario = ({ navigation, ...props }) => {
         {iterator.map((iterate) =>
         (
           <Exercise level={iterate + 1} scenario={scenario} icon={props.icon} navigation={navigation}
-            tags={"Tags"} unlocked={true} key={iterate} completed={false}></Exercise>))}
+            tags={"Tags"} unlocked={true} key={iterate} completed={completionArray[iterate]}></Exercise>))}
       </ScrollView>
     </View>
   );
