@@ -50,9 +50,10 @@ const Task = ({ nextLevelFunction, taskDescription, children, downFunction, trai
   }
 
   const saveAsCompleted = async (completedContent) => {
+
         try{
-          await AsyncStorage.setItem('state' + completedContent, 'completed');
-          console.log('saved completed succesfull' + ' : ' + completedContent)
+          await AsyncStorage.setItem('state' + completedContent.toString(), 'completed');
+          console.log('saved completed succesfull' + ' : ' + 'state' + completedContent)
         }
         catch(error){
           console.log('cant save data to async storage');

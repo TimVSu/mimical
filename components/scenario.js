@@ -2,7 +2,7 @@
 
 // import react native
 import { ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { getScenario, getScenarioLength } from './contentManager.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -16,18 +16,6 @@ import styles from './styles.js';
 
 const Scenario = ({ navigation, ...props }) => {
 
-  const retrieveData = async (lookUpArray, returnArray, index) => {
-    try {
-      const value = await AsyncStorage.getItem('state' + lookUpArray[index].toString());
-      if (value !== null) {
-         console.log('success: ' + value + ' : ' + index + ' : ' + lookUpArray)
-         returnArray[index] = true;
-   
-      }
-    } catch (error) {
-      returnArray[index] = false;
-    }
-  };
 
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
@@ -38,21 +26,19 @@ const Scenario = ({ navigation, ...props }) => {
   let scenarioLength = getScenarioLength(name);
   let scenario = getScenario(name);
 
-  const completionArray = [scenarioLength];
-useEffect(() => {
-  for (let i = 0; i < scenarioLength; i++){
+
+  /*for (let i = 0; i < scenarioLength; i++){
     console.log('error: ' + ' : ' + i + ' : ' + scenario)
 
     retrieveData(scenario, completionArray, i);
-  }
-});
+  }*/
+
+
   let iterator = [];
   for (let i = 0; i < scenarioLength; i++) {
     iterator.push(i);
   }
 
-
-  console.log(scenario, completionArray)
 
   // add exercise component (with check mark) to array using for loop
   /*for (let i = 0; i < props.progress; i++) {
@@ -95,7 +81,7 @@ useEffect(() => {
         {iterator.map((iterate) =>
         (
           <Exercise level={iterate + 1} scenario={scenario} icon={props.icon} navigation={navigation}
-            tags={"Tags"} unlocked={true} key={iterate} completed={completionArray[iterate]}></Exercise>))}
+            tags={"Tags"} unlocked={true} key={iterate}></Exercise>))}
       </ScrollView>
     </View>
   );

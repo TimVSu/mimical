@@ -73,7 +73,6 @@ const CameraScreen = ({ size, children }) => {
   useEffect(() => {
     (async () => {
       const status = await Camera.requestCameraPermissionsAsync();
-      console.log(status);
       setHasPermission(status["granted"]);
     })();
   }, []);

@@ -1,9 +1,11 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { Pressable, StyleSheet, Text, useColorScheme, View, } from 'react-native';
+import { Pressable, StyleSheet, Text, useColorScheme, View } from 'react-native';
 import React from 'react';
 import { startLevel } from './contentManager.js';
+import { useEffect, useState } from 'react';
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 // import components
 import Square from './square.js';
@@ -21,7 +23,40 @@ const gray1 = 'rgb(142, 142, 147)';
 
 // return scenario component
 const Exercise = ({ navigation, ...props }) => {
-  console.log(props.level + ' : ' + props.completed)
+  const [completed,setCompleted] = useState(false);
+  const { getItem, setItem } = useAsyncStorage('state' + props.scenario[props.level-1].toString());
+
+  /*const retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('state' + props.scenario[props.level-1].toString());
+      console.log('trying to retrieve' + 'state' + props.scenario[props.level-1] + ' : ' + value);
+
+      if (value !== null) {
+        setCompleted(true);
+      }
+
+    } catch (error) {
+        console.log('error')
+    }
+  };*/
+
+  const readItemFromStorage = async () => {
+    const item = await getItem();
+    setCompleted(item);
+  };
+
+  useEffect(() => {
+    readItemFromStorage();
+  }, []);
+
+  readItemFromStorage();
+  
+
+  /*completed = retrieveData();
+  console.log('completed' + completed)*/
+
+  console.log('completed: ' + completed + ' : ' + 'state' + props.scenario[props.level-1])
+  
 
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_square : styles.dark_square;
@@ -29,7 +64,7 @@ const Exercise = ({ navigation, ...props }) => {
   const iconColor = colorScheme === 'light' ? 'black' : 'white';
   const highlightColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   if (props.unlocked) {
-    if (props.completed) {
+    if (completed) {
       return (
         <Pressable onPress={() => { startLevel(props.level, props.scenario), navigation.navigate("Level") }}>
           <View style={{ margin: 16 }}>
