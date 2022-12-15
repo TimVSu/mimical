@@ -2,7 +2,7 @@
 
 // import react native
 import { ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { getScenario, getScenarioLength } from './contentManager.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -16,16 +16,16 @@ import styles from './styles.js';
 
 const Scenario = ({ navigation, ...props }) => {
 
-  const retrieveData = async (level) => {
+  const retrieveData = async (lookUpArray, returnArray, index) => {
     try {
-      const value = await AsyncStorage.getItem('state' + level.toString());
+      const value = await AsyncStorage.getItem('state' + lookUpArray[index].toString());
       if (value !== null) {
-        console.log('completed level ' + level)
-        // We have data!!
-        return true;
+         console.log('success: ' + value + ' : ' + index + ' : ' + lookUpArray)
+         returnArray[index] = true;
+   
       }
     } catch (error) {
-      return false;
+      returnArray[index] = false;
     }
   };
 
@@ -39,19 +39,20 @@ const Scenario = ({ navigation, ...props }) => {
   let scenario = getScenario(name);
 
   const completionArray = [scenarioLength];
-
+useEffect(() => {
   for (let i = 0; i < scenarioLength; i++){
-    console.log(scenario[i]);
-    retrieveData(scenario[i]).then(
-      function(value) {myDisplayer(completionArray[i] = value);},
-      function(error) {myDisplayer(console.log('missing completion state for exercise in async storage'));}
-    );
-  }
+    console.log('error: ' + ' : ' + i + ' : ' + scenario)
 
+    retrieveData(scenario, completionArray, i);
+  }
+});
   let iterator = [];
   for (let i = 0; i < scenarioLength; i++) {
     iterator.push(i);
   }
+
+
+  console.log(scenario, completionArray)
 
   // add exercise component (with check mark) to array using for loop
   /*for (let i = 0; i < props.progress; i++) {
