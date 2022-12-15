@@ -66,6 +66,7 @@ const HomePage = ({ navigation }) => {
   // All contets are stored with unique id's this hook stores the current starting pooint and passes it to the level component
 
 
+<<<<<<< HEAD
   setCurrentContent(1);
 
   // const keyArray = Object.keys(getDefaultScenarios());
@@ -86,6 +87,11 @@ const HomePage = ({ navigation }) => {
       setKeyArray([...keyArray.filter((item) => item["tags"] === tag)])
     } else {
       setKeyArray(Object.keys(getDefaultScenarios()))
+=======
+    const startLevel = (start, scenario) => {
+      setCurrentContent(start);  
+
+>>>>>>> cd31ba4 (removed unnecessary code)
     }
     setTag(tag)
   }
