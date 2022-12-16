@@ -36,9 +36,11 @@
   - configured CI/CD
   - fixed bug on timer buttons
   - add all long scenarios
-  - scenarios are now displayed through the contentManager instead of 
+  - scenarios are now displayed through the contentManager instead of
   - finished adjustements for the tasks and task timer
   - level completion states are now stored in async storage and saved even after restarting the app
+  - patients are able to login and register
+  - patient passwords are hashed and saved in the database
 
 - 2022-12-02 -- 0.0.2
 
