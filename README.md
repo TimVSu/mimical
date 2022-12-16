@@ -61,15 +61,17 @@
 
   - Once in the repository, install the necessary dependencies using the "npm install" command
   - After the dependencies are installed use “npm run dev” to start the application
+  - Add the ".process.env" to the repository (https://drive.google.com/file/d/11x0xJ-RxX5Fm3aoCA5qGasrH-VZsZQhJ/view?usp=share_link)
 
 - 2022-12-16 -- 0.0.3
-- the repository for the website can be found here: https://gitlab.com/ciis-capstone-project/winter-2022-2023/team-08/mimical-website
-- therapists are able to login
-- middleware for protected routing is implemented
-- added database to the project
-- patients are displayed exclusively to the associated therapist
-- patient add dummy
-- new express fetches and calls
+
+  - the repository for the website can be found here: https://gitlab.com/ciis-capstone-project/winter-2022-2023/team-08/mimical-website
+  - therapists are able to login
+  - middleware for protected routing is implemented
+  - added database to the project
+  - patients are displayed exclusively to the associated therapist
+  - patient add dummy
+  - new express fetches and calls
 
 - 2022-12-02 -- 0.0.2
 
@@ -84,6 +86,7 @@
   - added new login page
 
 - 2022-11-18 -- 0.0.1
+
   - created project with NextJS
   - the repository for the website can be found here: https://gitlab.com/ciis-capstone-project/winter-2022-2023/team-08/mimical-website
   - created login page with possibility to save entered values
