@@ -34,6 +34,11 @@
   - added Sound to all levels
   - implemented filter on tags in the menu
   - configured CI/CD
+  - fixed bug on timer buttons
+  - add all long scenarios
+  - scenarios are now displayed through the contentManager instead of 
+  - finished adjustements for the tasks and task timer
+  - level completion states are now stored in async storage and saved even after restarting the app
 
 - 2022-12-02 -- 0.0.2
 
