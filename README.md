@@ -26,6 +26,12 @@
   - Enter command: npm start (if the app does not start, you have to enter npm install --legacy-peer-deps first)
   - Follow instructions in terminal
 
+- 2022-12-16 -- 0.0.3
+
+  - settings are stored locally
+  - possibility to change language (currently only german and english)
+  - possibility to change font size (for better readability)
+
 - 2022-12-02 -- 0.0.2
 
   - Added a system so store the level contents and a state that refers to the current level globally. This way the user can navigate through levels and start levels from any given point
