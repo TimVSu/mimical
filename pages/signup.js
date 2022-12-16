@@ -1,3 +1,4 @@
+//Author Stoil Iliev
 import React, { Component } from "react";
 import {
   View,
@@ -7,7 +8,7 @@ import {
   Pressable,
   Text,
 } from "react-native";
-import styleu from "../backend/stylesu";
+import { StyleSheet } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import axios from "axios";
 
@@ -129,7 +130,7 @@ export default class SignUp extends Component {
             style={styleu.loginButton}
             onPress={() => {
               this.signup();
-              //this.props.navigation.navigate("HomeLogin");
+              this.props.navigation.navigate("HomeLogin");
             }}
           >
             <Text style={styleu.text}>Anmelden</Text>
@@ -139,3 +140,49 @@ export default class SignUp extends Component {
     );
   }
 }
+
+const styleu = StyleSheet.create({
+  viewStyle: {
+    flex: 1,
+    padding: 20,
+    marginTop: 50,
+  },
+  textInput: {
+    borderBottomColor: "#ff0000",
+    borderBottomWidth: 1,
+    marginBottom: 50,
+    height: 40,
+    fontSize: 20,
+    flex: 1,
+  },
+  action: {
+    flexDirection: "row",
+    marginTop: 10,
+    paddingBottom: 5,
+    width: "100%",
+  },
+  text: {
+    fontSize: 18,
+    lineHeight: 21,
+    fontWeight: "bold",
+    letterSpacing: 0.25,
+    color: "white",
+    textTransform: "uppercase",
+  },
+  loginButtonSection: {
+    width: "100%",
+    // height: '30%',
+    marginTop: 30,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  loginButton: {
+    backgroundColor: "#06baab",
+    color: "white",
+    height: 35,
+    justifyContent: "center", //up dwn
+    alignItems: "center", //r & l
+    width: "70%",
+    borderRadius: 10,
+  },
+});

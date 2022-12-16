@@ -42,6 +42,7 @@ server.post("/api/signin", (req, res) => {
   let query = db.query(sql, [data.Email], (err, results) => {
     if (err) throw err;
     if (results) {
+      //Check if password is correct
       bcrypt.compare(data.Password, results[0].password, (error, response) => {
         console.log(response);
         if (response) {
@@ -57,9 +58,11 @@ server.post("/api/signin", (req, res) => {
 });
 
 //Send Sign Up data
-server.post("/api/signup", (req, res) => {
+server.post("/api/signup", async (req, res) => {
   let data = req.body;
-  hash = bcrypt.hash(data.Password, 10);
+  //Hash password
+  hash = await bcrypt.hash(data.Password, 10);
+  //Insert data into the database
   let sql =
     "INSERT INTO patients (`email`, `password`) VALUES ('" +
     data.Email +
@@ -68,14 +71,8 @@ server.post("/api/signup", (req, res) => {
     "')";
 
   let query = db.query(sql, (err, results) => {
-    if (err) {
-      console.log(err);
-      res.sendStatus(500);
-      //return;
-    } else {
-      console.log("Registriert");
-      //return;
-    }
+    if (err) throw err;
+    res.send(results);
   });
 });
 
