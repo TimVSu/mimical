@@ -31,6 +31,9 @@
   - settings are stored locally
   - possibility to change language (currently only german and english)
   - possibility to change font size (for better readability)
+  - added Sound to all levels
+  - implemented filter on tags in the menu
+  - configured CI/CD
 
 - 2022-12-02 -- 0.0.2
 
