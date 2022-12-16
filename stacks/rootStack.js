@@ -19,7 +19,6 @@ const RootStack = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        
       }}
     >
       <Stack.Screen
@@ -28,7 +27,7 @@ const RootStack = () => {
         options={{ title: "Welcome" }}
       />
       <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="HomeL" component={Homelogin} />
+      <Stack.Screen name="HomeLogin" component={Homelogin} />
       <Stack.Screen name="Sign In" component={SignIn} />
       <Stack.Screen name="Sign Up" component={SignUp} />
       <Stack.Screen name="Level" component={LevelLayout} />

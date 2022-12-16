@@ -7,8 +7,9 @@ import {
   Pressable,
   Text,
 } from "react-native";
-import styleu from "../Database/styles/stylesu";
+import styleu from "../backend/stylesu";
 import Feather from "react-native-vector-icons/Feather";
+import axios from "axios";
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -23,62 +24,43 @@ export default class SignUp extends Component {
     };
   }
 
-  InsertRecord = () => {
+  signup = async () => {
     var Email = this.state.email;
     var Password = this.state.password;
     var ConfirmPw = this.state.confirmPw;
+
     var checkEmail = RegExp(
       /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i
     );
 
     //Check if Email is provided
     if (Email.length == 0 || Password.length == 0 || ConfirmPw.length == 0) {
-      alert("Required Field Is Missing!!!");
+      alert("Email fehlt");
     } else if (!checkEmail.test(Email)) {
-      alert("invalid email!!!");
+      alert("Kein Email");
     }
 
     // Password validations
     else if (Password.length < 8) {
-      alert("Minimum 08 characters required!!!");
+      alert("Mindestens 8 Zeichen");
     } else if (!/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(Password)) {
-      alert("Use atleast 01 special character!!!");
+      alert("Mindestens ein Sonderzeichen");
     } else if (/[ ]/.test(Password)) {
-      alert("Don't include space in password!!!");
+      alert("Ohne Leerschritt");
     } else if (Password !== ConfirmPw) {
-      alert("Password doesnot match!!!");
+      alert("Passwörter stimmen nicht {berein");
     } else {
-      //API to render signup screen
-      var InsertAPIURL = "http://10.0.2.2:80/SignUp.php";
-
-      var headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      };
-
-      var Data = {
-        Email: Email,
-        Password: Password,
-      };
-
-      //Fetch function
-      fetch(InsertAPIURL, {
-        method: "POST",
-        headers: headers,
-        //convert data to JSON
-        body: JSON.stringify(Data),
+      await axios({
+        method: "post",
+        data: {
+          Email: Email,
+          Password: Password,
+        },
+        // Must be changed depending on device for testing
+        url: "http://192.168.1.98:3000/api/signup",
       })
-        //Check response type of API
-        .then((response) => response.json())
-        .then((response) => {
-          // If data is in JSON -> Display alert message
-          alert(response[0].Message);
-          //Navigate to next screen if authentications are valid
-          this.props.navigation.navigate("Sign In");
-        })
-        .catch((error) => {
-          alert("Error Occured" + error);
-        });
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
     }
   };
 
@@ -146,7 +128,8 @@ export default class SignUp extends Component {
           <Pressable
             style={styleu.loginButton}
             onPress={() => {
-              this.InsertRecord();
+              this.signup();
+              //this.props.navigation.navigate("HomeLogin");
             }}
           >
             <Text style={styleu.text}>Anmelden</Text>

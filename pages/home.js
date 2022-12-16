@@ -129,7 +129,7 @@ const Home = ({ navigation }) => {
             icon={faUser}
             label="Log in"
             navigation={navigation}
-            target={"HomeL"}
+            target={"HomeLogin"}
           />
           <Button
             icon={faCamera}

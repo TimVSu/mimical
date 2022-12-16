@@ -8,8 +8,9 @@ import {
   TouchableOpacity,
   Button,
 } from "react-native";
-import stylei from "../Database/styles/stylesi";
+import stylei from "../backend/stylesi";
 import Feather from "react-native-vector-icons/Feather";
+import axios from "axios";
 
 export default class SignIn extends Component {
   constructor(props) {
@@ -22,49 +23,34 @@ export default class SignIn extends Component {
     };
   }
 
-  InsertRecord = () => {
+  signin = async () => {
     var Email = this.state.email;
     var Password = this.state.password;
 
     //Check if Email is provided
     if (Email.length == 0 || Password.length == 0) {
-      alert("Required Field Is Missing!!!");
+      alert("Email fehlt");
     } else {
       //API to render login screen
-      var APIURL = "http://10.0.2.2:80/login.php";
-
-      var headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      };
 
       var Data = {
         Email: Email,
         Password: Password,
       };
-
-      //Fetch function
-      fetch(APIURL, {
-        method: "POST",
-        headers: headers,
-        //convert data to JSON
-        body: JSON.stringify(Data),
+      //Check if account exists
+      await axios({
+        method: "post",
+        data: {
+          Email: Email,
+          Password: Password,
+        },
+        // Must be changed depending on device for testing
+        url: "http://192.168.1.98:3000/api/signin",
       })
-        //Check response type of API
-        .then((Response) => Response.json())
-        .then((Response) => {
-          // If data is in JSON -> Display alert message
-          alert(Response[0].Message);
-          if (Response[0].Message == "Success") {
-            console.log("true");
-            //Navigate to next screen if authentications are valid
-            this.props.navigation.navigate("HomeL");
-          }
-          console.log(Data);
-        })
-        .catch((error) => {
-          console.error("ERROR FOUND" + error);
-        });
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+      //Navigate to next screen if authentications are valid
+      //this.props.navigation.navigate("HomeLogin");
     }
   };
 
@@ -110,7 +96,7 @@ export default class SignIn extends Component {
           <Pressable
             style={stylei.loginButton}
             onPress={() => {
-              this.InsertRecord();
+              this.signin();
             }}
           >
             <Text style={stylei.text}>Einloggen</Text>
