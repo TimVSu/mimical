@@ -101,9 +101,9 @@
 
 - How to add the database to the project:
 
-- Currently there are two backends (both expressJS) for testing purposes.
-- On the website, the backend is started automatically when "npm run dev" is executed.
-- On the app, on the other hand, it is important that two processes are started. Once for the app ("npm start") and once for the server ("npm run backend").
+  - Currently there are two backends (both expressJS) for testing purposes.
+  - On the website, the backend is started automatically when "npm run dev" is executed.
+  - On the app, on the other hand, it is important that two processes are started. Once for the app ("npm start") and once for the server ("npm run backend").
 
 1. Add the ".process.env" to the repository (https://drive.google.com/file/d/11x0xJ-RxX5Fm3aoCA5qGasrH-VZsZQhJ/view?usp=share_link)
 2. Launching the app/website in the normal way
