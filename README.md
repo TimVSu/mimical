@@ -56,6 +56,15 @@
   - Once in the repository, install the necessary dependencies using the "npm install" command
   - After the dependencies are installed use “npm run dev” to start the application
 
+- 2022-12-16 -- 0.0.3
+- the repository for the website can be found here: https://gitlab.com/ciis-capstone-project/winter-2022-2023/team-08/mimical-website
+- therapists are able to login
+- middleware for protected routing is implemented
+- added database to the project
+- patients are displayed exclusively to the associated therapist
+- patient add dummy
+- new express fetches and calls
+
 - 2022-12-02 -- 0.0.2
 
   - the repository for the website can be found here: https://gitlab.com/ciis-capstone-project/winter-2022-2023/team-08/mimical-website
@@ -81,14 +90,16 @@
 
 ## Database
 
-- 2022-12-02 -- 0.0.2
-- added a temporary, but functional database for users to sign up and sign in into, using XAMPP, MySQL and PHP
- - functional database on a server follows!
+- How to add the database to the project:
 
-- How to start the Test Database:
+- Currently there are two backends (both expressJS) for testing purposes.
+- On the website, the backend is started automatically when "npm run dev" is executed.
+- On the app, on the other hand, it is important that two processes are started. Once for the app ("npm start") and once for the server ("npm run backend").
 
-1. Install XAMPP
-2. Set up the MySQL database using the provided structure.sql
-3. Place the files, located in the database folder, in the htdocs folder of XAMPP
-4. Run XAMPP and open http://localhost/phpmyadmin/index.php in your browser before running the App
-   Note: Currently the password needs to edited back from hashed to clear text in the database, in order for it to be recognized.
+1. Add the ".process.env" to the repository (https://drive.google.com/file/d/11x0xJ-RxX5Fm3aoCA5qGasrH-VZsZQhJ/view?usp=share_link)
+2. Launching the app/website in the normal way
+
+- 2022-12-16 -- 0.0.3
+  - added the design of the databse
+  - added tables to the database
+  - added patients and therapists to the database
