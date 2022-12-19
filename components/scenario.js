@@ -81,7 +81,7 @@ const Scenario = ({ navigation, ...props }) => {
         {iterator.map((iterate) =>
         (
           <Exercise level={iterate + 1} scenario={scenario} icon={props.icon} navigation={navigation}
-            tags={"Tags"} unlocked={true} key={iterate}></Exercise>))}
+            tags={"Tags"} unlocked={true} key={iterate} reRender={props.reRender}></Exercise>))}
       </ScrollView>
     </View>
   );

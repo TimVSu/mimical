@@ -14,7 +14,7 @@ import FilterBar from '../components/filter_bar.js';
 import { faBeer, faBowlingBall, faChurch, faCity, faCow, faLightbulb, faSnowflake, faSun, faTree } from '@fortawesome/free-solid-svg-icons';
 import styles from '../components/styles.js';
 import { light_primary_color, dark_primary_color } from '../components/styles.js';
-import { getAllContents, incrementCurrentContent, getDefaultScenarios, getCurrentSequence, setCurrentContent, getCurrentContent, getScenario, setCurrentSequence } from '../components/contentManager';
+import { getAllContents, incrementCurrentContent, getDefaultScenarios, getCurrentSequence, setCurrentContent, getCurrentContent, getScenario, setCurrentSequence, getIcon } from '../components/contentManager';
 import { getEffectiveConstraintOfTypeParameter } from 'typescript';
 
 
@@ -56,6 +56,10 @@ const listTag = [
 // return home page
 const HomePage = ({ navigation }) => {
 
+  // hotfix boolean forces the component to rerender when switched used in order to make sure completed exercised are dispylayed properly
+  // on navigation.goBack()
+  const [render, setRender] = useState(false);
+
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
@@ -64,9 +68,10 @@ const HomePage = ({ navigation }) => {
 
   // since this component is higher in hirarchy thatn the level component i use it to control the current content
   // All contets are stored with unique id's this hook stores the current starting pooint and passes it to the level component
+  const reRender = () => {
+    setRender(!render)
+  }
 
-
-<<<<<<< HEAD
   setCurrentContent(1);
 
   // const keyArray = Object.keys(getDefaultScenarios());
@@ -81,17 +86,10 @@ const HomePage = ({ navigation }) => {
   const [keyArray, setKeyArray] = useState(Object.keys(getDefaultScenarios()))
   const setTagFilter = tag => {
 
-    console.log(keyArray["umzug"])
-
     if (tag !== 'ALL') {
       setKeyArray([...keyArray.filter((item) => item["tags"] === tag)])
     } else {
       setKeyArray(Object.keys(getDefaultScenarios()))
-=======
-    const startLevel = (start, scenario) => {
-      setCurrentContent(start);  
-
->>>>>>> cd31ba4 (removed unnecessary code)
     }
     setTag(tag)
   }
@@ -129,6 +127,7 @@ const HomePage = ({ navigation }) => {
             navigation={navigation}
             progress={1}
             exercises={7}
+            reRender = {reRender}
             />))}
 
           <StatusBar style="auto" />

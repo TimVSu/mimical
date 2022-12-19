@@ -49,13 +49,12 @@ const Exercise = ({ navigation, ...props }) => {
     readItemFromStorage();
   }, []);
 
+
   readItemFromStorage();
   
 
   /*completed = retrieveData();
   console.log('completed' + completed)*/
-
-  console.log('completed: ' + completed + ' : ' + 'state' + props.scenario[props.level-1])
   
 
   const colorScheme = useColorScheme();
@@ -66,7 +65,7 @@ const Exercise = ({ navigation, ...props }) => {
   if (props.unlocked) {
     if (completed) {
       return (
-        <Pressable onPress={() => { startLevel(props.level, props.scenario), navigation.navigate("Level") }}>
+        <Pressable onPress={() => { startLevel(props.level, props.scenario), navigation.navigate("Level"), {onGoBack: () => props.reRender}}}>
           <View style={{ margin: 16 }}>
             <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
               <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
