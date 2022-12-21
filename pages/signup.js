@@ -186,3 +186,45 @@ const styleu = StyleSheet.create({
     borderRadius: 10,
   },
 });
+
+// // import react native
+// import { Button, Pressable, ScrollView, Switch, Text, TextInput, useColorScheme, View } from 'react-native';
+// import React, { useEffect, useState } from 'react';
+// import { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, gray5, dark_gray5 } from '../components/styles.js';
+
+// // import components
+// import styles from '../components/styles.js';
+
+// const SignUp = () => {
+//   const [colorScheme, setColorScheme] = useState(useColorScheme());
+//   const [fontSize, setFontSize] = useState(17);
+//   return (
+//     <View style={[{ flex: 1 }, { backgroundColor: colorScheme === 'light' ? light_background_color : dark_background_color }, { justifyContent: 'center' }, { alignItems: 'center' }]}>
+//       <TextInput
+//         style={[{ width: 256 }, { padding: 16 }, { margin: 16 }, { backgroundColor: colorScheme === 'light' ? gray5 : dark_gray5 }, { fontSize: fontSize }, { borderRadius: 8 }]}
+//         placeholder="Vorname"
+//       />
+//       <TextInput
+//         style={[{ width: 256 }, { padding: 16 }, { margin: 16 }, { backgroundColor: colorScheme === 'light' ? gray5 : dark_gray5 }, { fontSize: fontSize }, { borderRadius: 8 }]}
+//         placeholder="Nachname"
+//       />
+//       <TextInput
+//         style={[{ width: 256 }, { padding: 16 }, { margin: 16 }, { backgroundColor: colorScheme === 'light' ? gray5 : dark_gray5 }, { fontSize: fontSize }, { borderRadius: 8 }]}
+//         placeholder="E-Mail"
+//       />
+//       <TextInput
+//         style={[{ width: 256 }, { padding: 16 }, { margin: 16 }, { backgroundColor: colorScheme === 'light' ? gray5 : dark_gray5 }, { fontSize: fontSize }, { borderRadius: 8 }]}
+//         placeholder="Passwort"
+//       />
+//       <TextInput
+//         style={[{ width: 256 }, { padding: 16 }, { margin: 16 }, { backgroundColor: colorScheme === 'light' ? gray5 : dark_gray5 }, { fontSize: fontSize }, { borderRadius: 8 }]}
+//         placeholder="Passwort wiederholen"
+//       />
+//       <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : colorScheme === 'light' ? light_primary_color : dark_primary_color }, { padding: 16 }, { margin: 16 }, { borderRadius: 8 }]}>
+//         <Text style={[{ fontSize: fontSize }, { color: 'white' }]}>Registrieren</Text>
+//       </Pressable>
+//     </View>
+//   );
+// }
+
+// export default SignUp;
