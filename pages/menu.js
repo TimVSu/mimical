@@ -58,7 +58,6 @@ const HomePage = ({ navigation }) => {
 
   // hotfix boolean forces the component to rerender when switched used in order to make sure completed exercised are dispylayed properly
   // on navigation.goBack()
-  const [render, setRender] = useState(false);
 
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
@@ -68,9 +67,7 @@ const HomePage = ({ navigation }) => {
 
   // since this component is higher in hirarchy thatn the level component i use it to control the current content
   // All contets are stored with unique id's this hook stores the current starting pooint and passes it to the level component
-  const reRender = () => {
-    setRender(!render)
-  }
+
 
   setCurrentContent(1);
 
@@ -121,13 +118,11 @@ const HomePage = ({ navigation }) => {
           <Scenario
             title={scenarioKey}
             name={scenarioKey}
-            key={scenarioKey}
             icon={getIcon(scenarioKey)}
             color={'white'}
             navigation={navigation}
             progress={1}
             exercises={7}
-            reRender = {reRender}
             />))}
 
           <StatusBar style="auto" />

@@ -23,7 +23,7 @@ const gray1 = 'rgb(142, 142, 147)';
 
 // return scenario component
 const Exercise = ({ navigation, ...props }) => {
-  const [completed,setCompleted] = useState(false);
+  const [completed, setCompleted] = useState(false);
   const { getItem, setItem } = useAsyncStorage('state' + props.scenario[props.level-1].toString());
 
   /*const retrieveData = async () => {
@@ -65,7 +65,7 @@ const Exercise = ({ navigation, ...props }) => {
   if (props.unlocked) {
     if (completed) {
       return (
-        <Pressable onPress={() => { startLevel(props.level, props.scenario), navigation.navigate("Level"), {onGoBack: () => props.reRender}}}>
+        <Pressable onPress={() => { startLevel(props.level, props.scenario), navigation.navigate("Level")}}>
           <View style={{ margin: 16 }}>
             <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
               <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
