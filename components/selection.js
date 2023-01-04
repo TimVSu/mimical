@@ -29,7 +29,6 @@ const Selection = (props) => {
 
     return (
         <View style={[styles.settings_item, containerColor]}>
-            <Text style={[{ fontSize: 17 }, textColor]}>{props.title}</Text>
             <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
                 <Pressable style={({ pressed }) => [{ backgroundColor: optionIsEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={optionIsEnabled1} onPress={selectOption1}>
                     <Text style={[{ fontSize: 17 }, textColor]}>{props.option1}</Text>
