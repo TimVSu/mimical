@@ -50,9 +50,9 @@ const accessible_gray4 = 'rgb(209, 209, 214)';
 const accessible_gray5 = 'rgb(229, 229, 234)';
 const accessible_gray6 = 'rgb(242, 242, 247)';
 
-const light_primary_color = '#FD8A8A';
+const light_primary_color = 'blue';
 const dark_primary_color = dark_blue;
-const light_background_color = '#9EA1D4';
+const light_background_color = 'white';
 const dark_background_color = 'rgb(0, 0, 0)';
 export { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, gray5, dark_gray5 };
 
