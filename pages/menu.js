@@ -4,7 +4,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, ScrollView, Text, View, useColorScheme, TouchableOpacity, FlatList } from 'react-native';
 import React from 'react';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useIsFocused, useFocusEffect } from '@react-navigation/native';
 
 // import components
 import NavBar from '../components/nav_bar.js';
@@ -114,15 +115,14 @@ const HomePage = ({ navigation }) => {
         <View style={[styles.container, containerColor]}>
           {/* <Text style={[styles.title1, textColor]}>Text</Text> */}
           {keyArray.map((scenarioKey) =>
-        (
-          <Scenario
-            title={scenarioKey}
-            name={scenarioKey}
-            icon={getIcon(scenarioKey)}
-            color={'white'}
-            navigation={navigation}
-            progress={1}
-            exercises={7}
+          (
+            <Scenario
+              title={scenarioKey}
+              name={scenarioKey}
+              icon={getIcon(scenarioKey)}
+              color={'white'}
+              navigation={navigation}
+              key={scenarioKey}
             />))}
 
           <StatusBar style="auto" />

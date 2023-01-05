@@ -192,6 +192,23 @@ const SettingsPage = ({ navigation }) => {
     );
   }
 
+
+
+  const importData = async () => {
+    try {
+      const keys = await AsyncStorage.getAllKeys();
+      const result = await AsyncStorage.multiGet(keys);
+  
+      return result.map(req => {console.log(req)});
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+
+
+
+
   // font settings
   const FontSettings = () => {
     return (
@@ -282,7 +299,7 @@ const SettingsPage = ({ navigation }) => {
         />
         <Button
           title='get data'
-          onPress={getData}
+          onPress={importData}
         />
       </ScrollView>
       <TabBar

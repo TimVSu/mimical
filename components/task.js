@@ -109,7 +109,7 @@ const Task = ({ nextLevelFunction, taskDescription, children, downFunction, trai
       }
     }
     if (currentTime == 0 && repCounter == repititions - 1) {
-      saveAsCompleted(getCurrentContent());
+      saveAsCompleted(getCurrentSequence[getCurrentContent()]);
       nextLevelFunction();
     }
     if (currentTime == 3 && taskRunning && relaxState) {

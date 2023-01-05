@@ -131,24 +131,7 @@ const Home = ({ navigation }) => {
             navigation={navigation}
             target={"HomeLogin"}
           />
-          <Button
-            icon={faCamera}
-            label="Cam Preview"
-            navigation={navigation}
-            target={"Level"}
-          />
-          <Button
-            icon={faBell}
-            label="Notifications"
-            navigation={navigation}
-            target={"Notifications"}
-          />
-          <Button
-            icon={faCalendar}
-            label="Calendar"
-            navigation={navigation}
-            target={"Calendar"}
-          />
+
         </ScrollView>
       </View>
     </View>

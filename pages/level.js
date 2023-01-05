@@ -25,6 +25,7 @@ if (
 
 //@author: Tim Suchan
 const LevelLayout = ({ navigation, nextLevelFunction }) => {
+  //console.warn('at level: ' + getCurrentContent() + 'of scenario: ' + getCurrentSequence())
 
   // VARIABLES:
   //=============================================================================================================================================
@@ -123,7 +124,6 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
       incrementCurrentContent();
       setCurrentText(getText());
       setCurrentHighlightedText(getHighlightedText);
-      removeTask();
     }
     else {
       navigation.navigate("Menu");
@@ -148,6 +148,11 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
     await sound.unloadAsync();
   }
 
+  useEffect (() =>{
+    setCurrentText(getText());
+    setCurrentHighlightedText(getHighlightedText());
+  },[]);
+
 
   useEffect(() => {
     return sound
@@ -161,6 +166,9 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
   useEffect(() => {
     playSound();
     }, [])
+
+
+  
 
   return (
 
@@ -189,7 +197,7 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
         <Text style={styles.levelHighlightedText}>{currentHighlightedText} </Text>
       </ScrollView>
 
-      <TouchableOpacity style={styles.createTaskButton} onPress={() => { createTask() }}>
+      <TouchableOpacity style={styles.createTaskButton} onPress={() => {navigation.navigate("AlternativeTask"), {callback: nextLevel}}}>
         <Text style={{ color: 'white', justifyContent: 'center', fontSize: 24 }}>Üben</Text>
       </TouchableOpacity>
 

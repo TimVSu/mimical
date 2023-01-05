@@ -11,6 +11,7 @@ import Api from "../pages/api.js";
 import SignIn from "../pages/signin";
 import SignUp from "../pages/signup";
 import Homelogin from "../pages/home_login";
+import AlternativeTask from "../components/alternativeTask.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +36,7 @@ const RootStack = () => {
       <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="Progress" component={Progress} />
       <Stack.Screen name="Api" component={Api} />
+      <Stack.Screen name="AlternativeTask" component={AlternativeTask} />
     </Stack.Navigator>
   );
 };

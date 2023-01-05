@@ -5,7 +5,7 @@ import { Pressable, StyleSheet, Text, useColorScheme, View } from 'react-native'
 import React from 'react';
 import { startLevel } from './contentManager.js';
 import { useEffect, useState } from 'react';
-import { useAsyncStorage } from '@react-native-async-storage/async-storage';
+import { useAsyncStorage, AsyncStorage } from '@react-native-async-storage/async-storage';
 
 // import components
 import Square from './square.js';
@@ -23,9 +23,10 @@ const gray1 = 'rgb(142, 142, 147)';
 
 // return scenario component
 const Exercise = ({ navigation, ...props }) => {
+
   const [completed, setCompleted] = useState(false);
   const { getItem, setItem } = useAsyncStorage('state' + props.scenario[props.level-1].toString());
-
+  
   /*const retrieveData = async () => {
     try {
       const value = await AsyncStorage.getItem('state' + props.scenario[props.level-1].toString());
@@ -40,22 +41,30 @@ const Exercise = ({ navigation, ...props }) => {
     }
   };*/
 
-  const readItemFromStorage = async () => {
+ const readItemFromStorage = async () => {
+  try{
     const item = await getItem();
+    console.log("ITEM IS: " + item)
+    if(item.toString() === 'completed'){
+      props.incrementCompletions();
+    }
     setCompleted(item);
-  };
+  }
+  catch{
+  }
+
+  }
+    
+  
+  
 
   useEffect(() => {
     readItemFromStorage();
   }, []);
 
-
-  readItemFromStorage();
-  
-
   /*completed = retrieveData();
   console.log('completed' + completed)*/
-  
+
 
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_square : styles.dark_square;

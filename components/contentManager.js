@@ -153,7 +153,7 @@ const umzug17 = {
 
 //===================================================================================================================================0
 const einzug1 = {
-    "baseText": "Einzug in eine neue WohnungSie sind gestern umgezogen und müssen heute alle Umzugskisten auspacken. Um heute das nötigste zu schaffen, sind Sie sehr früh aufgestanden. Noch etwas verschlafen gehen Sie durch die Wohnung und überlegen, wo Sie nur anfangen sollen. ",
+    "baseText": "Einzug in eine neue Wohnung, Sie sind gestern umgezogen und müssen heute alle Umzugskisten auspacken. Um heute das nötigste zu schaffen, sind Sie sehr früh aufgestanden. Noch etwas verschlafen gehen Sie durch die Wohnung und überlegen, wo Sie nur anfangen sollen. ",
     "highlightedText": "Sie reiben verschlafen Ihr Gesicht mit den Handflächen.",
     "task": "empty"
 }
@@ -445,14 +445,17 @@ const getDefaultScenarios = () => {
 }
 
 const getText = () => {
-    return allContents[currentContent]["baseText"];
+    var keyNum = currentSequence[currentContent-1];
+    return allContents[keyNum]["baseText"];
 }
 
 const getHighlightedText = () => {
+    var keyNum = currentSequence[currentContent-1];
     return allContents[currentContent]["highlightedText"];
 }
 
 const getTaskDescription = () => {
+    var keyNum = currentSequence[currentContent-1];
     return allContents[currentContent]["task"]
 }
 
@@ -475,7 +478,9 @@ const getScenarioLength = (key) => {
 const startLevel = (start, scenario) => {
     setCurrentContent(start);
     setCurrentSequence(scenario);
+    console.log('starting level: ' + start + ' in scenario: ' + scenario)
 }
+
 
 
 

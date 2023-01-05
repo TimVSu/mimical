@@ -64,7 +64,6 @@ const CameraScreen = ({ size, children }) => {
 
   //=============================================================================================================================================
 
-
   // FUNCTIONS:
   //=============================================================================================================================================
 
@@ -122,7 +121,7 @@ const CameraScreen = ({ size, children }) => {
     else {
       setLandmarks([]);
       setFaceDetected(false)
-    }
+    } size
   }
 
   // this method finds the searches the devices camera supported image ratios to get the closest match to the default 4:3
@@ -177,7 +176,7 @@ const CameraScreen = ({ size, children }) => {
   if (hasPermission) {
     return (
 
-      <View style={[styles.camContainer, { width: size, height: decimalRatio * size }]}>
+      <View style={[styles.camContainer, { width: size / decimalRatio, height: size }]}>
         <Camera style={styles.camera} type={CameraType.front} ratio={ratio}
           onFacesDetected={handleFacesDetected}
           faceDetectorSettings={{

@@ -4,6 +4,7 @@
 import { StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { Dimensions } from 'react-native';
 
 // default light mode colors
 const red = 'rgb(255, 59, 48)';
@@ -49,9 +50,9 @@ const accessible_gray4 = 'rgb(209, 209, 214)';
 const accessible_gray5 = 'rgb(229, 229, 234)';
 const accessible_gray6 = 'rgb(242, 242, 247)';
 
-const light_primary_color = blue;
+const light_primary_color = '#FD8A8A';
 const dark_primary_color = dark_blue;
-const light_background_color = 'rgb(255, 255, 255)';
+const light_background_color = '#9EA1D4';
 const dark_background_color = 'rgb(0, 0, 0)';
 export { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, gray5, dark_gray5 };
 
@@ -197,7 +198,7 @@ export default StyleSheet.create({
     height: hp('8%'),
     flexDirection: 'row',
     color: 'black',
-    backgroundColor: '#59C1BD',
+    backgroundColor: light_primary_color,
     alignItems: 'center',
     borderRadius: 30,
     justifyContent: 'center',
@@ -207,16 +208,17 @@ export default StyleSheet.create({
     width: wp('100%'),
     height: hp('100%'),
     overFlow: 'hidden',
-    backgroundColor: '#59C1BD',
+    backgroundColor: light_primary_color,
     alignItems: 'center',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
 
   },
   taskDescription: {
-    color: 'white',
+    color: light_background_color,
     marginTop: 20,
     marginBottom: 20,
+    fontSize:hp('2.5%'),
   },
   horizontal: {
     flex: 1,
@@ -259,8 +261,9 @@ export default StyleSheet.create({
 
   },
   btnTabActive: {
-    backgroundColor: "#E6838D",
+    backgroundColor: light_primary_color,
     color: "#fff"
+
   },
   levelText: {
     fontSize: 25,
@@ -269,7 +272,7 @@ export default StyleSheet.create({
   levelHighlightedText: {
     fontSize: 25,
     lineHeight: 50,
-    color: 'green',
+    color: '#EB6440',
 
   }
 });
