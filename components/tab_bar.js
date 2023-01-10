@@ -9,19 +9,14 @@ import styles from './styles';
 
 // import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faArrowLeft, faHouse } from '@fortawesome/free-solid-svg-icons';
-import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
-import { faGear } from '@fortawesome/free-solid-svg-icons';
-
-// colors
-const blue = 'rgb(0, 122, 255)';
-const dark_blue = 'rgb(10, 132, 255)';
+import { faChartSimple, faGear, faHouse } from '@fortawesome/free-solid-svg-icons';
 
 // return tab bar component
 const TabBar = ({ navigation, ...props }) => {
+
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
-  const iconColor = colorScheme === 'light' ? blue : dark_blue
+
   return (
     <View style={[styles.tab_bar, containerColor]}>
       <Pressable onPress={() => navigation.navigate('Menu')}>
@@ -35,6 +30,7 @@ const TabBar = ({ navigation, ...props }) => {
       </Pressable>
     </View>
   );
+
 }
 
 export default TabBar;

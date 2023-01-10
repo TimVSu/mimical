@@ -1,19 +1,15 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { Pressable, StyleSheet, Text, useColorScheme } from 'react-native';
+import { Pressable, Text, useColorScheme } from 'react-native';
 import React from 'react';
 
 // import components
 import styles from './styles';
-import { light_primary_color, dark_primary_color } from './styles';
+import { light_primary_color, dark_primary_color, green } from './styles';
 
 // import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-
-// colors
-const green = 'rgb(52, 199, 89)';
-const blue = 'rgb(0, 122, 255)';
 
 // return button component
 const Button = ({ navigation, ...props }) => {
@@ -27,4 +23,4 @@ const Button = ({ navigation, ...props }) => {
   );
 }
 
-export default Button; 
+export default Button;

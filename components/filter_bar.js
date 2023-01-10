@@ -1,7 +1,7 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { Pressable, ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native';
+import { Pressable, ScrollView, Text, useColorScheme, View } from 'react-native';
 import React from 'react';
 
 // import components
@@ -9,17 +9,29 @@ import styles from './styles';
 
 // import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faCircleInfo, faEye, faFaceSmile } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faFaceSmile } from '@fortawesome/free-solid-svg-icons';
 
 // colors
 const blue = 'rgb(0, 122, 255)';
-const gray5 = 'rgb(229, 229, 234)';
 
 // return filter bar component
-const FilterBar = (props) => {
+const FilterBar = () => {
+
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const buttonColor = colorScheme === 'light' ? styles.light_button : styles.dark_button;
+
+  const Filter = (props) => {
+    return (
+      <View style={[buttonColor, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }]}>
+        <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
+          <FontAwesomeIcon style={{ marginRight: 8 }} icon={props.icon} color='white' />
+          <Text style={[styles.label, { color: 'white' }]}>{props.label}</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
   return (
     <View style={[styles.filter_bar, containerColor]}>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -71,9 +83,11 @@ const FilterBar = (props) => {
             <Text style={[styles.label, { color: 'white' }]}>Filter</Text>
           </Pressable>
         </View>
+        {/* <Filter icon={faFaceSmile} label="Filter" /> */}
       </ScrollView>
     </View>
   );
+
 }
 
 export default FilterBar;
