@@ -7,6 +7,8 @@ import { Heading } from 'native-base';
 import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import customModal from './customModal.js';
+import CustomButton from './customButton'
 import { getCurrentContent, getCurrentSequence, getTaskDescription, incrementCurrentContent } from './contentManager.js';
 
 if (Platform.OS === 'android') {
@@ -118,9 +120,9 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
             }
         }
         if (currentTime == 0 && repCounter == repititions - 1) {
-            console.log('levelandsequence' + getCurrentSequence() + ' : ' + (getCurrentContent() - 1))
-            saveAsCompleted(getCurrentSequence()[getCurrentContent()-1]);
-            nextLevelFunction();
+            saveAsCompleted(getCurrentSequence[getCurrentContent()]);
+            // nextLevelFunction();
+            setModalVisible(true)
         }
         if (currentTime == 3 && taskRunning && relaxState) {
             setInformState(true);
@@ -135,7 +137,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
             // Try setting `flexDirection` to `"row"`.
             flexDirection: "column"
         }]}>
-            <Modal
+            {/* <Modal
                 animationType="slide"
                 transparent={true}
                 visible={modalVisible}
@@ -155,7 +157,42 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
                         </Pressable>
                     </View>
                 </View>
+            </Modal> */}
+
+            {/* <customModal
+                oP1={nextLevelFunction}
+                oP2={navigation.navigate("Menu")}
+                text1={"Weiter"}
+                text2={"Zum Menu"}
+                header={"Gut gemacht! Level abschlossen!"}
+            /> */}
+
+    	    <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                Alert.alert("Modal has been closed.");
+                setModalVisible(!modalVisible);
+                }}
+            >
+                <View style={styles.centeredView}>
+                    <View style={[styles.modalView, {}]}>
+
+                        <Text style={styles.modalText}> "Gut gemacht! Level abschlossen!" </Text>
+                            
+
+                        <View style={styles.buttonView}>
+{/*                             
+                            <CustomButton text="Weiter" onPress={ nextLevelFunction } color="skyblue"/>
+                            <CustomButton text="Zum Menu" onPress={ navigation.navigate("Menu") } color="red" /> */}
+
+                        </View>
+                        
+                    </View>
+                </View>
             </Modal>
+
             <View style={{ flex: 1, backgroundColor: "white" }} />
             <View id="camContainer" style={{ flex: 6, backgroundColor: "white", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
                 <CameraScreen size={hp('70%')}>
@@ -205,37 +242,68 @@ const tempStyles = StyleSheet.create({
         marginTop: '5%',
         marginBottom: '5%',
     },
+    // centeredView: {
+    //     flex: 1,
+    //     justifyContent: "center",
+    //     alignItems: "center",
+    //     marginTop: 22
+    //   },
+    //   modalView: {
+    //     margin: 20,
+    //     backgroundColor: "white",
+    //     borderRadius: 20,
+    //     padding: 35,
+    //     alignItems: "center",
+    //     shadowColor: "#000",
+    //     shadowOffset: {
+    //       width: 0,
+    //       height: 2
+    //     },
+    //     shadowOpacity: 0.25,
+    //     shadowRadius: 4,
+    //     elevation: 5
+    //   },
+    //   button: {
+    //     borderRadius: 20,
+    //     padding: 10,
+    //     elevation: 2
+    //   },
+    //   buttonOpen: {
+    //     backgroundColor: "#F194FF",
+    //   },
+    //   buttonClose: {
+    //     backgroundColor: "#2196F3",
+    //   },
+    //   textStyle: {
+    //     color: "white",
+    //     fontWeight: "bold",
+    //     textAlign: "center"
+    //   },
+    //   modalText: {
+    //     marginBottom: 15,
+    //     textAlign: "center"
+    //   }
     centeredView: {
-        flex: 1,
+        flex: 0.9,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 22
+        marginTop: 10
     },
     modalView: {
-        margin: 20,
+        flex: 0.5,
+        margin: 5,
         backgroundColor: "white",
         borderRadius: 20,
-        padding: 35,
+        padding: 50,
         alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {
-            width: 0,
-            height: 2
+            width: 50,
+            height: 100
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5
-    },
-    button: {
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2
-    },
-    buttonOpen: {
-        backgroundColor: "#F194FF",
-    },
-    buttonClose: {
-        backgroundColor: "#2196F3",
     },
     textStyle: {
         color: "white",
@@ -243,8 +311,15 @@ const tempStyles = StyleSheet.create({
         textAlign: "center"
     },
     modalText: {
-        marginBottom: 15,
-        textAlign: "center"
+        fontWeight: "bold",
+        textAlign: "center",
+        fontSize: 24
+
+    },
+    buttonView: {
+        paddingTop:100,
+        flex: 1,
+        flexDirection: "row"
     }
 });
 
