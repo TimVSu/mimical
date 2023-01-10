@@ -86,7 +86,6 @@ const Task = ({ nextLevelFunction, taskDescription, children, downFunction, trai
     if (taskRunning) {
       interval = setInterval(() => {
         removeIncrementReplace();
-        console.log('inform state: ' + informState + ' currentTime: ' + currentTime + ' repCounter: ' + repCounter + ' relaxState: ' + relaxState);
       }, 1000);
     } else if (!taskRunning) {
       clearInterval(interval);
@@ -139,7 +138,7 @@ const Task = ({ nextLevelFunction, taskDescription, children, downFunction, trai
         <TouchableOpacity style={styles.taskButton} onPress={downFunction}>
           <AntDesign name="downcircleo" size={50} color="white" />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.taskButton} activeOpacity={0.3} onPress={() => pause()}>
+        <TouchableOpacity style={styles.taskButton} activeOpacity={0.3} onPress={() => {console.log(getCurrentSequence[getCurrentContent()])}}>
           <AntDesign name="pausecircleo" size={50} color="white" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.taskButton} onPress={() => play()}>

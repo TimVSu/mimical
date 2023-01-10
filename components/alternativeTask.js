@@ -18,7 +18,7 @@ if (Platform.OS === 'android') {
 let trainDuration = 3
 let pauseDuration = 3
 
-const AlternativeTask = ({ navigation,route, children, downFunction, }) => {
+const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
 
     // VARIABLES:
     //==============================================================================================================================================
@@ -53,7 +53,8 @@ const AlternativeTask = ({ navigation,route, children, downFunction, }) => {
     }
 
     const nextLevelFunction = () => {
-        route.params.callback();
+        incrementCurrentContent();
+        navigation.navigate("Level");
 
     }
 
@@ -117,7 +118,7 @@ const AlternativeTask = ({ navigation,route, children, downFunction, }) => {
             }
         }
         if (currentTime == 0 && repCounter == repititions - 1) {
-            saveAsCompleted(getCurrentSequence[getCurrentContent()]);
+            saveAsCompleted(getCurrentSequence()[getCurrentContent()]);
             nextLevelFunction();
         }
         if (currentTime == 3 && taskRunning && relaxState) {
@@ -175,7 +176,7 @@ const AlternativeTask = ({ navigation,route, children, downFunction, }) => {
                 <TouchableOpacity style={styles.taskButton} onPress={() => { navigation.goBack() }}>
                     <AntDesign name="leftcircleo" size={75} color="black" />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.taskButton} activeOpacity={0.3} onPress={nextLevelFunction}>
+                <TouchableOpacity style={styles.taskButton} activeOpacity={0.3} onPress={() => { console.log(getCurrentSequence()[getCurrentContent()] + " : " + getCurrentContent()) }}>
                     <AntDesign name="pausecircleo" size={75} color="black" />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.taskButton} onPress={() => play()}>
@@ -208,8 +209,8 @@ const tempStyles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         marginTop: 22
-      },
-      modalView: {
+    },
+    modalView: {
         margin: 20,
         backgroundColor: "white",
         borderRadius: 20,
@@ -217,33 +218,33 @@ const tempStyles = StyleSheet.create({
         alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {
-          width: 0,
-          height: 2
+            width: 0,
+            height: 2
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5
-      },
-      button: {
+    },
+    button: {
         borderRadius: 20,
         padding: 10,
         elevation: 2
-      },
-      buttonOpen: {
+    },
+    buttonOpen: {
         backgroundColor: "#F194FF",
-      },
-      buttonClose: {
+    },
+    buttonClose: {
         backgroundColor: "#2196F3",
-      },
-      textStyle: {
+    },
+    textStyle: {
         color: "white",
         fontWeight: "bold",
         textAlign: "center"
-      },
-      modalText: {
+    },
+    modalText: {
         marginBottom: 15,
         textAlign: "center"
-      }
+    }
 });
 
 /*<View style={tempStyles.container}>

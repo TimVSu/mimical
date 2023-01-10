@@ -4,7 +4,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, ScrollView, Text, View, useColorScheme, TouchableOpacity, FlatList } from 'react-native';
 import React from 'react';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useReducer } from 'react'
 import { useIsFocused, useFocusEffect } from '@react-navigation/native';
 
 // import components
@@ -59,6 +59,7 @@ const HomePage = ({ navigation }) => {
 
   // hotfix boolean forces the component to rerender when switched used in order to make sure completed exercised are dispylayed properly
   // on navigation.goBack()
+  const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
 
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
@@ -79,6 +80,12 @@ const HomePage = ({ navigation }) => {
     setCurrentSequence(scenario);
     navigation.navigate("Level");
   }
+
+  useFocusEffect(
+    useCallback(() => {
+     forceUpdate();
+    }, [])
+  );
 
   const [tag, setTag] = useState('All')
   const [keyArray, setKeyArray] = useState(Object.keys(getDefaultScenarios()))

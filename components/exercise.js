@@ -25,46 +25,25 @@ const gray1 = 'rgb(142, 142, 147)';
 const Exercise = ({ navigation, ...props }) => {
 
   const [completed, setCompleted] = useState(false);
-  const { getItem, setItem } = useAsyncStorage('state' + props.scenario[props.level-1].toString());
-  
-  /*const retrieveData = async () => {
+  const { getItem, setItem } = useAsyncStorage('state' + props.scenario[props.level - 1].toString());
+
+  const readItemFromStorage = async () => {
     try {
-      const value = await AsyncStorage.getItem('state' + props.scenario[props.level-1].toString());
-      console.log('trying to retrieve' + 'state' + props.scenario[props.level-1] + ' : ' + value);
-
-      if (value !== null) {
-        setCompleted(true);
+      const item = await getItem();
+      console.log("ITEM IS: " + item)
+      if (item.toString() === 'completed') {
+        props.incrementCompletions();
       }
-
-    } catch (error) {
-        console.log('error')
+      setCompleted(item);
     }
-  };*/
-
- const readItemFromStorage = async () => {
-  try{
-    const item = await getItem();
-    console.log("ITEM IS: " + item)
-    if(item.toString() === 'completed'){
-      props.incrementCompletions();
+    catch {
     }
-    setCompleted(item);
-  }
-  catch{
-  }
 
   }
-    
-  
-  
 
   useEffect(() => {
     readItemFromStorage();
   }, []);
-
-  /*completed = retrieveData();
-  console.log('completed' + completed)*/
-
 
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_square : styles.dark_square;
@@ -74,7 +53,7 @@ const Exercise = ({ navigation, ...props }) => {
   if (props.unlocked) {
     if (completed) {
       return (
-        <Pressable onPress={() => { startLevel(props.level, props.scenario), navigation.navigate("Level")}}>
+        <Pressable onPress={() => { startLevel(props.level, props.scenario), navigation.navigate("Level") }}>
           <View style={{ margin: 16 }}>
             <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
               <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>

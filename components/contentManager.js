@@ -478,7 +478,6 @@ const getScenarioLength = (key) => {
 const startLevel = (start, scenario) => {
     setCurrentContent(start);
     setCurrentSequence(scenario);
-    console.log('starting level: ' + start + ' in scenario: ' + scenario)
 }
 
 
