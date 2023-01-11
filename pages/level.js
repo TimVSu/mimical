@@ -1,5 +1,5 @@
 //@author: Tim Suchan
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Platform, UIManager, Text, ScrollView } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { AntDesign } from '@expo/vector-icons';
@@ -15,7 +15,6 @@ import Info from '../components/info.js';
 import { getAllContents, incrementCurrentContent, getCurrentSequence, getText, getCurrentContent, getHighlightedText } from '../components/contentManager';
 import styles from '../components/styles.js';
 import { Audio } from 'expo-av';
-import { useFocusEffect } from '@react-navigation/native';
 
 if (
   Platform.OS === "android" &&
@@ -56,14 +55,6 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
       top: offset.value,
     }
   });
-
-
-  useFocusEffect(
-    useCallback(() => {
-      setCurrentText(getText());
-      setCurrentHighlightedText(getHighlightedText());
-    }, [currentText, currentHighlightedText])
-  );
 
   // @author: Tim Suchan
   // returns animatedStyle for info expand animation
@@ -176,9 +167,6 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
     playSound();
     }, [])
 
-
-  
-
   return (
 
     <View style={styles.container}>
@@ -206,11 +194,7 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
         <Text style={styles.levelHighlightedText}>{currentHighlightedText} </Text>
       </ScrollView>
 
-<<<<<<< HEAD
-      <TouchableOpacity style={styles.createTaskButton} onPress={() => {navigation.navigate("AlternativeTask")}}>
-=======
       <TouchableOpacity style={styles.createTaskButton} onPress={() => {navigation.navigate("AlternativeTask"), {callback: nextLevel}; {stopSound()}}}>
->>>>>>> 676c0ba (stoping Sound)
         <Text style={{ color: 'white', justifyContent: 'center', fontSize: 24 }}>Üben</Text>
       </TouchableOpacity>
 

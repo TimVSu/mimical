@@ -15,7 +15,9 @@ const umzug1 = {
 
     "highlightedText": "Mit den Handflächen reiben Sie sich das Gesicht ab.",
 
-    "task": "Reiben sie ihr Gesicht mit den Handflächen"
+    "task": "Reiben sie ihr Gesicht mit den Handflächen",
+
+    "audio": "../assets"
 }
 
 const umzug2 = {
@@ -354,6 +356,57 @@ const einkauf13 = {
     "task": "empty"
 }
 
+//=====================================================================================================================================
+
+const schnee1 = {
+    "baseText": "",
+    "highlightedText": "",
+    "task": "empty",
+    "sound": ""
+}
+
+const schnee2 = {
+    "baseText": "",
+    "highlightedText": "",
+    "task": "empty",
+    "sound": ""
+}
+
+const schnee3 = {
+    "baseText": "",
+    "highlightedText": "",
+    "task": "empty",
+    "sound": ""
+}
+
+const schnee4 = {
+    "baseText": "",
+    "highlightedText": "",
+    "task": "empty",
+    "sound": ""
+}
+
+const schnee5 = {
+    "baseText": "",
+    "highlightedText": "",
+    "task": "empty",
+    "sound": ""
+}
+
+const schnee6 = {
+    "baseText": "",
+    "highlightedText": "",
+    "task": "empty",
+    "sound": ""
+}
+
+const schnee7 = {
+    "baseText": "",
+    "highlightedText": "",
+    "task": "empty",
+    "sound": ""
+}
+
 //const taskContent3 = new taskContent()
 
 
@@ -478,6 +531,7 @@ const getScenarioLength = (key) => {
 const startLevel = (start, scenario) => {
     setCurrentContent(start);
     setCurrentSequence(scenario);
+    console.log('starting level: ' + start + ' in scenario: ' + scenario)
 }
 
 
