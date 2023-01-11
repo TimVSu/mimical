@@ -357,56 +357,56 @@ const schnee1 = {
     "baseText": "Sie schauen nach draußen aus dem Fenster. Es ist Winter und der Himmel ist wolkenverhangen. Schon seit Tagen ist es kalt. Ihnen scheint, als segle die erste Schneeflocke zu Boden. Ist es soweit?",
     "highlightedText": "Sie kneifen die Augen zusammen.",
     "task": "empty",
-    "sound": "../assets/aufnahmengeschnittenderersteschnee/Übung1_Der erste Schnee.wav"
+    "sound": require("../assets/Uebung1_Der_erste_Schnee.wav")
 }
 
 const schnee2 = {
     "baseText": "Tatsächlich! Es schneit dicke, weiße Flocken. Sie ziehen Ihren Mantel und die warmen Winterschuhe an und gehen nach draußen. Alles ist vom Schnee bedeckt und es sieht wunderschön aus. Sie sind erstaunt, wie schnell das ging",
     "highlightedText": "Sie ziehen die Augenbrauen hoch.",
     "task": "empty",
-    "sound": "../assets/aufnahmengeschnittenderersteschnee/Übung2_Der erste Schnee.wav"
+    "sound": require("../assets/Uebung2_Der_erste_Schnee.wav")
 }
 
 const schnee3 = {
     "baseText": "Sie machen sich auf den Weg durch das Schneegestöber. Sie atmen frische, kalte Luft ein. Da ist ein unangenehmer Geruch in der Luft. Als Sie sich umsehen, entdecken Sie Qualm, der aus dem Kamin Ihres Nachbarn weht. Die Abluft aus dem Schornstein stinkt gewaltig.",
     "highlightedText": "Sie rümpfen die Nase.",
     "task": "empty",
-    "sound": "../assets/aufnahmengeschnittenderersteschnee/Übung3_Der erste Schnee.wav"
+    "sound": require("../assets/Uebung3_Der_erste_Schnee.wav")
 }
 
 const schnee4 = {
     "baseText": "Inzwischen ist es ziemlich kalt geworden und Sie haben Ihre Handschuhe zu Hause vergessen. Sie wollen Ihre Hände etwas wärmen.",
     "highlightedText": "Dazu spitzen Sie die Lippen und pusten Ihre warme Ausatemluft in die Hände.",
     "task": "empty",
-    "sound": "../assets/aufnahmengeschnittenderersteschnee/Übung4_Der erste Schnee.wav"
+    "sound": require("../assets/Uebung4_Der_erste_Schnee.wav")
 }
 
 const schnee5 = {
     "baseText": "Es laufen drei Kinder mit einem Schlitten an Ihnen vorbei. Die Kinder sind außer sich vor Freude und wollen den ersten Schnee sofort ausnutzen.",
     "highlightedText": "Sie freuen sich mit Ihnen und lächeln.",
     "task": "empty",
-    "sound": "../assets/aufnahmengeschnittenderersteschnee/Übung5_Der erste Schnee.wav"
+    "sound": require("../assets/Uebung5_Der_erste_Schnee.wav")
 }
 
 const schnee6 = {
     "baseText": "Sie erinnern sich noch gut daran, wie Sie selbst als Kind im Schnee gespielt haben. Beim ersten Schnee sind Sie auch immer sofort mit dem Schlitten losgezogen. Langsam wird es Ihnen zu kalt. Sie überlegen, ob Sie wieder nach Hause gehen sollen.",
     "highlightedText": "Sie spitzen die Lippen und bewegen sie nach rechts und links.",
     "task": "empty",
-    "sound": "../assets/aufnahmengeschnittenderersteschnee/Übung6_Der erste Schnee.wav"
+    "sound": require("../assets/Uebung6_Der_erste_Schnee.wav")
 }
 
 const schnee7 = {
     "baseText": "Sie entscheiden sich für den Heimweg. In der Zwischenzeit ist das Schneien stärker geworden und der Schnee weht Ihnen ins Gesicht. Sie beeilen sich nun. Zuhause angekommen, sind Sie außer Puste.",
     "highlightedText": "Sie pusten die Wangen auf und lassen die Luft wieder entweichen.",
     "task": "empty",
-    "sound": "../assets/aufnahmengeschnittenderersteschnee/Übung7_Der erste Schnee.wav"
+    "sound": require("../assets/Uebung7_Der_erste_Schnee.wav")
 }
 
 const schnee8 = {
     "baseText": "Sie wärmen sich am Kaminfeuer auf und kuscheln sich unter die Decke auf dem Sofa.",
     "highlightedText": "Entspannen Sie sich...",
     "task": "empty",
-    "sound": "../assets/aufnahmengeschnittenderersteschnee/LetzterSatz_Der erste Schnee.wav"
+    "sound": require("../assets/LetzterSatz_Der_erste_Schnee.wav")
 }
 
 //const taskContent3 = new taskContent()
@@ -456,7 +456,7 @@ const defaultScenarios = {
         "icon": faStore
     },
     "schnee":  {
-        "tags": ["EYES", "LIPS"],
+        "tags": ["SHORT_SCENARIO", "UPPER_HALF"],
         "indices": [57, 58, 59, 60, 61, 62, 63, 64],
         "icon": faSnowflake
     }
@@ -514,12 +514,17 @@ const getText = () => {
 
 const getHighlightedText = () => {
     var keyNum = currentSequence[currentContent-1];
-    return allContents[currentContent]["highlightedText"];
+    return allContents[keyNum]["highlightedText"];
 }
 
 const getTaskDescription = () => {
     var keyNum = currentSequence[currentContent-1];
-    return allContents[currentContent]["task"]
+    return allContents[keyNum]["task"]
+}
+
+const getAudio = () => {
+    var keyNum = currentSequence[currentContent-1];
+    return allContents[keyNum]["sound"];
 }
 
 const getTags = (key) => {
@@ -553,5 +558,5 @@ const startLevel = (start, scenario) => {
 export {
     getAllContents, getDefaultScenarios, getIcon,
     startLevel, getScenario, getHighlightedText, getScenarioLength, setCurrentContent, incrementCurrentContent,
-    setCurrentSequence, getText, getCurrentContent, getCurrentSequence, getTags, getTaskDescription
+    setCurrentSequence, getText, getAudio, getCurrentContent, getCurrentSequence, getTags, getTaskDescription
 };

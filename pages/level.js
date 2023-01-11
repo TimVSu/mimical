@@ -12,7 +12,7 @@ import Animated, {
 import Task from '../components/task.js'
 import { Heading, Modal } from 'native-base';
 import Info from '../components/info.js';
-import { getAllContents, incrementCurrentContent, getCurrentSequence, getText, getCurrentContent, getHighlightedText } from '../components/contentManager';
+import { getAllContents, incrementCurrentContent, getCurrentSequence, getText, getAudio, getCurrentContent, getHighlightedText } from '../components/contentManager';
 import styles from '../components/styles.js';
 import { Audio } from 'expo-av';
 
@@ -32,6 +32,7 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
   //used for the anomation off the floatUp effect when a task is called
   const [currentText, setCurrentText] = useState(getText());
   const [currentHighlightedText, setCurrentHighlightedText] = useState(getHighlightedText);
+  const [currentAudio, setCurrentAudio] = useState(getAudio());
   const offset = useSharedValue(hp('100%'));
 
   //used for the exand anoimation of the info button
@@ -123,7 +124,8 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
     if (contentContent < currentSequence.length) {
       incrementCurrentContent();
       setCurrentText(getText());
-      setCurrentHighlightedText(getHighlightedText);
+      setCurrentHighlightedText(getHighlightedText());
+      setCurrentAudio(getAudio());
     }
     else {
       navigation.navigate("Menu");
@@ -133,10 +135,14 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
   //==============================================================================================================================================
 
   const [sound, setSound] = useState();
+  const reqSound = getAudio();
+  
 
   async function playSound() {
     console.log('Loading Sound');
-    const { sound } = await Audio.Sound.createAsync( require('../assets/LAKEY_INSPIRED_Better_Days.mp3')
+    console.log(getAudio())
+    // const { sound } = await Audio.Sound.createAsync( require("../assets/Uebung1_Der_erste_Schnee.wav")
+    const { sound } = await Audio.Sound.createAsync( getAudio() 
     );
     setSound(sound);
 
@@ -151,6 +157,7 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
   useEffect (() =>{
     setCurrentText(getText());
     setCurrentHighlightedText(getHighlightedText());
+    setCurrentAudio(getAudio())
   },[]);
 
 
