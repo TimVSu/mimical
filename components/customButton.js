@@ -32,7 +32,7 @@ export default function customButton({ text, onPress, color }) {
         <TouchableOpacity onPress={ onPress }>
             <View style={styles.shape_container}>
                 <Animated.View style={[styles.square, {
-                    opacity: progress,
+                    // opacity: progress,
                     backgroundColor: color,
                     transform: [
                         { scale },

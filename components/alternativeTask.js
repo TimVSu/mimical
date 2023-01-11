@@ -17,10 +17,10 @@ if (Platform.OS === 'android') {
     }
 }
 
-let trainDuration = 3
-let pauseDuration = 3
+let trainDuration = 1
+let pauseDuration = 1
 
-const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
+const AlternativeTask = ({ navigation , route , children , downFunction , }) => {
 
     // VARIABLES:
     //==============================================================================================================================================
@@ -137,7 +137,8 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
             // Try setting `flexDirection` to `"row"`.
             flexDirection: "column"
         }]}>
-            {/* <Modal
+
+            <Modal
                 animationType="slide"
                 transparent={true}
                 visible={modalVisible}
@@ -146,49 +147,19 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
                     setModalVisible(!modalVisible);
                 }}
             >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Hello World!</Text>
-                        <Pressable
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => setModalVisible(!modalVisible)}
-                        >
-                            <Text style={styles.textStyle}>Hide Modal</Text>
-                        </Pressable>
-                    </View>
-                </View>
-            </Modal> */}
+                <View style={tempStyles.centeredView}>
+                    <View style={[tempStyles.modalView, {}]}>
 
-            {/* <customModal
-                oP1={nextLevelFunction}
-                oP2={navigation.navigate("Menu")}
-                text1={"Weiter"}
-                text2={"Zum Menu"}
-                header={"Gut gemacht! Level abschlossen!"}
-            /> */}
+                        <Text style={tempStyles.modalText}> "Gut gemacht! Level abschlossen!" </Text>
 
-    	    <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
-                setModalVisible(!modalVisible);
-                }}
-            >
-                <View style={styles.centeredView}>
-                    <View style={[styles.modalView, {}]}>
 
-                        <Text style={styles.modalText}> "Gut gemacht! Level abschlossen!" </Text>
-                            
+                        <View style={tempStyles.buttonView}>
 
-                        <View style={styles.buttonView}>
-{/*                             
-                            <CustomButton text="Weiter" onPress={ nextLevelFunction } color="skyblue"/>
-                            <CustomButton text="Zum Menu" onPress={ navigation.navigate("Menu") } color="red" /> */}
+                            <CustomButton text='Weiter' onPress={() => { nextLevelFunction }} color="skyblue" />
+                            <CustomButton text='Zurück' onPress={() => { navigation.navigate("Menu") }} color="red" />
 
                         </View>
-                        
+
                     </View>
                 </View>
             </Modal>
@@ -242,47 +213,6 @@ const tempStyles = StyleSheet.create({
         marginTop: '5%',
         marginBottom: '5%',
     },
-    // centeredView: {
-    //     flex: 1,
-    //     justifyContent: "center",
-    //     alignItems: "center",
-    //     marginTop: 22
-    //   },
-    //   modalView: {
-    //     margin: 20,
-    //     backgroundColor: "white",
-    //     borderRadius: 20,
-    //     padding: 35,
-    //     alignItems: "center",
-    //     shadowColor: "#000",
-    //     shadowOffset: {
-    //       width: 0,
-    //       height: 2
-    //     },
-    //     shadowOpacity: 0.25,
-    //     shadowRadius: 4,
-    //     elevation: 5
-    //   },
-    //   button: {
-    //     borderRadius: 20,
-    //     padding: 10,
-    //     elevation: 2
-    //   },
-    //   buttonOpen: {
-    //     backgroundColor: "#F194FF",
-    //   },
-    //   buttonClose: {
-    //     backgroundColor: "#2196F3",
-    //   },
-    //   textStyle: {
-    //     color: "white",
-    //     fontWeight: "bold",
-    //     textAlign: "center"
-    //   },
-    //   modalText: {
-    //     marginBottom: 15,
-    //     textAlign: "center"
-    //   }
     centeredView: {
         flex: 0.9,
         justifyContent: "center",
