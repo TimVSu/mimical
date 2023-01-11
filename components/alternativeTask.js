@@ -118,7 +118,8 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
             }
         }
         if (currentTime == 0 && repCounter == repititions - 1) {
-            saveAsCompleted(getCurrentSequence()[getCurrentContent()]);
+            console.log('levelandsequence' + getCurrentSequence() + ' : ' + (getCurrentContent() - 1))
+            saveAsCompleted(getCurrentSequence()[getCurrentContent()-1]);
             nextLevelFunction();
         }
         if (currentTime == 3 && taskRunning && relaxState) {
