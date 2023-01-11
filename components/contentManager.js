@@ -7,7 +7,7 @@
 
 //@author: tim suchan
 
-import { faTruck, faHouse, faPlane, faStore, faBox, faB } from "@fortawesome/free-solid-svg-icons"
+import { faTruck, faHouse, faPlane, faStore, faBox, faB, faSnowflake } from "@fortawesome/free-solid-svg-icons"
 
 const umzug1 = {
     "baseText": "Es ist Samstagmorgen und Sie ziehen heute in Ihre neue Wohnung ein. Noch ein wenig verschlafen," +
@@ -359,52 +359,59 @@ const einkauf13 = {
 //=====================================================================================================================================
 
 const schnee1 = {
-    "baseText": "",
-    "highlightedText": "",
+    "baseText": "Sie schauen nach draußen aus dem Fenster. Es ist Winter und der Himmel ist wolkenverhangen. Schon seit Tagen ist es kalt. Ihnen scheint, als segle die erste Schneeflocke zu Boden. Ist es soweit?",
+    "highlightedText": "Sie kneifen die Augen zusammen.",
     "task": "empty",
-    "sound": ""
+    "sound": "../assets/aufnahmengeschnittenderersteschnee/Übung1_Der erste Schnee.wav"
 }
 
 const schnee2 = {
-    "baseText": "",
-    "highlightedText": "",
+    "baseText": "Tatsächlich! Es schneit dicke, weiße Flocken. Sie ziehen Ihren Mantel und die warmen Winterschuhe an und gehen nach draußen. Alles ist vom Schnee bedeckt und es sieht wunderschön aus. Sie sind erstaunt, wie schnell das ging",
+    "highlightedText": "Sie ziehen die Augenbrauen hoch.",
     "task": "empty",
-    "sound": ""
+    "sound": "../assets/aufnahmengeschnittenderersteschnee/Übung2_Der erste Schnee.wav"
 }
 
 const schnee3 = {
-    "baseText": "",
-    "highlightedText": "",
+    "baseText": "Sie machen sich auf den Weg durch das Schneegestöber. Sie atmen frische, kalte Luft ein. Da ist ein unangenehmer Geruch in der Luft. Als Sie sich umsehen, entdecken Sie Qualm, der aus dem Kamin Ihres Nachbarn weht. Die Abluft aus dem Schornstein stinkt gewaltig.",
+    "highlightedText": "Sie rümpfen die Nase.",
     "task": "empty",
-    "sound": ""
+    "sound": "../assets/aufnahmengeschnittenderersteschnee/Übung3_Der erste Schnee.wav"
 }
 
 const schnee4 = {
-    "baseText": "",
-    "highlightedText": "",
+    "baseText": "Inzwischen ist es ziemlich kalt geworden und Sie haben Ihre Handschuhe zu Hause vergessen. Sie wollen Ihre Hände etwas wärmen.",
+    "highlightedText": "Dazu spitzen Sie die Lippen und pusten Ihre warme Ausatemluft in die Hände.",
     "task": "empty",
-    "sound": ""
+    "sound": "../assets/aufnahmengeschnittenderersteschnee/Übung4_Der erste Schnee.wav"
 }
 
 const schnee5 = {
-    "baseText": "",
-    "highlightedText": "",
+    "baseText": "Es laufen drei Kinder mit einem Schlitten an Ihnen vorbei. Die Kinder sind außer sich vor Freude und wollen den ersten Schnee sofort ausnutzen.",
+    "highlightedText": "Sie freuen sich mit Ihnen und lächeln.",
     "task": "empty",
-    "sound": ""
+    "sound": "../assets/aufnahmengeschnittenderersteschnee/Übung5_Der erste Schnee.wav"
 }
 
 const schnee6 = {
-    "baseText": "",
-    "highlightedText": "",
+    "baseText": "Sie erinnern sich noch gut daran, wie Sie selbst als Kind im Schnee gespielt haben. Beim ersten Schnee sind Sie auch immer sofort mit dem Schlitten losgezogen. Langsam wird es Ihnen zu kalt. Sie überlegen, ob Sie wieder nach Hause gehen sollen.",
+    "highlightedText": "Sie spitzen die Lippen und bewegen sie nach rechts und links.",
     "task": "empty",
-    "sound": ""
+    "sound": "../assets/aufnahmengeschnittenderersteschnee/Übung6_Der erste Schnee.wav"
 }
 
 const schnee7 = {
-    "baseText": "",
-    "highlightedText": "",
+    "baseText": "Sie entscheiden sich für den Heimweg. In der Zwischenzeit ist das Schneien stärker geworden und der Schnee weht Ihnen ins Gesicht. Sie beeilen sich nun. Zuhause angekommen, sind Sie außer Puste.",
+    "highlightedText": "Sie pusten die Wangen auf und lassen die Luft wieder entweichen.",
     "task": "empty",
-    "sound": ""
+    "sound": "../assets/aufnahmengeschnittenderersteschnee/Übung7_Der erste Schnee.wav"
+}
+
+const schnee8 = {
+    "baseText": "Sie wärmen sich am Kaminfeuer auf und kuscheln sich unter die Decke auf dem Sofa.",
+    "highlightedText": "Entspannen Sie sich...",
+    "task": "empty",
+    "sound": "../assets/aufnahmengeschnittenderersteschnee/LetzterSatz_Der erste Schnee.wav"
 }
 
 //const taskContent3 = new taskContent()
@@ -426,6 +433,9 @@ const allContents = {
     44: einkauf1, 45: einkauf2, 46: einkauf3, 47: einkauf4, 48: einkauf5,
     49: einkauf6, 50: einkauf7, 51: einkauf8, 52: einkauf9, 53: einkauf10,
     54: einkauf11, 55: einkauf12, 56: einkauf13,
+
+    57: schnee1, 58: schnee2, 59: schnee3, 60: schnee4, 61: schnee5,
+    62: schnee6, 63: schnee7, 64: schnee8 
 
 };
 
@@ -449,6 +459,11 @@ const defaultScenarios = {
         "tags": ["EYES", "LIPS"],
         "indices": [44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,],
         "icon": faStore
+    },
+    "schnee":  {
+        "tags": ["EYES", "LIPS"],
+        "indices": [57, 58, 59, 60, 61, 62, 63, 64],
+        "icon": faSnowflake
     }
 }
 
