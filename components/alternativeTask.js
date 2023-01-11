@@ -1,14 +1,13 @@
 //@author: Tim Suchan
 import CameraScreen from './camera.js';
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text, Button, LayoutAnimation, UIManager, Pressable, Modal, Alert } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, Button, LayoutAnimation, UIManager, Pressable, Modal, Alert, useColorScheme } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Heading } from 'native-base';
 import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
+import CustomButton from './customButton.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import customModal from './customModal.js';
-import CustomButton from './customButton'
 import { getCurrentContent, getCurrentSequence, getTaskDescription, incrementCurrentContent } from './contentManager.js';
 
 if (Platform.OS === 'android') {
@@ -20,7 +19,19 @@ if (Platform.OS === 'android') {
 let trainDuration = 1
 let pauseDuration = 1
 
-const AlternativeTask = ({ navigation , route , children , downFunction , }) => {
+// import colors
+import { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green } from './styles';
+
+// import icons
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faChevronLeft, faChevronRight, faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
+
+const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
+
+    // light/dark mode
+    const colorScheme = useColorScheme();
+    const containerColor = colorScheme === 'light' ? light_background_color : dark_background_color;
+    const buttonColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
 
     // VARIABLES:
     //==============================================================================================================================================
@@ -57,7 +68,6 @@ const AlternativeTask = ({ navigation , route , children , downFunction , }) => 
     const nextLevelFunction = () => {
         incrementCurrentContent();
         navigation.navigate("Level");
-
     }
 
     const saveAsCompleted = async (completedContent) => {
@@ -120,9 +130,11 @@ const AlternativeTask = ({ navigation , route , children , downFunction , }) => 
             }
         }
         if (currentTime == 0 && repCounter == repititions - 1) {
+            setTaskRunning(false);
+            setCurrentTime(0);
             saveAsCompleted(getCurrentSequence[getCurrentContent()]);
             // nextLevelFunction();
-            setModalVisible(true)
+            setModalVisible(true);
         }
         if (currentTime == 3 && taskRunning && relaxState) {
             setInformState(true);
@@ -133,10 +145,7 @@ const AlternativeTask = ({ navigation , route , children , downFunction , }) => 
 
 
     return (
-        <View style={[styles.container, {
-            // Try setting `flexDirection` to `"row"`.
-            flexDirection: "column"
-        }]}>
+        <View style={[{ flex: 1 }, { backgroundColor: containerColor }]}>
 
             <Modal
                 animationType="slide"
@@ -155,8 +164,8 @@ const AlternativeTask = ({ navigation , route , children , downFunction , }) => 
 
                         <View style={tempStyles.buttonView}>
 
-                            <CustomButton text='Weiter' onPress={ nextLevelFunction } color="skyblue" />
-                            <CustomButton text='Zurück' onPress={() => { navigation.navigate("Menu") }} color="red" />
+                            <CustomButton text='Zurück zum menu ' onPress={() => { navigation.navigate("Menu") }} color="red" />
+                            <CustomButton text='Weiter' onPress={nextLevelFunction} color="skyblue" />
 
                         </View>
 
@@ -181,7 +190,7 @@ const AlternativeTask = ({ navigation , route , children , downFunction , }) => 
             <View style={{ flex: 1.5, paddingLeft: 10, paddingRight: 10, alignContent: "center", alignItems: "center", justifyContent: "center", backgroundColor: 'white' }}>
                 <Text style={styles.taskDescription} size='lg'>{getTaskDescription()}</Text>
             </View>
-            <View style={{ flex: 1.5, backgroundColor: "white", flexDirection: "row", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
+            {/* <View style={{ flex: 1.5, backgroundColor: "white", flexDirection: "row", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
                 <TouchableOpacity style={styles.taskButton} onPress={() => { navigation.goBack() }}>
                     <AntDesign name="leftcircleo" size={75} color="black" />
                 </TouchableOpacity>
@@ -191,9 +200,22 @@ const AlternativeTask = ({ navigation , route , children , downFunction , }) => 
                 <TouchableOpacity style={styles.taskButton} onPress={() => play()}>
                     <AntDesign name="playcircleo" size={75} color="black" />
                 </TouchableOpacity>
+            </View> */}
+
+            <View style={[{ flexDirection: 'row' }, { justifyContent: 'center' }, { paddingBottom: 32 }]}>
+                <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : buttonColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => { navigation.goBack() }}>
+                    <FontAwesomeIcon style={{ marginRight: 8 }} icon={faChevronLeft} color='white' />
+                    <Text style={[styles.label, { color: 'white' }]}>Zurück</Text>
+                </Pressable>
+                <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : buttonColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => { console.log(getCurrentSequence()[getCurrentContent()] + " : " + getCurrentContent()) }}>
+                    <FontAwesomeIcon style={{ marginRight: 8 }} icon={faPause} color='white' />
+                    <Text style={[styles.label, { color: 'white' }]}>Pause</Text>
+                </Pressable>
+                <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : buttonColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => play()}>
+                    <Text style={[styles.label, { color: 'white' }]}>Weiter</Text>
+                    <FontAwesomeIcon style={{ marginLeft: 8 }} icon={faChevronRight} color='white' />
+                </Pressable>
             </View>
-
-
 
         </View>
     );
@@ -247,7 +269,7 @@ const tempStyles = StyleSheet.create({
 
     },
     buttonView: {
-        paddingTop:100,
+        paddingTop: 100,
         flex: 1,
         flexDirection: "row"
     }

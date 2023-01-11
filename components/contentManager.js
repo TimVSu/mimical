@@ -12,21 +12,16 @@ import { faTruck, faHouse, faPlane, faStore, faBox, faB, faSnowflake } from "@fo
 const umzug1 = {
     "baseText": "Es ist Samstagmorgen und Sie ziehen heute in Ihre neue Wohnung ein. Noch ein wenig verschlafen," +
         "laufen Sie durch Ihre alte Wohnung. Sie gehen in Gedanken noch einmal die Umzugsplanung für den heutigen Tag durch.",
-
     "highlightedText": "Mit den Handflächen reiben Sie sich das Gesicht ab.",
 
     "task": "Reiben sie ihr Gesicht mit den Handflächen",
-
-    "audio": "../assets"
 }
 
 const umzug2 = {
     "baseText": "Alle Kartons sind gepackt und stehen bereit." +
         "Auch das Bett ist bereits abgebaut und umzugsbereit." +
         "Ihr Blick schweift durch die Wohnung auf das schwere, sperrige Sofa. Sie fragen sich, ob es durch den engen Flur passen wird. Besorgt",
-
     "highlightedText": "Ziehen Sie die Augenbrauen hoch.",
-
     "task": "Ziehen Sie die Augenbrauen hoch."
 }
 
@@ -441,22 +436,22 @@ const allContents = {
 
 const defaultScenarios = {
     "umzug": {
-        "tags": ["EYES", "LIPS"],
+        "tags": ["LONG_SCENARIO", "UPPER_HALF"],
         "indices": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
         "icon" : faTruck
     },
     "einzug": {
-        "tags": ["EYES", "LIPS"],
+        "tags": ["LONG_SCENARIO", "LOWER_HALF"],
         "indices": [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,],
         "icon": faBox
     },
     "urlaub": {
-        "tags": ["EYES", "LIPS"],
+        "tags": ["SHORT_SCENARIO", "UPPER_HALF"],
         "indices": [31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,],
         "icon": faPlane
     },
     "einkauf": {
-        "tags": ["EYES", "LIPS"],
+        "tags": ["SHORT_SCENARIO", "LOWER_HALF"],
         "indices": [44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,],
         "icon": faStore
     },

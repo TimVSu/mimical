@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import "../pages/global"
 import {Text, StyleSheet, View, TouchableOpacity, Animated } from 'react-native';
 
-export default function customButton({ text, onPress, color }) {    
+export default function CustomButton({ text, onPress, color }) {    
     
     const progress = useRef(new Animated.Value(0.5)).current;
     const scale = useRef(new Animated.Value(1)).current;
@@ -13,7 +13,7 @@ export default function customButton({ text, onPress, color }) {
     
     useEffect(() => {
 
-        Animated.loop(
+        
             Animated.parallel([
             Animated.sequence([
                 Animated.spring(progress, { toValue: 1, useNativeDriver: true }),
@@ -23,8 +23,7 @@ export default function customButton({ text, onPress, color }) {
                 Animated.spring(scale, { toValue: 2, useNativeDriver: true }),
                 Animated.spring(scale, { toValue: 1, useNativeDriver: true }),
             ]),
-            ])
-        ).start();
+            ]).start();
     }, []);
 
     return (

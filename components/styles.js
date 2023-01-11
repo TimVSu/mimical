@@ -272,7 +272,23 @@ export default StyleSheet.create({
   levelHighlightedText: {
     fontSize: 25,
     lineHeight: 50,
-    color: '#EB6440',
+    color: light_primary_color,
 
+  },
+  filterActive:{
+    flexDirection: 'row',
+    borderRadius: 8,
+    padding: 16,
+    margin: 16,
+    marginRight: 8,
+    backgroundColor: 'blue',
+  },
+  filterInactive:{
+    flexDirection: 'row',
+    borderRadius: 8,
+    padding: 16,
+    margin: 16,
+    marginRight: 8,
+    backgroundColor: '#D6E4E5',
   }
 });
