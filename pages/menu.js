@@ -12,7 +12,7 @@ import NavBar from '../components/nav_bar.js';
 import TabBar from '../components/tab_bar.js';
 import Scenario from '../components/scenario.js';
 import FilterBar from '../components/filter_bar.js';
-import { faBeer, faBowlingBall, faChurch, faCity, faCow, faLightbulb, faSnowflake, faSun, faTree } from '@fortawesome/free-solid-svg-icons';
+import { faBeer, faBowlingBall, faChurch, faCity, faCow, faL, faLightbulb, faSnowflake, faSun, faTree } from '@fortawesome/free-solid-svg-icons';
 import styles from '../components/styles.js';
 import { light_primary_color, dark_primary_color } from '../components/styles.js';
 import { getAllContents, incrementCurrentContent, getDefaultScenarios, getCurrentSequence, setCurrentContent, getCurrentContent, getScenario, setCurrentSequence, getIcon, getTags } from '../components/contentManager';
@@ -21,7 +21,6 @@ import { getEffectiveConstraintOfTypeParameter } from 'typescript';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCircleInfo, faEye, faFaceSmile } from '@fortawesome/free-solid-svg-icons';
-import { getTag } from 'react-native-reanimated/lib/reanimated2/NativeMethods.js';
 
 // colors
 const orange = 'rgb(255, 149, 0)';
@@ -80,6 +79,7 @@ const HomePage = ({ navigation }) => {
 
   const [tag, setTag] = useState('All')
   const [keyArray, setKeyArray] = useState(Object.keys(getDefaultScenarios()))
+  const [filteredKeyArray, setFilteredKeyArray] = useState(Object.keys(getDefaultScenarios()))
 
   /*const setTagFilter = tag => {
 
@@ -93,15 +93,16 @@ const HomePage = ({ navigation }) => {
 
   const setTagFilter = (tag) => {
     tagStates[tag] = !tagStates[tag];
+    console.log(tagStates);
     setKeyArrayToFilter();
   }
 
   const setKeyArrayToFilter = () =>{
-    setKeyArray(keyArray.filter(checkTags));
+    setFilteredKeyArray(keyArray.filter(checkTags));
   }
 
   const checkTags = (contentKey) => {
-    return tagStates[getTags(contentKey)[0]] == true && tagStates[getTags(contentKey)[1]] == true;
+    return (tagStates[getTags(contentKey)[0]] === true && tagStates[getTags(contentKey)[1]] === true);
   }
 
   return (
@@ -111,12 +112,12 @@ const HomePage = ({ navigation }) => {
 
       <View style={[styles.filter_bar, containerColor]}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {Object.keys(tagStates).map(e => (
+          {Object.keys(tagStates).map(tag => (
 
-            <View style={[{ flexDirection: 'row' }, { backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginRight: 8 }]}>
-              <TouchableOpacity style={[{ flexDirection: 'row' }, { alignItems: 'center' }, tag === e.tag && styles.btnTabActive]} onPress={() => setTagFilter(e.tag)}>
+            <View style={tagStates[tag] ? styles.filterActive : styles.filterInactive}>
+              <TouchableOpacity style={[{ flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => setTagFilter(tag)}>
                 <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-                <Text style={[styles.label, { color: 'white' }]}>{e.tag}</Text>
+                <Text style={[styles.label, { color: 'white' }]}>{tag}</Text>
               </TouchableOpacity>
 
             </View>
@@ -126,7 +127,7 @@ const HomePage = ({ navigation }) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={[styles.container, containerColor]}>
           {/* <Text style={[styles.title1, textColor]}>Text</Text> */}
-          {keyArray.map((scenarioKey) =>
+          {filteredKeyArray.map((scenarioKey) =>
           (
             <Scenario
               title={scenarioKey}
