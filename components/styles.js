@@ -272,7 +272,7 @@ export default StyleSheet.create({
   levelHighlightedText: {
     fontSize: 25,
     lineHeight: 50,
-    color: '#EB6440',
+    color: light_primary_color,
 
   }
 });
