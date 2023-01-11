@@ -12,9 +12,7 @@ import { faTruck, faHouse, faPlane, faStore, faBox, faB } from "@fortawesome/fre
 const umzug1 = {
     "baseText": "Es ist Samstagmorgen und Sie ziehen heute in Ihre neue Wohnung ein. Noch ein wenig verschlafen," +
         "laufen Sie durch Ihre alte Wohnung. Sie gehen in Gedanken noch einmal die Umzugsplanung für den heutigen Tag durch.",
-
     "highlightedText": "Mit den Handflächen reiben Sie sich das Gesicht ab.",
-
     "task": "Reiben sie ihr Gesicht mit den Handflächen"
 }
 
@@ -22,9 +20,7 @@ const umzug2 = {
     "baseText": "Alle Kartons sind gepackt und stehen bereit." +
         "Auch das Bett ist bereits abgebaut und umzugsbereit." +
         "Ihr Blick schweift durch die Wohnung auf das schwere, sperrige Sofa. Sie fragen sich, ob es durch den engen Flur passen wird. Besorgt",
-
     "highlightedText": "Ziehen Sie die Augenbrauen hoch.",
-
     "task": "Ziehen Sie die Augenbrauen hoch."
 }
 

@@ -206,11 +206,7 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
         <Text style={styles.levelHighlightedText}>{currentHighlightedText} </Text>
       </ScrollView>
 
-<<<<<<< HEAD
       <TouchableOpacity style={styles.createTaskButton} onPress={() => {navigation.navigate("AlternativeTask")}}>
-=======
-      <TouchableOpacity style={styles.createTaskButton} onPress={() => {navigation.navigate("AlternativeTask"), {callback: nextLevel}; {stopSound()}}}>
->>>>>>> 676c0ba (stoping Sound)
         <Text style={{ color: 'white', justifyContent: 'center', fontSize: 24 }}>Üben</Text>
       </TouchableOpacity>
 

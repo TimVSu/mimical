@@ -6,9 +6,8 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { Heading } from 'native-base';
 import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
+import CustomButton from './customButton.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import customModal from './customModal.js';
-import CustomButton from './customButton'
 import { getCurrentContent, getCurrentSequence, getTaskDescription, incrementCurrentContent } from './contentManager.js';
 
 if (Platform.OS === 'android') {
@@ -57,7 +56,6 @@ const AlternativeTask = ({ navigation , route , children , downFunction , }) => 
     const nextLevelFunction = () => {
         incrementCurrentContent();
         navigation.navigate("Level");
-
     }
 
     const saveAsCompleted = async (completedContent) => {
@@ -120,9 +118,11 @@ const AlternativeTask = ({ navigation , route , children , downFunction , }) => 
             }
         }
         if (currentTime == 0 && repCounter == repititions - 1) {
+            setTaskRunning(false);
+            setCurrentTime(0);
             saveAsCompleted(getCurrentSequence[getCurrentContent()]);
             // nextLevelFunction();
-            setModalVisible(true)
+            setModalVisible(true);
         }
         if (currentTime == 3 && taskRunning && relaxState) {
             setInformState(true);
@@ -155,8 +155,8 @@ const AlternativeTask = ({ navigation , route , children , downFunction , }) => 
 
                         <View style={tempStyles.buttonView}>
 
-                            <CustomButton text='Weiter' onPress={ nextLevelFunction } color="skyblue" />
-                            <CustomButton text='Zurück' onPress={() => { navigation.navigate("Menu") }} color="red" />
+                        <CustomButton text='Zurück zum menu ' onPress={() => { navigation.navigate("Menu") }} color="red" />
+                        <CustomButton text='Weiter' onPress={ nextLevelFunction } color="skyblue" />
 
                         </View>
 
