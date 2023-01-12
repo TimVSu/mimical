@@ -1,6 +1,6 @@
 //@author: Tim Suchan
 import { useEffect, useState, useCallback } from 'react';
-import { View, StyleSheet, TouchableOpacity, Platform, UIManager, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Platform, UIManager, Text, ScrollView, useColorScheme } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { AntDesign } from '@expo/vector-icons';
 import Animated, {
@@ -16,6 +16,10 @@ import { getAllContents, incrementCurrentContent, getCurrentSequence, getText, g
 import styles from '../components/styles.js';
 import { Audio } from 'expo-av';
 import { useFocusEffect } from '@react-navigation/native';
+import Button from '../components/button.js';
+import { light_primary_color, dark_primary_color } from '../components/styles.js';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faCircleChevronLeft, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 if (
   Platform.OS === "android" &&
@@ -145,7 +149,7 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
 
   async function playSound() {
     console.log('Loading Sound');
-    const { sound } = await Audio.Sound.createAsync( require('../assets/LAKEY_INSPIRED_Better_Days.mp3')
+    const { sound } = await Audio.Sound.createAsync(require('../assets/LAKEY_INSPIRED_Better_Days.mp3')
     );
     setSound(sound);
 
@@ -157,33 +161,36 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
     await sound.unloadAsync();
   }
 
-  useEffect (() =>{
+  useEffect(() => {
     setCurrentText(getText());
     setCurrentHighlightedText(getHighlightedText());
-  },[]);
+  }, []);
 
 
   useEffect(() => {
     return sound
       ? () => {
-          console.log('Unloading Sound');
-          sound.unloadAsync();
-        }
+        console.log('Unloading Sound');
+        sound.unloadAsync();
+      }
       : undefined;
   }, [sound]);
 
-  useEffect(() => {
-    playSound();
-    }, [])
+  // useEffect(() => {
+  //   playSound();
+  // }, [])
 
 
-  
+  const colorScheme = useColorScheme();
+  const containerColor = colorScheme === "light" ? styles.light_container : styles.dark_container;
+  const textColor = colorScheme === "light" ? styles.light_text : styles.dark_text;
 
   return (
 
-    <View style={styles.container}>
+    <View
+      style={[{ flex: 1 }, containerColor]}>
 
-      <TouchableOpacity onPress={navigation.goBack} style={styles.backButton}>
+      {/* <TouchableOpacity onPress={navigation.goBack} style={styles.backButton}>
         <AntDesign name="left" size={wp('8%')} color="black" />
       </TouchableOpacity>
 
@@ -195,22 +202,39 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
         <TouchableOpacity style={styles.buttonRight} onPress={createInfo}>
           <AntDesign name="infocirlceo" size={24} color="black" />
         </TouchableOpacity>
-      }
+      } */}
 
-      <View style={{ marginTop: hp('15%'), alignContent: 'center', alignItems: 'center', zIndex: 0, elevation: 0 }}>
-        <Heading size="2xl">LEVEL HEADING</Heading>
+      <View style={[{ flexDirection: 'row' }, { justifyContent: 'space-between' }, { padding: 16 }, { marginTop: 64 }]}>
+        <FontAwesomeIcon icon={faCircleChevronLeft} size={32} color={colorScheme === "light" ? light_primary_color : dark_primary_color} />
+        <FontAwesomeIcon icon={faCircleInfo} size={32} color={colorScheme === "light" ? light_primary_color : dark_primary_color} />
       </View>
-      <ScrollView style={{ marginBottom: hp('15%'), marginTop: hp('5%') }}
-        contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', marginRight: '5%', marginLeft: '5%' }}>
-        <Text style={styles.levelText}>{currentText}</Text>
-        <Text style={styles.levelHighlightedText}>{currentHighlightedText} </Text>
-      </ScrollView>
 
-      <TouchableOpacity style={styles.createTaskButton} onPress={() => {navigation.navigate("AlternativeTask")}}>
+      <View style={[{ flex: 1 }, { alignItems: 'center' }]}>
+        {/* <View style={{ marginTop: hp('15%'), alignContent: 'center', alignItems: 'center', zIndex: 0, elevation: 0 }}>
+        <Heading size="2xl">LEVEL HEADING</Heading>
+      </View> */}
+
+        <Text style={[{ fontSize: 40 }, { fontWeight: 'bold' }, textColor, { padding: 16 }, { marginTop: 16 }]}>Level Überschrift</Text>
+
+        <ScrollView
+          // style={{ marginBottom: hp('15%'), marginTop: hp('5%') }}
+          // contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', marginRight: '5%', marginLeft: '5%' }}
+          style={[{ borderWidth: 0 }, { padding: 16 }]}
+        >
+          <Text style={[{ fontSize: 32 }, textColor]}>{currentText}</Text>
+          {/* <Text style={[{ borderWidth: 0 }, { fontSize: 32 }, { fontWeight: 'bold' }, { color: colorScheme === "light" ? light_primary_color : dark_primary_color }, { padding: 16 }]}>{currentHighlightedText} </Text> */}
+        </ScrollView>
+
+        <Text style={[{ borderWidth: 0 }, { fontSize: 32 }, { fontWeight: 'bold' }, { color: colorScheme === "light" ? light_primary_color : dark_primary_color }, { padding: 16 }]}>{currentHighlightedText} </Text>
+
+        {/* <TouchableOpacity style={styles.createTaskButton} onPress={() => {navigation.navigate("AlternativeTask")}}>
         <Text style={{ color: 'white', justifyContent: 'center', fontSize: 24 }}>Üben</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
-
+        <View style={{ marginBottom: 32 }}>
+          <Button label="Übung starten" navigation={navigation} target={"AlternativeTask"} />
+        </View>
+      </View>
 
       {taskCreated &&
         <Animated.View style={[floatUpStyle, { zIndex: 100, elevation: 100, position: 'absolute' }]}>

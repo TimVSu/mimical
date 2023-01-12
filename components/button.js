@@ -16,8 +16,8 @@ const Button = ({ navigation, ...props }) => {
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   return (
-    <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : containerColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => navigation.navigate(props.target)}>
-      <FontAwesomeIcon style={{ marginRight: 8 }} icon={props.icon} color='white' />
+    <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : containerColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 16 }, { flexDirection: 'row' }, { justifyContent: 'center' }, { alignItems: 'center' }]} onPress={() => navigation.navigate(props.target)}>
+      {/* <FontAwesomeIcon style={{ marginRight: 8 }} icon={props.icon} color='white' /> */}
       <Text style={[styles.label, { color: 'white' }]}>{props.label}</Text>
     </Pressable>
   );
