@@ -27,11 +27,6 @@ const Scenario = ({ navigation, ...props }) => {
   let scenarioLength = getScenarioLength(name);
   let scenario = getScenario(name);
 
-
-  const completionCallback = () => {
-    setCompletionCounter(completionCounter => completionCounter + 1);
-  }
-
   let iterator = [];
   for (let i = 0; i < scenarioLength; i++) {
     iterator.push(i);
@@ -48,7 +43,7 @@ const Scenario = ({ navigation, ...props }) => {
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         {iterator.map((iterate) =>
         (
-          <Exercise 
+          <Exercise
             level={iterate + 1}
             icon={props.icon}
             navigation={navigation}
@@ -57,8 +52,8 @@ const Scenario = ({ navigation, ...props }) => {
             completed={props.completions.includes(getScenario(name)[iterate])}
             scenarioKey={name}
             fromHomeScreen={false}
-            >
-            </Exercise>))}
+          >
+          </Exercise>))}
       </ScrollView>
     </View>
   );

@@ -35,8 +35,8 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
     const containerColor = colorScheme === 'light' ? light_background_color : dark_background_color;
     const buttonColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
 
-    // VARIABLES:
-    //==============================================================================================================================================
+// VARIABLES:
+//==============================================================================================================================================
     const [currentTime, setCurrentTime] = useState(trainDuration);
     const [taskRunning, setTaskRunning] = useState(false);
     const [onPause, setOnPause] = useState(false);
@@ -48,9 +48,11 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
     const repititions = 3;
     const [showDescription, setShowDescription] = useState(true);
     const [modalVisible, setModalVisible] = useState(false);
+    const thisContent = getCurrentSequence()[getCurrentContent() - 1];
+    const ifCompleted = { [thisContent]: 'completed' };
 
-    // FUNCTIONS:
-    //==============================================================================================================================================
+// FUNCTIONS:
+//==============================================================================================================================================
 
     //@author: tim suchan
     //starts/continues one train/pause timer repitition, called when play button is pressd or when  
@@ -67,16 +69,16 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
         }
     }
 
+    //@author: Tim Suchan
+    //starts the next level
     const nextLevelFunction = () => {
         incrementCurrentContent();
         navigation.navigate("Level");
     }
 
-    const thisContent = getCurrentSequence()[getCurrentContent() - 1];
-    const ifCompleted = { [thisContent]: 'completed' }
-
+    //@author: Tim Suchan
+    //saves the current level as completed
     const saveAsCompleted = async (completedContent) => {
-
         try {
             await AsyncStorage.mergeItem('@completions', JSON.stringify(completedContent));
             console.log('saved completed succesfull');
@@ -86,6 +88,8 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
         }
     }
 
+    //@author: Tim Suchan
+    //saves the current level as last played so that the user can start playing from where he stopped in the menu/home screen
     const saveAsLast = async (lastContent) => {
 
         try {
@@ -97,8 +101,8 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
         }
     }
 
-
-
+    //@author: Tim Suchan
+    //Removes, increments and replaces the currentTime, this is done so that the animation is triggered on changes
     const removeIncrementReplace = () => {
         setRemoved(true);
         LayoutAnimation.configureNext({
@@ -107,10 +111,9 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
         });
         setCurrentTime(currentTime => currentTime - 1);
         setRemoved(false);
-
     }
 
-    //@author: TIm Suchan
+    //@author: Tim Suchan
     // pauses a running game timer sequence
     const pause = () => {
         setTaskRunning(false);
@@ -208,17 +211,6 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
             <View style={{ flex: 1.5, paddingLeft: 10, paddingRight: 10, alignContent: "center", alignItems: "center", justifyContent: "center", backgroundColor: 'white' }}>
                 <Text style={styles.taskDescription} size='lg'>{getTaskDescription()}</Text>
             </View>
-            {/* <View style={{ flex: 1.5, backgroundColor: "white", flexDirection: "row", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
-                <TouchableOpacity style={styles.taskButton} onPress={() => { navigation.goBack() }}>
-                    <AntDesign name="leftcircleo" size={75} color="black" />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.taskButton} activeOpacity={0.3} onPress={() => { console.log(getCurrentSequence()[getCurrentContent()] + " : " + getCurrentContent()) }}>
-                    <AntDesign name="pausecircleo" size={75} color="black" />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.taskButton} onPress={() => play()}>
-                    <AntDesign name="playcircleo" size={75} color="black" />
-                </TouchableOpacity>
-            </View> */}
 
             <View style={[{ flexDirection: 'row' }, { justifyContent: 'center' }, { paddingBottom: 32 }]}>
                 <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : buttonColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => { navigation.goBack() }}>

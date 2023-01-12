@@ -10,54 +10,69 @@ import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState, useEffect, useCallback } from "react";
 import { useFocusEffect } from "@react-navigation/native";
-import { FontAwesome } from '@expo/vector-icons'; 
+import { FontAwesome } from '@expo/vector-icons';
 
 // import icons
-import { faChartSimple, faGear, faHouse, faPlay} from "@fortawesome/free-solid-svg-icons";
+import { faChartSimple, faGear, faHouse, faPlay } from "@fortawesome/free-solid-svg-icons";
 import Exercise from "../components/exercise";
 import { getIcon, getScenario, getScenarioFromTask } from "../components/contentManager";
 
 // return home page
 const Home = ({ navigation }) => {
 
+//VARIABLES:
+//===============================================================================================================================================
   const { getItem, setItem } = useAsyncStorage('lastTask');
   const [nextTask, setNextTask] = useState(1);
-  const [completions, setCompletions ] = useState({});
+  const [completions, setCompletions] = useState({});
   const [fetchCompleted, setFetchCompleted] = useState(false);
 
-  const readItemFromStorage = async () => {
+
+//FUNCTIONS:
+//===============================================================================================================================================
+ 
+  //@author: Tim Suchan
+  //fetches the contentID of the last completed task from async storage
+  //adds 1 and saves to nextTask
+  const fetchLastTask = async () => {
     try {
       const item = await getItem();
-      if (item){
-      setNextTask(parseInt(item) + 1);
-      setFetchCompleted(true);
+      if (item) {
+        setNextTask(parseInt(item) + 1);
+        setFetchCompleted(true);
       }
     }
     catch {
     }
   }
 
+  //@author: Tim Suchan
+  //fetches the completions object from async storage
+  //used to determine wether nextTask has been completed already and render accordingly
   const fetchCompletions = async () => {
     try {
       const item = await AsyncStorage.getItem('@completions')
-      if (item){
-      setCompletions(JSON.parse(item));
-      }
-      
-    } catch(e) {
-      // read error
-    }
+      if (item) {
+        setCompletions(JSON.parse(item));
       }
 
+    } catch (e) {
+    }
+  }
+
+  //@author: Tim Suchan
+  //fetches and updates data and view on render
   useEffect(() => {
-    readItemFromStorage();
+    fetchLastTask();
     fetchCompletions();
   }, []);
 
+  //@author: Tim Suchan
+  //fetches and updates data and view on focus
   useFocusEffect(
     useCallback(() => {
-     readItemFromStorage();
-     fetchCompletions();
+      fetchLastTask();
+      fetchCompletions();
     }, [])
   );
 
@@ -75,31 +90,22 @@ const Home = ({ navigation }) => {
     <View style={[{ flex: 1 }, containerColor]}>
       <View style={[{ flex: 1 }, containerColor, { justifyContent: "center" }, { alignItems: "center" },]}>
         {fetchCompleted &&
-        <Exercise
-          level={getScenario(getScenarioFromTask(nextTask)).indexOf(nextTask) + 1}
-          key={nextTask}
-          icon={getIcon(getScenarioFromTask(nextTask))}
-          navigation={navigation}
-          unlocked={true}
-          completed={Object.keys(completions).includes(nextTask.toString())}
-          scenarioKey={getScenarioFromTask(nextTask)}
-          fromHomeScreen={true}>
-        </Exercise>}
+          <Exercise
+            level={getScenario(getScenarioFromTask(nextTask)).indexOf(nextTask) + 1}
+            key={nextTask}
+            icon={getIcon(getScenarioFromTask(nextTask))}
+            navigation={navigation}
+            unlocked={true}
+            completed={Object.keys(completions).includes(nextTask.toString())}
+            scenarioKey={getScenarioFromTask(nextTask)}
+            fromHomeScreen={true}>
+          </Exercise>}
         <View>
           <Button icon={faHouse} label="Übersicht" navigation={navigation} target={"Menu"} />
           <Button icon={faChartSimple} label="Fortschritt" navigation={navigation} target={"Progress"} />
           <Button icon={faGear} label="Einstellungen" navigation={navigation} target={"Settings"} />
         </View>
       </View>
-      {/* <View style={[{ borderTopWidth: 1 }, { width: "100%" }, containerColor]}>
-        <ScrollView>
-          <Button icon={faUser} label="Log in" navigation={navigation} target={"Login"} />
-          <Button icon={faUser} label="Log in" navigation={navigation} target={"HomeL"} />
-          <Button icon={faCamera} label="Cam Preview" navigation={navigation} target={"Level"} />
-          <Button icon={faBell} label="Notifications" navigation={navigation} target={"Notifications"} />
-          <Button icon={faCalendar} label="Calendar" navigation={navigation} target={"Calendar"} />
-        </ScrollView>
-      </View> */}
     </View>
   );
 

@@ -1,4 +1,4 @@
-// author: Maxim Torgovitski
+// author: Maxim Torgovitski, Tim Suchan
 
 // import react native
 import { StatusBar } from 'expo-status-bar';
@@ -48,77 +48,89 @@ const tagStates = {
 // return home page
 const HomePage = ({ navigation }) => {
 
-  // hotfix boolean forces the component to rerender when switched used in order to make sure completed exercised are dispylayed properly
-  // on navigation.goBack()
-
+//VARIABLES:
+//===============================================================================================================================================
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
   const activeIconColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5;
 
-  // since this component is higher in hirarchy thatn the level component i use it to control the current content
-  // All contets are stored with unique id's this hook stores the current starting pooint and passes it to the level component
-
-
-  setCurrentContent(1);
-
-  // const keyArray = Object.keys(getDefaultScenarios());
-
-  useFocusEffect(
-    useCallback(() => {
-     readItemFromStorage();
-    }, [])
-  );
-
   const [tag, setTag] = useState('All')
   const [keyArray, setKeyArray] = useState(Object.keys(getDefaultScenarios()))
   const [filteredKeyArray, setFilteredKeyArray] = useState(Object.keys(getDefaultScenarios()))
   const [completionStates, setCompletionStates] = useState({});
 
+  // since this component is higher in hirarchy thatn the level component i use it to control the current content
+  // All contets are stored with unique id's this hook stores the current starting pooint and passes it to the level component
+
+//FUNCTIONS:
+//===============================================================================================================================================
+  setCurrentContent(1);
+
+  // const keyArray = Object.keys(getDefaultScenarios());
+
+  //@author: Tim Suchan
+  //triggered every time this screen is in focus. Done so that the content such as completed levels and progress updates
+  //when going back to the menu
+  useFocusEffect(
+    useCallback(() => {
+      fetchCompletionStates();
+    }, [])
+  );
+
+  //async storage hook
   const { getItem, setItem } = useAsyncStorage('@completions');
 
-  const readItemFromStorage = async () => {
+  //@author: Tim Suchan
+  //Fetches the completions object from async storage
+  const fetchCompletionStates = async () => {
     try {
       const item = await getItem();
       setCompletionStates(JSON.parse(item));
-      console.log(item);
     }
     catch {
     }
   }
 
-  const getCompletionsByScenario = (scenarioName) => {
-    const scenario = getScenario(scenarioName);
-    console.log('completions by ' + scenarioName + ': ' + scenario.filter(isCompleted))
-
+  //@author: Tim Suchan
+  //takes the key to a scenario (e.g. Umzug) and returns an array of all the exercises
+  //in the given scenario that have already been completed
+  const getCompletionsByScenario = (scenarioKey) => {
+    const scenario = getScenario(scenarioKey);
     return scenario.filter(isCompleted);
   }
 
+  //@author: Tim Suchan
+  //returns true if a level given by ID has been completed already
   const isCompleted = (index) => {
     try {
       return completionStates[index.toString()] == 'completed';
     }
-    catch{
+    catch {
       return false;
     }
   }
 
+  //@author: Tim Suchan
+  //triggers fetching of exercise completion states on render
   useEffect(() => {
-    readItemFromStorage();
+    fetchCompletionStates();
   }, []);
 
+  //@author: Tim Suchan
+  //toggles the filter state in the tagStates object for a given tag and call setKeyArrayToFilter
+  //sets filteredArray to include all entrys from keyArray that pass the checkTags function
   const setTagFilter = (tag) => {
     tagStates[tag] = !tagStates[tag];
-    setKeyArrayToFilter();
-  }
-
-  const setKeyArrayToFilter = () => {
     setFilteredKeyArray(keyArray.filter(checkTags));
+
   }
 
-  const checkTags = (contentKey) => {
-    return (tagStates[getTags(contentKey)[0]] === true && tagStates[getTags(contentKey)[1]] === true);
+  //@author: Tim Suchan
+  //returns true if both tags of a given scenario are set to true in the tagStates object
+  const checkTags = (scenarioKey) => {
+    return (tagStates[getTags(scenarioKey)[0]] === true && tagStates[getTags(scenarioKey)[1]] === true);
   }
 
   return (

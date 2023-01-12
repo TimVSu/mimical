@@ -70,7 +70,7 @@ const resetLevels = async () => {
   try {
     await AsyncStorage.removeItem('lastTask')
 
-  } catch(e) {
+  } catch (e) {
     // remove error
   }
 
@@ -208,8 +208,8 @@ const SettingsPage = ({ navigation }) => {
     try {
       const keys = await AsyncStorage.getAllKeys();
       const result = await AsyncStorage.multiGet(keys);
-  
-      return result.map(req => {console.log(req)});
+
+      return result.map(req => { console.log(req) });
     } catch (error) {
       console.error(error)
     }
@@ -311,7 +311,7 @@ const SettingsPage = ({ navigation }) => {
           title='get data'
           onPress={importData}
         />
-                <Button
+        <Button
           title='reset levels'
           onPress={resetLevels}
         />
