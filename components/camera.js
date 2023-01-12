@@ -19,13 +19,13 @@ if (
 //this funtion returns an array of circle markers at the positions of the face landmarks
 //the position coordinates are relative to the parent component which means that the function has to be placed inside a 'Camera' component
 //it does not quite work yet as the programm strugles with displaying more than three points at the same time
-const displayFaceLandmarks = ({ landmarks }) => (
+/*const displayFaceLandmarks = ({ landmarks }) => (
   <>
     {landmarks.map((landmark, index) => (
       <CircleIcon size={2} style={{ top: landmark["y"] - 1, left: landmark["x"] - 1 }} />
     ))}
   </>
-);
+);*/
 
 //@author: Tim Suchan
 const CameraScreen = ({ size, children }) => {

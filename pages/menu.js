@@ -130,7 +130,7 @@ const HomePage = ({ navigation }) => {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {Object.keys(tagStates).map(tag => (
 
-            <View style={tagStates[tag] ? styles.filterActive : styles.filterInactive}>
+            <View key={tag} style={tagStates[tag] ? styles.filterActive : styles.filterInactive}>
               <TouchableOpacity style={[{ flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => setTagFilter(tag)}>
                 {/* <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' /> */}
                 <Text style={[{ fontSize: 12 }, { fontWeight: 'bold' }, { color: 'white' }]}>{tag}</Text>
@@ -146,12 +146,12 @@ const HomePage = ({ navigation }) => {
           {filteredKeyArray.map((scenarioKey) =>
           (
             <Scenario
+              key={scenarioKey}
               title={scenarioKey}
               name={scenarioKey}
               icon={getIcon(scenarioKey)}
               color={'white'}
               navigation={navigation}
-              key={scenarioKey}
               completions={getCompletionsByScenario(scenarioKey)}
             />))}
 
