@@ -28,8 +28,10 @@ const Home = ({ navigation }) => {
   const readItemFromStorage = async () => {
     try {
       const item = await getItem();
+      if (item){
       setNextTask(parseInt(item) + 1);
       setFetchCompleted(true);
+      }
     }
     catch {
     }
@@ -38,7 +40,10 @@ const Home = ({ navigation }) => {
   const fetchCompletions = async () => {
     try {
       const item = await AsyncStorage.getItem('@completions')
+      if (item){
       setCompletions(JSON.parse(item));
+      }
+      
     } catch(e) {
       // read error
     }

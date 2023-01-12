@@ -68,7 +68,8 @@ const getData = async () => {
 
 const resetLevels = async () => {
   try {
-    await AsyncStorage.removeItem('@completions')
+    await AsyncStorage.removeItem('lastTask')
+
   } catch(e) {
     // remove error
   }
