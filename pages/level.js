@@ -135,8 +135,6 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
   //==============================================================================================================================================
 
   const [sound, setSound] = useState();
-  const reqSound = getAudio();
-  
 
   async function playSound() {
     console.log('Loading Sound');
