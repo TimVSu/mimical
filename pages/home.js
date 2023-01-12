@@ -9,9 +9,22 @@ import styles from "../components/styles";
 
 // import icons
 import { faBell, faCalendar, faCamera, faChartSimple, faGear, faHouse, faPlay, faUser } from "@fortawesome/free-solid-svg-icons";
+import Exercise from "../components/exercise";
 
 // return home page
 const Home = ({ navigation }) => {
+
+  const { getItem, setItem } = useAsyncStorage('lastTask');
+  const [nextTask, setNextTask] = useState(1);
+  const readItemFromStorage = async () => {
+    try {
+      const item = await getItem();
+      setNextTask(item + 1);
+    }
+    catch {
+    }
+
+  }
 
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === "light" ? styles.light_container : styles.dark_container;
@@ -21,10 +34,7 @@ const Home = ({ navigation }) => {
   return (
     <View style={[{ flex: 1 }, containerColor]}>
       <View style={[{ flex: 1 }, containerColor, { justifyContent: "center" }, { alignItems: "center" },]}>
-        <View style={[squareColor, { width: 256 }, { height: 256 }, { borderRadius: 16 }, { padding: 16 }, { margin: 8 }, { justifyContent: "flex-end" }]}>
-          <Text style={[{ fontSize: 32 }, textColor, { opacity: 0.5 }]}>Szenario</Text>
-          <Text style={[{ fontSize: 16 }, textColor, { opacity: 0.5 }]}>Übung</Text>
-        </View>
+      <Exercise></Exercise>
         <View>
           <Button icon={faPlay} label="Szenario fortsetzen" navigation={navigation} target={"Menu"} />
           <Button icon={faHouse} label="Übersicht" navigation={navigation} target={"Menu"} />

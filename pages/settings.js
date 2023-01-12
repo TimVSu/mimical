@@ -73,7 +73,6 @@ const resetLevels = async () => {
     // remove error
   }
 
-  console.log('Done.')
 }
 
 // return settings page

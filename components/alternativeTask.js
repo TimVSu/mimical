@@ -72,20 +72,10 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
         navigation.navigate("Level");
     }
 
+    const thisContent = getCurrentSequence()[getCurrentContent() - 1];
+    const ifCompleted = { [thisContent]: 'completed' }
+
     const saveAsCompleted = async (completedContent) => {
-
-        try {
-            await AsyncStorage.setItem('state' + completedContent.toString(), 'completed');
-            console.log('saved completed succesfull' + ' : ' + 'state' + completedContent)
-        }
-        catch (error) {
-            console.log('cant save data to async storage');
-        }
-    }
-    const thisContent = getCurrentSequence()[getCurrentContent()-1];
-    const ifCompleted = {[thisContent] : 'completed'}
-
-    const saveAsCompletedArray = async (completedContent) => {
 
         try {
             await AsyncStorage.mergeItem('@completions', JSON.stringify(completedContent));
@@ -96,7 +86,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
         }
     }
 
-    const saveAsLast = async (lastContent) =>{
+    const saveAsLast = async (lastContent) => {
 
         try {
             await AsyncStorage.setItem('lastTask', lastContent);
@@ -106,7 +96,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
             console.log('cant save data to async storage');
         }
     }
- 
+
 
 
     const removeIncrementReplace = () => {
@@ -135,7 +125,6 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
         if (taskRunning) {
             interval = setInterval(() => {
                 removeIncrementReplace();
-                console.log('inform state: ' + informState + ' currentTime: ' + currentTime + ' repCounter: ' + repCounter + ' relaxState: ' + relaxState);
             }, 1000);
         } else if (!taskRunning) {
             clearInterval(interval);
@@ -160,7 +149,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
         if (currentTime == 0 && repCounter == repititions - 1) {
             setTaskRunning(false);
             setCurrentTime(0);
-            saveAsCompletedArray(ifCompleted);
+            saveAsCompleted(ifCompleted);
             saveAsLast(getCurrentSequence[getCurrentContent()]);
             // nextLevelFunction();
             setModalVisible(true);
@@ -304,32 +293,3 @@ const tempStyles = StyleSheet.create({
     }
 });
 
-/*<View style={tempStyles.container}>
-<View style={tempStyles.camView}>
-<CameraScreen size={wp('100%')}>
-{informState ?
-  !removed &&
-  <View style={styles.informView}>
-    <Text style={styles.informText}>{taskDescription + 'in'}</Text>
-    <Text style={styles.informTime}>{currentTime}</Text>
-  </View> :
-  !removed &&
-  <Text style={styles.time}>{currentTime}</Text>
-}
-</CameraScreen>
-</View>
-<View style={{flex: 2, color: 'black'}}>
-<Heading style={styles.taskDescription} size='lg'>{taskDescription}</Heading>
-</View>
-<View style={{flex: 2, bottom: 10}}>
-<TouchableOpacity style={styles.taskButton} onPress={() => {navigation.goBack()}}>
-  <AntDesign name="downcircleo" size={75} color="black" />
-</TouchableOpacity>
-<TouchableOpacity style={styles.taskButton} activeOpacity={0.3} onPress={() => pause()}>
-  <AntDesign name="pausecircleo" size={75} color="white" />
-</TouchableOpacity>
-<TouchableOpacity style={styles.taskButton} onPress={() => play()}>
-  <AntDesign name="playcircleo" size={75} color="white" />
-</TouchableOpacity>
-</View>
-</View>*/

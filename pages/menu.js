@@ -84,7 +84,6 @@ const HomePage = ({ navigation }) => {
     try {
       const item = await getItem();
       setCompletionStates(JSON.parse(item));
-      console.log(item);
     }
     catch {
     }
@@ -92,7 +91,6 @@ const HomePage = ({ navigation }) => {
 
   const getCompletionsByScenario = (scenarioName) => {
     const scenario = getScenario(scenarioName);
-    console.log('getCompletsionsByScenario: ' + scenarioName + ' : ' + scenario.filter(isCompleted) + ' : ' + completionStates);
 
     return scenario.filter(isCompleted);
   }
@@ -112,7 +110,6 @@ const HomePage = ({ navigation }) => {
 
   const setTagFilter = (tag) => {
     tagStates[tag] = !tagStates[tag];
-    console.log(tagStates);
     setKeyArrayToFilter();
   }
 
