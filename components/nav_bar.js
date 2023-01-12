@@ -21,6 +21,7 @@ const NavBar = ({ navigation, ...props }) => {
 
   useEffect(() => { }, []);
 
+  // light/dark mode
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;

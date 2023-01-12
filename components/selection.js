@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import styles from '../components/styles.js';
 import { light_primary_color, dark_primary_color, light_background_color, dark_background_color, gray5, dark_gray5 } from '../components/styles.js';
 
+// return selection component
 const Selection = (props) => {
 
     // light/dark mode

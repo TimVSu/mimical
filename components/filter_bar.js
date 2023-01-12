@@ -17,9 +17,9 @@ import { light_primary_color, dark_primary_color, gray5, dark_gray5 } from './st
 // return filter bar component
 const FilterBar = () => {
 
+  // light/dark mode
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
-  const buttonColor = colorScheme === 'light' ? styles.light_button : styles.dark_button;
   const activeFilterColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   const inactiveFilterColor = colorScheme === 'light' ? gray5 : dark_gray5;
   const textColor = colorScheme === 'light' ? 'black' : 'white';
@@ -28,13 +28,13 @@ const FilterBar = () => {
   const [isEnabled2, setIsEnabled2] = useState(false);
   const [isEnabled3, setIsEnabled3] = useState(false);
   const [isEnabled4, setIsEnabled4] = useState(false);
-  const [isEnabled5, setIsEnabled5] = useState(false);
 
   const toggleSwitch1 = () => setIsEnabled1(previousState => !previousState);
   const toggleSwitch2 = () => setIsEnabled2(previousState => !previousState);
   const toggleSwitch3 = () => setIsEnabled3(previousState => !previousState);
   const toggleSwitch4 = () => setIsEnabled4(previousState => !previousState);
 
+  // return filter component
   const Filter = (props) => {
     return (
       <View style={[{ backgroundColor: props.variable ? activeFilterColor : inactiveFilterColor }, { borderRadius: 16 }, { padding: 12 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }]}>

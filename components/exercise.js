@@ -1,14 +1,13 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { Pressable, StyleSheet, Text, useColorScheme, View } from 'react-native';
+import { Pressable, Text, useColorScheme, View } from 'react-native';
 import React from 'react';
 import { startLevel } from './contentManager.js';
 import { useEffect, useState } from 'react';
 import { useAsyncStorage, AsyncStorage } from '@react-native-async-storage/async-storage';
 
 // import components
-import Square from './square.js';
 import styles from './styles.js';
 import { light_primary_color, dark_primary_color } from './styles.js';
 
@@ -17,19 +16,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCircleCheck, faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons';
 
 // colors
-const blue = 'rgb(0, 122, 255)';
-const dark_blue = 'rgb(10, 132, 255)';
 const gray1 = 'rgb(142, 142, 147)';
 
-// return scenario component
+// return exercise component
 const Exercise = ({ navigation, ...props }) => {
 
 
+  // light/dark mode
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_square : styles.dark_square;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
   const iconColor = colorScheme === 'light' ? 'black' : 'white';
   const highlightColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
+
   if (props.unlocked) {
     if (props.completed) {
       return (

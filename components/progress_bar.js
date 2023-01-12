@@ -10,10 +10,12 @@ import styles from './styles';
 // return progress bar component
 const ProgressBar = (props) => {
 
+  // light/dark mode
   const colorScheme = useColorScheme();
   const barColor = colorScheme === 'light' ? styles.light_bar : styles.dark_bar;
   const progressColor = colorScheme === 'light' ? styles.light_progress : styles.dark_progress;
 
+  // calculate progress
   const x = 100 / props.exercises;
   const y = x * props.progress * 2;
 

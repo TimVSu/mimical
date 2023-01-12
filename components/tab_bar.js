@@ -14,6 +14,7 @@ import { faChartSimple, faGear, faHouse } from '@fortawesome/free-solid-svg-icon
 // return tab bar component
 const TabBar = ({ navigation, ...props }) => {
 
+  // light/dark mode
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
 
