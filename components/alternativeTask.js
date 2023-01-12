@@ -182,7 +182,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
 
                         <View style={tempStyles.buttonView}>
 
-                            <CustomButton text='Zurück zum menu ' onPress={() => { navigation.navigate("Menu") }} color="red" />
+                            <CustomButton text='Zurück ' onPress={() => { navigation.navigate("Menu") }} color="red" />
                             <CustomButton text='Weiter' onPress={nextLevelFunction} color="skyblue" />
 
                         </View>

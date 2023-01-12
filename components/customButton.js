@@ -20,8 +20,8 @@ export default function CustomButton({ text, onPress, color }) {
                 Animated.spring(progress, { toValue: 0.5, useNativeDriver: true }),
             ]),
             Animated.sequence([
-                Animated.spring(scale, { toValue: 2, useNativeDriver: true }),
                 Animated.spring(scale, { toValue: 1, useNativeDriver: true }),
+                Animated.spring(scale, { toValue: 2, useNativeDriver: true }),
             ]),
             ]).start();
     }, []);
