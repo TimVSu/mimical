@@ -34,6 +34,9 @@ const FilterBar = () => {
   const toggleSwitch3 = () => setIsEnabled3(previousState => !previousState);
   const toggleSwitch4 = () => setIsEnabled4(previousState => !previousState);
 
+  // language
+  const language = "german";
+
   // return filter component
   const Filter = (props) => {
     return (
@@ -49,10 +52,10 @@ const FilterBar = () => {
   return (
     <View style={[styles.filter_bar, containerColor]}>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        <Filter label="Obere Gesichtshälfte" variable={isEnabled1} function={toggleSwitch1} />
-        <Filter label="Untere Gesichtshälfte" variable={isEnabled2} function={toggleSwitch2} />
-        <Filter label="Kurze Szenarien" variable={isEnabled3} function={toggleSwitch3} />
-        <Filter label="Lange Szenarien" variable={isEnabled4} function={toggleSwitch4} />
+        <Filter label={language == "german" ? "Obere Gesichtshälfte" : "Upper Face Half"} variable={isEnabled1} function={toggleSwitch1} />
+        <Filter label={language == "german" ? "Untere Gesichtshälfte" : "Lower Face Half"} variable={isEnabled2} function={toggleSwitch2} />
+        <Filter label={language == "german" ? "Kurze Szenarien" : "Short Scenarios"} variable={isEnabled3} function={toggleSwitch3} />
+        <Filter label={language == "german" ? "Lange Szenarien" : "Long Scenarios"} variable={isEnabled4} function={toggleSwitch4} />
       </ScrollView>
     </View>
   );

@@ -57,10 +57,14 @@ const Home = ({ navigation }) => {
   );
 
 
+  // light/dark mode
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === "light" ? styles.light_container : styles.dark_container;
   const squareColor = colorScheme === "light" ? styles.light_square : styles.dark_square;
   const textColor = colorScheme === "light" ? styles.light_text : styles.dark_text;
+
+  // language
+  const language = "german";
 
   return (
     <View style={[{ flex: 1 }, containerColor]}>
