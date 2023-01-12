@@ -12,7 +12,7 @@ import Animated, {
 import Task from '../components/task.js'
 import { Heading, Modal } from 'native-base';
 import Info from '../components/info.js';
-import { getAllContents, incrementCurrentContent, getCurrentSequence, getText, getCurrentContent, getHighlightedText } from '../components/contentManager';
+import { getAllContents, incrementCurrentContent, getCurrentSequence, getText, getCurrentContent, getHighlightedText, getCurrentScenario } from '../components/contentManager';
 import styles from '../components/styles.js';
 import { Audio } from 'expo-av';
 import { useFocusEffect } from '@react-navigation/native';
@@ -130,6 +130,7 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
     //clearTimeout(animationTimer)
 
   }
+  
   const nextLevel = () => {
     let currentSequence = getCurrentSequence();
     let contentContent = getCurrentContent();
@@ -218,7 +219,7 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
         <Heading size="2xl">LEVEL HEADING</Heading>
       </View> */}
 
-        <Text style={[{ fontSize: 40 }, { fontWeight: 'bold' }, textColor, { padding: 16 }, { marginTop: 16 }]}>Level Überschrift</Text>
+        <Text style={[{ fontSize: 40 }, { fontWeight: 'bold' }, textColor, { padding: 16 }, { marginTop: 16 }]}>{getCurrentScenario()}</Text>
 
         <ScrollView
           // style={{ marginBottom: hp('15%'), marginTop: hp('5%') }}
