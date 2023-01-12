@@ -48,16 +48,15 @@ const Scenario = ({ navigation, ...props }) => {
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         {iterator.map((iterate) =>
         (
-          <Exercise level={iterate + 1}
-            scenario={scenario}
+          <Exercise 
+            level={iterate + 1}
             icon={props.icon}
             navigation={navigation}
-            tags={"Tags"}
             unlocked={true}
             key={iterate}
-            completed={props.completions.includes(iterate + 1)}
+            completed={props.completions.includes(getScenario(name)[iterate])}
             scenarioKey={name}
-            incrementCompletions={completionCallback}>
+            >
             </Exercise>))}
       </ScrollView>
     </View>

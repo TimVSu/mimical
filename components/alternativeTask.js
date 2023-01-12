@@ -79,7 +79,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
 
         try {
             await AsyncStorage.mergeItem('@completions', JSON.stringify(completedContent));
-            console.log('saved completed succesfull' + ' : ' + completed);
+            console.log('saved completed succesfull');
         }
         catch (error) {
             console.log('cant save data to async storage');
@@ -89,7 +89,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
     const saveAsLast = async (lastContent) => {
 
         try {
-            await AsyncStorage.setItem('lastTask', lastContent);
+            await AsyncStorage.setItem('lastTask', lastContent.toString());
             console.log('saved completed succesfull' + ' : ' + 'last' + lastContent);
         }
         catch (error) {
@@ -150,7 +150,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
             setTaskRunning(false);
             setCurrentTime(0);
             saveAsCompleted(ifCompleted);
-            saveAsLast(getCurrentSequence[getCurrentContent()]);
+            saveAsLast(getCurrentSequence()[getCurrentContent()]);
             // nextLevelFunction();
             setModalVisible(true);
         }

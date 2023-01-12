@@ -1,30 +1,61 @@
 // authors: Tim Suchan, Maxim Torgovitski
 
 // import react native
-import { ScrollView, Text, useColorScheme, View, } from "react-native";
+import { ScrollView, Text, TouchableOpacity, useColorScheme, View, } from "react-native";
 
 // import components
 import Button from "../components/button";
 import styles from "../components/styles";
+import { useAsyncStorage } from "@react-native-async-storage/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useState, useEffect, useCallback } from "react";
+import { useFocusEffect } from "@react-navigation/native";
+import { FontAwesome } from '@expo/vector-icons'; 
 
 // import icons
-import { faBell, faCalendar, faCamera, faChartSimple, faGear, faHouse, faPlay, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faChartSimple, faGear, faHouse, faPlay} from "@fortawesome/free-solid-svg-icons";
 import Exercise from "../components/exercise";
+import { getIcon, getScenario, getScenarioFromTask } from "../components/contentManager";
 
 // return home page
 const Home = ({ navigation }) => {
 
   const { getItem, setItem } = useAsyncStorage('lastTask');
   const [nextTask, setNextTask] = useState(1);
+  const [completions, setCompletions ] = useState({});
+  const [fetchCompleted, setFetchCompleted] = useState(false);
+
   const readItemFromStorage = async () => {
     try {
       const item = await getItem();
-      setNextTask(item + 1);
+      setNextTask(parseInt(item) + 1);
+      setFetchCompleted(true);
     }
     catch {
     }
-
   }
+
+  const fetchCompletions = async () => {
+    try {
+      const item = await AsyncStorage.getItem('@completions')
+      setCompletions(JSON.parse(item));
+    } catch(e) {
+      // read error
+    }
+      }
+
+  useEffect(() => {
+    readItemFromStorage();
+    fetchCompletions();
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+     readItemFromStorage();
+     fetchCompletions();
+    }, [])
+  );
+
 
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === "light" ? styles.light_container : styles.dark_container;
@@ -34,9 +65,17 @@ const Home = ({ navigation }) => {
   return (
     <View style={[{ flex: 1 }, containerColor]}>
       <View style={[{ flex: 1 }, containerColor, { justifyContent: "center" }, { alignItems: "center" },]}>
-      <Exercise></Exercise>
+        {fetchCompleted &&
+        <Exercise
+          level={getScenario(getScenarioFromTask(nextTask)).indexOf(nextTask) + 1}
+          key={nextTask}
+          icon={getIcon(getScenarioFromTask(nextTask))}
+          navigation={navigation}
+          unlocked={true}
+          completed={Object.keys(completions).includes(nextTask.toString())}
+          scenarioKey={getScenarioFromTask(nextTask)}>
+        </Exercise>}
         <View>
-          <Button icon={faPlay} label="Szenario fortsetzen" navigation={navigation} target={"Menu"} />
           <Button icon={faHouse} label="Übersicht" navigation={navigation} target={"Menu"} />
           <Button icon={faChartSimple} label="Fortschritt" navigation={navigation} target={"Progress"} />
           <Button icon={faGear} label="Einstellungen" navigation={navigation} target={"Settings"} />

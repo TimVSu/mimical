@@ -418,7 +418,13 @@ const setCurrentContent = (number) => {
 }
 
 const getIcon = (key) => {
-    return defaultScenarios[key]["icon"]
+    if(key === "NO_SCENARIO_FOR_THIS_ID"){
+        return faTruck
+    }
+    else{
+    return defaultScenarios[key]["icon"];
+}
+    
 }
 
 const incrementCurrentContent = () => {
@@ -472,9 +478,9 @@ const getScenarioLength = (key) => {
     return defaultScenarios[key]["indices"].length;
 }
 
-const startLevel = (start, scenario, scenarioKey) => {
+const startLevel = (start, scenarioKey) => {
     setCurrentContent(start);
-    setCurrentSequence(scenario);
+    setCurrentSequence(defaultScenarios[scenarioKey]["indices"]);
     currentScenario = scenarioKey;
 }
 
@@ -485,7 +491,14 @@ const getCurrentScenario = () => {
 const getTaskCount = () =>{
     return Object.keys(allContents).length;
 }
-
+const getScenarioFromTask = (contentID) =>{
+    for (let i = 0; i < Object.keys(defaultScenarios).length; i++){
+        if(defaultScenarios[Object.keys(defaultScenarios)[i]]["indices"].includes(contentID)){
+            return Object.keys(defaultScenarios)[i];
+        }
+    }
+    return "NO_SCENARIO_FOR_THIS_ID";
+}
 
 
 
@@ -493,7 +506,7 @@ const getTaskCount = () =>{
 
 
 export {
-    getAllContents, getDefaultScenarios, getIcon, getCurrentScenario, getTaskCount,
+    getAllContents, getDefaultScenarios, getIcon, getCurrentScenario, getTaskCount, getScenarioFromTask, 
     startLevel, getScenario, getHighlightedText, getScenarioLength, setCurrentContent, incrementCurrentContent,
     setCurrentSequence, getText, getCurrentContent, getCurrentSequence, getTags, getTaskDescription
 };

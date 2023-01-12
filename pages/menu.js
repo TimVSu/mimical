@@ -37,7 +37,6 @@ const dark_blue = 'rgb(10, 132, 255)';
 const dark_gray5 = 'rgb(44, 44, 46)';
 
 const tagStates = {
-  'ALL_TASKS': true,
   'UPPER_HALF': true,
   'LOWER_HALF': true,
   'LONG_SCENARIO': true,
@@ -51,7 +50,6 @@ const HomePage = ({ navigation }) => {
 
   // hotfix boolean forces the component to rerender when switched used in order to make sure completed exercised are dispylayed properly
   // on navigation.goBack()
-  const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
 
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
@@ -84,6 +82,7 @@ const HomePage = ({ navigation }) => {
     try {
       const item = await getItem();
       setCompletionStates(JSON.parse(item));
+      console.log(item);
     }
     catch {
     }
@@ -91,6 +90,7 @@ const HomePage = ({ navigation }) => {
 
   const getCompletionsByScenario = (scenarioName) => {
     const scenario = getScenario(scenarioName);
+    console.log('completions by ' + scenarioName + ': ' + scenario.filter(isCompleted))
 
     return scenario.filter(isCompleted);
   }
