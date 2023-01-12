@@ -36,10 +36,11 @@ const dark_blue = 'rgb(10, 132, 255)';
 const dark_gray5 = 'rgb(44, 44, 46)';
 
 const tagStates = {
-  'UPPER_HALF' : true,
-  'LOWER_HALF' : true,
-  'LONG_SCENARIO' : true,
-  'SHORT_SCENARIO' : true
+  'ALL_TASKS': true,
+  'UPPER_HALF': true,
+  'LOWER_HALF': true,
+  'LONG_SCENARIO': true,
+  'SHORT_SCENARIO': true
 }
 
 
@@ -73,7 +74,7 @@ const HomePage = ({ navigation }) => {
 
   useFocusEffect(
     useCallback(() => {
-     forceUpdate();
+      forceUpdate();
     }, [])
   );
 
@@ -97,7 +98,7 @@ const HomePage = ({ navigation }) => {
     setKeyArrayToFilter();
   }
 
-  const setKeyArrayToFilter = () =>{
+  const setKeyArrayToFilter = () => {
     setFilteredKeyArray(keyArray.filter(checkTags));
   }
 
@@ -116,8 +117,8 @@ const HomePage = ({ navigation }) => {
 
             <View style={tagStates[tag] ? styles.filterActive : styles.filterInactive}>
               <TouchableOpacity style={[{ flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => setTagFilter(tag)}>
-                <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-                <Text style={[styles.label, { color: 'white' }]}>{tag}</Text>
+                {/* <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' /> */}
+                <Text style={[{ fontSize: 12 }, { fontWeight: 'bold' }, { color: 'white' }]}>{tag}</Text>
               </TouchableOpacity>
 
             </View>

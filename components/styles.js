@@ -50,7 +50,7 @@ const accessible_gray4 = 'rgb(209, 209, 214)';
 const accessible_gray5 = 'rgb(229, 229, 234)';
 const accessible_gray6 = 'rgb(242, 242, 247)';
 
-const light_primary_color = 'blue';
+const light_primary_color = blue;
 const dark_primary_color = dark_blue;
 const light_background_color = 'white';
 const dark_background_color = 'rgb(0, 0, 0)';
@@ -277,18 +277,16 @@ export default StyleSheet.create({
   },
   filterActive:{
     flexDirection: 'row',
-    borderRadius: 8,
-    padding: 16,
+    borderRadius: 16,
+    padding: 12,
     margin: 16,
-    marginRight: 8,
-    backgroundColor: 'blue',
+    backgroundColor: 'black',
   },
   filterInactive:{
     flexDirection: 'row',
-    borderRadius: 8,
-    padding: 16,
+    borderRadius: 16,
+    padding: 12,
     margin: 16,
-    marginRight: 8,
-    backgroundColor: '#D6E4E5',
+    backgroundColor: gray1,
   }
 });
