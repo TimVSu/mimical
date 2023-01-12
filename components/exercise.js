@@ -61,7 +61,7 @@ const Exercise = ({ navigation, ...props }) => {
                 <FontAwesomeIcon style={{ opacity: 0 }} icon={faLockOpen} size={16} color={iconColor} />
               </View>
             </View>
-            <Text style={[styles.label, { color: highlightColor }, { textAlign: 'center' }, { marginTop: 8 }]}>Übung {props.level}</Text>
+            <Text style={[styles.label, { color: highlightColor }, { textAlign: 'center' }, { marginTop: 8 }]}>{props.fromHomeScreen ? "Übung fortsetzen":"Übung " + props.level}</Text>
           </View>
         </Pressable>
       );
@@ -79,7 +79,7 @@ const Exercise = ({ navigation, ...props }) => {
               <FontAwesomeIcon icon={faLock} size={16} color={iconColor} />
             </View>
           </View>
-          <Text style={[styles.label, textColor, { textAlign: 'center' }, { marginTop: 8 }, { opacity: 0.25 }]}>Übung {props.level}</Text>
+          <Text style={[styles.label, textColor, { textAlign: 'center' }, { marginTop: 8 }, { opacity: 0.25 }]}>{props.fromHomeScreen ? "Übung fortsetzen":"Übung " + props.level}</Text>
         </View>
       </Pressable>
     );

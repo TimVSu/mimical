@@ -73,7 +73,8 @@ const Home = ({ navigation }) => {
           navigation={navigation}
           unlocked={true}
           completed={Object.keys(completions).includes(nextTask.toString())}
-          scenarioKey={getScenarioFromTask(nextTask)}>
+          scenarioKey={getScenarioFromTask(nextTask)}
+          fromHomeScreen={true}>
         </Exercise>}
         <View>
           <Button icon={faHouse} label="Übersicht" navigation={navigation} target={"Menu"} />

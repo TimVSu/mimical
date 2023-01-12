@@ -56,6 +56,7 @@ const Scenario = ({ navigation, ...props }) => {
             key={iterate}
             completed={props.completions.includes(getScenario(name)[iterate])}
             scenarioKey={name}
+            fromHomeScreen={false}
             >
             </Exercise>))}
       </ScrollView>
