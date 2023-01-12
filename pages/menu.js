@@ -124,7 +124,7 @@ const HomePage = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
       <NavBar page_title="Übersicht" navigation={navigation} />
-      {/* <FilterBar></FilterBar> */}
+      <FilterBar></FilterBar>
 
       <View style={[styles.filter_bar, containerColor]}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>

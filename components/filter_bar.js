@@ -2,7 +2,7 @@
 
 // import react native
 import { Pressable, ScrollView, Text, useColorScheme, View } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 
 // import components
 import styles from './styles';
@@ -11,8 +11,8 @@ import styles from './styles';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEye, faFaceSmile } from '@fortawesome/free-solid-svg-icons';
 
-// colors
-const blue = 'rgb(0, 122, 255)';
+// import colors
+import { light_primary_color, dark_primary_color, gray5, dark_gray5 } from './styles';
 
 // return filter bar component
 const FilterBar = () => {
@@ -20,13 +20,27 @@ const FilterBar = () => {
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const buttonColor = colorScheme === 'light' ? styles.light_button : styles.dark_button;
+  const activeFilterColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
+  const inactiveFilterColor = colorScheme === 'light' ? gray5 : dark_gray5;
+  const textColor = colorScheme === 'light' ? 'black' : 'white';
+
+  const [isEnabled1, setIsEnabled1] = useState(false);
+  const [isEnabled2, setIsEnabled2] = useState(false);
+  const [isEnabled3, setIsEnabled3] = useState(false);
+  const [isEnabled4, setIsEnabled4] = useState(false);
+  const [isEnabled5, setIsEnabled5] = useState(false);
+
+  const toggleSwitch1 = () => setIsEnabled1(previousState => !previousState);
+  const toggleSwitch2 = () => setIsEnabled2(previousState => !previousState);
+  const toggleSwitch3 = () => setIsEnabled3(previousState => !previousState);
+  const toggleSwitch4 = () => setIsEnabled4(previousState => !previousState);
 
   const Filter = (props) => {
     return (
-      <View style={[buttonColor, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }]}>
-        <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
-          <FontAwesomeIcon style={{ marginRight: 8 }} icon={props.icon} color='white' />
-          <Text style={[styles.label, { color: 'white' }]}>{props.label}</Text>
+      <View style={[{ backgroundColor: props.variable ? activeFilterColor : inactiveFilterColor }, { borderRadius: 16 }, { padding: 12 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }]}>
+        <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]} onPress={props.function}>
+          {/* <FontAwesomeIcon style={{ marginRight: 8 }} icon={props.icon} color='white' /> */}
+          <Text style={[{ fontSize: 12 }, { fontWeight: 'bold' }, { color: props.variable ? 'white' : textColor }]}>{props.label}</Text>
         </Pressable>
       </View>
     );
@@ -35,55 +49,10 @@ const FilterBar = () => {
   return (
     <View style={[styles.filter_bar, containerColor]}>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginRight: 8 }, buttonColor]}>
-          <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
-            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faEye} color='white' />
-            <Text style={[styles.label, { color: 'white' }]}>Augen</Text>
-          </Pressable>
-        </View>
-        <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }, buttonColor]}>
-          <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
-            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-            <Text style={[styles.label, { color: 'white' }]}>Mund</Text>
-          </Pressable>
-        </View>
-        <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }, buttonColor]}>
-          <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
-            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-            <Text style={[styles.label, { color: 'white' }]}>Wangen</Text>
-          </Pressable>
-        </View>
-        <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }, buttonColor]}>
-          <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
-            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-            <Text style={[styles.label, { color: 'white' }]}>Filter</Text>
-          </Pressable>
-        </View>
-        <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }, buttonColor]}>
-          <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
-            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-            <Text style={[styles.label, { color: 'white' }]}>Filter</Text>
-          </Pressable>
-        </View>
-        <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }, buttonColor]}>
-          <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
-            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-            <Text style={[styles.label, { color: 'white' }]}>Filter</Text>
-          </Pressable>
-        </View>
-        <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }, buttonColor]}>
-          <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
-            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-            <Text style={[styles.label, { color: 'white' }]}>Filter</Text>
-          </Pressable>
-        </View>
-        <View style={[{ backgroundColor: blue }, { borderRadius: 8 }, { padding: 16 }, { margin: 16 }, { marginLeft: 8 }, buttonColor]}>
-          <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]}>
-            <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' />
-            <Text style={[styles.label, { color: 'white' }]}>Filter</Text>
-          </Pressable>
-        </View>
-        {/* <Filter icon={faFaceSmile} label="Filter" /> */}
+        <Filter label="Obere Gesichtshälfte" variable={isEnabled1} function={toggleSwitch1} />
+        <Filter label="Untere Gesichtshälfte" variable={isEnabled2} function={toggleSwitch2} />
+        <Filter label="Kurze Szenarien" variable={isEnabled3} function={toggleSwitch3} />
+        <Filter label="Lange Szenarien" variable={isEnabled4} function={toggleSwitch4} />
       </ScrollView>
     </View>
   );
