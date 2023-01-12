@@ -397,6 +397,7 @@ const defaultScenarios = {
 
 let currentContent = 1;
 let currentSequence = [];
+let currentScenario;
 
 
 
@@ -471,9 +472,18 @@ const getScenarioLength = (key) => {
     return defaultScenarios[key]["indices"].length;
 }
 
-const startLevel = (start, scenario) => {
+const startLevel = (start, scenario, scenarioKey) => {
     setCurrentContent(start);
     setCurrentSequence(scenario);
+    currentScenario = scenarioKey;
+}
+
+const getCurrentScenario = () => {
+    return currentScenario;
+}
+
+const getTaskCount = () =>{
+    return Object.keys(allContents).length;
 }
 
 
@@ -483,7 +493,7 @@ const startLevel = (start, scenario) => {
 
 
 export {
-    getAllContents, getDefaultScenarios, getIcon,
+    getAllContents, getDefaultScenarios, getIcon, getCurrentScenario, getTaskCount,
     startLevel, getScenario, getHighlightedText, getScenarioLength, setCurrentContent, incrementCurrentContent,
     setCurrentSequence, getText, getCurrentContent, getCurrentSequence, getTags, getTaskDescription
 };

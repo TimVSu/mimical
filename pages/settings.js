@@ -66,6 +66,16 @@ const getData = async () => {
   }
 }
 
+const resetLevels = async () => {
+  try {
+    await AsyncStorage.removeItem('@completions')
+  } catch(e) {
+    // remove error
+  }
+
+  console.log('Done.')
+}
+
 // return settings page
 const SettingsPage = ({ navigation }) => {
 
@@ -300,6 +310,10 @@ const SettingsPage = ({ navigation }) => {
         <Button
           title='get data'
           onPress={importData}
+        />
+                <Button
+          title='reset levels'
+          onPress={resetLevels}
         />
       </ScrollView>
       <TabBar

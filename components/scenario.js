@@ -74,8 +74,8 @@ const Scenario = ({ navigation, ...props }) => {
     <View style={[containerColor, { marginTop: 16 }, { marginBottom: 16 }]}>
       <Text style={[styles.title2, textColor, { marginLeft: 16 }]}>{props.title}</Text>
       <View style={[{ flexDirection: 'row' }, { alignItems: 'center' }, { marginTop: 8 }, { marginLeft: 16 }]}>
-        <Text style={[styles.label, textColor, { marginRight: 8 }]}>Fortschritt ({completionCounter}/{scenarioLength}):</Text>
-        <ProgressBar exercises={scenarioLength} progress={completionCounter} />
+        <Text style={[styles.label, textColor, { marginRight: 8 }]}>Fortschritt ({props.completions.length}/{scenarioLength}):</Text>
+        <ProgressBar exercises={scenarioLength} progress={props.completions.length} />
       </View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         {iterator.map((iterate) =>
@@ -87,6 +87,8 @@ const Scenario = ({ navigation, ...props }) => {
             tags={"Tags"}
             unlocked={true}
             key={iterate}
+            completed={props.completions.includes(iterate + 1)}
+            scenarioKey={name}
             incrementCompletions={completionCallback}>
             </Exercise>))}
       </ScrollView>

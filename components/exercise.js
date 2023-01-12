@@ -24,26 +24,6 @@ const gray1 = 'rgb(142, 142, 147)';
 // return scenario component
 const Exercise = ({ navigation, ...props }) => {
 
-  const [completed, setCompleted] = useState(false);
-  const { getItem, setItem } = useAsyncStorage('state' + props.scenario[props.level - 1].toString());
-
-  const readItemFromStorage = async () => {
-    try {
-      const item = await getItem();
-      console.log("ITEM IS: " + item)
-      if (item.toString() === 'completed') {
-        props.incrementCompletions();
-      }
-      setCompleted(item);
-    }
-    catch {
-    }
-
-  }
-
-  useEffect(() => {
-    readItemFromStorage();
-  }, []);
 
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_square : styles.dark_square;
@@ -51,9 +31,9 @@ const Exercise = ({ navigation, ...props }) => {
   const iconColor = colorScheme === 'light' ? 'black' : 'white';
   const highlightColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   if (props.unlocked) {
-    if (completed) {
+    if (props.completed) {
       return (
-        <Pressable onPress={() => { startLevel(props.level, props.scenario), navigation.navigate("Level") }}>
+        <Pressable onPress={() => { startLevel(props.level, props.scenario, props.scenarioKey), navigation.navigate("Level") }}>
           <View style={{ margin: 16 }}>
             <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
               <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
@@ -70,7 +50,7 @@ const Exercise = ({ navigation, ...props }) => {
       );
     } else {
       return (
-        <Pressable onPress={() => { startLevel(props.level, props.scenario), navigation.navigate("Level") }}>
+        <Pressable onPress={() => { startLevel(props.level, props.scenario, props.scenarioKey), navigation.navigate("Level") }}>
           <View style={{ margin: 16 }}>
             <View style={[styles.square, containerColor, { justifyContent: 'space-between' }, { borderWidth: 4 }, { borderColor: highlightColor }]}>
               <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>

@@ -6,6 +6,7 @@ import { StyleSheet, ScrollView, Text, View, useColorScheme, TouchableOpacity, F
 import React from 'react';
 import { useState, useEffect, useCallback, useReducer } from 'react'
 import { useIsFocused, useFocusEffect } from '@react-navigation/native';
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 // import components
 import NavBar from '../components/nav_bar.js';
@@ -15,7 +16,7 @@ import FilterBar from '../components/filter_bar.js';
 import { faBeer, faBowlingBall, faChurch, faCity, faCow, faL, faLightbulb, faSnowflake, faSun, faTree } from '@fortawesome/free-solid-svg-icons';
 import styles from '../components/styles.js';
 import { light_primary_color, dark_primary_color } from '../components/styles.js';
-import { getAllContents, incrementCurrentContent, getDefaultScenarios, getCurrentSequence, setCurrentContent, getCurrentContent, getScenario, setCurrentSequence, getIcon, getTags } from '../components/contentManager';
+import { getAllContents, incrementCurrentContent, getDefaultScenarios, getCurrentSequence, setCurrentContent, getCurrentContent, getScenario, setCurrentSequence, getIcon, getTags, getTaskCount } from '../components/contentManager';
 import { getEffectiveConstraintOfTypeParameter } from 'typescript';
 
 
@@ -66,31 +67,48 @@ const HomePage = ({ navigation }) => {
 
   // const keyArray = Object.keys(getDefaultScenarios());
 
-  const startLevel = (start, scenario) => {
-    setCurrentContent(start);
-    setCurrentSequence(scenario);
-    navigation.navigate("Level");
-  }
-
   useFocusEffect(
     useCallback(() => {
-      forceUpdate();
+     readItemFromStorage();
     }, [])
   );
 
   const [tag, setTag] = useState('All')
   const [keyArray, setKeyArray] = useState(Object.keys(getDefaultScenarios()))
   const [filteredKeyArray, setFilteredKeyArray] = useState(Object.keys(getDefaultScenarios()))
+  const [completionStates, setCompletionStates] = useState({});
 
-  /*const setTagFilter = tag => {
+  const { getItem, setItem } = useAsyncStorage('@completions');
 
-    if (tag !== 'ALL') {
-      setKeyArray([...keyArray.filter((item) => item["tags"] === tag)])
-    } else {
-      setKeyArray(Object.keys(getDefaultScenarios()))
+  const readItemFromStorage = async () => {
+    try {
+      const item = await getItem();
+      setCompletionStates(JSON.parse(item));
+      console.log(item);
     }
-    setTag(tag)
-  }*/
+    catch {
+    }
+  }
+
+  const getCompletionsByScenario = (scenarioName) => {
+    const scenario = getScenario(scenarioName);
+    console.log('getCompletsionsByScenario: ' + scenarioName + ' : ' + scenario.filter(isCompleted) + ' : ' + completionStates);
+
+    return scenario.filter(isCompleted);
+  }
+
+  const isCompleted = (index) => {
+    try {
+      return completionStates[index.toString()] == 'completed';
+    }
+    catch{
+      return false;
+    }
+  }
+
+  useEffect(() => {
+    readItemFromStorage();
+  }, []);
 
   const setTagFilter = (tag) => {
     tagStates[tag] = !tagStates[tag];
@@ -137,6 +155,7 @@ const HomePage = ({ navigation }) => {
               color={'white'}
               navigation={navigation}
               key={scenarioKey}
+              completions={getCompletionsByScenario(scenarioKey)}
             />))}
 
           <StatusBar style="auto" />

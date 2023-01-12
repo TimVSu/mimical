@@ -8,7 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
 import CustomButton from './customButton.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getCurrentContent, getCurrentSequence, getTaskDescription, incrementCurrentContent } from './contentManager.js';
+import { getCurrentContent, getCurrentSequence, getTaskDescription, incrementCurrentContent, getCurrentScenario } from './contentManager.js';
 
 if (Platform.OS === 'android') {
     if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -27,6 +27,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronLeft, faChevronRight, faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
 
 const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
+
+    const scenarioName = getCurrentScenario();
 
     // light/dark mode
     const colorScheme = useColorScheme();
@@ -80,6 +82,32 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
             console.log('cant save data to async storage');
         }
     }
+    const thisContent = getCurrentSequence()[getCurrentContent()-1];
+    const ifCompleted = {[thisContent] : 'completed'}
+
+    const saveAsCompletedArray = async (completedContent) => {
+
+        try {
+            await AsyncStorage.mergeItem('@completions', JSON.stringify(completedContent));
+            console.log('saved completed succesfull' + ' : ' + completed);
+        }
+        catch (error) {
+            console.log('cant save data to async storage');
+        }
+    }
+
+    const saveAsLast = async (lastContent) =>{
+
+        try {
+            await AsyncStorage.setItem('lastTask', lastContent);
+            console.log('saved completed succesfull' + ' : ' + 'last' + lastContent);
+        }
+        catch (error) {
+            console.log('cant save data to async storage');
+        }
+    }
+ 
+
 
     const removeIncrementReplace = () => {
         setRemoved(true);
@@ -132,7 +160,8 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
         if (currentTime == 0 && repCounter == repititions - 1) {
             setTaskRunning(false);
             setCurrentTime(0);
-            saveAsCompleted(getCurrentSequence[getCurrentContent()]);
+            saveAsCompletedArray(ifCompleted);
+            saveAsLast(getCurrentSequence[getCurrentContent()]);
             // nextLevelFunction();
             setModalVisible(true);
         }
