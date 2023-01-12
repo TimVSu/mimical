@@ -205,8 +205,12 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
       } */}
 
       <View style={[{ flexDirection: 'row' }, { justifyContent: 'space-between' }, { padding: 16 }, { marginTop: 64 }]}>
-        <FontAwesomeIcon icon={faCircleChevronLeft} size={32} color={colorScheme === "light" ? light_primary_color : dark_primary_color} />
-        <FontAwesomeIcon icon={faCircleInfo} size={32} color={colorScheme === "light" ? light_primary_color : dark_primary_color} />
+        <TouchableOpacity onPress={navigation.goBack}>
+          <FontAwesomeIcon icon={faCircleChevronLeft} size={32} color={colorScheme === "light" ? light_primary_color : dark_primary_color} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={createInfo}>
+          <FontAwesomeIcon icon={faCircleInfo} size={32} color={colorScheme === "light" ? light_primary_color : dark_primary_color} />
+        </TouchableOpacity>
       </View>
 
       <View style={[{ flex: 1 }, { alignItems: 'center' }]}>
