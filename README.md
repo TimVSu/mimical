@@ -26,6 +26,12 @@
   - Enter command: npm start (if the app does not start, you have to enter npm install --legacy-peer-deps first)
   - Follow instructions in terminal
 
+- 2023-01-13 -- 0.0.4
+
+  -added Modal for transitioning between tasks ad the menu
+  -added specific sounds to each task
+  -added functionality to take pictures which get saved in the users cache
+
 - 2022-12-16 -- 0.0.3
 
   - settings are stored locally
