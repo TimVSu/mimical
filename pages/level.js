@@ -223,8 +223,9 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
 
 
       <ScrollView
-      // style={{ marginBottom: hp('15%'), marginTop: hp('5%') }}
-      // contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', marginRight: '5%', marginLeft: '5%' }}          
+        // style={{ marginBottom: hp('15%'), marginTop: hp('5%') }}
+        // contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', marginRight: '5%', marginLeft: '5%' }}
+        showsVerticalScrollIndicator={false}
       >
         <View style={[{ borderWidth: 0 }, { borderColor: light_primary_color }]}>
           <Text style={[{ fontSize: 32 }, textColor, { padding: 16 }]}>{currentText}</Text>
@@ -238,7 +239,7 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
         <Text style={{ color: 'white', justifyContent: 'center', fontSize: 24 }}>Üben</Text>
       </TouchableOpacity> */}
 
-      <View style={[{ borderTopWidth: 1 }, { borderColor: borderColor }, { marginBottom: 32 }, { alignItems: 'center' }]}>
+      <View style={[{ paddingTop: 8 }, { borderTopWidth: 1 }, { borderColor: borderColor }, { marginBottom: 32 }, { alignItems: 'center' }]}>
         <Button label="Übung starten" navigation={navigation} target={"AlternativeTask"} />
       </View>
       {/* </View> */}

@@ -49,7 +49,7 @@ const Exercise = ({ navigation, ...props }) => {
       return (
         <Pressable onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level") }}>
           <View style={{ margin: 16 }}>
-            <View style={[styles.square, containerColor, { justifyContent: 'space-between' }, { borderWidth: 4 }, { borderColor: highlightColor }]}>
+            <View style={[styles.square, containerColor, { justifyContent: 'space-between' }, {/*{ borderWidth: 4 }, { borderColor: highlightColor }*/}]}>
               <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
               <View style={[{ alignItems: 'center' }]}>
                 <FontAwesomeIcon style={{ opacity: 0.5 }} icon={props.icon} size={64} color={gray1} />
@@ -58,7 +58,7 @@ const Exercise = ({ navigation, ...props }) => {
                 <FontAwesomeIcon style={{ opacity: 0 }} icon={faLockOpen} size={16} color={iconColor} />
               </View>
             </View>
-            <Text style={[styles.label, { color: highlightColor }, { textAlign: 'center' }, { marginTop: 8 }]}>{props.fromHomeScreen ? "Übung fortsetzen":"Übung " + props.level}</Text>
+            <Text style={[styles.label, textColor, {/*{ color: highlightColor }*/}, { textAlign: 'center' }, { marginTop: 8 }]}>{props.fromHomeScreen ? "Übung fortsetzen":"Übung " + props.level}</Text>
           </View>
         </Pressable>
       );
