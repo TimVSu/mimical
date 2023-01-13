@@ -70,9 +70,17 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
     //@author: Tim Suchan
     //starts the next level
     const nextLevelFunction = () => {
-        incrementCurrentContent();
-        navigation.navigate("Level");
-    }
+        let currentSequence = getCurrentSequence();
+        let contentContent = getCurrentContent();
+        if (contentContent < currentSequence.length) {
+          incrementCurrentContent();
+          navigation.navigate("Level");
+        }
+        else {
+          navigation.navigate("Menu");
+    
+        }
+      }
 
     //@author: Tim Suchan
     //saves the current level as completed
