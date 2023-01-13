@@ -8,6 +8,7 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import Task from '../components/task.js'
+import { getAudio } from '../components/contentManager';
 
 import { incrementCurrentContent, getCurrentSequence, getText, getCurrentContent, getHighlightedText, getCurrentScenario } from '../components/contentManager';
 import styles from '../components/styles.js';
