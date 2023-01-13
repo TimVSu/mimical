@@ -3,7 +3,7 @@
 // import react native
 import { Button, Pressable, ScrollView, Switch, Text, useColorScheme, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage, { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 // import components
 import NavBar from '../components/nav_bar.js';
@@ -11,6 +11,7 @@ import TabBar from '../components/tab_bar.js';
 import SettingsItem from '../components/settings_item.js';
 import styles from '../components/styles.js';
 import { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, gray5, dark_gray5 } from '../components/styles.js';
+import Selection from '../components/selection.js';
 
 // import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -91,9 +92,20 @@ const SettingsPage = ({ navigation }) => {
   const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5;
 
   // get data on first render
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
+
+  const importData = async () => {
+    try {
+      const keys = await AsyncStorage.getAllKeys();
+      const result = await AsyncStorage.multiGet(keys);
+
+      return result.map(req => { console.log(req) });
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   // store language data
   const storeLanguageData = async (value) => {
@@ -145,15 +157,67 @@ const SettingsPage = ({ navigation }) => {
     }
   }
 
+  const [value, setValue] = useState(null);
+  // const { getItem, setItem } = useAsyncStorage('language');
+  const { getItem, setItem } = useAsyncStorage('fontSize');
+  // const { getItem, setItem } = useAsyncStorage('test');
+
+  const readItemFromStorage = async () => {
+    const item = await getItem();
+    setValue(item);
+  };
+
+  const writeItemToStorage = async newValue => {
+    await setItem(newValue);
+    setValue(newValue);
+    // setLanguage(newValue);
+  };
+
+  const readItemFromStorage1 = async () => {
+    const item = await getItem();
+    setIsEnabled1(item);
+    // setLanguage(item);
+  };
+
+  const writeItemToStorage1 = async newValue => {
+    await setItem(newValue);
+    setIsEnabled1(newValue);
+    // setLanguage(newValue);
+  };
+
+  const readItemFromStorage2 = async () => {
+    const item = await getItem();
+    setFontSize(item);
+  };
+
+  const writeItemToStorage2 = async newValue => {
+    await setItem(newValue);
+    setFontSize(newValue);
+  };
+
+  useEffect(() => {
+    // readItemFromStorage();
+    // readItemFromStorage1();
+    readItemFromStorage2();
+  }, []);
+
   // language
   const [isEnabled1, setIsEnabled1] = useState(false);
   const [language, setLanguage] = useState("german");
-  const toggleSwitch1 = () => [setIsEnabled1(previousState => !previousState), setLanguage(isEnabled1 ? "german" : "english"), storeLanguageData(isEnabled1 ? "german" : "english")];
+  const toggleSwitch1 = () => [
+    setIsEnabled1(previousState => !previousState),
+    setLanguage(isEnabled1 ? "german" : "english"),
+    storeLanguageData(isEnabled1 ? "german" : "english"),
+    // writeItemToStorage1(isEnabled1 ? 'false' : 'true')
+  ];
 
   // font size
   const [isEnabled2, setIsEnabled2] = useState(false);
   const [fontSize, setFontSize] = useState(17);
-  const toggleSwitch2 = () => [setIsEnabled2(previousState => !previousState), setFontSize(isEnabled2 ? 17 : 24), storeLargeFontData(!isEnabled2), storeFontSizeData(isEnabled2 ? 17 : 34)];
+  const toggleSwitch2 = () => [
+    setIsEnabled2(previousState => !previousState),
+    writeItemToStorage2(isEnabled2 ? '17' : '24')
+  ];
 
   // camera
   const [isEnabled3, setIsEnabled3] = useState(true);
@@ -166,6 +230,18 @@ const SettingsPage = ({ navigation }) => {
   // appearance
   const [isEnabled5, setIsEnabled5] = useState(false);
   const toggleSwitch5 = () => [setIsEnabled5(previousState => !previousState), setColorScheme(isEnabled5 ? 'light' : 'dark')];
+
+  // text
+  const [isEnabled6, setIsEnabled6] = useState(true);
+  const toggleSwitch6 = () => [setIsEnabled6(previousState => !previousState)];
+
+  // narrator
+  const [isEnabled7, setIsEnabled7] = useState(true);
+  const toggleSwitch7 = () => [setIsEnabled7(previousState => !previousState)];
+
+  // music
+  const [isEnabled8, setIsEnabled8] = useState(true);
+  const toggleSwitch8 = () => [setIsEnabled8(previousState => !previousState)];
 
   // options component
   const Options = (props) => {
@@ -203,23 +279,6 @@ const SettingsPage = ({ navigation }) => {
       </View>
     );
   }
-
-
-
-  const importData = async () => {
-    try {
-      const keys = await AsyncStorage.getAllKeys();
-      const result = await AsyncStorage.multiGet(keys);
-
-      return result.map(req => { console.log(req) });
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-
-
-
 
   // font settings
   const FontSettings = () => {
@@ -296,6 +355,61 @@ const SettingsPage = ({ navigation }) => {
     );
   }
 
+  // text settings
+  const TextSettings = () => {
+    return (
+      <View style={[styles.settings_item, containerColor]}>
+        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Text" : "Text"}</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: green }}
+          thumbColor={'white'}
+          // ios_backgroundColor={"#3e3e3e"}
+          onValueChange={toggleSwitch6}
+          value={isEnabled6}
+        />
+      </View>
+    );
+  }
+
+  // narrator settings
+  const NarratorSettings = () => {
+    return (
+      <View style={[styles.settings_item, containerColor]}>
+        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Narrator" : "Sprecherin"}</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: green }}
+          thumbColor={'white'}
+          // ios_backgroundColor={"#3e3e3e"}
+          onValueChange={toggleSwitch7}
+          value={isEnabled7}
+        />
+      </View>
+    );
+  }
+
+  // music settings
+  const MusicSettings = () => {
+    return (
+      <View style={[styles.settings_item, containerColor]}>
+        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Music" : "Musik"}</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: green }}
+          thumbColor={'white'}
+          // ios_backgroundColor={"#3e3e3e"}
+          onValueChange={toggleSwitch8}
+          value={isEnabled8}
+        />
+      </View>
+    );
+  }
+
+  const [optionIsEnabled1, setOptionIsEnabled1] = useState(false);
+  const [optionIsEnabled2, setOptionIsEnabled2] = useState(false);
+  const [optionIsEnabled3, setOptionIsEnabled3] = useState(false);
+  const selectOption1 = () => [setOptionIsEnabled1(true), setOptionIsEnabled2(false), setOptionIsEnabled3(false)];
+  const selectOption2 = () => [setOptionIsEnabled1(false), setOptionIsEnabled2(true), setOptionIsEnabled3(false)];
+  const selectOption3 = () => [setOptionIsEnabled1(false), setOptionIsEnabled2(false), setOptionIsEnabled3(true)];
+
   return (
     <View style={{ flex: 1 }}>
       <NavBar page_title={isEnabled1 ? "Settings" : "Einstellungen"} />
@@ -305,18 +419,46 @@ const SettingsPage = ({ navigation }) => {
         <CameraSettings></CameraSettings>
         <NotificationsSettings></NotificationsSettings>
         <AppearanceSettings></AppearanceSettings>
+        <TextSettings></TextSettings>
+        <NarratorSettings></NarratorSettings>
+        <MusicSettings></MusicSettings>
+        {/* <View style={[styles.settings_item, containerColor]}>
+          <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
+            <Pressable style={({ pressed }) => [{ backgroundColor: optionIsEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={optionIsEnabled1} onPress={selectOption1}>
+              <Text style={[{ fontSize: fontSize }, textColor]}>männlich</Text>
+            </Pressable>
+            <Pressable style={({ pressed }) => [{ backgroundColor: optionIsEnabled2 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={optionIsEnabled2} onPress={selectOption2}>
+              <Text style={[{ fontSize: fontSize }, textColor]}>weiblich</Text>
+            </Pressable>
+            <Pressable style={({ pressed }) => [{ backgroundColor: optionIsEnabled3 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={optionIsEnabled3} onPress={selectOption3}>
+              <Text style={[{ fontSize: fontSize }, textColor]}>divers</Text>
+            </Pressable>
+          </View>
+        </View> */}
+        <Selection title="Geschlecht" option1="männlich" option2="weiblich" option3="divers" fontSize={fontSize} />
         <Button
           title='set data'
           onPress={storeData}
         />
         <Button
           title='get data'
+          onPress={getData}
+        />
+        <Button
+          title='import data'
           onPress={importData}
         />
         <Button
           title='reset levels'
           onPress={resetLevels}
         />
+        <Button
+          title='test'
+          onPress={() => writeItemToStorage(JSON.stringify(config))}
+        />
+        {/* <Text>Language: {isEnabled1}, {language}</Text> */}
+        <Text>Font Size: {fontSize}</Text>
+        <Text>{value}</Text>
       </ScrollView>
       <TabBar
         home={inactiveIconColor}
