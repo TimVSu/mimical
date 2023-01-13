@@ -24,7 +24,7 @@ const Exercise = ({ navigation, ...props }) => {
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_square : styles.dark_square;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
-  const iconColor = colorScheme === 'light' ? 'black' : 'white';
+  const iconColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   const highlightColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
 
   if (props.unlocked) {
