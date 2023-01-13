@@ -15,6 +15,8 @@ const umzug1 = {
     "highlightedText": "Mit den Handflächen reiben Sie sich das Gesicht ab.",
 
     "task": "Reiben sie ihr Gesicht mit den Handflächen",
+
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 const umzug2 = {
@@ -22,7 +24,9 @@ const umzug2 = {
         "Auch das Bett ist bereits abgebaut und umzugsbereit." +
         "Ihr Blick schweift durch die Wohnung auf das schwere, sperrige Sofa. Sie fragen sich, ob es durch den engen Flur passen wird. Besorgt",
     "highlightedText": "Ziehen Sie die Augenbrauen hoch.",
-    "task": "Ziehen Sie die Augenbrauen hoch."
+    "task": "Ziehen Sie die Augenbrauen hoch.",
+
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 const umzug3 = {
@@ -32,7 +36,9 @@ const umzug3 = {
 
     "highlightedText": "Nachdenklich ziehen Sie die Augenbrauen zusammen.",
 
-    "task": "Ziehen sie nachdenklich ihre Augenbrauen zusammen"
+    "task": "Ziehen sie nachdenklich ihre Augenbrauen zusammen",
+
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 const umzug4 = {
@@ -40,7 +46,9 @@ const umzug4 = {
 
     "highlightedText": "Genervt ziehen Sie die Augenbrauen zusammen.",
 
-    "task": "Ziehen sie Genervt ihre Augenbrauen zusammen"
+    "task": "Ziehen sie Genervt ihre Augenbrauen zusammen",
+
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 const umzug5 = {
@@ -48,7 +56,9 @@ const umzug5 = {
 
     "highlightedText": "kneifen die Augen zu.",
 
-    "task": "Kneifen sie die Augen zu"
+    "task": "Kneifen sie die Augen zu",
+
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 const umzug6 = {
@@ -56,7 +66,9 @@ const umzug6 = {
 
     "highlightedText": "Erschrocken reißen Sie die Augen auf.",
 
-    "task": "Reißen sie die Augen weit auf"
+    "task": "Reißen sie die Augen weit auf",
+
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 const umzug7 = {
@@ -64,7 +76,9 @@ const umzug7 = {
 
     "highlightedText": "Sie rümpfen die Nase.",
 
-    "task": "Rümpfen sie die Nase"
+    "task": "Rümpfen sie die Nase",
+
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 const umzug8 = {
@@ -72,7 +86,9 @@ const umzug8 = {
 
     "highlightedText": "Sie pusten die Wangen auf und lassen die Luft langsam wieder entweichen.",
 
-    "task": "Pusten sie ihre Wangen auf und lassen sie die Luft langsam entweichen"
+    "task": "Pusten sie ihre Wangen auf und lassen sie die Luft langsam entweichen",
+
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 const umzug9 = {
@@ -80,7 +96,9 @@ const umzug9 = {
 
     "highlightedText": "beißen mit den Zähnen auf die Ober- und Unterlippe.",
 
-    "task": "Beißen sie mit den Zähnen auf ihre Ober und Unterlippe"
+    "task": "Beißen sie mit den Zähnen auf ihre Ober und Unterlippe",
+
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 const umzug10 = {
@@ -88,7 +106,9 @@ const umzug10 = {
 
     "highlightedText": "Erleichtert lächeln Sie.",
 
-    "task": "Lächeln sie erleichtert"
+    "task": "Lächeln sie erleichtert",
+
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 const umzug11 = {
@@ -96,7 +116,9 @@ const umzug11 = {
 
     "highlightedText": "schieben enttäuscht die Unterlippe vor.",
 
-    "task": "Schieben sie die Unterlippe vor"
+    "task": "Schieben sie die Unterlippe vor",
+
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 const umzug12 = {
@@ -104,7 +126,9 @@ const umzug12 = {
 
     "highlightedText": "Sie Lachen, sodass Ihre Zähne zu sehen sind.",
 
-    "task": "Lachen Sie, sodass ihre Zähne zu sehen sind"
+    "task": "Lachen Sie, sodass ihre Zähne zu sehen sind",
+
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 const umzug13 = {
@@ -112,7 +136,9 @@ const umzug13 = {
 
     "highlightedText": "Traurig schieben Sie die Unterlippe vor.",
 
-    "task": "Schieben sie die Unterlippe vor"
+    "task": "Schieben sie die Unterlippe vor",
+
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 const umzug14 = {
@@ -120,7 +146,9 @@ const umzug14 = {
 
     "highlightedText": "spitzen Sie die Lippen und bewegen sie nach rechts und links.",
 
-    "task": "Spitzen Sie die Lippen und bewegen sie nach rechts und links."
+    "task": "Spitzen Sie die Lippen und bewegen sie nach rechts und links.",
+
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 const umzug15 = {
@@ -128,7 +156,9 @@ const umzug15 = {
 
     "highlightedText": "Sie schieben die Unterlippe vor.",
 
-    "task": "Schieben sie die Unterlippe vor"
+    "task": "Schieben sie die Unterlippe vor",
+
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 const umzug16 = {
@@ -136,7 +166,9 @@ const umzug16 = {
 
     "highlightedText": "Bei diesem Gedanken lächeln Sie.",
 
-    "task": "Lächeln Sie"
+    "task": "Lächeln Sie",
+
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 const umzug17 = {
@@ -145,74 +177,89 @@ const umzug17 = {
 
     "highlightedText": "empty",
 
-    "task": "empty"
+    "task": "empty",
+
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 //===================================================================================================================================0
 const einzug1 = {
     "baseText": "Einzug in eine neue Wohnung, Sie sind gestern umgezogen und müssen heute alle Umzugskisten auspacken. Um heute das nötigste zu schaffen, sind Sie sehr früh aufgestanden. Noch etwas verschlafen gehen Sie durch die Wohnung und überlegen, wo Sie nur anfangen sollen. ",
     "highlightedText": "Sie reiben verschlafen Ihr Gesicht mit den Handflächen.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einzug2 = {
     "baseText": "Jetzt erst einmal einen Kaffee, denken Sie sich. Vergebens suchen Sie die Kaffeemaschine, können die Kiste mit den Küchensachen aber nirgendwo finden. Da entdecken Sie die Tassen und kramen nach ihrer Lieblingstasse. Oh nein! Ihre Lieblingstasse ist beim Umzug zu Bruch gegangen.  ",
     "highlightedText": "Entsetzt reißen Sie die Augen weit auf.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einzug3 = {
     "baseText": "Sie werfen die Überreste in den Mülleimer und nehmen sich eine beliebig andere Tasse. Sie stellen die Kaffeemaschine an. Die Maschine zeigt den Spülvorgang an. Noch etwas verschlafen, starten Sie unabsichtlich den Spülvorgang. Jetzt dauert es 10 Minuten. Sie ärgern sich und ziehen dabei die Augenbrauen zusammen.Endlich ist der Kaffee fertig und Sie schenken sich eine Tasse ein. Sie setzen sich auf Ihr Sofa und trinken in Ruhe Ihren Kaffee. Noch müde und erschöpft vom Umzug, ",
     "highlightedText": "kneifen Sie die Augen zu.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einzug4 = {
     "baseText": "Es kann losgehen. Sie beschließen, mit dem Ausräumen der Kisten zu beginnen. Es gibt so viel zu tun! Plötzlich klingelt es an der Tür. Erstaunt ",
     "highlightedText": "ziehen Sie die Augenbrauen hoch.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einzug5 = {
     "baseText": "Sie öffnen die Tür und vor Ihnen steht eine Frau, die sich als Ihre Nachbarin vorstellt. Sie beschwert sich, dass Ihr Auto die Garage blockiert. Sie käme nun nicht mehr aus der Garage heraus. Sie wundern sich, weil Sie darauf geachtet haben, niemanden zu hindern. Schnell holen Sie die Autoschlüssel. Am Auto angekommen, sehen Sie, dass Ihre Nachbarin problemlos rausfahren könnte. Verärgert ",
     "highlightedText": "ziehen Sie die Augenbrauen zusammen.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einzug6 = {
     "baseText": "Als Sie wieder zurück in Ihrer Wohnung sind, räumen Sie die Umzugskisten aus. Sie bemerken schnell, dass Sie für die weiteren Umzugskisten im Wohnzimmer das Wandregal aufbauen müssen. Sie bohren dafür die Löcher in die Wand, hängen das Regal auf und Sie gehen anschließend ein Stück weiter weg, um zu prüfen, ob das Wandregal auch gerade hängt. Dazu ",
     "highlightedText": "kneifen Sie die Augen etwas zu.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einzug7 = {
     "baseText": "Das Wandregal scheint gerade zu hängen. Weiter geht es im Badezimmer. Sie bauen den Schrank auf und räumen alle Badutensilien ein. Sie bemerken einen unangenehmen Geruch aus der Dusche. Er kommt vom Abfluss hoch. ",
     "highlightedText": "Sie rümpfen die Nase.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einzug8 = {
     "baseText": "Vermutlich wurde die Dusche seit längerer Zeit nicht mehr benutzt. Sie drehen den Wasserhahn auf und lassen die Dusche eine Zeit laufen, um den Geruch zu beseitigen. Anschließend öffnen Sie das Fenster und lassen frische Luft rein. Schon viel besser. Zufrieden ",
     "highlightedText": "lächeln Sie.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einzug9 = {
     "baseText": "Als nächstes hängen Sie die Bilder im Flur auf. Zwei der drei Bilder haben Sie gefunden. Aber wo ist das Dritte? Sie haben bereits die ganze Wohnung nach dem Bild abgesucht. Sie überlegen, ",
     "highlightedText": "spitzen dabei die Lippen und bewegen sie nach rechts und links.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einzug10 = {
     "baseText": "Mit einem Mal fällt es Ihnen ein. Das Bild könnte oben auf den Dachboden geräumt worden sein. Sie schauen sofort nach.  Oben auf dem Dachboden angekommen, stellen Sie fest, dass der Bilderrahmen etwas verschmutzt ist. Das muss wohl vom Umzug gekommen sein. ",
     "highlightedText": "Vorsichtig spitzen Sie die Lippen und pusten den Staub weg.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einzug11 = {
     "baseText": "Als die drei Bilder im Flur hängen, freuen Sie sich über das Ergebnis. Sie stellen sich etwas weiter weg, um die drei Bilder im Flur zu betrachten. Sie hängen alle auf einer Linie nebeneinander und auch noch ganz gerade. Großartig, ",
     "highlightedText": "Sie formen mit den Lippen ein Oh.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einzug12 = {
     "baseText": "Jetzt gönnen Sie sich erst einmal eine kleine Pause im Wohnzimmer auf dem Sofa. Dazu kochen Sie Kaffee und essen ein Stück Kuchen vom Bäcker, den Sie bereits gestern gekauft hatten. Sie genießen den warmen Kaffee. ",
     "highlightedText": "Sie spitzen die Lippen und schlürfen das heiße Getränk.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einzug13 = {
     "baseText": "Der Kuchen schmeckt sehr gut und Sie freuen sich, dass der Bäcker gleich nebenan ist. Da werden Sie sicherlich häufiger ein leckeres Stück Kuchen kaufen. Um die letzten Krümel noch zu genießen, ",
     "highlightedText": "lassen Sie die Zunge im Mund kreisen.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 //===============================================================================================================================================
@@ -220,67 +267,80 @@ const einzug13 = {
 const urlaub1 = {
     "baseText": "Endlich ist es soweit. Sie fahren heute in den Urlaub ans Meer. Nach einer langen Reise sind Sie endlich angekommen, stellen die Koffer ins Hotel und machen sich direkt auf den Weg zum Strand. Bereits von Weitem sehen Sie, dass viele Leute schon am Strand liegen. Ob Sie hier noch ein Plätzchen finden werden? ",
     "highlightedText": "Erstaunt ziehen Sie die Augenbrauen hoch.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const urlaub2 = {
     "baseText": "Über den Strand hinweg erspähen Sie noch ein ruhiges Plätzchen. Das ist es. Doch als Sie sich in die Richtung bewegen, hat schon eine Familie den Platz belegt. ",
     "highlightedText": "Genervt ziehen Sie die Augenbrauen zusammen.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const urlaub3 = {
     "baseText": "Sie halten weiter Ausschau nach einem geeigneten Platz. Die Leute liegen allerdings schon sehr nah aneinander, weil es so voll ist. Sie laufen ein ganzes Stück am Strand entlang. Nach einer Weile haben Sie genau den richtigen Platz gefunden, legen Ihre Decke und das Handtuch aus und wollen die Sonne genießen. Doch die Sonne blendet so stark, dass ",
     "highlightedText": "Sie die Augen zukneifen müssen.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const urlaub4 = {
     "baseText": "Sie schließen die Augen. Mit einem Mal merken Sie, wie etwas neben Ihrem Kopf landet. Erschrocken öffnen Sie die Augen und sehen, dass es ein Frisbee ist. Zwei Kinder haben es versehentlich zu Ihnen geworfen. Sie nehmen das Frisbee und lassen Sie zu den beiden zurücksegeln. ",
     "highlightedText": "Vergnügt, zwinkern Sie den beiden zu.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const urlaub5 = {
     "baseText": "Sie legen sich wieder auf Ihre Decke. Plötzlich weht Ihnen ein unangenehmer Geruch entgegen. Sie schauen sich um, woher der Gestank kommen könnte. Es kann nur vom nahegelegenen Imbiss kommen. Vermutlich ist das Essen aus Versehen verbrannt und der Geruch weht herüber. ",
     "highlightedText": "Sie rümpfen die Nase.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const urlaub6 = {
     "baseText": "Mittlerweile ist Ihnen doch sehr warm. Um sich abzukühlen, entschließen Sie sich, im Meer zu schwimmen. Es ist doch kälter als Sie gedacht hatten. Sie beschließen, einmal komplett unterzutauchen, um sich an die Wassertemperatur zu gewöhnen. Dazu ",
     "highlightedText": "pusten Sie die Wangen auf und lassen die Luft wieder entweichen.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const urlaub7 = {
     "baseText": "Das kühle Nass ist frisch und angenehm. Sie schwimmen etwas weiter raus, kehren dann ins seichtere Wasser zurück. Als Sie wieder zurück zum Strand schwimmen und wieder stehen können, blicken Sie noch einmal zurück und genießen die Weite. Sie freuen sich auf die kommenden Wochen am Meer und ",
     "highlightedText": "lächeln, sodass Ihre Zähne zu sehen sind.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const urlaub8 = {
     "baseText": "Am Strand zurück, trocknen Sie sich ab und legen sich wieder auf die Decke. Zum Schutz vor der Sonne cremen Sie sich mit Sonnenmilch ein. Auch die Lippen dürfen Sie nicht vergessen und tragen etwas Sonnenmilch auf. Um sie gleichmäßig zu verteilen, ",
     "highlightedText": "reiben Sie die Lippen aufeinander.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const urlaub9 = {
     "baseText": "Sie beobachten die Leute am Strand. Viele spielen Frisbee oder Ball, Kinder buddeln im Sand und bauen Burgen und viele liegen einfach da und genießen die Sonne und den Strand. Sie haben Lust auf Eis und gehen zum Imbiss. Vielleicht gibt es dort auch Eis zu kaufen. Als Sie ankommen, staunen Sie über die große Auswahl. Es gibt ganz ausgefallene Eissorten, ",
     "highlightedText": "Sie formen mit den Lippen ein Oh.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const urlaub10 = {
     "baseText": "Sie können sich nicht entscheiden und beschließen daher mindestens drei Kugeln Eis zu nehmen. Sie überlegen, welche Sorten es sein sollen. Dabei ",
     "highlightedText": "spitzen Sie die Lippen und bewegen sie nach rechts und links.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const urlaub11 = {
     "baseText": "Die Entscheidung ist gefallen und Sie haben doch ganz klassisch Erdbeere, Schokolade und Vanille genommen. Auf dem Weg zurück zu Ihrer Decke genießen Sie das Eis. ",
     "highlightedText": "Dazu lassen Sie die Zunge im Mund kreisen.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const urlaub12 = {
     "baseText": " Die oberste Kugel rutscht von der Waffel und landet im Sand. Oh nein. ",
     "highlightedText": "Enttäuscht schieben Sie die Unterlippe vor.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const urlaub13 = {
     "baseText": "Na toll. Sie beseitigen die heruntergefallene Kugel mit einer Serviette und werfen sie in den Mülleimer. Auf der Decke genießen Sie noch das restliche Eis. Es ist eine tolle Abkühlung. Sie sind zufrieden und können sich ein ",
     "highlightedText": "breites Lächeln",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 //=====================================================================================================================================
@@ -288,67 +348,80 @@ const urlaub13 = {
 const einkauf1 = {
     "baseText": "Sie sind auf dem Weg zum Supermarkt, um Lebensmittel einzukaufen. Es ist früh am Morgen. Sie sind noch etwas verschlafen und bleiben kurz stehen, ",
     "highlightedText": "um sich mit den Handflächen das Gesicht zu reiben.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf2 = {
     "baseText": "Im Supermarkt angekommen, nehmen Sie sich einen Einkaufswagen und suchen Ihren Einkaufszettel. Sie suchen alle Taschen ab, doch sie können ihn nicht finden. Oh nein, der Zettel muss noch auf dem Küchentisch liegen. Wie sollen Sie sich nur an alles, was Sie kaufen wollten, erinnern?  ",
     "highlightedText": "Entsetzt ziehen Sie die Augenbrauen hoch.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf3 = {
     "baseText": "Sie gehen zuversichtlich in den Supermarkt und hoffen, sich an alles zu erinnern. Sie erinnern sich, dass Sie Spaghetti Bolognese machen wollten. Dafür benötigen Sie Zwiebeln, Knoblauch, Möhren, Sellerie und Hackfleisch. Haben Sie noch Zwiebeln zu Hause? Sie überlegen, aber es fällt Ihnen nicht ein. ",
     "highlightedText": "Sie kneifen die Augen zu, um sich besser zu konzentrieren.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf4 = {
     "baseText": "Sie legen vorsichtshalber auch Zwiebeln in den Wagen und gehen weiter zur Fleischtheke. Es hat sich bereits eine lange Schlange gebildet und Sie müssen warten. Als Sie nach einer Weile endlich an der Reihe sind, sagen Sie der Verkäuferin, dass Sie gerne 1 Pfund Gehacktes, halb und halb, haben möchten. Die Verkäuferin sagt Ihnen, dass sie nur noch Rinderhack habe, das Schweinehack habe Sie gerade an den letzten Kunden verkauft. ",
     "highlightedText": "Verärgert ziehen Sie die Augenbrauen zusammen.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf5 = {
     "baseText": " Die Verkäuferin fragt, ob es sonst noch etwas sein dürfe. Sie überlegen. An der Wand hängen noch geräucherte Mettwürstchen. Sie können allerdings nicht erkennen, wie teuer diese sind. ",
     "highlightedText": "Sie kneifen die Augen zusammen, um das Schild zu lesen.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf6 = {
     "baseText": "Um die Warteschlange nicht noch länger aufzuhalten, nehmen Sie die Würstchen mit. Die Verkäuferin packt alles ein. Sie gehen weiter zur Kühlabteilung. Sie benötigen noch Parmesan. Vor Ihnen im Gang ist der ganze Boden mit Joghurt bedeckt. Scheinbar ist jemandem der Becher heruntergefallen. Es riecht unangenehm. ",
     "highlightedText": "Sie rümpfen die Nase.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf7 = {
     "baseText": "Sie machen den nächsten Mitarbeiter ausfindig und weisen ihn daraufhin. Der junge Mann eilt direkt los, holt Lappen und Putzmittel und beseitigt den Joghurt. ",
     "highlightedText": "Dankbar lächeln Sie.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf8 = {
     "baseText": "Sie gehen weiter zum Käseregal und suchen Blauschimmelkäse. Doch Sie können keinen finden. Verwundert wenden Sie sich an den Mitarbeiter, der noch dabei ist, den Joghurt zu beseitigen und der teilt Ihnen mit, dass der Käse ausverkauft sei. ",
     "highlightedText": "Enttäuscht schieben Sie die Unterlippe vor.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf9 = {
     "baseText": "Sie kaufen noch die restlichen Lebensmittel für das Essen ein und alles, was Ihnen sonst noch einfällt. Dann begeben Sie sich zur Kasse. Vor der Kasse bleiben Sie am Kühlregal für Getränke stehen und überlegen, ob Sie noch Limonade mitnehmen sollen. Dazu ",
     "highlightedText": "spitzen Sie die Lippen und bewegen sie nach rechts und links.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf10 = {
     "baseText": "Als Sie die Limonadenflasche aus dem Kühlregal ziehen, stoßen Sie versehentlich gegen die danebenliegenden Dosen mit Cola. Eine fällt runter. Für einen kurzen Moment sind Sie geschockt, ",
     "highlightedText": "pusten die Wangen auf und lassen die Luft wieder entweichen.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf11 = {
     "baseText": "An der Kasse angekommen, warten schon 8 Leute in der Schlange. Die Kassiererin scheint sichtlich überfordert, sie muss ständig die Preise nachschauen und scheint noch relativ neu zu sein. Das kann noch etwas dauern. ",
     "highlightedText": "Sie schieben die Unterlippe vor.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf12 = {
     "baseText": "Eine andere Kassiererin kommt aus der Pause. Zum Glück macht sie eine weitere Kasse auf. Sie stellen sich an und legen die Lebensmittel aufs Band. Als Sie an der Reihe sind, räumen Sie zügig die gescannten Artikel in den Wagen und kramen ihr Portmonee aus der Tasche. Doch es ist nicht wie gewohnt in der Tasche. Nervös ",
     "highlightedText": "beißen Sie mit den Zähnen auf die Ober-und Unterlippe.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf13 = {
     "baseText": "Sie durchwühlen Ihre Taschen. Als Sie das Portmonee endlich finden, sind Sie erleichtert. Sie bezahlen den Einkauf und verlassen den Supermarkt. ",
     "highlightedText": "Sie lächeln.",
-    "task": "empty"
+    "task": "empty",
+    "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
 //=====================================================================================================================================
