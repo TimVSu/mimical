@@ -34,6 +34,10 @@
   - added automatic key generation when a patient registers for the first time
   - add additional (required) inputs for registration: names, birth date, gender
   - new registration and login design
+  - made Menu progress bars functional
+  - made exercise completion display functional
+  - added start next level button to home screen 
+  - task redesign
 
 - 2022-12-16 -- 0.0.3
 
@@ -90,10 +94,6 @@
   - therapists can edit data after they added a patient
   - charts are now implemented on the webiste
   - design changes
-  - made Menu progress bars functional
-  - made exercise completion display functional
-  - added start next level button to home screen 
-  - task redesign
 
 - 2022-12-16 -- 0.0.3
 
