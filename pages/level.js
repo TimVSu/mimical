@@ -34,6 +34,7 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
   //used for the anomation off the floatUp effect when a task is called
   const [currentText, setCurrentText] = useState(getText());
   const [currentHighlightedText, setCurrentHighlightedText] = useState(getHighlightedText);
+  const [currentAudio, setCurrentAudio] = useState(getAudio());
   const offset = useSharedValue(hp('100%'));
 
   //used for the exand anoimation of the info button
@@ -57,14 +58,6 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
       top: offset.value,
     }
   });
-
-
-  useFocusEffect(
-    useCallback(() => {
-      setCurrentText(getText());
-      setCurrentHighlightedText(getHighlightedText());
-    }, [currentText, currentHighlightedText])
-  );
 
   // @author: Tim Suchan
   // returns animatedStyle for info expand animation
@@ -137,7 +130,8 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
     if (contentContent < currentSequence.length) {
       incrementCurrentContent();
       setCurrentText(getText());
-      setCurrentHighlightedText(getHighlightedText);
+      setCurrentHighlightedText(getHighlightedText());
+      setCurrentAudio(getAudio());
     }
     else {
       navigation.navigate("Menu");
@@ -150,7 +144,9 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
 
   async function playSound() {
     console.log('Loading Sound');
-    const { sound } = await Audio.Sound.createAsync(require('../assets/LAKEY_INSPIRED_Better_Days.mp3')
+    console.log(getAudio())
+    // const { sound } = await Audio.Sound.createAsync( require("../assets/Uebung1_Der_erste_Schnee.wav")
+    const { sound } = await Audio.Sound.createAsync( getAudio() 
     );
     setSound(sound);
 
@@ -165,7 +161,8 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
   useEffect(() => {
     setCurrentText(getText());
     setCurrentHighlightedText(getHighlightedText());
-  }, []);
+    setCurrentAudio(getAudio())
+  },[]);
 
 
   useEffect(() => {
