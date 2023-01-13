@@ -14,7 +14,7 @@ import styles from '../components/styles.js';
 import { Audio } from 'expo-av';
 import { useFocusEffect } from '@react-navigation/native';
 import Button from '../components/button.js';
-import { light_primary_color, dark_primary_color } from '../components/styles.js';
+import { light_primary_color, dark_primary_color, gray5, dark_gray5 } from '../components/styles.js';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCircleChevronLeft, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
@@ -185,11 +185,11 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === "light" ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === "light" ? styles.light_text : styles.dark_text;
+  const borderColor = colorScheme === "light" ? gray5 : dark_gray5;
 
   return (
 
-    <View
-      style={[{ flex: 1 }, containerColor]}>
+    <View style={[{ flex: 1 }, containerColor]}>
 
       {/* <TouchableOpacity onPress={navigation.goBack} style={styles.backButton}>
         <AntDesign name="left" size={wp('8%')} color="black" />
@@ -205,41 +205,43 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
         </TouchableOpacity>
       } */}
 
-      <View style={[{ flexDirection: 'row' }, { justifyContent: 'space-between' }, { padding: 16 }, { marginTop: 64 }]}>
+      <View style={[{ flexDirection: 'row' }, { justifyContent: 'space-between' }, { alignItems: 'center' }, { padding: 16 }, { borderBottomWidth: 1 }, { borderColor: borderColor }, { marginTop: 64 }]}>
         <TouchableOpacity onPress={navigation.goBack}>
           <FontAwesomeIcon icon={faCircleChevronLeft} size={32} color={colorScheme === "light" ? light_primary_color : dark_primary_color} />
         </TouchableOpacity>
+        <Text style={[{ fontSize: 40 }, { fontWeight: 'bold' }, textColor]}>{getCurrentScenario()}</Text>
         <TouchableOpacity onPress={createInfo}>
           <FontAwesomeIcon icon={faCircleInfo} size={32} color={colorScheme === "light" ? light_primary_color : dark_primary_color} />
         </TouchableOpacity>
       </View>
 
-      <View style={[{ flex: 1 }, { alignItems: 'center' }]}>
-        {/* <View style={{ marginTop: hp('15%'), alignContent: 'center', alignItems: 'center', zIndex: 0, elevation: 0 }}>
+      {/* <View style={[{ flex: 1 }, { alignItems: 'center' }]}> */}
+      {/* <View style={{ marginTop: hp('15%'), alignContent: 'center', alignItems: 'center', zIndex: 0, elevation: 0 }}>
         <Heading size="2xl">LEVEL HEADING</Heading>
       </View> */}
 
-        <Text style={[{ fontSize: 40 }, { fontWeight: 'bold' }, textColor, { padding: 16 }, { marginTop: 16 }]}>{getCurrentScenario()}</Text>
 
-        <ScrollView
-          // style={{ marginBottom: hp('15%'), marginTop: hp('5%') }}
-          // contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', marginRight: '5%', marginLeft: '5%' }}
-          style={[{ borderWidth: 0 }, { padding: 16 }]}
-        >
-          <Text style={[{ fontSize: 32 }, textColor]}>{currentText}</Text>
-          {/* <Text style={[{ borderWidth: 0 }, { fontSize: 32 }, { fontWeight: 'bold' }, { color: colorScheme === "light" ? light_primary_color : dark_primary_color }, { padding: 16 }]}>{currentHighlightedText} </Text> */}
-        </ScrollView>
 
-        <Text style={[{ borderWidth: 0 }, { fontSize: 32 }, { fontWeight: 'bold' }, { color: colorScheme === "light" ? light_primary_color : dark_primary_color }, { padding: 16 }]}>{currentHighlightedText} </Text>
+      <ScrollView
+      // style={{ marginBottom: hp('15%'), marginTop: hp('5%') }}
+      // contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', marginRight: '5%', marginLeft: '5%' }}          
+      >
+        <View style={[{ borderWidth: 0 }, { borderColor: light_primary_color }]}>
+          <Text style={[{ fontSize: 32 }, textColor, { padding: 16 }]}>{currentText}</Text>
+          <Text style={[{ borderWidth: 0 }, { fontSize: 32 }, { fontWeight: 'bold' }, { color: colorScheme === "light" ? light_primary_color : dark_primary_color }, { padding: 16 }]}>{currentHighlightedText} </Text>
+        </View>
+      </ScrollView>
 
-        {/* <TouchableOpacity style={styles.createTaskButton} onPress={() => {navigation.navigate("AlternativeTask")}}>
+      {/* <Text style={[{ borderWidth: 0 }, { fontSize: 32 }, { fontWeight: 'bold' }, { color: colorScheme === "light" ? light_primary_color : dark_primary_color }, { padding: 16 }]}>{currentHighlightedText} </Text> */}
+
+      {/* <TouchableOpacity style={styles.createTaskButton} onPress={() => {navigation.navigate("AlternativeTask")}}>
         <Text style={{ color: 'white', justifyContent: 'center', fontSize: 24 }}>Üben</Text>
       </TouchableOpacity> */}
 
-        <View style={{ marginBottom: 32 }}>
-          <Button label="Übung starten" navigation={navigation} target={"AlternativeTask"} />
-        </View>
+      <View style={[{ borderTopWidth: 1 }, { borderColor: borderColor }, { marginBottom: 32 }, { alignItems: 'center' }]}>
+        <Button label="Übung starten" navigation={navigation} target={"AlternativeTask"} />
       </View>
+      {/* </View> */}
 
       {taskCreated &&
         <Animated.View style={[floatUpStyle, { zIndex: 100, elevation: 100, position: 'absolute' }]}>
