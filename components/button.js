@@ -1,7 +1,7 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { Pressable, Text, useColorScheme } from 'react-native';
+import { Pressable, Text, TouchableOpacity, useColorScheme } from 'react-native';
 import React from 'react';
 
 // import components
@@ -16,10 +16,12 @@ const Button = ({ navigation, ...props }) => {
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   return (
-    <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : containerColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 16 }, { flexDirection: 'row' }, { justifyContent: 'center' }, { alignItems: 'center' }]} onPress={() => navigation.navigate(props.target)}>
-      {/* <FontAwesomeIcon style={{ marginRight: 8 }} icon={props.icon} color='white' /> */}
-      <Text style={[styles.label, { color: 'white' }]}>{props.label}</Text>
-    </Pressable>
+    // <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : containerColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 16 }, { flexDirection: 'row' }, { justifyContent: 'center' }, { alignItems: 'center' }]} onPress={() => navigation.navigate(props.target)}>
+      <TouchableOpacity style={[{ backgroundColor: containerColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 16 }, { flexDirection: 'row' }, { justifyContent: 'center' }, { alignItems: 'center' }]} onPress={() => navigation.navigate(props.target)}>
+        {/* <FontAwesomeIcon style={{ marginRight: 8 }} icon={props.icon} color='white' /> */}
+        <Text style={[styles.label, { color: 'white' }]}>{props.label}</Text>
+      </TouchableOpacity>
+    // </Pressable>
   );
 }
 
