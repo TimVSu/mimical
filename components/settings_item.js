@@ -1,14 +1,13 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { Button, ScrollView, StyleSheet, Switch, Text, useColorScheme, View } from 'react-native';
+import { Switch, Text, useColorScheme, View } from 'react-native';
 import React, { useState } from 'react';
 
 // import components
 import styles from './styles';
 
 // import icons
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 // import { faSquare } from '@fortawesome/free-solid-svg-icons';
 // import { faToggleOn } from '@fortawesome/free-solid-svg-icons';
 // import { faToggleOff } from '@fortawesome/free-solid-svg-icons';

@@ -4,7 +4,6 @@
 import { StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { Dimensions } from 'react-native';
 
 // default light mode colors
 const red = 'rgb(255, 59, 48)';

@@ -2,10 +2,10 @@
 
 // import react native
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, ScrollView, Text, View, useColorScheme, TouchableOpacity, FlatList } from 'react-native';
+import { ScrollView, Text, View, useColorScheme, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { useState, useEffect, useCallback, useReducer } from 'react'
-import { useIsFocused, useFocusEffect } from '@react-navigation/native';
+import { useState, useEffect, useCallback } from 'react'
+import { useFocusEffect } from '@react-navigation/native';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 // import components
@@ -13,15 +13,10 @@ import NavBar from '../components/nav_bar.js';
 import TabBar from '../components/tab_bar.js';
 import Scenario from '../components/scenario.js';
 import FilterBar from '../components/filter_bar.js';
-import { faBeer, faBowlingBall, faChurch, faCity, faCow, faL, faLightbulb, faSnowflake, faSun, faTree } from '@fortawesome/free-solid-svg-icons';
 import styles from '../components/styles.js';
 import { light_primary_color, dark_primary_color } from '../components/styles.js';
-import { getAllContents, incrementCurrentContent, getDefaultScenarios, getCurrentSequence, setCurrentContent, getCurrentContent, getScenario, setCurrentSequence, getIcon, getTags, getTaskCount } from '../components/contentManager';
-import { getEffectiveConstraintOfTypeParameter } from 'typescript';
+import { getDefaultScenarios, setCurrentContent, getScenario, getIcon, getTags } from '../components/contentManager';
 
-
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faCircleInfo, faEye, faFaceSmile } from '@fortawesome/free-solid-svg-icons';
 
 // colors
 const orange = 'rgb(255, 149, 0)';

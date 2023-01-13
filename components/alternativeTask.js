@@ -1,10 +1,8 @@
 //@author: Tim Suchan
 import CameraScreen from './camera.js';
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text, Button, LayoutAnimation, UIManager, Pressable, Modal, Alert, useColorScheme } from 'react-native';
+import { View, StyleSheet, Text, LayoutAnimation, UIManager, Pressable, Modal, Alert, useColorScheme } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { Heading } from 'native-base';
-import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
 import CustomButton from './customButton.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -222,8 +220,8 @@ const AlternativeTask = ({ navigation, route, children, downFunction, }) => {
                     <Text style={[styles.label, { color: 'white' }]}>Pause</Text>
                 </Pressable>
                 <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : buttonColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => play()}>
-                    <Text style={[styles.label, { color: 'white' }]}>Weiter</Text>
-                    <FontAwesomeIcon style={{ marginLeft: 8 }} icon={faChevronRight} color='white' />
+                    <Text style={[styles.label, { color: 'white' }]}>Spielen</Text>
+                    <FontAwesomeIcon style={{ marginLeft: 8 }} icon={faPlay} color='white' />
                 </Pressable>
             </View>
 

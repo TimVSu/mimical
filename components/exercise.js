@@ -4,8 +4,6 @@
 import { Pressable, Text, useColorScheme, View } from 'react-native';
 import React from 'react';
 import { startLevel } from './contentManager.js';
-import { useEffect, useState } from 'react';
-import { useAsyncStorage, AsyncStorage } from '@react-native-async-storage/async-storage';
 
 // import components
 import styles from './styles.js';

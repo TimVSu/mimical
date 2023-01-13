@@ -1,8 +1,7 @@
 //@author: Tim Suchan
 import { Camera, CameraType } from 'expo-camera';
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, Platform, UIManager, Text } from 'react-native';
-import { CircleIcon } from 'native-base';
+import { View, Platform, UIManager, Text } from 'react-native';
 import * as FaceDetector from 'expo-face-detector';
 import { Heading } from 'native-base'
 import styles from './styles.js'

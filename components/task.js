@@ -1,7 +1,8 @@
 //@author: Tim Suchan
+//likely deprecated
 import CameraScreen from './camera.js';
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text, Button, LayoutAnimation, UIManager, Pressable } from 'react-native';
+import { View, TouchableOpacity, Text, LayoutAnimation, UIManager, Pressable } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Heading } from 'native-base';
 import { AntDesign } from '@expo/vector-icons';

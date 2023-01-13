@@ -1,7 +1,7 @@
 // authors: Tim Suchan, Maxim Torgovitski
 
 // import react native
-import { ScrollView, Text, TouchableOpacity, useColorScheme, View, } from "react-native";
+import { useColorScheme, View, } from "react-native";
 
 // import components
 import Button from "../components/button";
@@ -10,10 +10,9 @@ import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState, useEffect, useCallback } from "react";
 import { useFocusEffect } from "@react-navigation/native";
-import { FontAwesome } from '@expo/vector-icons';
 
 // import icons
-import { faChartSimple, faGear, faHouse, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faChartSimple, faGear, faHouse } from "@fortawesome/free-solid-svg-icons";
 import Exercise from "../components/exercise";
 import { getIcon, getScenario, getScenarioFromTask } from "../components/contentManager";
 

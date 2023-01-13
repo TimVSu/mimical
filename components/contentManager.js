@@ -7,7 +7,7 @@
 
 //@author: tim suchan
 
-import { faTruck, faHouse, faPlane, faStore, faBox, faB } from "@fortawesome/free-solid-svg-icons"
+import { faTruck, faPlane, faStore, faBox } from "@fortawesome/free-solid-svg-icons"
 
 const umzug1 = {
     "baseText": "Es ist Samstagmorgen und Sie ziehen heute in Ihre neue Wohnung ein. Noch ein wenig verschlafen," +
@@ -412,6 +412,7 @@ let currentScenario;
 //===============================================================================================================================================
 
 //@author: tim suchan
+//setters and getters as well as some special functions for managing content
 
 const setCurrentContent = (number) => {
     currentContent = number;

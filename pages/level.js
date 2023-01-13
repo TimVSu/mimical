@@ -1,18 +1,15 @@
 //@author: Tim Suchan
 import { useEffect, useState, useCallback } from 'react';
-import { View, StyleSheet, TouchableOpacity, Platform, UIManager, Text, ScrollView, useColorScheme } from 'react-native';
+import { View, TouchableOpacity, Platform, UIManager, Text, ScrollView, useColorScheme } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { AntDesign } from '@expo/vector-icons';
 import Animated, {
   useSharedValue,
   withTiming,
   useAnimatedStyle,
-  Easing,
 } from 'react-native-reanimated';
 import Task from '../components/task.js'
-import { Heading, Modal } from 'native-base';
-import Info from '../components/info.js';
-import { getAllContents, incrementCurrentContent, getCurrentSequence, getText, getCurrentContent, getHighlightedText, getCurrentScenario } from '../components/contentManager';
+
+import { incrementCurrentContent, getCurrentSequence, getText, getCurrentContent, getHighlightedText, getCurrentScenario } from '../components/contentManager';
 import styles from '../components/styles.js';
 import { Audio } from 'expo-av';
 import { useFocusEffect } from '@react-navigation/native';
@@ -103,6 +100,7 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
 
   //@Author: Tim Suchan
   // creates the respective task for the level
+  //only used if Task is used instead of alternative Task 
   const createTask = () => {
 
     stopSound();
@@ -122,7 +120,7 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
   }
 
   //@author: Tim Suchan
-  // currently just moves task out of screen for testing but will later start nthe next level
+  //moves the task out of the screen
   function removeTask() {
     offset.value = withTiming(hp('110%'), { duration: 150 });
     setTimeout(toggleTask, 150);
@@ -130,7 +128,9 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
     //clearTimeout(animationTimer)
 
   }
-  
+
+  //@Author: Tim Suchan
+  //starts next level or goes back to menu if the scenario is over
   const nextLevel = () => {
     let currentSequence = getCurrentSequence();
     let contentContent = getCurrentContent();
