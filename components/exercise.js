@@ -1,7 +1,7 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { Pressable, Text, useColorScheme, View } from 'react-native';
+import { Pressable, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
 import React from 'react';
 import { startLevel } from './contentManager.js';
 
@@ -30,7 +30,8 @@ const Exercise = ({ navigation, ...props }) => {
   if (props.unlocked) {
     if (props.completed) {
       return (
-        <Pressable onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level") }}>
+        // <Pressable onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level") }}>
+        <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level") }}>
           <View style={{ margin: 16 }}>
             <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
               <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
@@ -43,13 +44,15 @@ const Exercise = ({ navigation, ...props }) => {
             </View>
             <Text style={[styles.label, textColor, { textAlign: 'center' }, { marginTop: 8 }]}>Übung {props.level}</Text>
           </View>
-        </Pressable>
+        </TouchableOpacity>
+        // </Pressable>
       );
     } else {
       return (
-        <Pressable onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level") }}>
+        // <Pressable onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level") }}>
+        <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level") }}>
           <View style={{ margin: 16 }}>
-            <View style={[styles.square, containerColor, { justifyContent: 'space-between' }, {/*{ borderWidth: 4 }, { borderColor: highlightColor }*/}]}>
+            <View style={[styles.square, containerColor, { justifyContent: 'space-between' }, {/*{ borderWidth: 4 }, { borderColor: highlightColor }*/ }]}>
               <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
               <View style={[{ alignItems: 'center' }]}>
                 <FontAwesomeIcon style={{ opacity: 0.5 }} icon={props.icon} size={64} color={gray1} />
@@ -58,9 +61,10 @@ const Exercise = ({ navigation, ...props }) => {
                 <FontAwesomeIcon style={{ opacity: 0 }} icon={faLockOpen} size={16} color={iconColor} />
               </View>
             </View>
-            <Text style={[styles.label, textColor, {/*{ color: highlightColor }*/}, { textAlign: 'center' }, { marginTop: 8 }]}>{props.fromHomeScreen ? "Übung fortsetzen":"Übung " + props.level}</Text>
+            <Text style={[styles.label, textColor, {/*{ color: highlightColor }*/ }, { textAlign: 'center' }, { marginTop: 8 }]}>{props.fromHomeScreen ? "Übung fortsetzen" : "Übung " + props.level}</Text>
           </View>
-        </Pressable>
+        </TouchableOpacity>
+        // </Pressable>
       );
     }
   } else {
@@ -76,7 +80,7 @@ const Exercise = ({ navigation, ...props }) => {
               <FontAwesomeIcon icon={faLock} size={16} color={iconColor} />
             </View>
           </View>
-          <Text style={[styles.label, textColor, { textAlign: 'center' }, { marginTop: 8 }, { opacity: 0.25 }]}>{props.fromHomeScreen ? "Übung fortsetzen":"Übung " + props.level}</Text>
+          <Text style={[styles.label, textColor, { textAlign: 'center' }, { marginTop: 8 }, { opacity: 0.25 }]}>{props.fromHomeScreen ? "Übung fortsetzen" : "Übung " + props.level}</Text>
         </View>
       </Pressable>
     );
