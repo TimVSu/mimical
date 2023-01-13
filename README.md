@@ -73,6 +73,15 @@
   - After the dependencies are installed use “npm run dev” to start the application
   - Add the ".process.env" to the repository (https://drive.google.com/file/d/11x0xJ-RxX5Fm3aoCA5qGasrH-VZsZQhJ/view?usp=share_link)
 
+- 2023-01-13 -- 0.0.4
+
+  - the repository for the website can be found here: https://gitlab.com/ciis-capstone-project/winter-2022-2023/team-08/mimical-website
+  - therapists are able to add patients if a key is provided by the patient
+  - therapists can edit data when adding a patient
+  - therapists can edit data after they added a patient
+  - charts are now implemented on the webiste
+  - design changes
+
 - 2022-12-16 -- 0.0.3
 
   - the repository for the website can be found here: https://gitlab.com/ciis-capstone-project/winter-2022-2023/team-08/mimical-website
@@ -117,6 +126,8 @@
 
 1. Add the ".process.env" to the repository (https://drive.google.com/file/d/11x0xJ-RxX5Fm3aoCA5qGasrH-VZsZQhJ/view?usp=share_link)
 2. Launching the app/website in the normal way
+
+- 2023-01-13 -- 0.0.4
 
 - 2022-12-16 -- 0.0.3
   - added the design of the databse
