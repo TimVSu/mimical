@@ -414,7 +414,7 @@ const SettingsPage = ({ navigation }) => {
   return (
     <View style={[{ flex: 1 }, containerColor]}>
       <NavBar page_title={isEnabled1 ? "Settings" : "Einstellungen"} />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <LanguageSettings></LanguageSettings>
         <FontSettings></FontSettings>
         <CameraSettings></CameraSettings>
