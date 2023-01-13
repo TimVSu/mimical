@@ -31,6 +31,9 @@
   - added Modal for transitioning between tasks ad the menu
   - added specific sounds to each task
   - added functionality to take pictures which get saved in the users cache
+  - added automatic key generation when a patient registers for the first time
+  - add additional (required) inputs for registration: names, birth date, gender
+  - new registration and login design
 
 - 2022-12-16 -- 0.0.3
 
