@@ -129,7 +129,7 @@ const HomePage = ({ navigation }) => {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={[{ flex: 1 }, containerColor]}>
       <NavBar page_title="Übersicht" navigation={navigation} />
       <FilterBar></FilterBar>
 

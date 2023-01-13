@@ -90,6 +90,7 @@ const SettingsPage = ({ navigation }) => {
   const selectionColor = colorScheme === 'light' ? light_background_color : dark_background_color;
   const activeIconColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5;
+  const borderColor = colorScheme === "light" ? gray5 : dark_gray5;
 
   // get data on first render
   // useEffect(() => {
@@ -411,7 +412,7 @@ const SettingsPage = ({ navigation }) => {
   const selectOption3 = () => [setOptionIsEnabled1(false), setOptionIsEnabled2(false), setOptionIsEnabled3(true)];
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={[{ flex: 1 }, containerColor]}>
       <NavBar page_title={isEnabled1 ? "Settings" : "Einstellungen"} />
       <ScrollView>
         <LanguageSettings></LanguageSettings>
@@ -435,30 +436,33 @@ const SettingsPage = ({ navigation }) => {
             </Pressable>
           </View>
         </View> */}
-        <Selection title="Geschlecht" option1="männlich" option2="weiblich" option3="divers" fontSize={fontSize} />
-        <Button
-          title='set data'
-          onPress={storeData}
-        />
-        <Button
-          title='get data'
-          onPress={getData}
-        />
-        <Button
-          title='import data'
-          onPress={importData}
-        />
-        <Button
-          title='reset levels'
-          onPress={resetLevels}
-        />
-        <Button
-          title='test'
-          onPress={() => writeItemToStorage(JSON.stringify(config))}
-        />
+        {/* <Selection title="Geschlecht" option1="männlich" option2="weiblich" option3="divers" fontSize={fontSize} /> */}
+        <View style={[{ borderTopWidth: 1 }, { borderBottomWidth: 1 }, { borderColor: borderColor }, { flexDirection: 'row' }, { flexWrap: 'wrap' }, { justifyContent: 'space-between' }]}>
+          <Button
+            title='set data'
+            onPress={storeData}
+          />
+          <Button
+            title='get data'
+            onPress={getData}
+          />
+          <Button
+            title='import data'
+            onPress={importData}
+          />
+          <Button
+            title='reset levels'
+            onPress={resetLevels}
+          />
+          <Button
+            title='test'
+            onPress={() => writeItemToStorage(JSON.stringify(config))}
+          />
+        </View>
         {/* <Text>Language: {isEnabled1}, {language}</Text> */}
-        <Text>Font Size: {fontSize}</Text>
-        <Text>{value}</Text>
+        <Text style={[{ fontWeight: 'bold' }, textColor]}>Output</Text>
+        <Text style={textColor}>Font Size: {fontSize}</Text>
+        <Text style={textColor}>{value}</Text>
       </ScrollView>
       <TabBar
         home={inactiveIconColor}
