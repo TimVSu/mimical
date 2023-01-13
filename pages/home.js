@@ -6,7 +6,6 @@ import { useColorScheme, View } from "react-native";
 // import components
 import Button from "../components/button";
 import styles from "../components/styles";
-import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState, useEffect, useCallback } from "react";
 import { useFocusEffect } from "@react-navigation/native";
@@ -26,9 +25,9 @@ import {
 
 // return home page
 const Home = ({ navigation }) => {
-  //VARIABLES:
-  //===============================================================================================================================================
-  const { getItem, setItem } = useAsyncStorage("lastTask");
+
+//VARIABLES:
+//===============================================================================================================================================
   const [nextTask, setNextTask] = useState(1);
   const [completions, setCompletions] = useState({});
   const [fetchCompleted, setFetchCompleted] = useState(false);
@@ -58,8 +57,15 @@ const Home = ({ navigation }) => {
       if (item) {
         setCompletions(JSON.parse(item));
       }
+<<<<<<< HEAD
     } catch (e) {}
   };
+=======
+
+    } catch {
+    }
+  }
+>>>>>>> 60ec903 (comments and cleanup)
 
   //@author: Tim Suchan
   //fetches and updates data and view on render
