@@ -175,9 +175,9 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
       : undefined;
   }, [sound]);
 
-  // useEffect(() => {
-  //   playSound();
-  // }, [])
+  useEffect(() => {
+    playSound();
+  }, [])
 
 
   const colorScheme = useColorScheme();

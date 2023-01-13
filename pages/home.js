@@ -57,15 +57,10 @@ const Home = ({ navigation }) => {
       if (item) {
         setCompletions(JSON.parse(item));
       }
-<<<<<<< HEAD
-    } catch (e) {}
-  };
-=======
 
     } catch {
     }
   }
->>>>>>> 60ec903 (comments and cleanup)
 
   //@author: Tim Suchan
   //fetches and updates data and view on render
