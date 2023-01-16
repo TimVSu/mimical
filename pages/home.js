@@ -9,7 +9,7 @@ import styles from "../components/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState, useEffect, useCallback } from "react";
 import { useFocusEffect } from "@react-navigation/native";
-
+import Logo from "../components/logo";
 
 // import icons
 import {
@@ -27,8 +27,8 @@ import {
 // return home page
 const Home = ({ navigation }) => {
 
-//VARIABLES:
-//===============================================================================================================================================
+  //VARIABLES:
+  //===============================================================================================================================================
   const [nextTask, setNextTask] = useState(1);
   const [completions, setCompletions] = useState({});
   const [fetchCompleted, setFetchCompleted] = useState(false);
@@ -46,7 +46,7 @@ const Home = ({ navigation }) => {
         setNextTask(parseInt(item) + 1);
         setFetchCompleted(true);
       }
-    } catch {}
+    } catch { }
   };
 
   //@author: Tim Suchan
@@ -101,6 +101,7 @@ const Home = ({ navigation }) => {
           { alignItems: "center" },
         ]}
       >
+        <Logo></Logo>
         {fetchCompleted && (
           <Exercise
             level={
