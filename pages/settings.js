@@ -217,7 +217,8 @@ const SettingsPage = ({ navigation }) => {
   const [fontSize, setFontSize] = useState(17);
   const toggleSwitch2 = () => [
     setIsEnabled2(previousState => !previousState),
-    writeItemToStorage2(isEnabled2 ? '17' : '24')
+    // writeItemToStorage2(isEnabled2 ? '17' : '24')
+    storeFontSizeData(isEnabled2 ? '17' : '24')
   ];
 
   // camera

@@ -2,8 +2,9 @@
 
 // import react native
 import { ScrollView, Text, useColorScheme, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { getScenario, getScenarioLength } from './contentManager.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // import components
 import ProgressBar from './progress_bar.js';
@@ -12,6 +13,33 @@ import styles from './styles.js';
 
 const Scenario = ({ navigation, ...props }) => {
 
+  const [fontSize, setFontSize] = useState(17);
+  const [language, setLanguage] = useState("german");
+
+  // retrieve data
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('test');
+      const value = JSON.parse(jsonValue);
+      if (value !== null) {
+        setFontSize(value.fontSize);
+        setLanguage(value.language);
+      }
+    } catch (error) {
+      // error retrieving data
+    }
+  }
+
+  // get data on first render
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      getData();
+    }, [])
+  );
 
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
@@ -33,7 +61,7 @@ const Scenario = ({ navigation, ...props }) => {
     <View style={[containerColor, { marginTop: 16 }, { marginBottom: 16 }]}>
       <Text style={[styles.title2, textColor, { marginLeft: 16 }]}>{props.title}</Text>
       <View style={[{ flexDirection: 'row' }, { alignItems: 'center' }, { marginTop: 8 }, { marginLeft: 16 }]}>
-        <Text style={[styles.label, textColor, { marginRight: 8 }]}>Fortschritt ({props.completions.length}/{scenarioLength}):</Text>
+        <Text style={[{ fontSize: fontSize }, textColor, { marginRight: 8 }]}>{language == "german" ? "Fortschritt" : "Progress"} ({props.completions.length}/{scenarioLength}):</Text>
         <ProgressBar exercises={scenarioLength} progress={props.completions.length} />
       </View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>

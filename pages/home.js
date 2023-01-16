@@ -2,6 +2,7 @@
 
 // import react native
 import { useColorScheme, View } from "react-native";
+import React, { useCallback, useEffect, useState } from 'react';
 
 // import components
 import Button from "../components/button";
@@ -32,6 +33,7 @@ const Home = ({ navigation }) => {
   const [nextTask, setNextTask] = useState(1);
   const [completions, setCompletions] = useState({});
   const [fetchCompleted, setFetchCompleted] = useState(false);
+  const [language, setLanguage] = useState("german");
 
   //FUNCTIONS:
   //===============================================================================================================================================
@@ -79,17 +81,24 @@ const Home = ({ navigation }) => {
     }, [])
   );
 
+  // retrieve data
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('test');
+      const value = JSON.parse(jsonValue);
+      if (value !== null) {
+        setLanguage(value.language);
+      }
+    } catch (error) {
+      // error retrieving data
+    }
+  }
+
   // light/dark mode
   const colorScheme = useColorScheme();
-  const containerColor =
-    colorScheme === "light" ? styles.light_container : styles.dark_container;
-  const squareColor =
-    colorScheme === "light" ? styles.light_square : styles.dark_square;
-  const textColor =
-    colorScheme === "light" ? styles.light_text : styles.dark_text;
-
-  // language
-  const language = "german";
+  const containerColor = colorScheme === "light" ? styles.light_container : styles.dark_container;
+  const squareColor = colorScheme === "light" ? styles.light_square : styles.dark_square;
+  const textColor = colorScheme === "light" ? styles.light_text : styles.dark_text;
 
   return (
     <View style={[{ flex: 1 }, containerColor]}>
@@ -127,7 +136,7 @@ const Home = ({ navigation }) => {
           />
           <Button
             icon={faChartSimple}
-            label="Fortschritt"
+            label={language == "german" ? "Fortschritt" : "Progress"}
             navigation={navigation}
             target={"Progress"}
           />

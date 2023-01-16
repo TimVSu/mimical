@@ -2,8 +2,10 @@
 
 // import react native
 import { Pressable, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { startLevel } from './contentManager.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 // import components
 import styles from './styles.js';
@@ -19,6 +21,33 @@ const gray1 = 'rgb(142, 142, 147)';
 // return exercise component
 const Exercise = ({ navigation, ...props }) => {
 
+  const [fontSize, setFontSize] = useState(17);
+  const [language, setLanguage] = useState("german");
+
+  // retrieve data
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('test');
+      const value = JSON.parse(jsonValue);
+      if (value !== null) {
+        setFontSize(value.fontSize);
+        setLanguage(value.language);
+      }
+    } catch (error) {
+      // error retrieving data
+    }
+  }
+
+  // get data on first render
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      getData();
+    }, [])
+  );
 
   // light/dark mode
   const colorScheme = useColorScheme();
@@ -42,7 +71,7 @@ const Exercise = ({ navigation, ...props }) => {
                 <FontAwesomeIcon icon={faCircleCheck} size={16} color={iconColor} />
               </View>
             </View>
-            <Text style={[styles.label, textColor, { textAlign: 'center' }, { marginTop: 8 }]}>Übung {props.level}</Text>
+            <Text style={[{ fontSize: fontSize }, textColor, { textAlign: 'center' }, { marginTop: 8 }]}>{language == "german" ? "Übung" : "Exercise"} {props.level}</Text>
           </View>
         </TouchableOpacity>
         // </Pressable>
@@ -61,7 +90,7 @@ const Exercise = ({ navigation, ...props }) => {
                 <FontAwesomeIcon style={{ opacity: 0 }} icon={faLockOpen} size={16} color={iconColor} />
               </View>
             </View>
-            <Text style={[styles.label, textColor, {/*{ color: highlightColor }*/ }, { textAlign: 'center' }, { marginTop: 8 }]}>{props.fromHomeScreen ? "Übung fortsetzen" : "Übung " + props.level}</Text>
+            <Text style={[{ fontSize: fontSize }, textColor, {/*{ color: highlightColor }*/ }, { textAlign: 'center' }, { marginTop: 8 }]}>{props.fromHomeScreen ? language == "german" ? "Übung fortsetzen" : "Continue Exercise" : language == "german" ? "Übung" : "Exercise"}  {props.level}</Text>
           </View>
         </TouchableOpacity>
         // </Pressable>
@@ -80,7 +109,7 @@ const Exercise = ({ navigation, ...props }) => {
               <FontAwesomeIcon icon={faLock} size={16} color={iconColor} />
             </View>
           </View>
-          <Text style={[styles.label, textColor, { textAlign: 'center' }, { marginTop: 8 }, { opacity: 0.25 }]}>{props.fromHomeScreen ? "Übung fortsetzen" : "Übung " + props.level}</Text>
+          <Text style={[{ fontSize: fontSize }, textColor, { textAlign: 'center' }, { marginTop: 8 }, { opacity: 0.25 }]}>{props.fromHomeScreen ? "Übung fortsetzen" : "Übung " + props.level}</Text>
         </View>
       </Pressable>
     );
