@@ -8,7 +8,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Button from "../components/button";
 import styles from "../components/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useState, useEffect, useCallback } from "react";
+// import { useState, useEffect, useCallback } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import Logo from "../components/logo";
 

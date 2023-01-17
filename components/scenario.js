@@ -5,6 +5,7 @@ import { ScrollView, Text, useColorScheme, View } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
 import { getScenario, getScenarioLength } from './contentManager.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 // import components
 import ProgressBar from './progress_bar.js';

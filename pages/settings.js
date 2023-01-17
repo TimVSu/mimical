@@ -2,8 +2,9 @@
 
 // import react native
 import { Button, Pressable, ScrollView, Switch, Text, useColorScheme, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import AsyncStorage, { useAsyncStorage } from '@react-native-async-storage/async-storage';
+import React, { useCallback, useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 // import components
 import NavBar from '../components/nav_bar.js';
@@ -21,25 +22,17 @@ import { faToggleOff } from '@fortawesome/free-solid-svg-icons';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 
-// let l = false;
-// let f = 34;
-// export { l, f };
-
-// function setL(x) {
-//   l = x;
-// }
-
-// function setF(x) {
-//   f = x;
-// }
-
 // default config
 let config = {
-  language: 'german',
+  language: "german",
   largeFont: false,
   fontSize: 17,
   camera: true,
-  notifications: false
+  notifications: false,
+  appearance: "light",
+  text: true,
+  narrator: true,
+  music: true
 }
 
 // store data
@@ -158,49 +151,45 @@ const SettingsPage = ({ navigation }) => {
     }
   }
 
-  const [value, setValue] = useState(null);
-  // const { getItem, setItem } = useAsyncStorage('language');
-  const { getItem, setItem } = useAsyncStorage('fontSize');
-  // const { getItem, setItem } = useAsyncStorage('test');
+  // store appearance data
+  const storeAppearanceData = async (value) => {
+    try {
+      config.appearance = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
 
-  const readItemFromStorage = async () => {
-    const item = await getItem();
-    setValue(item);
-  };
+  // store text data
+  const storeTextData = async (value) => {
+    try {
+      config.text = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
 
-  const writeItemToStorage = async newValue => {
-    await setItem(newValue);
-    setValue(newValue);
-    // setLanguage(newValue);
-  };
+  // store narrator data
+  const storeNarratorData = async (value) => {
+    try {
+      config.narrator = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
 
-  const readItemFromStorage1 = async () => {
-    const item = await getItem();
-    setIsEnabled1(item);
-    // setLanguage(item);
-  };
-
-  const writeItemToStorage1 = async newValue => {
-    await setItem(newValue);
-    setIsEnabled1(newValue);
-    // setLanguage(newValue);
-  };
-
-  const readItemFromStorage2 = async () => {
-    const item = await getItem();
-    setFontSize(item);
-  };
-
-  const writeItemToStorage2 = async newValue => {
-    await setItem(newValue);
-    setFontSize(newValue);
-  };
-
-  useEffect(() => {
-    // readItemFromStorage();
-    // readItemFromStorage1();
-    readItemFromStorage2();
-  }, []);
+  // store music data
+  const storeMusicData = async (value) => {
+    try {
+      config.music = value;
+      await AsyncStorage.setItem('test', JSON.stringify(config));
+    } catch (error) {
+      // error storing data
+    }
+  }
 
   // language
   const [isEnabled1, setIsEnabled1] = useState(false);
@@ -209,7 +198,6 @@ const SettingsPage = ({ navigation }) => {
     setIsEnabled1(previousState => !previousState),
     setLanguage(isEnabled1 ? "german" : "english"),
     storeLanguageData(isEnabled1 ? "german" : "english"),
-    // writeItemToStorage1(isEnabled1 ? 'false' : 'true')
   ];
 
   // font size
@@ -217,7 +205,6 @@ const SettingsPage = ({ navigation }) => {
   const [fontSize, setFontSize] = useState(17);
   const toggleSwitch2 = () => [
     setIsEnabled2(previousState => !previousState),
-    // writeItemToStorage2(isEnabled2 ? '17' : '24')
     storeFontSizeData(isEnabled2 ? '17' : '24')
   ];
 
@@ -244,6 +231,36 @@ const SettingsPage = ({ navigation }) => {
   // music
   const [isEnabled8, setIsEnabled8] = useState(true);
   const toggleSwitch8 = () => [setIsEnabled8(previousState => !previousState)];
+
+  // retrieve data
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('test');
+      const value = JSON.parse(jsonValue);
+      if (value !== null) {
+        setIsEnabled1(value.language == "german" ? false : true);
+        setIsEnabled2(value.largeFont);
+        setIsEnabled3(value.camera);
+        setIsEnabled4(value.notifications);
+        setIsEnabled5(value.appearance == "light" ? false : true);
+        setIsEnabled6(value.text);
+        setIsEnabled7(value.narrator);
+        setIsEnabled8(value.music);
+      }
+    } catch (error) {
+      // error retrieving data
+    }
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      getData();
+    }, [])
+  );
 
   // options component
   const Options = (props) => {
@@ -463,7 +480,6 @@ const SettingsPage = ({ navigation }) => {
         {/* <Text>Language: {isEnabled1}, {language}</Text> */}
         <Text style={[{ fontWeight: 'bold' }, textColor]}>Output</Text>
         <Text style={textColor}>Font Size: {fontSize}</Text>
-        <Text style={textColor}>{value}</Text>
       </ScrollView>
       <TabBar
         home={inactiveIconColor}

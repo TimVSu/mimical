@@ -6,7 +6,7 @@ import { ScrollView, Text, View, useColorScheme, TouchableOpacity } from 'react-
 import React from 'react';
 import { useState, useEffect, useCallback } from 'react'
 import { useFocusEffect } from '@react-navigation/native';
-import { useAsyncStorage } from '@react-native-async-storage/async-storage';
+import AsyncStorage, { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 // import components
 import NavBar from '../components/nav_bar.js';
@@ -43,8 +43,8 @@ const tagStates = {
 // return home page
 const HomePage = ({ navigation }) => {
 
-//VARIABLES:
-//===============================================================================================================================================
+  //VARIABLES:
+  //===============================================================================================================================================
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
@@ -55,13 +55,27 @@ const HomePage = ({ navigation }) => {
   const [keyArray, setKeyArray] = useState(Object.keys(getDefaultScenarios()))
   const [filteredKeyArray, setFilteredKeyArray] = useState(Object.keys(getDefaultScenarios()))
   const [completionStates, setCompletionStates] = useState({});
+  const [language, setLanguage] = useState("german");
 
   // since this component is higher in hirarchy thatn the level component i use it to control the current content
   // All contets are stored with unique id's this hook stores the current starting pooint and passes it to the level component
 
-//FUNCTIONS:
-//===============================================================================================================================================
+  //FUNCTIONS:
+  //===============================================================================================================================================
   setCurrentContent(1);
+
+  // retrieve data
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('test');
+      const value = JSON.parse(jsonValue);
+      if (value !== null) {
+        setLanguage(value.language);
+      }
+    } catch (error) {
+      // error retrieving data
+    }
+  }
 
   // const keyArray = Object.keys(getDefaultScenarios());
 
@@ -71,6 +85,7 @@ const HomePage = ({ navigation }) => {
   useFocusEffect(
     useCallback(() => {
       fetchCompletionStates();
+      getData();
     }, [])
   );
 
@@ -111,6 +126,7 @@ const HomePage = ({ navigation }) => {
   //triggers fetching of exercise completion states on render
   useEffect(() => {
     fetchCompletionStates();
+    getData();
   }, []);
 
   //@author: Tim Suchan
@@ -130,7 +146,7 @@ const HomePage = ({ navigation }) => {
 
   return (
     <View style={[{ flex: 1 }, containerColor]}>
-      <NavBar page_title="Übersicht" navigation={navigation} />
+      <NavBar page_title={language == "german" ? "Übersicht" : "Overview"} navigation={navigation} />
       <FilterBar></FilterBar>
 
       <View style={[styles.filter_bar, containerColor]}>

@@ -2,7 +2,9 @@
 
 // import react native
 import { Pressable, ScrollView, Text, useColorScheme, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 // import components
 import styles from './styles';
@@ -34,8 +36,33 @@ const FilterBar = () => {
   const toggleSwitch3 = () => setIsEnabled3(previousState => !previousState);
   const toggleSwitch4 = () => setIsEnabled4(previousState => !previousState);
 
-  // language
-  const language = "german";
+  const [fontSize, setFontSize] = useState(17);
+  const [language, setLanguage] = useState("german");
+
+  // retrieve data
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('test');
+      const value = JSON.parse(jsonValue);
+      if (value !== null) {
+        setFontSize(value.fontSize);
+        setLanguage(value.language);
+      }
+    } catch (error) {
+      // error retrieving data
+    }
+  }
+
+  // get data on first render
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      getData();
+    }, [])
+  );
 
   // return filter component
   const Filter = (props) => {
