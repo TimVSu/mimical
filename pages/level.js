@@ -147,7 +147,7 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
     console.log('Loading Sound');
     console.log(getAudio())
     // const { sound } = await Audio.Sound.createAsync( require("../assets/Uebung1_Der_erste_Schnee.wav")
-    const { sound } = await Audio.Sound.createAsync( getAudio() 
+    const { sound } = await Audio.Sound.createAsync(getAudio()
     );
     setSound(sound);
 
@@ -163,7 +163,7 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
     setCurrentText(getText());
     setCurrentHighlightedText(getHighlightedText());
     setCurrentAudio(getAudio())
-  },[]);
+  }, []);
 
   useFocusEffect(
     useCallback(() => {
@@ -192,6 +192,11 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
   const containerColor = colorScheme === "light" ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === "light" ? styles.light_text : styles.dark_text;
   const borderColor = colorScheme === "light" ? gray5 : dark_gray5;
+
+  const toggleSwitch = () => [
+    navigation.navigate("AlternativeTask"),
+    stopSound()
+  ];
 
   return (
 
@@ -246,7 +251,9 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
       </TouchableOpacity> */}
 
       <View style={[{ paddingTop: 8 }, { borderTopWidth: 1 }, { borderColor: borderColor }, { marginBottom: 32 }, { alignItems: 'center' }]}>
-        <Button label="Übung starten" navigation={navigation} target={"AlternativeTask"} />
+        <TouchableOpacity style={[{ backgroundColor: containerColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 16 }, { flexDirection: 'row' }, { justifyContent: 'center' }, { alignItems: 'center' }]} onPress={toggleSwitch}>
+          <Text style={[{ fontSize: 17 }, { color: 'white' }]}>Übung starten</Text>
+        </TouchableOpacity>
       </View>
       {/* </View> */}
 

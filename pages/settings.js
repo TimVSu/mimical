@@ -197,7 +197,7 @@ const SettingsPage = ({ navigation }) => {
   const toggleSwitch1 = () => [
     setIsEnabled1(previousState => !previousState),
     setLanguage(isEnabled1 ? "german" : "english"),
-    storeLanguageData(isEnabled1 ? "german" : "english"),
+    storeLanguageData(isEnabled1 ? "german" : "english")
   ];
 
   // font size
