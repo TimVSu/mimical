@@ -16,7 +16,7 @@ import FilterBar from '../components/filter_bar.js';
 import styles from '../components/styles.js';
 import { light_primary_color, dark_primary_color } from '../components/styles.js';
 import { getDefaultScenarios, setCurrentContent, getScenario, getIcon, getTags } from '../components/contentManager';
-
+import Button from "../components/button";
 
 // colors
 const orange = 'rgb(255, 149, 0)';
@@ -165,7 +165,16 @@ const HomePage = ({ navigation }) => {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={[styles.container, containerColor]}>
-          {/* <Text style={[styles.title1, textColor]}>Text</Text> */}
+          <View style={[{ padding: 16 }, { flexDirection: 'row' }]}>
+            <View style={[{ width: 128 }, { height: 128 }, { backgroundColor: gray6 }, { borderRadius: 16 }]}></View>
+            <View style={[{ marginLeft: 16 }, { justifyContent: 'space-between' }]}>
+              <View>
+                <Text style={[{ fontSize: 24 }]}>{language == "german" ? "[Szenario]" : "[Scenario]"}</Text>
+                <Text style={[{ fontSize: 16 }]}>{language == "german" ? "[Übung]" : "[Exercise]"}</Text>
+              </View>
+              <Button label={language == "german" ? "Fortsetzen" : "Continue"} />
+            </View>
+          </View>
           {filteredKeyArray.map((scenarioKey) =>
           (
             <Scenario
