@@ -67,7 +67,7 @@ const FilterBar = () => {
   // return filter component
   const Filter = (props) => {
     return (
-      <View style={[{ backgroundColor: props.variable ? activeFilterColor : inactiveFilterColor }, { borderRadius: 16 }, { padding: 12 }, { margin: 16 }, { marginLeft: 8 }, { marginRight: 8 }]}>
+      <View style={[{ backgroundColor: props.variable ? activeFilterColor : inactiveFilterColor }, { borderRadius: 16 }, { padding: 12 }, { margin: 16 }]}>
         <Pressable style={[{ flexDirection: 'row' }, { alignItems: 'center' }]} onPress={props.function}>
           {/* <FontAwesomeIcon style={{ marginRight: 8 }} icon={props.icon} color='white' /> */}
           <Text style={[{ fontSize: 12 }, { fontWeight: 'bold' }, { color: props.variable ? 'white' : textColor }]}>{props.label}</Text>
