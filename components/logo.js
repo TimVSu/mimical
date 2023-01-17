@@ -14,14 +14,14 @@ const Logo = () => {
             <View style={[{ backgroundColor: 'black' }, { padding: 8 }, { borderRadius: 24 }, { margin: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]}>
                 {/* mimical logo */}
                 <View style={[{ backgroundColor: light_primary_color }, { width: 32 }, { height: 64 }, { borderWidth: 0 }, { borderTopLeftRadius: 16 }, { borderBottomLeftRadius: 16 }, { justifyContent: 'space-around' }]}>
-                    <View style={[{ backgroundColor: 'white' }, { width: 16 }, { height: 16 }, { borderWidth: 0 }, { borderRadius: '100%' }, { marginTop: 8 }, { marginLeft: 8 }]}></View>
+                    <View style={[{ backgroundColor: 'white' }, { width: 16 }, { height: 16 }, { borderWidth: 0 }, { borderRadius: 8 }, { marginTop: 8 }, { marginLeft: 8 }]}></View>
                     <View style={[{ marginBottom: 8 }]}>
                         <View style={[{ backgroundColor: 'white' }, { width: 8 }, { height: 8 }, { borderWidth: 0 }, { marginLeft: 16 }]}></View>
                         <View style={[{ backgroundColor: 'white' }, { width: 16 }, { height: 8 }, { borderWidth: 0 }, { marginLeft: 16 }]}></View>
                     </View>
                 </View>
                 <View style={[{ backgroundColor: 'white' }, { width: 32 }, { height: 64 }, { borderWidth: 0 }, { borderTopRightRadius: 16 }, { borderBottomRightRadius: 16 }, { justifyContent: 'space-around' }]}>
-                    <View style={[{ backgroundColor: light_primary_color }, { width: 16 }, { height: 16 }, { borderWidth: 0 }, { borderRadius: '100%' }, { marginTop: 8 }, { marginLeft: 8 }]}></View>
+                    <View style={[{ backgroundColor: light_primary_color }, { width: 16 }, { height: 16 }, { borderWidth: 0 }, { borderRadius: 8 }, { marginTop: 8 }, { marginLeft: 8 }]}></View>
                     <View style={[{ width: 16 }, { marginBottom: 8 }, { alignItems: 'flex-end' }]}>
                         <View style={[{ backgroundColor: light_primary_color }, { width: 8 }, { height: 8 }, { borderWidth: 0 }]}></View>
                         <View style={[{ backgroundColor: light_primary_color }, { width: 16 }, { height: 8 }, { borderWidth: 0 }]}></View>
@@ -37,7 +37,7 @@ const Logo = () => {
             <View style={[{ backgroundColor: 'black' }, { padding: 8 }, { borderRadius: 24 }, { margin: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]}>
                 {/* mimical for patients logo */}
                 <View style={[{ backgroundColor: light_primary_color }, { width: 32 }, { height: 64 }, { borderWidth: 0 }, { borderTopLeftRadius: 16 }, { borderBottomLeftRadius: 16 }, { justifyContent: 'space-around' }]}>
-                    <View style={[{ backgroundColor: 'white' }, { width: 16 }, { height: 16 }, { borderWidth: 0 }, { borderRadius: '100%' }, { marginTop: 8 }, { marginLeft: 8 }]}></View>
+                    <View style={[{ backgroundColor: 'white' }, { width: 16 }, { height: 16 }, { borderWidth: 0 }, { borderRadius: 8 }, { marginTop: 8 }, { marginLeft: 8 }]}></View>
                     <View style={[{ marginBottom: 8 }]}>
                         <View style={[{ backgroundColor: 'white' }, { width: 8 }, { height: 8 }, { borderWidth: 0 }, { marginLeft: 16 }]}></View>
                         <View style={[{ backgroundColor: 'white' }, { width: 16 }, { height: 8 }, { borderWidth: 0 }, { marginLeft: 16 }]}></View>
@@ -58,7 +58,7 @@ const Logo = () => {
                 </View>
                 {/* mimical for therapists logo */}
                 <View style={[{ backgroundColor: 'white' }, { width: 32 }, { height: 64 }, { borderWidth: 0 }, { borderTopRightRadius: 16 }, { borderBottomRightRadius: 16 }, { justifyContent: 'space-around' }]}>
-                    <View style={[{ backgroundColor: light_primary_color }, { width: 16 }, { height: 16 }, { borderWidth: 0 }, { borderRadius: '100%' }, { marginTop: 8 }, { marginLeft: 8 }]}></View>
+                    <View style={[{ backgroundColor: light_primary_color }, { width: 16 }, { height: 16 }, { borderWidth: 0 }, { borderRadius: 8 }, { marginTop: 8 }, { marginLeft: 8 }]}></View>
                     <View style={[{ width: 16 }, { marginBottom: 8 }, { alignItems: 'flex-end' }]}>
                         <View style={[{ backgroundColor: light_primary_color }, { width: 8 }, { height: 8 }, { borderWidth: 0 }]}></View>
                         <View style={[{ backgroundColor: light_primary_color }, { width: 16 }, { height: 8 }, { borderWidth: 0 }]}></View>
