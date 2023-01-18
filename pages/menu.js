@@ -14,22 +14,9 @@ import TabBar from '../components/tab_bar.js';
 import Scenario from '../components/scenario.js';
 import FilterBar from '../components/filter_bar.js';
 import styles from '../components/styles.js';
-import { light_primary_color, dark_primary_color } from '../components/styles.js';
+import { light_primary_color, dark_primary_color, gray5, gray6, dark_gray5, dark_gray6 } from '../components/styles.js';
 import { getDefaultScenarios, setCurrentContent, getScenario, getIcon, getTags } from '../components/contentManager';
 import Button from "../components/button";
-
-// colors
-const orange = 'rgb(255, 149, 0)';
-const yellow = 'rgb(255, 204, 0)';
-const green = 'rgb(52, 199, 89)';
-const blue = 'rgb(0, 122, 255)';
-const pink = 'rgb(250, 17, 79)'
-const accessibleBlue = 'rgb(0, 64, 221)'
-const gray4 = 'rgb(209, 209, 214)';
-const gray5 = 'rgb(229, 229, 234)';
-const gray6 = 'rgb(242, 242, 247)';
-const dark_blue = 'rgb(10, 132, 255)';
-const dark_gray5 = 'rgb(44, 44, 46)';
 
 const tagStates = {
   'UPPER_HALF': true,
@@ -166,11 +153,11 @@ const HomePage = ({ navigation }) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={[styles.container, containerColor]}>
           <View style={[{ padding: 16 }, { flexDirection: 'row' }]}>
-            <View style={[{ width: 128 }, { height: 128 }, { backgroundColor: gray6 }, { borderRadius: 16 }]}></View>
+            <View style={[{ width: 128 }, { height: 128 }, { backgroundColor: colorScheme === 'light' ? gray6 : dark_gray6 }, { borderRadius: 16 }]}></View>
             <View style={[{ marginLeft: 16 }, { justifyContent: 'space-between' }]}>
               <View>
-                <Text style={[{ fontSize: 24 }]}>{language == "german" ? "[Szenario]" : "[Scenario]"}</Text>
-                <Text style={[{ fontSize: 16 }]}>{language == "german" ? "[Übung]" : "[Exercise]"}</Text>
+                <Text style={[{ fontSize: 24 }, textColor]}>{language == "german" ? "[Szenario]" : "[Scenario]"}</Text>
+                <Text style={[{ fontSize: 16 }, textColor]}>{language == "german" ? "[Übung]" : "[Exercise]"}</Text>
               </View>
               <Button label={language == "german" ? "Fortsetzen" : "Continue"} />
             </View>

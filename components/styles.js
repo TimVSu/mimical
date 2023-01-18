@@ -60,7 +60,7 @@ const light_primary_color = blue;
 const dark_primary_color = dark_blue;
 const light_background_color = 'rgb(255, 255, 255)';
 const dark_background_color = 'rgb(0, 0, 0)';
-export { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, gray5, dark_gray5 };
+export { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, gray5, gray6, dark_gray5, dark_gray6 };
 
 // retrieve data
 const getData = async () => {
@@ -224,7 +224,7 @@ export default StyleSheet.create({
     color: light_background_color,
     marginTop: 20,
     marginBottom: 20,
-    fontSize:hp('2.5%'),
+    fontSize: hp('2.5%'),
   },
   horizontal: {
     flex: 1,
@@ -281,14 +281,14 @@ export default StyleSheet.create({
     color: light_primary_color,
 
   },
-  filterActive:{
+  filterActive: {
     flexDirection: 'row',
     borderRadius: 16,
     padding: 12,
     margin: 16,
     backgroundColor: 'black',
   },
-  filterInactive:{
+  filterInactive: {
     flexDirection: 'row',
     borderRadius: 16,
     padding: 12,
