@@ -1,7 +1,7 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { Button, ScrollView, useColorScheme, View } from 'react-native';
+import { Button, ScrollView, Text, useColorScheme, View } from 'react-native';
 import React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -11,6 +11,7 @@ import TabBar from '../components/tab_bar.js';
 import SettingsItem from '../components/settings_item.js';
 import Badge from '../components/badge.js';
 import { light_primary_color, dark_primary_color } from '../components/styles.js';
+import styles from '../components/styles.js';
 
 // import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -47,11 +48,13 @@ const ProgressPage = ({ navigation }) => {
   const colorScheme = useColorScheme();
   const activeIconColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5;
+  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   return (
-    <View style={{ flex: 1 }}>
-      <NavBar page_title="Fortschritt" />
+    <View style={[{ flex: 1 }, containerColor]}>
+      <NavBar page_title="Statistiken" />
       <ScrollView>
-        <Button
+        {/* <Button
           title='get data'
           onPress={getData}
         />
@@ -64,7 +67,11 @@ const ProgressPage = ({ navigation }) => {
         <Badge progress={100} />
         <Badge progress={80} />
         <Badge progress={50} />
-        <Badge progress={70} />
+        <Badge progress={70} /> */}
+        <View style={[{ padding: 16 }]}>
+          <Text style={[{ fontSize: 24 }, { fontWeight: 'bold' }, textColor]}>Chart Title</Text>
+          <View></View>
+        </View>
       </ScrollView>
       <TabBar
         home={inactiveIconColor}
