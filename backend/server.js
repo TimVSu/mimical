@@ -155,7 +155,8 @@ server.post("/api/progress", async (req, res) => {
   let data = req.body;
   const todayDate = new Date();
 
-  let count = {};
+  let up = 0;
+  let low = 0;
 
   let today = todayDate.toISOString();
   //Extract date-time parts from string
@@ -180,24 +181,31 @@ server.post("/api/progress", async (req, res) => {
       let Progress = data.ContentProgress;
       //Insert progress data if present
       if (results[0].cnt > 0) {
-        // let sqlincr = "SELECT * FROM `patient-progress` WHERE patientID = ?";
-        // let queryincr = db.query(sqlincr, [data.PatientID], (err, results) => {
-        //   if (err) throw err;
-
-        //   count[1] = [];
-        //   count[1].push(Object.values(results[0])[1]);
-        //   count[2] = [];
-        //   count[2].push(Object.values(results[0])[2]);
-        // });
+        if (
+          //If upper part of face
+          (Progress >= 1 && Progress < 18) ||
+          (Progress >= 30 && Progress < 37) ||
+          (Progress >= 57 && Progress < 65)
+        ) {
+          up += 1;
+        } else if (
+          //If lower part of face
+          (Progress >= 18 && Progress < 31) ||
+          (Progress >= 44 && Progress < 57)
+        ) {
+          low += 1;
+        }
 
         let uploadData =
           "UPDATE `patient-progress` SET `date" +
           Progress +
           "`= '" +
           progressDate +
-          // (count[1] + 1) +
-          // (count[2] + 1) +
-          "', `upperCount`= `upperCount` + '1', `LowerCount`= `LowerCount` + '1'" +
+          "', `upperCount`= `upperCount` + '" +
+          up +
+          "', `LowerCount`= `LowerCount` + '" +
+          low +
+          "'" +
           " WHERE `patient-progress`.`patientID` = " +
           data.PatientID;
 
