@@ -210,27 +210,46 @@ const SettingsPage = ({ navigation }) => {
 
   // camera
   const [isEnabled3, setIsEnabled3] = useState(true);
-  const toggleSwitch3 = () => [setIsEnabled3(previousState => !previousState), storeCameraData(!isEnabled3)];
+  const toggleSwitch3 = () => [
+    setIsEnabled3(previousState => !previousState),
+    storeCameraData(!isEnabled3)
+  ];
 
   // notifications
   const [isEnabled4, setIsEnabled4] = useState(false);
-  const toggleSwitch4 = () => [setIsEnabled4(previousState => !previousState), storeNotificationsData(!isEnabled4)];
+  const toggleSwitch4 = () => [
+    setIsEnabled4(previousState => !previousState),
+    storeNotificationsData(!isEnabled4)
+  ];
 
   // appearance
   const [isEnabled5, setIsEnabled5] = useState(false);
-  const toggleSwitch5 = () => [setIsEnabled5(previousState => !previousState), setColorScheme(isEnabled5 ? 'light' : 'dark')];
+  const toggleSwitch5 = () => [
+    setIsEnabled5(previousState => !previousState),
+    setColorScheme(isEnabled5 ? 'light' : 'dark'),
+    storeAppearanceData(!isEnabled5)
+  ];
 
   // text
   const [isEnabled6, setIsEnabled6] = useState(true);
-  const toggleSwitch6 = () => [setIsEnabled6(previousState => !previousState)];
+  const toggleSwitch6 = () => [
+    setIsEnabled6(previousState => !previousState),
+    storeTextData(!isEnabled6)
+  ];
 
   // narrator
   const [isEnabled7, setIsEnabled7] = useState(true);
-  const toggleSwitch7 = () => [setIsEnabled7(previousState => !previousState)];
+  const toggleSwitch7 = () => [
+    setIsEnabled7(previousState => !previousState),
+    storeNarratorData(!isEnabled7)
+  ];
 
   // music
   const [isEnabled8, setIsEnabled8] = useState(true);
-  const toggleSwitch8 = () => [setIsEnabled8(previousState => !previousState)];
+  const toggleSwitch8 = () => [
+    setIsEnabled8(previousState => !previousState),
+    storeMusicData(!isEnabled8)
+  ];
 
   // retrieve data
   const getData = async () => {
@@ -455,7 +474,7 @@ const SettingsPage = ({ navigation }) => {
           </View>
         </View> */}
         {/* <Selection title="Geschlecht" option1="männlich" option2="weiblich" option3="divers" fontSize={fontSize} /> */}
-        <View style={[{ borderTopWidth: 1 }, { borderBottomWidth: 1 }, { borderColor: borderColor }, { flexDirection: 'row' }, { flexWrap: 'wrap' }, { justifyContent: 'space-between' }]}>
+        {/* <View style={[{ borderTopWidth: 1 }, { borderBottomWidth: 1 }, { borderColor: borderColor }, { flexDirection: 'row' }, { flexWrap: 'wrap' }, { justifyContent: 'space-between' }]}>
           <Button
             title='set data'
             onPress={storeData}
@@ -476,10 +495,10 @@ const SettingsPage = ({ navigation }) => {
             title='test'
             onPress={() => writeItemToStorage(JSON.stringify(config))}
           />
-        </View>
+        </View> */}
         {/* <Text>Language: {isEnabled1}, {language}</Text> */}
-        <Text style={[{ fontWeight: 'bold' }, textColor]}>Output</Text>
-        <Text style={textColor}>Font Size: {fontSize}</Text>
+        {/* <Text style={[{ fontWeight: 'bold' }, textColor]}>Output</Text>
+        <Text style={textColor}>Font Size: {fontSize}</Text> */}
       </ScrollView>
       <TabBar
         home={inactiveIconColor}
