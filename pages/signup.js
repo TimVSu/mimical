@@ -27,7 +27,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import styles from "../components/styles.js";
 //import Selection from "../components/selection";
 
-const SignUp = () => {
+const SignUp = ({ navigation }) => {
   //styles
   const [colorScheme, setColorScheme] = useState(useColorScheme());
   const [fontSize, setFontSize] = useState(17);
@@ -374,7 +374,11 @@ const SignUp = () => {
           { margin: 16 },
           { borderRadius: 8 },
         ]}
-        onPress={submit}
+        onPress={() => {
+          submit();
+          //Navigate to log in screen if authentications are valid
+          navigation.navigate("Sign In");
+        }}
       >
         <Text style={[{ fontSize: fontSize }, { color: "white" }]}>
           Registrieren

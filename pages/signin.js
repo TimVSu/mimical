@@ -24,7 +24,7 @@ import styles from "../components/styles.js";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const SignIn = () => {
+const SignIn = ({ navigation }) => {
   const [colorScheme, setColorScheme] = useState(useColorScheme());
   const [fontSize, setFontSize] = useState(17);
   //signin
@@ -55,11 +55,11 @@ const SignIn = () => {
           setPatientID(res.data[0].ID);
           savePatientID(PatientID);
           //console.log(res.data[0].ID);
+
+          //Navigate to next screen if authentications are valid
+          navigation.navigate("Menu");
         })
         .catch((err) => console.log(err));
-
-      //Navigate to next screen if authentications are valid
-      //navigation.navigate("Menu");
     }
   };
 
