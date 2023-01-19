@@ -38,6 +38,7 @@ server.get("/api", function (req, res) {
 // Sign In data
 server.post("/api/signin", (req, res) => {
   let data = req.body;
+  let user = data.ID;
   let sql = "SELECT * FROM patients WHERE email = ?";
   let query = db.query(sql, [data.Email], (err, results) => {
     if (err) throw err;
@@ -164,8 +165,8 @@ server.post("/api/progress", async (req, res) => {
   let second = today.substring(17, 19);
 
   //Combine strings
-  let progressDate =
-    year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+  let progressDate = year + "-" + month + "-" + day;
+  // + " " + hour + ":" + minute + ":" + second;
 
   //Check if patient ID is already present
   let countID =
@@ -177,36 +178,33 @@ server.post("/api/progress", async (req, res) => {
       let Progress = data.ContentProgress;
       //Insert progress data if present
       if (results[0].cnt > 0) {
-        // let findID = "SELECT * FROM `patient-progress` WHERE patientID = ?";
-        // let qryfindID = db.query(findID, [data.PatientID], (err, results) => {
-        //   if (err) throw err;
-        //   if (results) {
         let uploadData =
-          // "INSERT INTO `patient-progress` (`" +
-          // data.ContentProgress +
-          // "`, `date" +
-          // data.ContentProgress +
-          // "`) VALUES ('" +
-          // "true" +
-          // "', '" +
-          // progressDate +
-          // "')";
+          //   "INSERT INTO `patient-progress` (`" +
+          //   JSON.stringify(Progress) +
+          //   "`, `date" +
+          //   JSON.stringify(Progress) +
+          //   "`) VALUES ('true', '" +
+          //   progressDate +
+          //   "')";
 
-          "UPDATE `patient-progress` SET `" +
+          "UPDATE `patient-progress` SET `date" +
           Progress +
-          "`='true', `date" +
-          Progress +
-          "`=" +
+          "`= '" +
           progressDate +
-          " WHERE `patientID`=" +
+          "', `" +
+          Progress +
+          "`= '" +
+          "true" +
+          "' WHERE `patient-progress`.`patientID`=" +
           data.PatientID;
-        // console.log(Progress);
+
+        console.log(JSON.stringify(Progress));
+        console.log("test");
+
         let query = db.query(uploadData, (err, results) => {
           if (err) throw err;
           res.send(results);
         });
-        //   }
-        // });
       } else {
         //Insert new patient ID if not present
         // console.log(data.ContentProgress);

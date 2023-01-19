@@ -80,7 +80,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const thisContent = getCurrentSequence()[getCurrentContent() - 1];
   const ifCompleted = { [thisContent]: "completed" };
-  const [PatientID, setPatientID] = useState("7");
+  const [PatientID, setPatientID] = useState("2");
   const [ContentProgress, setContentProgress] = useState("");
 
   // FUNCTIONS:
@@ -146,7 +146,20 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
       .catch((err) => console.log(err));
   };
 
-  //---get Patient ID from async storage---
+  // //Get Patient ID from async storage
+  // const getPatientID = async () => {
+  //   try {
+  //     const value = await AsyncStorage.getItem("@IDs");
+  //     if (value !== null) {
+  //       setPatientID(value);
+  //     }
+  //   } catch (error) {
+  //     console.log("Can't retrieve data from async storage");
+  //   }
+  //   console.log("Done.");
+  //   console.log(getPatientID);
+  //   //setPatientID(getPatientID);
+  // };
 
   //@author: Tim Suchan
   //saves the current level as last played so that the user can start playing from where he stopped in the menu/home screen
