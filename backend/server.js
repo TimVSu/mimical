@@ -50,6 +50,13 @@ server.post("/api/signin", (req, res) => {
           console.log("Passwort ist falsch");
         }
       });
+      let sqlid = "SELECT ID FROM patients WHERE email = ?";
+      let queryid = db.query(sqlid, [data.Email], (err, results) => {
+        if (err) throw err;
+        if (results) {
+          res.send(results);
+        }
+      });
     } else {
       console.log("Sie haben noch kein Konto");
     }
@@ -137,6 +144,88 @@ server.post("/api/signup", async (req, res) => {
           } else {
             console.log("Sie haben schon eine/n Therapeuten/in");
           }
+        });
+      }
+    }
+  });
+});
+
+server.post("/api/progress", async (req, res) => {
+  let data = req.body;
+  const todayDate = new Date();
+
+  let today = todayDate.toISOString();
+  //Extract date-time parts from string
+  let year = today.substring(0, 4);
+  let month = today.substring(5, 7);
+  let day = today.substring(8, 10);
+  let hour = today.substring(11, 13);
+  let minute = today.substring(14, 16);
+  let second = today.substring(17, 19);
+
+  //Combine strings
+  let progressDate =
+    year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+
+  //Check if patient ID is already present
+  let countID =
+    "SELECT COUNT (*) AS cnt FROM `patient-progress` WHERE patientID = ?";
+  let qrycountID = db.query(countID, [data.PatientID], (err, results) => {
+    if (err) {
+      throw err;
+    } else {
+      let Progress = data.ContentProgress;
+      //Insert progress data if present
+      if (results[0].cnt > 0) {
+        // let findID = "SELECT * FROM `patient-progress` WHERE patientID = ?";
+        // let qryfindID = db.query(findID, [data.PatientID], (err, results) => {
+        //   if (err) throw err;
+        //   if (results) {
+        let uploadData =
+          // "INSERT INTO `patient-progress` (`" +
+          // data.ContentProgress +
+          // "`, `date" +
+          // data.ContentProgress +
+          // "`) VALUES ('" +
+          // "true" +
+          // "', '" +
+          // progressDate +
+          // "')";
+
+          "UPDATE `patient-progress` SET `" +
+          Progress +
+          "`='true', `date" +
+          Progress +
+          "`=" +
+          progressDate +
+          " WHERE `patientID`=" +
+          data.PatientID;
+        // console.log(Progress);
+        let query = db.query(uploadData, (err, results) => {
+          if (err) throw err;
+          res.send(results);
+        });
+        //   }
+        // });
+      } else {
+        //Insert new patient ID if not present
+        // console.log(data.ContentProgress);
+        let insertID =
+          "INSERT INTO `patient-progress` (`patientID`, `" +
+          data.ContentProgress +
+          "`, `date" +
+          data.ContentProgress +
+          "`) VALUES ('" +
+          data.PatientID +
+          "', '" +
+          "true" +
+          "', '" +
+          progressDate +
+          "')";
+        // console.log("second");
+        let qryinsertID = db.query(insertID, (err, results) => {
+          if (err) throw err;
+          res.send(results);
         });
       }
     }

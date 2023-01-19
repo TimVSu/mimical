@@ -2,7 +2,7 @@
 
 // import react native
 import { useColorScheme, View } from "react-native";
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from "react";
 
 // import components
 import Button from "../components/button";
@@ -27,7 +27,6 @@ import {
 
 // return home page
 const Home = ({ navigation }) => {
-
   //VARIABLES:
   //===============================================================================================================================================
   const [nextTask, setNextTask] = useState(1);
@@ -48,7 +47,7 @@ const Home = ({ navigation }) => {
         setNextTask(parseInt(item) + 1);
         setFetchCompleted(true);
       }
-    } catch { }
+    } catch {}
   };
 
   //@author: Tim Suchan
@@ -60,10 +59,8 @@ const Home = ({ navigation }) => {
       if (item) {
         setCompletions(JSON.parse(item));
       }
-
-    } catch {
-    }
-  }
+    } catch {}
+  };
 
   //@author: Tim Suchan
   //fetches and updates data and view on render
@@ -84,7 +81,7 @@ const Home = ({ navigation }) => {
   // retrieve data
   const getData = async () => {
     try {
-      const jsonValue = await AsyncStorage.getItem('test');
+      const jsonValue = await AsyncStorage.getItem("test");
       const value = JSON.parse(jsonValue);
       if (value !== null) {
         setLanguage(value.language);
@@ -92,13 +89,16 @@ const Home = ({ navigation }) => {
     } catch (error) {
       // error retrieving data
     }
-  }
+  };
 
   // light/dark mode
   const colorScheme = useColorScheme();
-  const containerColor = colorScheme === "light" ? styles.light_container : styles.dark_container;
-  const squareColor = colorScheme === "light" ? styles.light_square : styles.dark_square;
-  const textColor = colorScheme === "light" ? styles.light_text : styles.dark_text;
+  const containerColor =
+    colorScheme === "light" ? styles.light_container : styles.dark_container;
+  const squareColor =
+    colorScheme === "light" ? styles.light_square : styles.dark_square;
+  const textColor =
+    colorScheme === "light" ? styles.light_text : styles.dark_text;
 
   return (
     <View style={[{ flex: 1 }, containerColor]}>
@@ -127,7 +127,7 @@ const Home = ({ navigation }) => {
         )}
         <View>
           {/* Uncomment to show login/signup screen */}
-          {/* <Button label="Log in" navigation={navigation} target={"HomeLogin"} /> */}
+          <Button label="Log in" navigation={navigation} target={"HomeLogin"} />
           <Button
             icon={faHouse}
             label="Übersicht"
