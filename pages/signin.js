@@ -52,11 +52,11 @@ const SignIn = () => {
         url: "http://192.168.1.98:3000/api/signin",
       })
         .then((res) => {
-          setPatientID(PatientID[0].ID);
-          //savePatientID();
+          setPatientID(res.data[0].ID);
+          savePatientID(PatientID);
+          //console.log(res.data[0].ID);
         })
         .catch((err) => console.log(err));
-      //console.log(PatientID[0].ID);
 
       //Navigate to next screen if authentications are valid
       //navigation.navigate("Menu");
@@ -64,10 +64,9 @@ const SignIn = () => {
   };
 
   // save PatientID in storage
-  const savePatientID = async (value) => {
+  const savePatientID = async (PatientID) => {
     try {
-      PatientID = value;
-      await AsyncStorage.setItem("IDs", JSON.stringify(PatientID));
+      await AsyncStorage.setItem("ID", JSON.stringify(PatientID));
       console.log("Saved Patient ID" + " : " + PatientID);
     } catch (error) {
       console.log("Can't save data to async storage");

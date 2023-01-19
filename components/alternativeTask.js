@@ -80,7 +80,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const thisContent = getCurrentSequence()[getCurrentContent() - 1];
   const ifCompleted = { [thisContent]: "completed" };
-  const [PatientID, setPatientID] = useState("2");
+  const [PatientID, setPatientID] = useState("");
   const [ContentProgress, setContentProgress] = useState("");
 
   // FUNCTIONS:
@@ -146,20 +146,19 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
       .catch((err) => console.log(err));
   };
 
-  // //Get Patient ID from async storage
-  // const getPatientID = async () => {
-  //   try {
-  //     const value = await AsyncStorage.getItem("@IDs");
-  //     if (value !== null) {
-  //       setPatientID(value);
-  //     }
-  //   } catch (error) {
-  //     console.log("Can't retrieve data from async storage");
-  //   }
-  //   console.log("Done.");
-  //   console.log(getPatientID);
-  //   //setPatientID(getPatientID);
-  // };
+  //Get Patient ID from async storage
+  const getPatientID = async () => {
+    try {
+      const PatientID = await AsyncStorage.getItem("ID");
+      if (PatientID !== null) {
+        setPatientID(PatientID);
+        //console.log(PatientID);
+      }
+    } catch (error) {
+      console.log("Can't retrieve data from async storage");
+    }
+    //console.log("Done.");
+  };
 
   //@author: Tim Suchan
   //saves the current level as last played so that the user can start playing from where he stopped in the menu/home screen
@@ -190,6 +189,17 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
     setTaskRunning(false);
     setOnPause(true);
   };
+
+  //Call saved patient ID
+  useEffect(() => {
+    getPatientID();
+  }, []);
+
+  //Call last completed content
+  useEffect(() => {
+    setContentProgress(thisContent);
+    console.log(ContentProgress + " completed now");
+  }, []);
 
   //@author: Tim Suchan
   // The code for the Game Timer
@@ -223,8 +233,8 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
       setTaskRunning(false);
       setCurrentTime(0);
       saveAsCompleted(ifCompleted);
-      setContentProgress(thisContent);
-      uploadProgress();
+      // setContentProgress(thisContent);
+      // uploadProgress();
       saveAsLast(getCurrentSequence()[getCurrentContent()]);
       // nextLevelFunction();
       setModalVisible(true);
@@ -258,6 +268,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
                 text="Zurück "
                 onPress={() => {
                   navigation.navigate("Menu");
+                  uploadProgress();
                 }}
                 color="red"
               />
@@ -265,6 +276,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
                 text="Weiter"
                 onPress={() => {
                   nextLevelFunction();
+                  uploadProgress();
                 }}
                 color="skyblue"
               />

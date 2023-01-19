@@ -155,6 +155,8 @@ server.post("/api/progress", async (req, res) => {
   let data = req.body;
   const todayDate = new Date();
 
+  let count = {};
+
   let today = todayDate.toISOString();
   //Extract date-time parts from string
   let year = today.substring(0, 4);
@@ -178,28 +180,28 @@ server.post("/api/progress", async (req, res) => {
       let Progress = data.ContentProgress;
       //Insert progress data if present
       if (results[0].cnt > 0) {
-        let uploadData =
-          //   "INSERT INTO `patient-progress` (`" +
-          //   JSON.stringify(Progress) +
-          //   "`, `date" +
-          //   JSON.stringify(Progress) +
-          //   "`) VALUES ('true', '" +
-          //   progressDate +
-          //   "')";
+        // let sqlincr = "SELECT * FROM `patient-progress` WHERE patientID = ?";
+        // let queryincr = db.query(sqlincr, [data.PatientID], (err, results) => {
+        //   if (err) throw err;
 
+        //   count[1] = [];
+        //   count[1].push(Object.values(results[0])[1]);
+        //   count[2] = [];
+        //   count[2].push(Object.values(results[0])[2]);
+        // });
+
+        let uploadData =
           "UPDATE `patient-progress` SET `date" +
           Progress +
           "`= '" +
           progressDate +
-          "', `" +
-          Progress +
-          "`= '" +
-          "true" +
-          "' WHERE `patient-progress`.`patientID`=" +
+          // (count[1] + 1) +
+          // (count[2] + 1) +
+          "', `upperCount`= `upperCount` + '1', `LowerCount`= `LowerCount` + '1'" +
+          " WHERE `patient-progress`.`patientID` = " +
           data.PatientID;
 
-        console.log(JSON.stringify(Progress));
-        console.log("test");
+        //console.log(progressDate);
 
         let query = db.query(uploadData, (err, results) => {
           if (err) throw err;
@@ -209,16 +211,16 @@ server.post("/api/progress", async (req, res) => {
         //Insert new patient ID if not present
         // console.log(data.ContentProgress);
         let insertID =
-          "INSERT INTO `patient-progress` (`patientID`, `" +
+          "INSERT INTO `patient-progress` (`patientID`, `date" +
           data.ContentProgress +
-          "`, `date" +
-          data.ContentProgress +
-          "`) VALUES ('" +
+          "`, `upperCount`, `lowerCount`) VALUES ('" +
           data.PatientID +
           "', '" +
-          "true" +
-          "', '" +
           progressDate +
+          "', '" +
+          "0" +
+          "', '" +
+          "0" +
           "')";
         // console.log("second");
         let qryinsertID = db.query(insertID, (err, results) => {
