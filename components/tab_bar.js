@@ -1,7 +1,7 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { Pressable, useColorScheme, View } from 'react-native';
+import { Pressable, TouchableOpacity, useColorScheme, View } from 'react-native';
 import React from 'react';
 
 // import components
@@ -20,15 +20,15 @@ const TabBar = ({ navigation, ...props }) => {
   // return tab bar component
   return (
     <View style={[styles.tab_bar, containerColor]}>
-      <Pressable onPress={() => navigation.navigate('Menu')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
         <FontAwesomeIcon icon={faHouse} color={props.home} size={32} />
-      </Pressable>
+      </TouchableOpacity>
       {/* <Pressable onPress={() => navigation.navigate('Progress')}>
         <FontAwesomeIcon icon={faChartSimple} color={props.stats} size={32} />
       </Pressable> */}
-      <Pressable onPress={() => navigation.navigate('Settings')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
         <FontAwesomeIcon icon={faGear} color={props.settings} size={32} />
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 
