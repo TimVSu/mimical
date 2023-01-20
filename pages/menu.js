@@ -13,7 +13,6 @@ import Exercise from '../components/exercise.js';
 import NavBar from '../components/nav_bar.js';
 import TabBar from '../components/tab_bar.js';
 import Scenario from '../components/scenario.js';
-import FilterBar from '../components/filter_bar.js';
 import styles from '../components/styles.js';
 import { light_primary_color, dark_primary_color, gray5, gray6, dark_gray5, dark_gray6 } from '../components/styles.js';
 import { getDefaultScenarios, setCurrentContent, getScenario, getIcon, getTags, getScenarioFromTask, } from '../components/contentManager';
