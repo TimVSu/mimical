@@ -16,8 +16,8 @@ if (Platform.OS === "android") {
   }
 }
 
-let trainDuration = 1;
-let pauseDuration = 1;
+let trainDuration = 10;
+let pauseDuration = 10;
 
 // import colors
 import { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, } from "./styles";
