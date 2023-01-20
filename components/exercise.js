@@ -22,6 +22,7 @@ const gray1 = 'rgb(142, 142, 147)';
 // return exercise component
 const Exercise = ({ navigation, ...props }) => {
 
+  const [titleSize, setTitleSize] = useState(22);
   const [fontSize, setFontSize] = useState(17);
   const [language, setLanguage] = useState("german");
 
@@ -31,6 +32,7 @@ const Exercise = ({ navigation, ...props }) => {
       const jsonValue = await AsyncStorage.getItem('test');
       const value = JSON.parse(jsonValue);
       if (value !== null) {
+        setTitleSize(value.fontSize == 17 ? 22 : 28);
         setFontSize(value.fontSize);
         setLanguage(value.language);
       }
@@ -135,7 +137,7 @@ const Exercise = ({ navigation, ...props }) => {
           </View>
           <View style={[{ marginLeft: 16 }, { justifyContent: 'space-between' }]}>
             <View>
-              <Text style={[{ fontSize: 28 }, { fontWeight: 'bold' }, textColor]}>
+              <Text style={[{ fontSize: titleSize }, { fontWeight: 'bold' }, textColor]}>
                 {props.scenarioKey}
               </Text>
               <Text style={[{ fontSize: fontSize }, textColor]}>
