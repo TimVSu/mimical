@@ -351,6 +351,7 @@ const SettingsPage = ({ navigation }) => {
           // ios_backgroundColor={"#3e3e3e"}
           onValueChange={toggleSwitch3}
           value={isEnabled3}
+          disabled={true}
         />
       </View>
     );
@@ -367,6 +368,7 @@ const SettingsPage = ({ navigation }) => {
           // ios_backgroundColor={"#3e3e3e"}
           onValueChange={toggleSwitch4}
           value={isEnabled4}
+          disabled={true}
         />
       </View>
     );
@@ -409,6 +411,7 @@ const SettingsPage = ({ navigation }) => {
           // ios_backgroundColor={"#3e3e3e"}
           onValueChange={toggleSwitch6}
           value={isEnabled6}
+          disabled={true}
         />
       </View>
     );
@@ -425,6 +428,7 @@ const SettingsPage = ({ navigation }) => {
           // ios_backgroundColor={"#3e3e3e"}
           onValueChange={toggleSwitch7}
           value={isEnabled7}
+          disabled={true}
         />
       </View>
     );
@@ -441,6 +445,7 @@ const SettingsPage = ({ navigation }) => {
           // ios_backgroundColor={"#3e3e3e"}
           onValueChange={toggleSwitch8}
           value={isEnabled8}
+          disabled={true}
         />
       </View>
     );
