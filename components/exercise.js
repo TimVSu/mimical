@@ -10,6 +10,7 @@ import { useFocusEffect } from '@react-navigation/native';
 // import components
 import styles from './styles.js';
 import { light_primary_color, dark_primary_color } from './styles.js';
+import Button from './button.js';
 
 // import icons
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -56,47 +57,7 @@ const Exercise = ({ navigation, ...props }) => {
   const iconColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   const highlightColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
 
-  if (props.unlocked) {
-    if (props.completed) {
-      return (
-        // <Pressable onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level") }}>
-        <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level") }}>
-          <View style={{ margin: 16 }}>
-            <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
-              <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
-              <View style={[{ alignItems: 'center' }]}>
-                <FontAwesomeIcon style={{ opacity: 0.5 }} icon={props.icon} size={64} color={gray1} />
-              </View>
-              <View style={[{ alignItems: 'flex-end' }]}>
-                <FontAwesomeIcon icon={faCircleCheck} size={16} color={iconColor} />
-              </View>
-            </View>
-            <Text style={[{ fontSize: fontSize }, textColor, { textAlign: 'center' }, { marginTop: 8 }]}>{language == "german" ? "Übung" : "Exercise"} {props.level}</Text>
-          </View>
-        </TouchableOpacity>
-        // </Pressable>
-      );
-    } else {
-      return (
-        // <Pressable onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level") }}>
-        <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level") }}>
-          <View style={{ margin: 16 }}>
-            <View style={[styles.square, containerColor, { justifyContent: 'space-between' }, {/*{ borderWidth: 4 }, { borderColor: highlightColor }*/ }]}>
-              <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
-              <View style={[{ alignItems: 'center' }]}>
-                <FontAwesomeIcon style={{ opacity: 0.5 }} icon={props.icon} size={64} color={gray1} />
-              </View>
-              <View style={[{ alignItems: 'flex-end' }]}>
-                <FontAwesomeIcon style={{ opacity: 0 }} icon={faLockOpen} size={16} color={iconColor} />
-              </View>
-            </View>
-            <Text style={[{ fontSize: fontSize }, textColor, {/*{ color: highlightColor }*/ }, { textAlign: 'center' }, { marginTop: 8 }]}>{props.fromHomeScreen ? language == "german" ? "Übung fortsetzen" : "Continue Exercise" : language == "german" ? "Übung" : "Exercise"}  {props.level}</Text>
-          </View>
-        </TouchableOpacity>
-        // </Pressable>
-      );
-    }
-  } else {
+  const LockedExercise = () => {
     return (
       <Pressable>
         <View style={{ margin: 16 }}>
@@ -109,10 +70,105 @@ const Exercise = ({ navigation, ...props }) => {
               <FontAwesomeIcon icon={faLock} size={16} color={iconColor} />
             </View>
           </View>
-          <Text style={[{ fontSize: fontSize }, textColor, { textAlign: 'center' }, { marginTop: 8 }, { opacity: 0.25 }]}>{props.fromHomeScreen ? "Übung fortsetzen" : "Übung " + props.level}</Text>
+          <Text style={[{ fontSize: fontSize }, textColor, { textAlign: 'center' }, { marginTop: 8 }, { opacity: 0.25 }]}>
+            {language == "german" ? "Übung" : "Exercise"} {props.level}
+          </Text>
         </View>
       </Pressable>
     );
+  }
+
+  const UnlockedExercise = () => {
+    return (
+      <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level") }}>
+        <View style={[{ margin: 16 }]}>
+          <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
+            <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
+            <View style={[{ alignItems: 'center' }]}>
+              <FontAwesomeIcon style={{ opacity: 0.5 }} icon={props.icon} size={64} color={gray1} />
+            </View>
+            <View style={[{ alignItems: 'flex-end' }]}>
+              <FontAwesomeIcon style={{ opacity: 0 }} icon={faLockOpen} size={16} color={iconColor} />
+            </View>
+          </View>
+          <Text style={[{ fontSize: fontSize }, textColor, { textAlign: 'center' }, { marginTop: 8 }]}>
+            {language == "german" ? "Übung" : "Exercise"} {props.level}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+
+  const CompletedExercise = () => {
+    return (
+      <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level") }}>
+        <View style={{ margin: 16 }}>
+          <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
+            <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
+            <View style={[{ alignItems: 'center' }]}>
+              <FontAwesomeIcon style={{ opacity: 0.5 }} icon={props.icon} size={64} color={gray1} />
+            </View>
+            <View style={[{ alignItems: 'flex-end' }]}>
+              <FontAwesomeIcon icon={faCircleCheck} size={16} color={iconColor} />
+            </View>
+          </View>
+          <Text style={[{ fontSize: fontSize }, textColor, { textAlign: 'center' }, { marginTop: 8 }]}>
+            {language == "german" ? "Übung" : "Exercise"} {props.level}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+
+  const ContinueExercise = () => {
+    return (
+      <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level") }}>
+        <View style={[{ margin: 0 }, { flexDirection: 'row' }]}>
+          <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
+            <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
+            <View style={[{ alignItems: 'center' }]}>
+              <FontAwesomeIcon style={{ opacity: 0.5 }} icon={props.icon} size={64} color={gray1} />
+            </View>
+            <View style={[{ alignItems: 'flex-end' }]}>
+              <FontAwesomeIcon style={{ opacity: 0 }} icon={faLockOpen} size={16} color={iconColor} />
+            </View>
+          </View>
+          <View style={[{ marginLeft: 16 }, { justifyContent: 'space-between' }]}>
+            <View>
+              <Text style={[{ fontSize: fontSize }, textColor]}>
+                [Szenario]
+              </Text>
+              <Text style={[{ fontSize: fontSize }, textColor]}>
+                {language == "german" ? "Übung" : "Exercise"} {props.level}
+              </Text>
+            </View>
+            <Button label={language == "german" ? "Fortsetzen" : "Continue"} />
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+
+  if (props.fromHomeScreen) {
+    return (
+      <ContinueExercise></ContinueExercise>
+    );
+  } else {
+    if (props.unlocked) {
+      if (props.completed) {
+        return (
+          <CompletedExercise></CompletedExercise>
+        );
+      } else {
+        return (
+          <UnlockedExercise></UnlockedExercise>
+        );
+      }
+    } else {
+      return (
+        <LockedExercise></LockedExercise>
+      );
+    }
   }
 }
 

@@ -16,7 +16,7 @@ import Scenario from '../components/scenario.js';
 import FilterBar from '../components/filter_bar.js';
 import styles from '../components/styles.js';
 import { light_primary_color, dark_primary_color, gray5, gray6, dark_gray5, dark_gray6 } from '../components/styles.js';
-import { getDefaultScenarios, setCurrentContent, getScenario, getIcon, getTags, getScenarioFromTask,  } from '../components/contentManager';
+import { getDefaultScenarios, setCurrentContent, getScenario, getIcon, getTags, getScenarioFromTask, } from '../components/contentManager';
 import Button from "../components/button";
 
 const tagStates = {
@@ -90,7 +90,7 @@ const HomePage = ({ navigation }) => {
       if (item) {
         setCompletionStates(JSON.parse(item));
       }
-    } catch {}
+    } catch { }
   }
 
   //@author: Tim Suchan
@@ -112,7 +112,7 @@ const HomePage = ({ navigation }) => {
     }
   }
 
-   //@author: Tim Suchan
+  //@author: Tim Suchan
   //fetches the contentID of the last completed task from async storage
   //adds 1 and saves to nextTask
   const fetchLastTask = async () => {
@@ -123,7 +123,7 @@ const HomePage = ({ navigation }) => {
         setFetchCompleted(true);
         console.log("FETCH COMPLETED")
       }
-    } catch {}
+    } catch { }
   };
 
   //@author: Tim Suchan
@@ -173,20 +173,20 @@ const HomePage = ({ navigation }) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={[styles.container, containerColor]}>
           <View style={[{ padding: 16 }, { flexDirection: 'row' }]}>
-            <View style={[{ width: 128 }, { height: 128 }, { backgroundColor: colorScheme === 'light' ? gray6 : dark_gray6 }, { borderRadius: 16 }]}></View>
-            <View style={[{ marginLeft: 16 }, { justifyContent: 'space-between' }]}>
-            {fetchCompleted && (
-          <Exercise
-            level={getScenario(getScenarioFromTask(nextTask)).indexOf(nextTask) + 1}
-            key={nextTask}
-            icon={getIcon(getScenarioFromTask(nextTask))}
-            navigation={navigation}
-            unlocked={true}
-            completed={isCompleted(nextTask)}
-            scenarioKey={getScenarioFromTask(nextTask)}
-            fromHomeScreen={true}
-          ></Exercise>
-        )}
+            {/* <View style={[{ width: 128 }, { height: 128 }, { backgroundColor: colorScheme === 'light' ? gray6 : dark_gray6 }, { borderRadius: 16 }]}></View> */}
+            <View style={[{ marginLeft: 0 }, { justifyContent: 'space-between' }]}>
+              {fetchCompleted && (
+                <Exercise
+                  level={getScenario(getScenarioFromTask(nextTask)).indexOf(nextTask) + 1}
+                  key={nextTask}
+                  icon={getIcon(getScenarioFromTask(nextTask))}
+                  navigation={navigation}
+                  unlocked={true}
+                  completed={isCompleted(nextTask)}
+                  scenarioKey={getScenarioFromTask(nextTask)}
+                  fromHomeScreen={true}
+                ></Exercise>
+              )}
             </View>
           </View>
           {filteredKeyArray.map((scenarioKey) =>
