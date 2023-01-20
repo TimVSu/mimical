@@ -47,7 +47,7 @@ const Button = ({ navigation, ...props }) => {
 
   return (
     // <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? green : containerColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 16 }, { flexDirection: 'row' }, { justifyContent: 'center' }, { alignItems: 'center' }]} onPress={() => navigation.navigate(props.target)}>
-    <TouchableOpacity style={[{ backgroundColor: containerColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 16 }, { flexDirection: 'row' }, { justifyContent: 'center' }, { alignItems: 'center' }]} onPress={() => navigation.navigate(props.target)}>
+    <TouchableOpacity style={[{ backgroundColor: containerColor }, { padding: 16 }, { margin: 0 }, { borderRadius: 16 }, { flexDirection: 'row' }, { justifyContent: 'center' }, { alignItems: 'center' }]} onPress={() => navigation.navigate(props.target)}>
       {/* <FontAwesomeIcon style={{ marginRight: 8 }} icon={props.icon} color='white' /> */}
       <Text style={[{ fontSize: fontSize }, { color: 'white' }]}>{props.label}</Text>
     </TouchableOpacity>
