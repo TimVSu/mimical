@@ -318,7 +318,7 @@ const urlaub12 = {
 const urlaub13 = {
     "baseText": "Na toll. Sie beseitigen die heruntergefallene Kugel mit einer Serviette und werfen sie in den Mülleimer. Auf der Decke genießen Sie noch das restliche Eis. Es ist eine tolle Abkühlung. Sie sind zufrieden und können sich ein ",
     "highlightedText": "breites Lächeln",
-    "task": "Läceln sie breit.",
+    "task": "Lächeln sie breit.",
     "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
@@ -339,67 +339,67 @@ const einkauf2 = {
 const einkauf3 = {
     "baseText": "Sie gehen zuversichtlich in den Supermarkt und hoffen, sich an alles zu erinnern. Sie erinnern sich, dass Sie Spaghetti Bolognese machen wollten. Dafür benötigen Sie Zwiebeln, Knoblauch, Möhren, Sellerie und Hackfleisch. Haben Sie noch Zwiebeln zu Hause? Sie überlegen, aber es fällt Ihnen nicht ein. ",
     "highlightedText": "Sie kneifen die Augen zu, um sich besser zu konzentrieren.",
-    "task": "empty",
+    "task": "Kneifen sie ihre Augen zusammen.",
     "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf4 = {
     "baseText": "Sie legen vorsichtshalber auch Zwiebeln in den Wagen und gehen weiter zur Fleischtheke. Es hat sich bereits eine lange Schlange gebildet und Sie müssen warten. Als Sie nach einer Weile endlich an der Reihe sind, sagen Sie der Verkäuferin, dass Sie gerne 1 Pfund Gehacktes, halb und halb, haben möchten. Die Verkäuferin sagt Ihnen, dass sie nur noch Rinderhack habe, das Schweinehack habe Sie gerade an den letzten Kunden verkauft. ",
     "highlightedText": "Verärgert ziehen Sie die Augenbrauen zusammen.",
-    "task": "empty",
+    "task": "Ziehen sie ihre Augenbrauen hoch.",
     "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf5 = {
     "baseText": " Die Verkäuferin fragt, ob es sonst noch etwas sein dürfe. Sie überlegen. An der Wand hängen noch geräucherte Mettwürstchen. Sie können allerdings nicht erkennen, wie teuer diese sind. ",
     "highlightedText": "Sie kneifen die Augen zusammen, um das Schild zu lesen.",
-    "task": "empty",
+    "task": "Kneifen sie ihre Augen zusammen.",
     "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf6 = {
     "baseText": "Um die Warteschlange nicht noch länger aufzuhalten, nehmen Sie die Würstchen mit. Die Verkäuferin packt alles ein. Sie gehen weiter zur Kühlabteilung. Sie benötigen noch Parmesan. Vor Ihnen im Gang ist der ganze Boden mit Joghurt bedeckt. Scheinbar ist jemandem der Becher heruntergefallen. Es riecht unangenehm. ",
     "highlightedText": "Sie rümpfen die Nase.",
-    "task": "empty",
+    "task": "Rümpfen sie ihre Nase.",
     "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf7 = {
     "baseText": "Sie machen den nächsten Mitarbeiter ausfindig und weisen ihn daraufhin. Der junge Mann eilt direkt los, holt Lappen und Putzmittel und beseitigt den Joghurt. ",
     "highlightedText": "Dankbar lächeln Sie.",
-    "task": "empty",
+    "task": "Lächeln sie.",
     "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf8 = {
     "baseText": "Sie gehen weiter zum Käseregal und suchen Blauschimmelkäse. Doch Sie können keinen finden. Verwundert wenden Sie sich an den Mitarbeiter, der noch dabei ist, den Joghurt zu beseitigen und der teilt Ihnen mit, dass der Käse ausverkauft sei. ",
     "highlightedText": "Enttäuscht schieben Sie die Unterlippe vor.",
-    "task": "empty",
+    "task": "Schieben sie ihre Unterlippe vor.",
     "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf9 = {
-    "baseText": "Sie kaufen noch die restlichen Lebensmittel für das Essen ein und alles, was Ihnen sonst noch einfällt. Dann begeben Sie sich zur Kasse. Vor der Kasse bleiben Sie am Kühlregal für Getränke stehen und überlegen, ob Sie noch Limonade mitnehmen sollen. Dazu ",
-    "highlightedText": "spitzen Sie die Lippen und bewegen sie nach rechts und links.",
-    "task": "empty",
+    "baseText": "Sie kaufen noch die restlichen Lebensmittel für das Essen ein und alles, was Ihnen sonst noch einfällt. Dann begeben Sie sich zur Kasse. Vor der Kasse bleiben Sie am Kühlregal für Getränke stehen und überlegen, ob Sie noch Limonade mitnehmen sollen. Dazu... ",
+    "highlightedText": "... spitzen Sie die Lippen und bewegen sie nach rechts und links.",
+    "task": "Spitzen sie ihre Lippen und bewegen sie sie nach rechts und links.",
     "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf10 = {
-    "baseText": "Als Sie die Limonadenflasche aus dem Kühlregal ziehen, stoßen Sie versehentlich gegen die danebenliegenden Dosen mit Cola. Eine fällt runter. Für einen kurzen Moment sind Sie geschockt, ",
-    "highlightedText": "pusten die Wangen auf und lassen die Luft wieder entweichen.",
-    "task": "empty",
+    "baseText": "Als Sie die Limonadenflasche aus dem Kühlregal ziehen, stoßen Sie versehentlich gegen die danebenliegenden Dosen mit Cola. Eine fällt runter. Für einen kurzen Moment sind Sie geschockt,... ",
+    "highlightedText": "... pusten die Wangen auf und lassen die Luft wieder entweichen.",
+    "task": "Pusten sie ihre Wangen auf und lassen die Luft wieder entweichen.",
     "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf11 = {
     "baseText": "An der Kasse angekommen, warten schon 8 Leute in der Schlange. Die Kassiererin scheint sichtlich überfordert, sie muss ständig die Preise nachschauen und scheint noch relativ neu zu sein. Das kann noch etwas dauern. ",
     "highlightedText": "Sie schieben die Unterlippe vor.",
-    "task": "empty",
+    "task": "Schieben sie ihre Unterlippe vor.",
     "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf12 = {
     "baseText": "Eine andere Kassiererin kommt aus der Pause. Zum Glück macht sie eine weitere Kasse auf. Sie stellen sich an und legen die Lebensmittel aufs Band. Als Sie an der Reihe sind, räumen Sie zügig die gescannten Artikel in den Wagen und kramen ihr Portmonee aus der Tasche. Doch es ist nicht wie gewohnt in der Tasche. Nervös ",
     "highlightedText": "beißen Sie mit den Zähnen auf die Ober-und Unterlippe.",
-    "task": "empty",
+    "task": "Beißen Sie mit den Zähnen auf ihre Ober-und Unterlippe.",
     "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 const einkauf13 = {
     "baseText": "Sie durchwühlen Ihre Taschen. Als Sie das Portmonee endlich finden, sind Sie erleichtert. Sie bezahlen den Einkauf und verlassen den Supermarkt. ",
     "highlightedText": "Sie lächeln.",
-    "task": "empty",
+    "task": "Lächeln Sie.",
     "sound": require("../assets/LAKEY_INSPIRED_Better_Days.mp3")
 }
 
@@ -408,346 +408,346 @@ const einkauf13 = {
 const schnee1 = {
     "baseText": "Sie schauen nach draußen aus dem Fenster. Es ist Winter und der Himmel ist wolkenverhangen. Schon seit Tagen ist es kalt. Ihnen scheint, als segle die erste Schneeflocke zu Boden. Ist es soweit?",
     "highlightedText": "Sie kneifen die Augen zusammen.",
-    "task": "empty",
+    "task": "Kneifen sie ihre Augen zusammen.",
     "sound": require("../assets/Uebung1_Der_erste_Schnee.wav")
 }
 
 const schnee2 = {
     "baseText": "Tatsächlich! Es schneit dicke, weiße Flocken. Sie ziehen Ihren Mantel und die warmen Winterschuhe an und gehen nach draußen. Alles ist vom Schnee bedeckt und es sieht wunderschön aus. Sie sind erstaunt, wie schnell das ging",
     "highlightedText": "Sie ziehen die Augenbrauen hoch.",
-    "task": "empty",
+    "task": "Ziehen sie ihre Augenbrauen hoch.",
     "sound": require("../assets/Uebung2_Der_erste_Schnee.wav")
 }
 
 const schnee3 = {
     "baseText": "Sie machen sich auf den Weg durch das Schneegestöber. Sie atmen frische, kalte Luft ein. Da ist ein unangenehmer Geruch in der Luft. Als Sie sich umsehen, entdecken Sie Qualm, der aus dem Kamin Ihres Nachbarn weht. Die Abluft aus dem Schornstein stinkt gewaltig.",
     "highlightedText": "Sie rümpfen die Nase.",
-    "task": "empty",
+    "task": "Rümpfen sie ihre Nase.",
     "sound": require("../assets/Uebung3_Der_erste_Schnee.wav")
 }
 
 const schnee4 = {
     "baseText": "Inzwischen ist es ziemlich kalt geworden und Sie haben Ihre Handschuhe zu Hause vergessen. Sie wollen Ihre Hände etwas wärmen.",
     "highlightedText": "Dazu spitzen Sie die Lippen und pusten Ihre warme Ausatemluft in die Hände.",
-    "task": "empty",
+    "task": "Spitzen sie ihre Lippen und pusten sie warme Luft in ihre Hände.",
     "sound": require("../assets/Uebung4_Der_erste_Schnee.wav")
 }
 
 const schnee5 = {
     "baseText": "Es laufen drei Kinder mit einem Schlitten an Ihnen vorbei. Die Kinder sind außer sich vor Freude und wollen den ersten Schnee sofort ausnutzen.",
     "highlightedText": "Sie freuen sich mit Ihnen und lächeln.",
-    "task": "empty",
+    "task": "Lächeln Sie.",
     "sound": require("../assets/Uebung5_Der_erste_Schnee.wav")
 }
 
 const schnee6 = {
     "baseText": "Sie erinnern sich noch gut daran, wie Sie selbst als Kind im Schnee gespielt haben. Beim ersten Schnee sind Sie auch immer sofort mit dem Schlitten losgezogen. Langsam wird es Ihnen zu kalt. Sie überlegen, ob Sie wieder nach Hause gehen sollen.",
     "highlightedText": "Sie spitzen die Lippen und bewegen sie nach rechts und links.",
-    "task": "empty",
+    "task": "Spitzen sie ihre Lippen und bewegen sie sie nach rechts und links.",
     "sound": require("../assets/Uebung6_Der_erste_Schnee.wav")
 }
 
 const schnee7 = {
     "baseText": "Sie entscheiden sich für den Heimweg. In der Zwischenzeit ist das Schneien stärker geworden und der Schnee weht Ihnen ins Gesicht. Sie beeilen sich nun. Zuhause angekommen, sind Sie außer Puste.",
     "highlightedText": "Sie pusten die Wangen auf und lassen die Luft wieder entweichen.",
-    "task": "empty",
+    "task": "Pusten sie ihre Wangen auf und lassen die Luft wieder entweichen.",
     "sound": require("../assets/Uebung7_Der_erste_Schnee.wav")
 }
 
 const schnee8 = {
     "baseText": "Sie wärmen sich am Kaminfeuer auf und kuscheln sich unter die Decke auf dem Sofa.",
     "highlightedText": "Entspannen Sie sich...",
-    "task": "empty",
+    "task": "Fertig!",
     "sound": require("../assets/LetzterSatz_Der_erste_Schnee.wav")
 }
 
 //=====================================================================================================================================
 
 const bahn1 = {
-    "baseText": "1.	Sie sind spät dran und müssen unbedingt die nächste Straßenbahn erreichen, um pünktlich zu einer Veranstaltung zu kommen. Gehetzt schauen Sie auf Ihre Armbanduhr. Es könnte knapp werden.",
+    "baseText": "Sie sind spät dran und müssen unbedingt die nächste Straßenbahn erreichen, um pünktlich zu einer Veranstaltung zu kommen. Gehetzt schauen Sie auf Ihre Armbanduhr. Es könnte knapp werden.",
     "highlightedText": "In Sorge, die Straßenbahn zu verpassen, ziehen Sie die Augenbrauen hoch.",
-    "task": "empty",
+    "task": "Ziehen sie ihre Augenbrauen hoch.",
     "sound": require("../assets/Eine_Fahrt_mit_der_Strassenbahn/Uebung1_FahrtStrassenbahn.wav")
 }
 
 const bahn2 = {
-    "baseText": "2.	Außer Atem kommen Sie an der Haltestelle an, als Ihre Straßenbahn gerade einfährt. Sie sehen, dass die Bahn überfüllt ist und die Leute bereits an der Tür eng an eng stehen. Es steigen kaum Leute aus.",
+    "baseText": "Außer Atem kommen Sie an der Haltestelle an, als Ihre Straßenbahn gerade einfährt. Sie sehen, dass die Bahn überfüllt ist und die Leute bereits an der Tür eng an eng stehen. Es steigen kaum Leute aus.",
     "highlightedText": "Verärgert ziehen Sie die Augenbrauen zusammen.",
-    "task": "empty",
+    "task": "Ziehen sie ihre Augenbrauen zusammen",
     "sound": require("../assets/Eine_Fahrt_mit_der_Strassenbahn/Uebung2_FahrtStrassenbahn.wav")
 }
 
 const bahn3 = {
-    "baseText": "3.	Es hat keinen Zweck. Sie müssen die Straßenbahn nehmen, um pünktlich zu kommen. Sie steigen in die überfüllte Bahn. Es ist sehr eng. Sie hoffen, dass bei der nächsten Station einige Leute aussteigen werden.",
+    "baseText": "Es hat keinen Zweck. Sie müssen die Straßenbahn nehmen, um pünktlich zu kommen. Sie steigen in die überfüllte Bahn. Es ist sehr eng. Sie hoffen, dass bei der nächsten Station einige Leute aussteigen werden.",
     "highlightedText": "Abwartend schließen Sie die Augen.",
-    "task": "empty",
+    "task": "Schließen sie ihr Augen.",
     "sound": require("../assets/Eine_Fahrt_mit_der_Strassenbahn/Uebung3_FahrtStrassenbahn.wav")
 }
 
 const bahn4 = {
-    "baseText": "4.	An der nächsten Station steigen tatsächlich viele Leute aus und die Bahn leert sich. Sie bekommen einen Sitzplatz am Fenster. Die Sonne scheint herein und blendet Sie.",
+    "baseText": "An der nächsten Station steigen tatsächlich viele Leute aus und die Bahn leert sich. Sie bekommen einen Sitzplatz am Fenster. Die Sonne scheint herein und blendet Sie.",
     "highlightedText": "Sie kneifen die Augen etwas zusammen.",
-    "task": "empty",
+    "task": "Kneifen sie ihre Augen etwas zusammen.",
     "sound": require("../assets/Eine_Fahrt_mit_der_Strassenbahn/Uebung4_FahrtStrassenbahn.wav")
 }
 
 const bahn5 = {
-    "baseText": "5.	Die nächste Haltestelle wird angekündigt und es ist Ihre. Das kann nicht sein. Es müssten noch 3 Stationen sein. Sie sind irritiert und halten nach dem Schild an der Haltestelle Ausschau.",
+    "baseText": "Die nächste Haltestelle wird angekündigt und es ist Ihre. Das kann nicht sein. Es müssten noch 3 Stationen sein. Sie sind irritiert und halten nach dem Schild an der Haltestelle Ausschau.",
     "highlightedText": "Dabei ziehen Sie die Augenbrauen zusammen.",
-    "task": "empty",
+    "task": "Ziehen sie ihre Augenbrauen zusammen",
     "sound": require("../assets/Eine_Fahrt_mit_der_Strassenbahn/Uebung5_FahrtStrassenbahn.wav")
 }
 
 const bahn6 = {
-    "baseText": "6.	Es ist ein Fehler, die Durchsage war falsch. Bei der nächsten Station setzt sich eine ältere Dame neben Sie. Sie grüßt freundlich.",
+    "baseText": "Es ist ein Fehler, die Durchsage war falsch. Bei der nächsten Station setzt sich eine ältere Dame neben Sie. Sie grüßt freundlich.",
     "highlightedText": "Sie grüßen freundlich zurück und ziehen dabei die Augenbrauen hoch.",
-    "task": "empty",
+    "task": "Ziehen sie ihre Augenbrauen hoch.",
     "sound": require("../assets/Eine_Fahrt_mit_der_Strassenbahn/Uebung6_FahrtStrassenbahn.wav")
 }
 
 const bahn7 = {
-    "baseText": "7.	Gedankenverloren gucken Sie einige Zeit aus dem Fenster. Die Bahn hat angehalten. Sie lesen das Halteschild und merken, dass es Ihre Haltestelle ist.",
+    "baseText": "Gedankenverloren gucken Sie einige Zeit aus dem Fenster. Die Bahn hat angehalten. Sie lesen das Halteschild und merken, dass es Ihre Haltestelle ist.",
     "highlightedText": "Sie reißen die Augen weit auf.",
-    "task": "empty",
+    "task": "Reißen sie ihre Augen weit auf.",
     "sound": require("../assets/Eine_Fahrt_mit_der_Strassenbahn/Uebung7_FahrtStrassenbahn.wav")
 }
 
 const bahn8 = {
     "baseText": "Sie stürmen in letzter Minute aus der Straßenbahn. Glück gehabt! Beim nächsten Mal müssen Sie besser aufpassen.",
     "highlightedText": "Entspannen Sie sich...",
-    "task": "empty",
+    "task": "Fertig",
     "sound": require("../assets/Eine_Fahrt_mit_der_Strassenbahn/letzter Satz_FahrtStrassenbahn.wav")
 }
 
 //=====================================================================================================================================
 
 const biergarten1 = {
-    "baseText": "1.	Sie sitzen im Biergarten und warten auf Ihre Freunde. Sie freuen sich, dass Sie sich endlich wieder treffen und genießen die letzten Sonnenstrahlen auf Ihrem Gesicht.",
+    "baseText": "Sie sitzen im Biergarten und warten auf Ihre Freunde. Sie freuen sich, dass Sie sich endlich wieder treffen und genießen die letzten Sonnenstrahlen auf Ihrem Gesicht.",
     "highlightedText": "Sie streichen sich mit den Händen das Gesicht ab.",
-    "task": "empty",
+    "task": "Streichen sie ihr Gesicht mit ihren Händen ab.",
     "sound": require("../assets/Uebung1_Biergarten.wav")
 }
 
 const biergarten2 = {
-    "baseText": "2.	Ihre Freunde trudeln nach und nach ein. Die Kellnerin kommt mit der Karte. Sie werfen einen Blick hinein und merken, dass Sie Ihre Lesebrille zu Hause vergessen haben. Sie versuchen es ohne Brille zu lesen und...",
+    "baseText": "Ihre Freunde trudeln nach und nach ein. Die Kellnerin kommt mit der Karte. Sie werfen einen Blick hinein und merken, dass Sie Ihre Lesebrille zu Hause vergessen haben. Sie versuchen es ohne Brille zu lesen und...",
     "highlightedText": "... kneifen die Augen etwas zusammen.",
-    "task": "empty",
+    "task": "Kneifen sie ihre Augen etwas zusammen.",
     "sound": require("../assets/Uebung2_Biergarten.wav")
 }
 
 const biergarten3 = {
-    "baseText": "3.	Nachdem die Getränke von der Kellnerin aufgenommen sind, überlegen Sie, noch etwas zu Essen zu bestellen. Einer Ihrer Freunde liest die Speisen vor. Sie überlegen, das Schnitzel oder den Flammkuchen zu nehmen.",
+    "baseText": "Nachdem die Getränke von der Kellnerin aufgenommen sind, überlegen Sie, noch etwas zu Essen zu bestellen. Einer Ihrer Freunde liest die Speisen vor. Sie überlegen, das Schnitzel oder den Flammkuchen zu nehmen.",
     "highlightedText": "Dabei spitzen Sie die Lippen und bewegen sie von rechts nach links.",
-    "task": "empty",
+    "task": "Spitzen sie ihre Lippen und bewegen sie sie nach rechts und links.",
     "sound": require("../assets/Uebung3_Biergarten.wav")
 }
 
 const biergarten4 = {
-    "baseText": "4.	In der Zwischenzeit wurden die Getränke zum Tisch gebracht. Sie stoßen auf einen schönen Abend an und nehmen einen kräftigen Schluck.",
+    "baseText": "In der Zwischenzeit wurden die Getränke zum Tisch gebracht. Sie stoßen auf einen schönen Abend an und nehmen einen kräftigen Schluck.",
     "highlightedText": "Dabei pusten Sie die Wangen auf und schieben die Luft von links nach rechts. (Übung kann auch mit Wasser durchgeführt werden).",
-    "task": "empty",
+    "task": "Pusten sie ihre Wangen auf und schieben sie die Luft von links nach rechts.",
     "sound": require("../assets/Uebung4_Biergarten.wav")
 }
 
 const biergarten5 = {
-    "baseText": "5.	Sie haben das Essen bestellt und sich für das Schnitzel mit Pommes entschieden. Sie plaudern mit Ihren Freunden und erzählen von Ihrem Alltag. Sie freuen sich, dass alle so gut drauf sind und lachen über den ein oder anderen Witz.",
+    "baseText": "Sie haben das Essen bestellt und sich für das Schnitzel mit Pommes entschieden. Sie plaudern mit Ihren Freunden und erzählen von Ihrem Alltag. Sie freuen sich, dass alle so gut drauf sind und lachen über den ein oder anderen Witz.",
     "highlightedText": "Dabei lachen Sie so sehr, dass Ihre Zähne zu sehen sind.",
-    "task": "empty",
+    "task": "Lächeln sie so sehr, dass ihre Zähne zu sehen sind.",
     "sound": require("../assets/Uebung5_Biergarten.wav")
 }
 
 const biergarten6 = {
-    "baseText": "6.	Es dauert nicht lange, da wird das Essen zum Tisch gebracht. Leider sind bei Ihrem Schnitzel statt der Pommes Bratkartoffeln auf dem Teller.",
+    "baseText": "Es dauert nicht lange, da wird das Essen zum Tisch gebracht. Leider sind bei Ihrem Schnitzel statt der Pommes Bratkartoffeln auf dem Teller.",
     "highlightedText": "Enttäuscht schieben Sie die Unterlippe vor.",
-    "task": "empty",
+    "task": "Schieben sie ihre Unterlippe vor.",
     "sound": require("../assets/Uebung6_Biergarten.wav")
 }
 
 const biergarten7 = {
-    "baseText": "7.	Sie beschweren sich nicht bei der Kellnerin. Der Biergarten ist so voll, da kann das mal passieren. Ihre Freundin gegenüber hat Pommes bekommen und möchte mit Ihnen tauschen. Sie freuen sich und nehmen das Angebot an.",
+    "baseText": "Sie beschweren sich nicht bei der Kellnerin. Der Biergarten ist so voll, da kann das mal passieren. Ihre Freundin gegenüber hat Pommes bekommen und möchte mit Ihnen tauschen. Sie freuen sich und nehmen das Angebot an.",
     "highlightedText": "Sie lächeln sie an.",
-    "task": "empty",
+    "task": "Lächeln sie.",
     "sound": require("../assets/Uebung7_Biergarten.wav")
 }
 
 const biergarten8 = {
     "baseText": "Das Essen hat Ihnen sehr gut geschmeckt und Sie genießen den weiteren Abend mit Ihren Freunden.",
     "highlightedText": "Sie entspannen sich...",
-    "task": "empty",
+    "task": "Fertig",
     "sound": require("../assets/LetzterSatz_Biergarten.wav")
 }
 
 //=====================================================================================================================================
 
 const balkon1 = {
-    "baseText": "1.	Es ist ein warmer Sonnabend und Sie sitzen draußen auf dem Balkon, um die letzten Sonnenstrahlen zu genießen. Die Sonne blendet Ihnen ins Gesicht und Sie müssen die ...",
+    "baseText": "Es ist ein warmer Sonnabend und Sie sitzen draußen auf dem Balkon, um die letzten Sonnenstrahlen zu genießen. Die Sonne blendet Ihnen ins Gesicht und Sie müssen die ...",
     "highlightedText": "... Augen etwas zusammenkneifen.",
-    "task": "empty",
+    "task": "Kneifen sie ihre Augen etwas zusammen.",
     "sound": require("../assets/Uebung1_SommerabendBalkon.wav")
 }
 
 const balkon2 = {
-    "baseText": "2.	Von Ihrem Balkon aus schauen Sie ins Grüne. Ihr Nachbar nutzt das schöne Wetter und verbrennt anscheinend noch nasses Holz im Garten. Es qualmt und ein unangenehmer Geruch weht zu ihnen hoch.",
+    "baseText": "Von Ihrem Balkon aus schauen Sie ins Grüne. Ihr Nachbar nutzt das schöne Wetter und verbrennt anscheinend noch nasses Holz im Garten. Es qualmt und ein unangenehmer Geruch weht zu ihnen hoch.",
     "highlightedText": "Sie müssen die Nase rümpfen.",
-    "task": "empty",
+    "task": "Rümpfen sie ihre Nase.",
     "sound": require("../assets/Uebung2_SommerabendBalkon.wav")
 }
 
 const balkon3 = {
-    "baseText": "3.	Zum Glück ist Ihr Nachbar gleich fertig. Sie sehen viele Blumen, die in voller Pracht blühen. Besonders die Rosen sehen toll aus. Sie sind stolz auf Ihren schönen Garten und freuen sich darüber.",
+    "baseText": "Zum Glück ist Ihr Nachbar gleich fertig. Sie sehen viele Blumen, die in voller Pracht blühen. Besonders die Rosen sehen toll aus. Sie sind stolz auf Ihren schönen Garten und freuen sich darüber.",
     "highlightedText": "Sie lächeln.",
-    "task": "empty",
+    "task": "Lächeln sie.",
     "sound": require("../assets/Uebung3_SommerabendBalkon.wav")
 }
 
 const balkon4 = {
-    "baseText": "4.	Sie beschließen, sich zum Tagesabschluss noch ein kühles Getränk zu gönnen. Sie holen das Kaltgetränk aus dem Kühlschrank und nehmen einen großen Schluck.",
+    "baseText": "Sie beschließen, sich zum Tagesabschluss noch ein kühles Getränk zu gönnen. Sie holen das Kaltgetränk aus dem Kühlschrank und nehmen einen großen Schluck.",
     "highlightedText": "Dabei pusten Sie die Wangen auf und schieben die Luft von links nach rechts. (Übung kann auch mit Wasser durchgeführt werden).",
-    "task": "empty",
+    "task": "Pusten sie ihre Wangen auf und schieben sie die Luft von links nach rechts.",
     "sound": require("../assets/Uebung4_SommerabendBalkon.wav")
 }
 
 const balkon5 = {
-    "baseText": "5.	Nach dem Trinken bleiben noch Reste vom Getränk auf ihren Lippen kleben.",
+    "baseText": "Nach dem Trinken bleiben noch Reste vom Getränk auf ihren Lippen kleben.",
     "highlightedText": "Sie lecken mit der Zunge die Lippen ab.",
-    "task": "empty",
+    "task": "Lecken sie mit ihrer Zunge ihre Lippen ab.",
     "sound": require("../assets/Uebung5_SommerabendBalkon.wav")
 }
 
 const balkon6 = {
-    "baseText": "6.	Als Sie einen zweiten Schluck nehmen wollen, bemerken Sie, dass eine Fliege auf dem Glasrand sitzt",
+    "baseText": "Als Sie einen zweiten Schluck nehmen wollen, bemerken Sie, dass eine Fliege auf dem Glasrand sitzt",
     "highlightedText": "Sie spitzen die Lippen und pusten.",
-    "task": "empty",
+    "task": "Spitzen sie ihre Lippen und pusten sie.",
     "sound": require("../assets/Uebung6_SommerabendBalkon.wav")
 }
 
 const balkon7 = {
-    "baseText": "7.	So langsam geht die Sonne unter und der Himmel färbt sich wunderschön rotorange. Sie lassen den Alltag hinter sich und entspannen.",
+    "baseText": "So langsam geht die Sonne unter und der Himmel färbt sich wunderschön rotorange. Sie lassen den Alltag hinter sich und entspannen.",
     "highlightedText": "Dabei pusten Sie die Wangen auf und lassen die Luft wieder entweichen.",
-    "task": "empty",
+    "task": "Pusten sie ihre Wangen auf uns lassen sie die Luft anschließend wieder entweichen.",
     "sound": require("../assets/Uebung7_SommerabendBalkon.wav")
 }
 
 const balkon8 = {
-    "baseText": "8.	Es wird dunkel und Sie hören die Grillen zirpen. Was für eine wunderbare Geräuschkulisse.",
+    "baseText": "Es wird dunkel und Sie hören die Grillen zirpen. Was für eine wunderbare Geräuschkulisse.",
     "highlightedText": "Sie genießen den Moment und lächeln.",
-    "task": "empty",
+    "task": "Lächeln sie.",
     "sound": require("../assets/Uebung8_SommerabendBalkon.wav")
 }
 
 //=====================================================================================================================================
 
 const bummel1 = {
-    "baseText": "1.	Endlich Wochenende. Sie haben Zeit und bummeln gemütlich durch die Altstadt. Zuerst betreten Sie ein Schuhgeschäft, denn neue Schuhe brauchen dringend. Aufmerksam schauen Sie sich die Auswahl an und überlegen, ob Sie lieber schwarze oder braune Schuhe nehmen sollten.",
+    "baseText": "Endlich Wochenende. Sie haben Zeit und bummeln gemütlich durch die Altstadt. Zuerst betreten Sie ein Schuhgeschäft, denn neue Schuhe brauchen dringend. Aufmerksam schauen Sie sich die Auswahl an und überlegen, ob Sie lieber schwarze oder braune Schuhe nehmen sollten.",
     "highlightedText": "Nachdenklich ziehen Sie die Augenbrauen zusammen.",
-    "task": "empty",
+    "task": "Ziehen sie ihre Augenbrauen zusammen.",
     "sound": require("../assets/Uebung1_Stadtbummel.wav")
 }
 
 const bummel2 = {
-    "baseText": "2.	Während Sie noch überlegen, kommt eine hilfsbereite Verkäuferin geeilt und möchte Sie beraten. Sie ist etwas aufdringlich und möchte Ihnen ganz andere Schuhe verkaufen, als Sie im Sinn haben. Als Sie den Preis sehen, sind Sie entsetzt. Die Schuhe kosten doppelt so viel wie die, die sie selbst ausgesucht hatten.",
+    "baseText": "Während Sie noch überlegen, kommt eine hilfsbereite Verkäuferin geeilt und möchte Sie beraten. Sie ist etwas aufdringlich und möchte Ihnen ganz andere Schuhe verkaufen, als Sie im Sinn haben. Als Sie den Preis sehen, sind Sie entsetzt. Die Schuhe kosten doppelt so viel wie die, die sie selbst ausgesucht hatten.",
     "highlightedText": "Sie ziehen die Augenbrauen hoch.",
-    "task": "empty",
+    "task": "Ziehen sie ihre  Augenbrauen hoch.",
     "sound": require("../assets/Uebung2_Stadtbummel.wav")
 }
 
 const bummel3 = {
-    "baseText": "3.	Sie wimmeln die Dame freundlich ab und kaufen die schwarzen Schuhe, die Sie als erstes entdeckt hatten. Mit dem Schuhkarton unter dem Arm setzen Sie Ihren Einkaufsbummel fort und erblicken dabei einen kleinen Brunnen auf dem Marktplatz. Sie setzen sich auf die Umrandung des Brunnens und wollen sich eine kurze Pause gönnen. Doch ein unangenehmer Geruch weht Ihnen entgegen. Das Wasser ist abgestanden und stinkt.",
+    "baseText": "Sie wimmeln die Dame freundlich ab und kaufen die schwarzen Schuhe, die Sie als erstes entdeckt hatten. Mit dem Schuhkarton unter dem Arm setzen Sie Ihren Einkaufsbummel fort und erblicken dabei einen kleinen Brunnen auf dem Marktplatz. Sie setzen sich auf die Umrandung des Brunnens und wollen sich eine kurze Pause gönnen. Doch ein unangenehmer Geruch weht Ihnen entgegen. Das Wasser ist abgestanden und stinkt.",
     "highlightedText": "Sie müssen die Nase rümpfen.",
-    "task": "empty",
+    "task": "Rümpfen sie ihre Nase.",
     "sound": require("../assets/Uebung3_Stadtbummel.wav")
 }
 
 const bummel4 = {
-    "baseText": "4.	Schnell entschließen Sie sich, in das gegenüberliegende Café zu gehen. Sie bestellen Kaffee und eine Waffel mit Sahne, Eis und heißen Kirschen. Als der Kellner ihre Bestellung bringt, läuft Ihnen das Wasser im Mund zusammen.",
+    "baseText": "Schnell entschließen Sie sich, in das gegenüberliegende Café zu gehen. Sie bestellen Kaffee und eine Waffel mit Sahne, Eis und heißen Kirschen. Als der Kellner ihre Bestellung bringt, läuft Ihnen das Wasser im Mund zusammen.",
     "highlightedText": "Sie reiben die Lippen aufeinander.",
-    "task": "empty",
+    "task": "Reiben sie ihre Lippen aufeinander.",
     "sound": require("../assets/Uebung4_Stadtbummel.wav")
 }
 
 const bummel5 = {
-    "baseText": "5.	Das tut gut. Sie genießen die noch warme Waffel und es schmeckt fantastisch. An ihren Lippen bleiben noch Reste von der Sahne kleben",
+    "baseText": "Das tut gut. Sie genießen die noch warme Waffel und es schmeckt fantastisch. An ihren Lippen bleiben noch Reste von der Sahne kleben",
     "highlightedText": "Sie lecken mit der Zunge die Lippen ab.",
-    "task": "empty",
+    "task": "Lecken sie ihre Lippen mit ihrer Zunge ab.",
     "sound": require("../assets/Uebung5_Stadtbummel.wav")
 }
 
 const bummel6 = {
-    "baseText": "6.	Sie nicken dem Kellner freundlich zu und signalisieren, dass Sie bezahlen möchten.",
+    "baseText": "Sie nicken dem Kellner freundlich zu und signalisieren, dass Sie bezahlen möchten.",
     "highlightedText": "Sie lächeln.",
-    "task": "empty",
+    "task": "Lächeln sie.",
     "sound": require("../assets/Uebung6_Stadtbummel.wav")
 }
 
 const bummel7 = {
     "baseText": "Als Sie das Café verlassen, denken Sie darüber nach, was Sie heute noch alles erledigen wollen.",
     "highlightedText": "In Gedanken versunken, pusten Sie die Wangen auf und lassen die Luft wieder entweichen.",
-    "task": "empty",
+    "task": "Pusten sie ihre Wangen auf uns lassen sie die Luft anschließend wieder entweichen",
     "sound": require("../assets/Uebung7_Stadtbummel.wav")
 }
 
 const bummel8 = {
-    "baseText": "8.	Ein Stadtmusikant beginnt ein Lied zu spielen. Sie erkennen es.",
+    "baseText": "Ein Stadtmusikant beginnt ein Lied zu spielen. Sie erkennen es.",
     "highlightedText": "Begeistert pfeifen Sie zur Melodie und spitzen dazu die Lippen.",
-    "task": "empty",
+    "task": "Spitzen sie ihre Lippen und versuchen sie zu pfeifen.",
     "sound": require("../assets/Uebung8_Stadtbummel.wav")
 }
 
 //=====================================================================================================================================
 
 const zelten1 = {
-    "baseText": "1.	Nach einer langen Autofahrt sind Sie endlich beim Campingplatz angekommen. Sie betreten das kleine Anmeldehäuschen. Es ist klein und muffig.",
+    "baseText": "Nach einer langen Autofahrt sind Sie endlich beim Campingplatz angekommen. Sie betreten das kleine Anmeldehäuschen. Es ist klein und muffig.",
     "highlightedText": "Sie müssen die Nase rümpfen.",
-    "task": "empty",
+    "task": "Rümpfen sie ihre Nase.",
     "sound": require("../assets/Uebung1_Zelten.wav")
 }
 
 const zelten2 = {
-    "baseText": "2.	Ein älterer Mann begrüßt Sie und zeigt Ihnen den Platz für Ihr Zelt. Sie stellen Ihre Sachen ab und beginnen das Zelt aufzubauen. Ratlos stehen Sie vor dem Gewirr aus Stangen und Plane.",
+    "baseText": "Ein älterer Mann begrüßt Sie und zeigt Ihnen den Platz für Ihr Zelt. Sie stellen Ihre Sachen ab und beginnen das Zelt aufzubauen. Ratlos stehen Sie vor dem Gewirr aus Stangen und Plane.",
     "highlightedText": "Sie spitzen die Lippen und bewegen sie nach rechts und links.",
-    "task": "empty",
+    "task": "Spitzen sie ihre Lippen und bewegen sie sie nach rechts und links.",
     "sound": require("../assets/Uebung2_Zelten.wav")
 }
 
 const zelten3 = {
-    "baseText": "3.	Sie beginnen, Stangen zusammenzubauen und das Grundgerüst des Zeltes aufzustellen. Sie betrachten Ihr Werk. So ganz richtig sieht es noch nicht aus.",
+    "baseText": "Sie beginnen, Stangen zusammenzubauen und das Grundgerüst des Zeltes aufzustellen. Sie betrachten Ihr Werk. So ganz richtig sieht es noch nicht aus.",
     "highlightedText": "Enttäuscht schieben Sie die Unterlippe vor.",
-    "task": "empty",
+    "task": "Schieben sie ihre Unterlippe hervor.",
     "sound": require("../assets/Uebung3_Zelten.wav")
 }
 
 const zelten4 = {
-    "baseText": "4.	Endlich haben Sie es geschafft: Ihr Zelt steht. Sie müssen nur noch die Heringe in den Boden hämmern. Beherzt holen Sie mit dem Hammer aus und hauen zielsicher auf Ihren Finger. Vor Schmerz schreien Sie.",
+    "baseText": "Endlich haben Sie es geschafft: Ihr Zelt steht. Sie müssen nur noch die Heringe in den Boden hämmern. Beherzt holen Sie mit dem Hammer aus und hauen zielsicher auf Ihren Finger. Vor Schmerz schreien Sie.",
     "highlightedText": "Sie reißen den Mund weit auf.",
-    "task": "empty",
+    "task": "Reißen sie ihren Mund weit auf.",
     "sound": require("../assets/Uebung4_Zelten.wav")
 }
 
 const zelten5 = {
-    "baseText": "5.	Der Schmerz lässt etwas nach. Sie entscheiden sich, eine Pause zu machen und etwas zu essen. Sie holen den Campingkocher aus der Tasche und kochen Nudeln mit Tomatensoße. Um sicherzugehen, dass die Nudeln gar sind, probieren Sie vorsichtig eine.",
+    "baseText": "Der Schmerz lässt etwas nach. Sie entscheiden sich, eine Pause zu machen und etwas zu essen. Sie holen den Campingkocher aus der Tasche und kochen Nudeln mit Tomatensoße. Um sicherzugehen, dass die Nudeln gar sind, probieren Sie vorsichtig eine.",
     "highlightedText": "Sie spitzen die Lippen und pusten.",
-    "task": "empty",
+    "task": "Spitzen sie ihre Lippen und pusten sie.",
     "sound": require("../assets/Uebung5_Zelten.wav")
 }
 
 const zelten6 = {
-    "baseText": "6.	Die Nudeln sind noch nicht aldente. Während die Nudeln weiter köcheln, öffnen Sie sich ein Getränk und nehmen einen großen Schluck. ",
+    "baseText": "Die Nudeln sind noch nicht aldente. Während die Nudeln weiter köcheln, öffnen Sie sich ein Getränk und nehmen einen großen Schluck. ",
     "highlightedText": "Dabei pusten Sie die Wangen auf und schieben die Luft von links nach rechts. (Übung kann auch mit Wasser durchgeführt werden).",
-    "task": "empty",
+    "task": "Pusten sie ihre Wangen auf und schieben sie die Luft von links nach rechts.",
     "sound": require("../assets/Uebung6_Zelten.wav")
 }
 
 const zelten7 = {
-    "baseText": "7.	Langsam wird es Abend. Sie machen ein kleines Lagerfeuer und setzen sich davor. Sie beobachten die Flammen und genießen die Ruhe.",
+    "baseText": "Langsam wird es Abend. Sie machen ein kleines Lagerfeuer und setzen sich davor. Sie beobachten die Flammen und genießen die Ruhe.",
     "highlightedText": "Zufrieden lächeln Sie.",
-    "task": "empty",
+    "task": "Lächeln sie.",
     "sound": require("../assets/Uebung7_Zelten.wav")
 }
 
 const zelten8 = {
     "baseText": "Sie bleiben noch so lange wach wie das Feuer runtergebrannt ist und legen sich dann schlafen.",
     "highlightedText": "Gute Nacht...",
-    "task": "empty",
+    "task": "Fertig.",
     "sound": require("../assets/LetzterSatz_Zelten.wav")
 }
 
@@ -813,31 +813,31 @@ const defaultScenarios = {
         "tags": ["Kurzes Szenario", "Obere Gesichtshälfte"],
         "indices": [57, 58, 59, 60, 61, 62, 63, 64],
         "icon": faSnowflake
-    // },
-    // "Bahn":  {
-    //     "tags": ["Kurzes Szenario", "Obere Gesichtshälfte"],
-    //     "indices": [65, 66, 67, 68, 69, 70, 71, 72],
-    //     "icon": faTrain
-    // },
-    // "Biergarten":  {
-    //     "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
-    //     "indices": [73, 74, 75, 76, 77, 78, 79, 80],
-    //     "icon": faBeerMugEmpty
-    // },
-    // "Balkon":  {
-    //     "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
-    //     "indices": [81, 82, 83, 84, 85, 86, 87, 88],
-    //     "icon": faSun
-    // },
-    // "Bummel":  {
-    //     "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
-    //     "indices": [89, 90, 91, 92, 93, 94, 95, 96],
-    //     "icon": faBagShopping
-    // },
-    // "Zelten":  {
-    //     "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
-    //     "indices": [97, 98, 99, 100, 101, 102, 103, 104],
-    //     "icon": faCampground
+    },
+    "Bahn":  {
+        "tags": ["Kurzes Szenario", "Obere Gesichtshälfte"],
+        "indices": [65, 66, 67, 68, 69, 70, 71, 72],
+        "icon": faTrain
+    },
+    "Biergarten":  {
+        "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
+        "indices": [73, 74, 75, 76, 77, 78, 79, 80],
+        "icon": faBeerMugEmpty
+    },
+    "Balkon":  {
+        "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
+        "indices": [81, 82, 83, 84, 85, 86, 87, 88],
+        "icon": faSun
+    },
+    "Bummel":  {
+        "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
+        "indices": [89, 90, 91, 92, 93, 94, 95, 96],
+        "icon": faBagShopping
+    },
+    "Zelten":  {
+        "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
+        "indices": [97, 98, 99, 100, 101, 102, 103, 104],
+        "icon": faCampground
     }
 
 

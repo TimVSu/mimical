@@ -6,7 +6,7 @@ import { View, Platform, UIManager, Text } from 'react-native';
 import * as FaceDetector from 'expo-face-detector';
 import { Heading } from 'native-base';
 import styles from './styles.js';
-import { shareAsync } from 'expo-sharing';
+// import { shareAsync } from 'expo-sharing';
 import * as MediaLibrary from 'expo-media-library';
 
 // necessary for android devices as explained in the expo-camera doc
@@ -217,7 +217,7 @@ const CameraScreen = ({ size, children }) => {
 
       <View style={[styles.camContainer, { width: size / decimalRatio, height: size }]}>
         
-        <CustomButton text='[   ]' onPress={() => { takePicture() }} color="red" />
+        {/* <CustomButton text='[   ]' onPress={() => { takePicture() }} color="red" /> */}
         <Camera ref={ref => setCamera(ref)} style={styles.camera} type={CameraType.front} ratio={ratio}
           onFacesDetected={handleFacesDetected}
           faceDetectorSettings={{
