@@ -1,4 +1,4 @@
-// authors: Tim Suchan, Maxim Torgovitski
+// authors: Tim Suchan, Maxim Torgovitski, Ved Antigen
 import { useEffect, useState, useCallback } from 'react';
 import { View, TouchableOpacity, Platform, UIManager, Text, ScrollView, useColorScheme } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -51,7 +51,7 @@ const LevelLayout = ({ route, navigation, nextLevelFunction }) => {
   // retrieve data for state variables
   const getData = async () => {
     try {
-      const jsonValue = await AsyncStorage.getItem('settings');
+      const jsonValue = await AsyncStorage.getItem('test');
       const value = JSON.parse(jsonValue);
       if (value !== null) {
         setTitleSize(value.fontSize == 17 ? 34 : 40);
@@ -177,11 +177,21 @@ const LevelLayout = ({ route, navigation, nextLevelFunction }) => {
     setSound(sound);
 
     console.log('Playing Sound');
-    await sound.playAsync();
+    try {
+      await sound.playAsync();
+    }
+    catch (audioException) {
+
+    }
   }
 
   async function stopSound() {
-    await sound.unloadAsync();
+    try {
+      await sound.unloadAsync();
+    }
+    catch (promiseRejection) {
+
+    }
   }
 
   useEffect(() => {

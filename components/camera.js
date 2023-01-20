@@ -87,7 +87,10 @@ const CameraScreen = ({ size, children }) => {
     (async () => {
       const status = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status["granted"]);
-      const mediaLibraryPermission = await MediaLibrary.requestPermissionsAsync();
+      try {
+        const mediaLibraryPermission = await MediaLibrary.requestPermissionsAsync();
+      } catch (error) {
+      }
       setHasMediaLibraryPermission(status["granted"]);
     })();
   }, []);
@@ -190,19 +193,19 @@ const CameraScreen = ({ size, children }) => {
   const takePicture = async () => {
 
     if (hasPermission) {
-  
+
       const options = {
         quality: 1,
         base64: true,
         exif: false
       }
-  
-      const data=await camera.takePictureAsync(options)
+
+      const data = await camera.takePictureAsync(options)
       setImage(data.uri);
       console.log(data)
-  
-      if(hasMediaLibraryPermission) {
-  
+
+      if (hasMediaLibraryPermission) {
+
         MediaLibrary.saveToLibraryAsync(data.uri).then(() => {
           setImage(undefined);
         });
@@ -216,7 +219,7 @@ const CameraScreen = ({ size, children }) => {
     return (
 
       <View style={[styles.camContainer, { width: size / decimalRatio, height: size }]}>
-        
+
         {/* <CustomButton text='[   ]' onPress={() => { takePicture() }} color="red" /> */}
         <Camera ref={ref => setCamera(ref)} style={styles.camera} type={CameraType.front} ratio={ratio}
           onFacesDetected={handleFacesDetected}
