@@ -22,7 +22,7 @@ const Scenario = ({ navigation, ...props }) => {
   // retrieve data for state variables
   const getData = async () => {
     try {
-      const jsonValue = await AsyncStorage.getItem('test');
+      const jsonValue = await AsyncStorage.getItem('settings');
       const value = JSON.parse(jsonValue);
       if (value !== null) {
         setTitleSize(value.fontSize == 17 ? 28 : 34);

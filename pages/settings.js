@@ -50,7 +50,7 @@ const SettingsPage = ({ navigation }) => {
   const storeLanguageData = async (value) => {
     try {
       config.language = value;
-      await AsyncStorage.setItem('test', JSON.stringify(config));
+      await AsyncStorage.setItem('settings', JSON.stringify(config));
     } catch (error) {
       // error storing data
     }
@@ -60,7 +60,7 @@ const SettingsPage = ({ navigation }) => {
   const storeLargeFontData = async (value) => {
     try {
       config.largeFont = value;
-      await AsyncStorage.setItem('test', JSON.stringify(config));
+      await AsyncStorage.setItem('settings', JSON.stringify(config));
     } catch (error) {
       // error storing data
     }
@@ -70,7 +70,7 @@ const SettingsPage = ({ navigation }) => {
   const storeFontSizeData = async (value) => {
     try {
       config.fontSize = value;
-      await AsyncStorage.setItem('test', JSON.stringify(config));
+      await AsyncStorage.setItem('settings', JSON.stringify(config));
     } catch (error) {
       // error storing data
     }
@@ -80,7 +80,7 @@ const SettingsPage = ({ navigation }) => {
   const storeCameraData = async (value) => {
     try {
       config.camera = value;
-      await AsyncStorage.setItem('test', JSON.stringify(config));
+      await AsyncStorage.setItem('settings', JSON.stringify(config));
     } catch (error) {
       // error storing data
     }
@@ -90,7 +90,7 @@ const SettingsPage = ({ navigation }) => {
   const storeNotificationsData = async (value) => {
     try {
       config.notifications = value;
-      await AsyncStorage.setItem('test', JSON.stringify(config));
+      await AsyncStorage.setItem('settings', JSON.stringify(config));
     } catch (error) {
       // error storing data
     }
@@ -100,7 +100,7 @@ const SettingsPage = ({ navigation }) => {
   const storeTextData = async (value) => {
     try {
       config.text = value;
-      await AsyncStorage.setItem('test', JSON.stringify(config));
+      await AsyncStorage.setItem('settings', JSON.stringify(config));
     } catch (error) {
       // error storing data
     }
@@ -110,7 +110,7 @@ const SettingsPage = ({ navigation }) => {
   const storeNarratorData = async (value) => {
     try {
       config.narrator = value;
-      await AsyncStorage.setItem('test', JSON.stringify(config));
+      await AsyncStorage.setItem('settings', JSON.stringify(config));
     } catch (error) {
       // error storing data
     }
@@ -120,7 +120,7 @@ const SettingsPage = ({ navigation }) => {
   const storeMusicData = async (value) => {
     try {
       config.music = value;
-      await AsyncStorage.setItem('test', JSON.stringify(config));
+      await AsyncStorage.setItem('settings', JSON.stringify(config));
     } catch (error) {
       // error storing data
     }
@@ -189,7 +189,7 @@ const SettingsPage = ({ navigation }) => {
   // retrieve data for state variables
   const getData = async () => {
     try {
-      const jsonValue = await AsyncStorage.getItem('test');
+      const jsonValue = await AsyncStorage.getItem('settings');
       const value = JSON.parse(jsonValue);
       if (value !== null) {
         setIsEnabled1(value.language == "german" ? false : true);

@@ -20,7 +20,7 @@ const Button = ({ navigation, ...props }) => {
   // retrieve font size data
   const getData = async () => {
     try {
-      const jsonValue = await AsyncStorage.getItem('test');
+      const jsonValue = await AsyncStorage.getItem('settings');
       const value = JSON.parse(jsonValue);
       if (value !== null) {
         setFontSize(value.fontSize);
