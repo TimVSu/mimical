@@ -64,7 +64,7 @@ const Scenario = ({ navigation, ...props }) => {
     <View style={[containerColor, { marginTop: 16 }, { marginBottom: 16 }]}>
       <Text style={[{ fontSize: titleSize }, { fontWeight: 'bold' }, textColor, { marginLeft: 16 }]}>{props.title}</Text>
       <View style={[{ flexDirection: 'row' }, { alignItems: 'center' }, { marginTop: 8 }, { marginLeft: 16 }]}>
-        <Text style={[{ fontSize: fontSize }, textColor, { marginRight: 8 }]}>{language == "german" ? "Fortschritt" : "Progress"} ({props.completions.length}/{scenarioLength}):</Text>
+        <Text style={[{ fontSize: fontSize }, textColor, { marginRight: 8 }]}>{language == "german" ? "Fortschritt" : "Progress"}: ({props.completions.length}/{scenarioLength})</Text>
         <ProgressBar exercises={scenarioLength} progress={props.completions.length} />
       </View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
