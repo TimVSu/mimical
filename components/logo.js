@@ -104,7 +104,7 @@ const Logo = () => {
         // </View>
 
         // mimical logo large
-        <View style={[{ backgroundColor: 'black' }, { padding: 8 }, { borderRadius: 24 }, { margin: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]}>
+        <View style={[{ backgroundColor: 'black' }, { padding: 0 }, { borderRadius: 24 }, { margin: 8 }, { flexDirection: 'row' }, { alignItems: 'center' }]}>
             <View style={[{ backgroundColor: light_primary_color }, { width: 32 }, { height: 64 }, { borderWidth: 0 }, { borderTopLeftRadius: 16 }, { borderBottomLeftRadius: 16 }, { justifyContent: 'space-around' }]}>
                 <View style={[{ backgroundColor: 'white' }, { width: 16 }, { height: 16 }, { borderWidth: 0 }, { borderRadius: '100%' }, { marginTop: 8 }, { marginLeft: 8 }]}></View>
                 <View style={[{ marginBottom: 8 }]}>
