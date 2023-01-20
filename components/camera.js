@@ -7,7 +7,7 @@ import * as FaceDetector from 'expo-face-detector';
 import { Heading } from 'native-base';
 import styles from './styles.js';
 // import { shareAsync } from 'expo-sharing';
-import * as MediaLibrary from 'expo-media-library';
+// import * as MediaLibrary from 'expo-media-library';
 
 // necessary for android devices as explained in the expo-camera doc
 if (
