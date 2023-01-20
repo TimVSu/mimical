@@ -24,7 +24,7 @@ const Scenario = ({ navigation, ...props }) => {
       const jsonValue = await AsyncStorage.getItem('test');
       const value = JSON.parse(jsonValue);
       if (value !== null) {
-        setTitleSize(value.fontSize == 17 ? 28 : 34)
+        setTitleSize(value.fontSize == 17 ? 28 : 34);
         setFontSize(value.fontSize);
         setLanguage(value.language);
       }
