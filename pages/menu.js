@@ -7,6 +7,7 @@ import React from 'react';
 import { useState, useEffect, useCallback } from 'react'
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage, { useAsyncStorage } from '@react-native-async-storage/async-storage';
+import Exercise from '../components/exercise.js';
 
 // import components
 import NavBar from '../components/nav_bar.js';
@@ -15,7 +16,7 @@ import Scenario from '../components/scenario.js';
 import FilterBar from '../components/filter_bar.js';
 import styles from '../components/styles.js';
 import { light_primary_color, dark_primary_color, gray5, gray6, dark_gray5, dark_gray6 } from '../components/styles.js';
-import { getDefaultScenarios, setCurrentContent, getScenario, getIcon, getTags } from '../components/contentManager';
+import { getDefaultScenarios, setCurrentContent, getScenario, getIcon, getTags, getScenarioFromTask,  } from '../components/contentManager';
 import Button from "../components/button";
 
 const tagStates = {
@@ -43,6 +44,10 @@ const HomePage = ({ navigation }) => {
   const [filteredKeyArray, setFilteredKeyArray] = useState(Object.keys(getDefaultScenarios()))
   const [completionStates, setCompletionStates] = useState({});
   const [language, setLanguage] = useState("german");
+  const [nextTask, setNextTask] = useState(1);
+  const [fetchCompleted, setFetchCompleted] = useState(false);
+
+
 
   // since this component is higher in hirarchy thatn the level component i use it to control the current content
   // All contets are stored with unique id's this hook stores the current starting pooint and passes it to the level component
@@ -72,22 +77,20 @@ const HomePage = ({ navigation }) => {
   useFocusEffect(
     useCallback(() => {
       fetchCompletionStates();
+      fetchLastTask();
       getData();
     }, [])
   );
-
-  //async storage hook
-  const { getItem, setItem } = useAsyncStorage('@completions');
 
   //@author: Tim Suchan
   //Fetches the completions object from async storage
   const fetchCompletionStates = async () => {
     try {
-      const item = await getItem();
-      setCompletionStates(JSON.parse(item));
-    }
-    catch {
-    }
+      const item = await AsyncStorage.getItem("@completions");
+      if (item) {
+        setCompletionStates(JSON.parse(item));
+      }
+    } catch {}
   }
 
   //@author: Tim Suchan
@@ -109,10 +112,26 @@ const HomePage = ({ navigation }) => {
     }
   }
 
+   //@author: Tim Suchan
+  //fetches the contentID of the last completed task from async storage
+  //adds 1 and saves to nextTask
+  const fetchLastTask = async () => {
+    try {
+      const item = await AsyncStorage.getItem('lastTask');
+      if (item) {
+        setNextTask(parseInt(item) + 1);
+        setFetchCompleted(true);
+        console.log("FETCH COMPLETED")
+      }
+    } catch {}
+  };
+
   //@author: Tim Suchan
   //triggers fetching of exercise completion states on render
   useEffect(() => {
     fetchCompletionStates();
+    console.log('Gets here')
+    fetchLastTask();
     getData();
   }, []);
 
@@ -156,11 +175,18 @@ const HomePage = ({ navigation }) => {
           <View style={[{ padding: 16 }, { flexDirection: 'row' }]}>
             <View style={[{ width: 128 }, { height: 128 }, { backgroundColor: colorScheme === 'light' ? gray6 : dark_gray6 }, { borderRadius: 16 }]}></View>
             <View style={[{ marginLeft: 16 }, { justifyContent: 'space-between' }]}>
-              <View>
-                <Text style={[{ fontSize: 24 }, textColor]}>{language == "german" ? "[Szenario]" : "[Scenario]"}</Text>
-                <Text style={[{ fontSize: 16 }, textColor]}>{language == "german" ? "[Übung]" : "[Exercise]"}</Text>
-              </View>
-              <Button label={language == "german" ? "Fortsetzen" : "Continue"} />
+            {fetchCompleted && (
+          <Exercise
+            level={getScenario(getScenarioFromTask(nextTask)).indexOf(nextTask) + 1}
+            key={nextTask}
+            icon={getIcon(getScenarioFromTask(nextTask))}
+            navigation={navigation}
+            unlocked={true}
+            completed={isCompleted(nextTask)}
+            scenarioKey={getScenarioFromTask(nextTask)}
+            fromHomeScreen={true}
+          ></Exercise>
+        )}
             </View>
           </View>
           {filteredKeyArray.map((scenarioKey) =>

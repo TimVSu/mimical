@@ -78,18 +78,6 @@ const Home = ({ navigation }) => {
     }, [])
   );
 
-  // retrieve data
-  const getData = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem("test");
-      const value = JSON.parse(jsonValue);
-      if (value !== null) {
-        setLanguage(value.language);
-      }
-    } catch (error) {
-      // error retrieving data
-    }
-  };
 
   // light/dark mode
   const colorScheme = useColorScheme();
