@@ -1,10 +1,13 @@
 //@author: Tim Suchan
 import { Camera, CameraType } from 'expo-camera';
 import { useEffect, useState } from 'react';
+import CustomButton from './customButton.js';
 import { View, Platform, UIManager, Text } from 'react-native';
 import * as FaceDetector from 'expo-face-detector';
-import { Heading } from 'native-base'
-import styles from './styles.js'
+import { Heading } from 'native-base';
+import styles from './styles.js';
+import { shareAsync } from 'expo-sharing';
+import * as MediaLibrary from 'expo-media-library';
 
 // necessary for android devices as explained in the expo-camera doc
 if (
@@ -45,6 +48,18 @@ const CameraScreen = ({ size, children }) => {
   // hook to handle asking for camera permission and conditional rendering
   const [hasPermission, setHasPermission] = useState(null);
 
+  // used for telleing the compnent to take a picture
+
+  const [camera, setCamera] = useState(null);
+
+  // saves the pictures taken
+
+  const [image, setImage] = useState(null);
+
+  // exports the picture to the users medialibrary
+
+  const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
+
   //ratios used to prevent camera distortion on android
   const [ratio, setRatio] = useState('4:3');
   const [decimalRatio, setDecimalRatio] = useState(1.33333);
@@ -72,6 +87,8 @@ const CameraScreen = ({ size, children }) => {
     (async () => {
       const status = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status["granted"]);
+      const mediaLibraryPermission = await MediaLibrary.requestPermissionsAsync();
+      setHasMediaLibraryPermission(status["granted"]);
     })();
   }, []);
 
@@ -170,13 +187,38 @@ const CameraScreen = ({ size, children }) => {
   //    setCamPosition(camPosition === 'left' ? 'right' : 'left');
   //}
 
+  const takePicture = async () => {
+
+    if (hasPermission) {
+  
+      const options = {
+        quality: 1,
+        base64: true,
+        exif: false
+      }
+  
+      const data=await camera.takePictureAsync(options)
+      setImage(data.uri);
+      console.log(data)
+  
+      if(hasMediaLibraryPermission) {
+  
+        MediaLibrary.saveToLibraryAsync(data.uri).then(() => {
+          setImage(undefined);
+        });
+      }
+    }
+  }
+
 
   //===============================================================================================================================================
   if (hasPermission) {
     return (
 
       <View style={[styles.camContainer, { width: size / decimalRatio, height: size }]}>
-        <Camera style={styles.camera} type={CameraType.front} ratio={ratio}
+        
+        <CustomButton text='[   ]' onPress={() => { takePicture() }} color="red" />
+        <Camera ref={ref => setCamera(ref)} style={styles.camera} type={CameraType.front} ratio={ratio}
           onFacesDetected={handleFacesDetected}
           faceDetectorSettings={{
             mode: FaceDetector.FaceDetectorMode.fast,
