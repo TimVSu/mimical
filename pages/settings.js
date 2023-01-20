@@ -336,7 +336,7 @@ const SettingsPage = ({ navigation }) => {
   const MusicSettings = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
-        <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? gray3 : dark_gray3 }]}>{isEnabled1 ? "Music" : "Musik"}</Text>
+        <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? gray3 : dark_gray3 }]}>{isEnabled1 ? "Background Music" : "Hintergrundmusik"}</Text>
         <Switch
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
@@ -370,7 +370,7 @@ const SettingsPage = ({ navigation }) => {
         <CameraSettings></CameraSettings>
         <NotificationsSettings></NotificationsSettings>
         <AppearanceSettings></AppearanceSettings>
-        <TextSettings></TextSettings>
+        {/* <TextSettings></TextSettings> */}
         <NarratorSettings></NarratorSettings>
         <MusicSettings></MusicSettings>
         <ResetProgress></ResetProgress>
