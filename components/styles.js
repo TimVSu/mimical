@@ -281,18 +281,5 @@ export default StyleSheet.create({
     color: light_primary_color,
 
   },
-  filterActive: {
-    flexDirection: 'row',
-    borderRadius: 16,
-    padding: 12,
-    margin: 16,
-    backgroundColor: 'black',
-  },
-  filterInactive: {
-    flexDirection: 'row',
-    borderRadius: 16,
-    padding: 12,
-    margin: 16,
-    backgroundColor: gray1,
-  }
+
 });

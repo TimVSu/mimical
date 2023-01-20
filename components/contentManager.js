@@ -493,7 +493,7 @@ const defaultScenarios = {
         "icon" : faTruck
     },
     "Einzug": {
-        "tags": ["Langes Szenario", "Untere Gesichtshäflte"],
+        "tags": ["Langes Szenario", "Untere Gesichtshälfte"],
         "indices": [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,],
         "icon": faBox
     },

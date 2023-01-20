@@ -38,6 +38,10 @@ const HomePage = ({ navigation }) => {
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
   const activeIconColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5;
+  const activeFilterColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
+  const inactiveFilterColor = colorScheme === 'light' ? gray5 : dark_gray5;
+  const filterTextColor = colorScheme === 'light' ? 'black' : 'white';
+
 
   const [tag, setTag] = useState('All')
   const [keyArray, setKeyArray] = useState(Object.keys(getDefaultScenarios()))
@@ -46,6 +50,8 @@ const HomePage = ({ navigation }) => {
   const [language, setLanguage] = useState("german");
   const [nextTask, setNextTask] = useState(1);
   const [fetchCompleted, setFetchCompleted] = useState(false);
+
+  
 
 
 
@@ -160,10 +166,10 @@ const HomePage = ({ navigation }) => {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {Object.keys(tagStates).map(tag => (
 
-            <View key={tag} style={tagStates[tag] ? styles.filterActive : styles.filterInactive}>
+            <View key={tag} style={[{ backgroundColor: tagStates[tag] ? activeFilterColor : inactiveFilterColor }, { borderRadius: 16 }, { padding: 12 }, { margin: 16 }]}>
               <TouchableOpacity style={[{ flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => setTagFilter(tag)}>
                 {/* <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' /> */}
-                <Text style={[{ fontSize: 12 }, { fontWeight: 'bold' }, { color: 'white' }]}>{tag}</Text>
+                <Text style={[{ fontSize: 12 }, { fontWeight: 'bold' }, { color: tagStates[tag] ? 'white' : filterTextColor }]}>{tag}</Text>
               </TouchableOpacity>
 
             </View>
