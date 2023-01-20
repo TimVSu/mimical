@@ -65,8 +65,8 @@ const getData = async () => {
 const resetLevels = async () => {
   try {
     await AsyncStorage.removeItem('@completions')
-  } 
-  catch (e) {}
+  }
+  catch (e) { }
 }
 
 // return settings page
@@ -448,11 +448,13 @@ const SettingsPage = ({ navigation }) => {
     );
   }
 
+  const reset = () => resetLevels();
+
   const Reset = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
         <View>
-          <TouchableOpacity onPress={resetLevels}>
+          <TouchableOpacity onPress={reset}>
             <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? light_primary_color : dark_primary_color }]}>{isEnabled1 ? "Reset Progress" : "Fortschritt zurücksetzen"}</Text>
           </TouchableOpacity>
           {/* <Text style={[textColor, { opacity: 0.5 }]}>Lokaler Fortschritt wird zurückgesetzt</Text> */}
@@ -487,7 +489,7 @@ const SettingsPage = ({ navigation }) => {
         <TextSettings></TextSettings>
         <NarratorSettings></NarratorSettings>
         <MusicSettings></MusicSettings>
-        {/* <Reset></Reset> */}
+        <Reset></Reset>
         {/* <View style={[styles.settings_item, containerColor]}>
           <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
             <Pressable style={({ pressed }) => [{ backgroundColor: optionIsEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={optionIsEnabled1} onPress={selectOption1}>
@@ -502,7 +504,7 @@ const SettingsPage = ({ navigation }) => {
           </View>
         </View> */}
         {/* <Selection title="Geschlecht" option1="männlich" option2="weiblich" option3="divers" fontSize={fontSize} /> */}
-        {/* <View style={[{ borderTopWidth: 1 }, { borderBottomWidth: 1 }, { borderColor: borderColor }, { flexDirection: 'row' }, { flexWrap: 'wrap' }, { justifyContent: 'space-between' }]}>
+        <View style={[{ borderTopWidth: 1 }, { borderBottomWidth: 1 }, { borderColor: borderColor }, { flexDirection: 'row' }, { flexWrap: 'wrap' }, { justifyContent: 'space-between' }]}>
           <Button
             title='set data'
             onPress={storeData}
@@ -523,7 +525,7 @@ const SettingsPage = ({ navigation }) => {
             title='test'
             onPress={() => writeItemToStorage(JSON.stringify(config))}
           />
-        </View> */}
+        </View>
         {/* <Text>Language: {isEnabled1}, {language}</Text> */}
         {/* <Text style={[{ fontWeight: 'bold' }, textColor]}>Output</Text>
         <Text style={textColor}>Font Size: {fontSize}</Text> */}
