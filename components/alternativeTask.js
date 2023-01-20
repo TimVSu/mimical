@@ -1,6 +1,6 @@
 //@author: Tim Suchan
 import CameraScreen from "./camera.js";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from 'react';
 import { View, StyleSheet, Text, LayoutAnimation, UIManager, Pressable, Modal, Alert, useColorScheme, TouchableOpacity, } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp, } from "react-native-responsive-screen";
 import styles from "./styles";
@@ -8,6 +8,7 @@ import CustomButton from "./customButton.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getCurrentContent, getCurrentSequence, getTaskDescription, incrementCurrentContent, getCurrentScenario, } from "./contentManager.js";
 import axios from "axios";
+import { useFocusEffect } from '@react-navigation/native';
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -52,6 +53,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
   const [PatientID, setPatientID] = useState("");
   const [ContentProgress, setContentProgress] = useState("");
   const [completions, setCompletions] = useState({});
+  const [fontSize, setFontSize] = useState(17);
 
   // FUNCTIONS:
   //==============================================================================================================================================
@@ -87,7 +89,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
   //saves the current level as completed
   const saveAsCompleted = async (completedContent) => {
     try {
-      await AsyncStorage.mergeItem("@completions",JSON.stringify(completedContent));
+      await AsyncStorage.mergeItem("@completions", JSON.stringify(completedContent));
       console.log("saved completed succesfull");
     } catch (error) {
       console.log("cant save data to async storage");
@@ -220,10 +222,10 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
       setTaskRunning(false);
       setCurrentTime(0);
       //making sure not to double store completed levels in async storage
-      if(!Object.keys(completions).includes(getCurrentSequence()[getCurrentContent()])){
-      saveAsCompleted(ifCompleted);
+      if (!Object.keys(completions).includes(getCurrentSequence()[getCurrentContent()])) {
+        saveAsCompleted(ifCompleted);
       }
-    
+
       // setContentProgress(thisContent);
       // uploadProgress();
       saveAsLast(getCurrentSequence()[getCurrentContent()]);
@@ -235,6 +237,30 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
     }
     return () => clearInterval(interval);
   }, [taskRunning, currentTime, relaxState, informState]);
+
+  // retrieve data
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('test');
+      const value = JSON.parse(jsonValue);
+      if (value !== null) {
+        setFontSize(value.fontSize);
+      }
+    } catch (error) {
+      // error retrieving data
+    }
+  }
+
+  // get data on first render
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      getData();
+    }, [])
+  );
 
   return (
     <View style={[{ flex: 1 }, { backgroundColor: containerColor }]}>
@@ -284,7 +310,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
         </CameraScreen>
       </View>
       <View style={{ flex: 1.5, paddingLeft: 10, paddingRight: 10, alignContent: "center", alignItems: "center", justifyContent: "center", backgroundColor: containerColor, }}>
-        <Text style={[{ fontSize: 17 }, textColor]}>
+        <Text style={[{ fontSize: fontSize }, textColor]}>
           {relaxState ? "Entspannen sie ihr Gesicht" : getTaskDescription()}
         </Text>
       </View>
