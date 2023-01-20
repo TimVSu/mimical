@@ -1,7 +1,7 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { Button, Pressable, ScrollView, Switch, Text, useColorScheme, View } from 'react-native';
+import { Button, Pressable, ScrollView, Switch, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
@@ -11,7 +11,7 @@ import NavBar from '../components/nav_bar.js';
 import TabBar from '../components/tab_bar.js';
 import SettingsItem from '../components/settings_item.js';
 import styles from '../components/styles.js';
-import { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, gray5, dark_gray5 } from '../components/styles.js';
+import { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, gray3, gray5, dark_gray3, dark_gray5 } from '../components/styles.js';
 import Selection from '../components/selection.js';
 
 // import icons
@@ -29,7 +29,7 @@ let config = {
   fontSize: 17,
   camera: true,
   notifications: false,
-  appearance: "light",
+  // appearance: "light",
   text: true,
   narrator: true,
   music: true
@@ -76,7 +76,7 @@ const resetLevels = async () => {
 const SettingsPage = ({ navigation }) => {
 
   // light/dark mode
-  const [colorScheme, setColorScheme] = useState(useColorScheme());
+  const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
   const optionsContainerColor = colorScheme === 'light' ? gray5 : dark_gray5;
@@ -85,10 +85,6 @@ const SettingsPage = ({ navigation }) => {
   const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5;
   const borderColor = colorScheme === "light" ? gray5 : dark_gray5;
 
-  // get data on first render
-  // useEffect(() => {
-  //   getData();
-  // }, []);
 
   const importData = async () => {
     try {
@@ -205,7 +201,9 @@ const SettingsPage = ({ navigation }) => {
   const [fontSize, setFontSize] = useState(17);
   const toggleSwitch2 = () => [
     setIsEnabled2(previousState => !previousState),
-    storeFontSizeData(isEnabled2 ? '17' : '24')
+    setFontSize(isEnabled2 ? '17' : '24'),
+    storeFontSizeData(isEnabled2 ? '17' : '24'),
+    storeLargeFontData(isEnabled2 ? false : true)
   ];
 
   // camera
@@ -227,7 +225,7 @@ const SettingsPage = ({ navigation }) => {
   const toggleSwitch5 = () => [
     setIsEnabled5(previousState => !previousState),
     setColorScheme(isEnabled5 ? 'light' : 'dark'),
-    storeAppearanceData(!isEnabled5)
+    storeAppearanceData(isEnabled5 ? 'light' : 'dark')
   ];
 
   // text
@@ -258,10 +256,11 @@ const SettingsPage = ({ navigation }) => {
       const value = JSON.parse(jsonValue);
       if (value !== null) {
         setIsEnabled1(value.language == "german" ? false : true);
+        setFontSize(value.fontSize);
         setIsEnabled2(value.largeFont);
         setIsEnabled3(value.camera);
         setIsEnabled4(value.notifications);
-        setIsEnabled5(value.appearance == "light" ? false : true);
+        // setIsEnabled5(value.appearance == "light" ? false : true);
         setIsEnabled6(value.text);
         setIsEnabled7(value.narrator);
         setIsEnabled8(value.music);
@@ -271,6 +270,7 @@ const SettingsPage = ({ navigation }) => {
     }
   }
 
+  // get data on first render
   useEffect(() => {
     getData();
   }, []);
@@ -372,7 +372,7 @@ const SettingsPage = ({ navigation }) => {
   const AppearanceSettings = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
-        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Appearance" : "Erscheinungsbild"}</Text>
+        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Dark Mode" : "Dunkelmodus"}</Text>
         {/* <Switch
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
@@ -381,14 +381,15 @@ const SettingsPage = ({ navigation }) => {
           value={isEnabled5}
         /> */}
         {/* <Text style={[{ fontSize: fontSize }, textColor]}>{colorScheme === 'light' ? isEnabled1 ? "Light" : "Hell" : isEnabled1 ? "Dark" : "Dunkel"}</Text> */}
-        <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
+        {/* <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
           <Pressable style={({ pressed }) => [{ backgroundColor: !isEnabled5 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={!isEnabled5} onPress={toggleSwitch5}>
             <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Light" : "Hell"}</Text>
           </Pressable>
           <Pressable style={({ pressed }) => [{ backgroundColor: isEnabled5 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={isEnabled5} onPress={toggleSwitch5}>
             <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Dark" : "Dunkel"}</Text>
           </Pressable>
-        </View>
+        </View> */}
+        <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? gray3 : dark_gray3 }]}>{isEnabled1 ? "System Settings" : "Systemeinstellungen"}</Text>
       </View>
     );
   }
@@ -441,6 +442,26 @@ const SettingsPage = ({ navigation }) => {
     );
   }
 
+  const Reset = () => {
+    return (
+      <View style={[styles.settings_item, containerColor]}>
+        <View>
+          <TouchableOpacity onPress={resetLevels()}>
+            <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? light_primary_color : dark_primary_color }]}>{isEnabled1 ? "Reset Progress" : "Fortschritt zurücksetzen"}</Text>
+          </TouchableOpacity>
+          {/* <Text style={[textColor, { opacity: 0.5 }]}>Lokaler Fortschritt wird zurückgesetzt</Text> */}
+        </View>
+        {/* <Switch
+          trackColor={{ false: "#767577", true: green }}
+          thumbColor={'white'}
+          // ios_backgroundColor={"#3e3e3e"}
+          onValueChange={toggleSwitch8}
+          value={isEnabled8}
+        /> */}
+      </View>
+    );
+  }
+
   const [optionIsEnabled1, setOptionIsEnabled1] = useState(false);
   const [optionIsEnabled2, setOptionIsEnabled2] = useState(false);
   const [optionIsEnabled3, setOptionIsEnabled3] = useState(false);
@@ -460,6 +481,7 @@ const SettingsPage = ({ navigation }) => {
         <TextSettings></TextSettings>
         <NarratorSettings></NarratorSettings>
         <MusicSettings></MusicSettings>
+        <Reset></Reset>
         {/* <View style={[styles.settings_item, containerColor]}>
           <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
             <Pressable style={({ pressed }) => [{ backgroundColor: optionIsEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={optionIsEnabled1} onPress={selectOption1}>

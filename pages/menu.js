@@ -3,8 +3,7 @@
 // import react native
 import { StatusBar } from 'expo-status-bar';
 import { ScrollView, Text, View, useColorScheme, TouchableOpacity } from 'react-native';
-import React from 'react';
-import { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage, { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import Exercise from '../components/exercise.js';
