@@ -132,7 +132,7 @@ const HomePage = ({ navigation }) => {
     console.log('here' + JSON.stringify(tagStates));
     if (!tagStates["Alle"]){
       console.log('in false')
-    return (tagStates[getTags(scenarioKey)[0]] === true && tagStates[getTags(scenarioKey)[1]] === true);
+    return (tagStates[getTags(scenarioKey)[0]] === true || tagStates[getTags(scenarioKey)[1]] === true);
     }
     else{
       console.log('in true')
