@@ -1,7 +1,7 @@
 // authors: Tim Suchan, Maxim Torgovitski
 
 // import react native
-import { useColorScheme, View } from "react-native";
+import { TouchableOpacity, useColorScheme, View } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 
 // import components
@@ -47,7 +47,7 @@ const Home = ({ navigation }) => {
         setNextTask(parseInt(item) + 1);
         setFetchCompleted(true);
       }
-    } catch {}
+    } catch { }
   };
 
   //@author: Tim Suchan
@@ -59,7 +59,7 @@ const Home = ({ navigation }) => {
       if (item) {
         setCompletions(JSON.parse(item));
       }
-    } catch {}
+    } catch { }
   };
 
   //@author: Tim Suchan
@@ -78,75 +78,36 @@ const Home = ({ navigation }) => {
     }, [])
   );
 
-  // retrieve data
-  const getData = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem("test");
-      const value = JSON.parse(jsonValue);
-      if (value !== null) {
-        setLanguage(value.language);
-      }
-    } catch (error) {
-      // error retrieving data
-    }
-  };
 
   // light/dark mode
   const colorScheme = useColorScheme();
-  const containerColor =
-    colorScheme === "light" ? styles.light_container : styles.dark_container;
-  const squareColor =
-    colorScheme === "light" ? styles.light_square : styles.dark_square;
-  const textColor =
-    colorScheme === "light" ? styles.light_text : styles.dark_text;
+  const containerColor = colorScheme === "light" ? styles.light_container : styles.dark_container;
+  const squareColor = colorScheme === "light" ? styles.light_square : styles.dark_square;
+  const textColor = colorScheme === "light" ? styles.light_text : styles.dark_text;
 
   return (
-    <View style={[{ flex: 1 }, containerColor]}>
-      <View
-        style={[
-          { flex: 1 },
-          containerColor,
-          { justifyContent: "center" },
-          { alignItems: "center" },
-        ]}
-      >
-        {/* <Logo></Logo> */}
-        {fetchCompleted && (
-          <Exercise
-            level={
-              getScenario(getScenarioFromTask(nextTask)).indexOf(nextTask) + 1
-            }
-            key={nextTask}
-            icon={getIcon(getScenarioFromTask(nextTask))}
-            navigation={navigation}
-            unlocked={true}
-            completed={Object.keys(completions).includes(nextTask.toString())}
-            scenarioKey={getScenarioFromTask(nextTask)}
-            fromHomeScreen={true}
-          ></Exercise>
-        )}
-        <View>
-          {/* Uncomment to show login/signup screen */}
-          <Button label="Log in" navigation={navigation} target={"HomeLogin"} />
-          <Button
-            icon={faHouse}
-            label="Übersicht"
-            navigation={navigation}
-            target={"Menu"}
-          />
-          <Button
-            icon={faChartSimple}
-            label={language == "german" ? "Fortschritt" : "Progress"}
-            navigation={navigation}
-            target={"Progress"}
-          />
-          <Button
-            icon={faGear}
-            label="Einstellungen"
-            navigation={navigation}
-            target={"Settings"}
-          />
-        </View>
+    <View style={[{ flex: 1 }, containerColor, { justifyContent: "center" }, { alignItems: "center" },]}>
+      <TouchableOpacity onPress={() => navigation.navigate("Menu")}>
+        <Logo></Logo>
+      </TouchableOpacity>
+      {/* {fetchCompleted && (
+        <Exercise
+          level={getScenario(getScenarioFromTask(nextTask)).indexOf(nextTask) + 1}
+          key={nextTask}
+          icon={getIcon(getScenarioFromTask(nextTask))}
+          navigation={navigation}
+          unlocked={true}
+          completed={Object.keys(completions).includes(nextTask.toString())}
+          scenarioKey={getScenarioFromTask(nextTask)}
+          fromHomeScreen={true}
+        />
+      )} */}
+      <View>
+        {/* Uncomment to show login/signup screen */}
+        {/* <Button label="Log in" navigation={navigation} target={"HomeLogin"} />
+        <Button icon={faHouse} label="Übersicht" navigation={navigation} target={"Menu"} />
+        <Button icon={faChartSimple} label={language == "german" ? "Fortschritt" : "Progress"} navigation={navigation} target={"Progress"} />
+        <Button icon={faGear} label="Einstellungen" navigation={navigation} target={"Settings"} /> */}
       </View>
     </View>
   );

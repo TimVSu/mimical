@@ -9,7 +9,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import Task from '../components/task.js';
 import { getAudio } from '../components/contentManager';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { incrementCurrentContent, getCurrentSequence, getText, getCurrentContent, getHighlightedText, getCurrentScenario } from '../components/contentManager';
 import styles from '../components/styles.js';
 import { Audio } from 'expo-av';
@@ -27,7 +27,7 @@ if (
 }
 
 //@author: Tim Suchan
-const LevelLayout = ({ navigation, nextLevelFunction }) => {
+const LevelLayout = ({ route, navigation, nextLevelFunction }) => {
   //console.warn('at level: ' + getCurrentContent() + 'of scenario: ' + getCurrentSequence())
 
   // VARIABLES:
@@ -47,6 +47,34 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
 
   // used to create and delete task when needed
   const [taskCreated, setTaskCreated] = useState(false);
+
+  const [titleSize, setTitleSize] = useState(28);
+  const [fontSize, setFontSize] = useState(28);
+
+  // retrieve data
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('test');
+      const value = JSON.parse(jsonValue);
+      if (value !== null) {
+        setTitleSize(value.fontSize == 17 ? 34 : 40);
+        setFontSize(value.fontSize == 17 ? 28 : 34);
+      }
+    } catch (error) {
+      // error retrieving data
+    }
+  }
+
+  // get data on first render
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      getData();
+    }, [])
+  );
 
   //=============================================================================================================================================
 
@@ -190,9 +218,10 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
 
 
   const colorScheme = useColorScheme();
-  const containerColor = colorScheme === "light" ? styles.light_container : styles.dark_container;
-  const textColor = colorScheme === "light" ? styles.light_text : styles.dark_text;
-  const borderColor = colorScheme === "light" ? gray5 : dark_gray5;
+  const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
+  const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+  const borderColor = colorScheme === 'light' ? gray5 : dark_gray5;
+  const buttonColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
 
   const toggleSwitch = () => [
     navigation.navigate("AlternativeTask"),
@@ -217,11 +246,11 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
         </TouchableOpacity>
       } */}
 
-      <View style={[{ flexDirection: 'row' }, { justifyContent: 'space-between' }, { alignItems: 'center' }, { padding: 16 }, { borderBottomWidth: 1 }, { borderColor: borderColor }, { marginTop: 64 }]}>
+      <View style={[{ flexDirection: 'row' }, { justifyContent: 'space-between' }, { alignItems: 'center' }, { padding: 16 }, { borderBottomWidth: 1 }, { borderColor: borderColor }, { paddingTop: 64 }]}>
         <TouchableOpacity onPress={navigation.goBack}>
           <FontAwesomeIcon icon={faCircleChevronLeft} size={32} color={colorScheme === "light" ? light_primary_color : dark_primary_color} />
         </TouchableOpacity>
-        <Text style={[{ fontSize: 40 }, { fontWeight: 'bold' }, textColor]}>{getCurrentScenario()}</Text>
+        <Text style={[{ fontSize: titleSize }, { fontWeight: 'bold' }, textColor]}>{getCurrentScenario()}</Text>
         <TouchableOpacity onPress={createInfo}>
           <FontAwesomeIcon icon={faCircleInfo} size={32} color={colorScheme === "light" ? light_primary_color : dark_primary_color} />
         </TouchableOpacity>
@@ -240,8 +269,8 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
         showsVerticalScrollIndicator={false}
       >
         <View style={[{ borderWidth: 0 }, { borderColor: light_primary_color }]}>
-          <Text style={[{ fontSize: 32 }, textColor, { padding: 16 }]}>{currentText}</Text>
-          <Text style={[{ borderWidth: 0 }, { fontSize: 32 }, { fontWeight: 'bold' }, { color: colorScheme === "light" ? light_primary_color : dark_primary_color }, { padding: 16 }]}>{currentHighlightedText} </Text>
+          <Text style={[{ fontSize: fontSize }, textColor, { padding: 16 }]}>{currentText}</Text>
+          <Text style={[{ borderWidth: 0 }, { fontSize: fontSize }, { fontWeight: 'bold' }, { color: colorScheme === "light" ? light_primary_color : dark_primary_color }, { padding: 16 }]}>{currentHighlightedText} </Text>
         </View>
       </ScrollView>
 
@@ -252,7 +281,7 @@ const LevelLayout = ({ navigation, nextLevelFunction }) => {
       </TouchableOpacity> */}
 
       <View style={[{ paddingTop: 8 }, { borderTopWidth: 1 }, { borderColor: borderColor }, { marginBottom: 32 }, { alignItems: 'center' }]}>
-        <TouchableOpacity style={[{ backgroundColor: containerColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 16 }, { flexDirection: 'row' }, { justifyContent: 'center' }, { alignItems: 'center' }]} onPress={toggleSwitch}>
+        <TouchableOpacity style={[{ backgroundColor: buttonColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 16 }, { flexDirection: 'row' }, { justifyContent: 'center' }, { alignItems: 'center' }]} onPress={toggleSwitch}>
           <Text style={[{ fontSize: 17 }, { color: 'white' }]}>Übung starten</Text>
         </TouchableOpacity>
       </View>

@@ -86,6 +86,14 @@
   - Once in the repository, install the necessary dependencies using the "npm install" command
   - After the dependencies are installed use “npm run dev” to start the application
   - Add the ".process.env" to the repository (https://drive.google.com/file/d/11x0xJ-RxX5Fm3aoCA5qGasrH-VZsZQhJ/view?usp=share_link)
+  - It is important to make sure that the file is named ".process.env", because the file will be renamed to "process.env" after the download!
+
+- 2023-01-20 -- 1.0.0
+
+  - the repository for the website can be found here: https://gitlab.com/ciis-capstone-project/winter-2022-2023/team-08/mimical-website
+  - the website design has now been adapted to the design of the app
+  - ChartJS was implemented and fully functional on the last 365 days seen
+  - comment function was introduced (adding and deleting comments)
 
 - 2023-01-13 -- 0.0.4
 
@@ -135,15 +143,21 @@
 - How to add the database to the project:
 
   - Currently there are two backends (both expressJS) for testing purposes.
-  - On the website, the backend is started automatically when "npm run dev" is executed.
-  - On the app, on the other hand, it is important that two processes are started. Once for the app ("npm start") and once for the server ("npm run backend").
+  - On the WEBSITE, the backend is started automatically when "npm run dev" is executed.
+  - On the APP, on the other hand, it is important that two processes are started. Once for the app ("npm start") and once for the server ("npm run backend").
 
 1. Add the ".process.env" to the repository (https://drive.google.com/file/d/11x0xJ-RxX5Fm3aoCA5qGasrH-VZsZQhJ/view?usp=share_link)
 2. Launching the app/website in the normal way
 
+- 2023-01-20 -- 1.0.0
+
+  - the database now stores all the progress of users
+
 - 2023-01-13 -- 0.0.4
 
+
 - 2022-12-16 -- 0.0.3
+
   - added the design of the databse
   - added tables to the database
   - added patients and therapists to the database

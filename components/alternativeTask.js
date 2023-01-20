@@ -1,31 +1,12 @@
 //@author: Tim Suchan
 import CameraScreen from "./camera.js";
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  LayoutAnimation,
-  UIManager,
-  Pressable,
-  Modal,
-  Alert,
-  useColorScheme,
-} from "react-native";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { View, StyleSheet, Text, LayoutAnimation, UIManager, Pressable, Modal, Alert, useColorScheme, TouchableOpacity, } from "react-native";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp, } from "react-native-responsive-screen";
 import styles from "./styles";
 import CustomButton from "./customButton.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {
-  getCurrentContent,
-  getCurrentSequence,
-  getTaskDescription,
-  incrementCurrentContent,
-  getCurrentScenario,
-} from "./contentManager.js";
+import { getCurrentContent, getCurrentSequence, getTaskDescription, incrementCurrentContent, getCurrentScenario, } from "./contentManager.js";
 import axios from "axios";
 
 if (Platform.OS === "android") {
@@ -38,32 +19,20 @@ let trainDuration = 1;
 let pauseDuration = 1;
 
 // import colors
-import {
-  light_primary_color,
-  dark_primary_color,
-  light_background_color,
-  dark_background_color,
-  green,
-} from "./styles";
+import { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, } from "./styles";
 
 // import icons
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-  faChevronLeft,
-  faChevronRight,
-  faPause,
-  faPlay,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faChevronRight, faPause, faPlay, } from "@fortawesome/free-solid-svg-icons";
 
 const AlternativeTask = ({ navigation, route, children, downFunction }) => {
   const scenarioName = getCurrentScenario();
 
   // light/dark mode
   const colorScheme = useColorScheme();
-  const containerColor =
-    colorScheme === "light" ? light_background_color : dark_background_color;
-  const buttonColor =
-    colorScheme === "light" ? light_primary_color : dark_primary_color;
+  const containerColor = colorScheme === "light" ? light_background_color : dark_background_color;
+  const buttonColor = colorScheme === "light" ? light_primary_color : dark_primary_color;
+  const textColor = colorScheme === "light" ? styles.light_text : styles.dark_text;
 
   // VARIABLES:
   //==============================================================================================================================================
@@ -82,6 +51,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
   const ifCompleted = { [thisContent]: "completed" };
   const [PatientID, setPatientID] = useState("");
   const [ContentProgress, setContentProgress] = useState("");
+  const [completions, setCompletions] = useState({});
 
   // FUNCTIONS:
   //==============================================================================================================================================
@@ -117,15 +87,30 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
   //saves the current level as completed
   const saveAsCompleted = async (completedContent) => {
     try {
-      await AsyncStorage.mergeItem(
-        "@completions",
-        JSON.stringify(completedContent)
-      );
+      await AsyncStorage.mergeItem("@completions",JSON.stringify(completedContent));
       console.log("saved completed succesfull");
     } catch (error) {
       console.log("cant save data to async storage");
     }
   };
+
+  //@author: Tim Suchan
+  //Fetches the completions object from async storage
+  // in this case this happens to test if the urrent content has already been completed and not store it twice
+  const fetchCompletions = async () => {
+    try {
+      const item = await AsyncStorage.getItem("@completions");
+      if (item) {
+        setCompletions(JSON.parse(item));
+      }
+    } catch { }
+  }
+
+  //@author: Tim Suchan
+  //triggers fetching of exercise completion states on render
+  useEffect(() => {
+    fetchCompletions();
+  }, []);
 
   //Upload Progress to Database
   const uploadProgress = async () => {
@@ -213,10 +198,12 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
     } else if (!taskRunning) {
       clearInterval(interval);
     }
+    //the system goes into relax state
     if (currentTime == 0 && taskRunning && !relaxState) {
       setCurrentTime(pauseDuration);
       setRelaxState(true);
     }
+    //the system goes back to train state/ stops the task if the counter has reached 3
     if (currentTime == 0 && taskRunning && relaxState) {
       setRelaxState(false);
       if (repCounter == repititions - 1) {
@@ -232,7 +219,11 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
     if (currentTime == 0 && repCounter == repititions - 1) {
       setTaskRunning(false);
       setCurrentTime(0);
+      //making sure not to double store completed levels in async storage
+      if(!Object.keys(completions).includes(getCurrentSequence()[getCurrentContent()])){
       saveAsCompleted(ifCompleted);
+      }
+    
       // setContentProgress(thisContent);
       // uploadProgress();
       saveAsLast(getCurrentSequence()[getCurrentContent()]);
@@ -247,15 +238,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
 
   return (
     <View style={[{ flex: 1 }, { backgroundColor: containerColor }]}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
+      <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => { Alert.alert("Modal has been closed."); setModalVisible(!modalVisible); }}>
         <View style={tempStyles.centeredView}>
           <View style={[tempStyles.modalView, {}]}>
             <Text style={tempStyles.modalText}>
@@ -285,115 +268,48 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
         </View>
       </Modal>
 
-      <View style={{ flex: 1, backgroundColor: "white" }} />
-      <View
-        id="camContainer"
-        style={{
-          flex: 6,
-          backgroundColor: "white",
-          alignContent: "center",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <View style={{ flex: 1, backgroundColor: containerColor }} />
+      <View id="camContainer" style={{ flex: 6, backgroundColor: containerColor, alignContent: "center", alignItems: "center", justifyContent: "center", }}>
         <CameraScreen size={hp("70%")}>
           {informState
             ? !removed && (
-                <View style={styles.informView}>
-                  <Text style={styles.informText}>
-                    {getTaskDescription() + "in"}
-                  </Text>
-                  <Text style={styles.informTime}>{currentTime}</Text>
-                </View>
-              )
+              <View style={styles.informView}>
+                <Text style={styles.informText}>
+                  {getTaskDescription() + "in"}
+                </Text>
+                <Text style={styles.informTime}>{currentTime}</Text>
+              </View>
+            )
             : !removed && <Text style={styles.time}>{currentTime}</Text>}
         </CameraScreen>
       </View>
-      <View
-        style={{
-          flex: 1.5,
-          paddingLeft: 10,
-          paddingRight: 10,
-          alignContent: "center",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "white",
-        }}
-      >
-        <Text style={styles.taskDescription} size="lg">
-          {getTaskDescription()}
+      <View style={{ flex: 1.5, paddingLeft: 10, paddingRight: 10, alignContent: "center", alignItems: "center", justifyContent: "center", backgroundColor: containerColor, }}>
+        <Text style={[{ fontSize: 17 }, textColor]}>
+          {relaxState ? "Entspannen sie ihr Gesicht" : getTaskDescription()}
         </Text>
       </View>
 
-      <View
-        style={[
-          { flexDirection: "row" },
-          { justifyContent: "center" },
-          { paddingBottom: 32 },
-        ]}
-      >
-        <Pressable
-          style={({ pressed }) => [
-            { backgroundColor: pressed ? green : buttonColor },
-            { padding: 16 },
-            { margin: 8 },
-            { borderRadius: 8 },
-            { flexDirection: "row" },
-            { alignItems: "center" },
-          ]}
-          onPress={() => {
-            navigation.goBack();
-          }}
-        >
-          <FontAwesomeIcon
-            style={{ marginRight: 8 }}
-            icon={faChevronLeft}
-            color="white"
-          />
+      <View style={[{ flexDirection: "row" }, { justifyContent: "center" }, { paddingBottom: 32 },]}>
+        <TouchableOpacity style={[{ backgroundColor: buttonColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 16 }, { flexDirection: "row" }, { alignItems: "center" },]} onPress={() => { navigation.goBack(); }}>
+          <FontAwesomeIcon style={{ marginRight: 8 }} icon={faChevronLeft} color="white" />
           <Text style={[styles.label, { color: "white" }]}>Zurück</Text>
-        </Pressable>
-        <Pressable
-          style={({ pressed }) => [
-            { backgroundColor: pressed ? green : buttonColor },
-            { padding: 16 },
-            { margin: 8 },
-            { borderRadius: 8 },
-            { flexDirection: "row" },
-            { alignItems: "center" },
-          ]}
+        </TouchableOpacity>
+        <TouchableOpacity style={[{ backgroundColor: buttonColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 16 }, { flexDirection: "row" }, { alignItems: "center" },]}
           onPress={() => {
             console.log(
               getCurrentSequence()[getCurrentContent()] +
-                " : " +
-                getCurrentContent()
+              " : " +
+              getCurrentContent()
             );
           }}
         >
-          <FontAwesomeIcon
-            style={{ marginRight: 8 }}
-            icon={faPause}
-            color="white"
-          />
+          <FontAwesomeIcon style={{ marginRight: 8 }} icon={faPause} color="white" />
           <Text style={[styles.label, { color: "white" }]}>Pause</Text>
-        </Pressable>
-        <Pressable
-          style={({ pressed }) => [
-            { backgroundColor: pressed ? green : buttonColor },
-            { padding: 16 },
-            { margin: 8 },
-            { borderRadius: 8 },
-            { flexDirection: "row" },
-            { alignItems: "center" },
-          ]}
-          onPress={() => play()}
-        >
+        </TouchableOpacity>
+        <TouchableOpacity style={[{ backgroundColor: buttonColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 16 }, { flexDirection: "row" }, { alignItems: "center" },]} onPress={() => play()}>
           <Text style={[styles.label, { color: "white" }]}>Spielen</Text>
-          <FontAwesomeIcon
-            style={{ marginLeft: 8 }}
-            icon={faPlay}
-            color="white"
-          />
-        </Pressable>
+          <FontAwesomeIcon style={{ marginLeft: 8 }} icon={faPlay} color="white" />
+        </TouchableOpacity>
       </View>
     </View>
   );

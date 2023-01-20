@@ -1,7 +1,7 @@
 // author: Maxim Torgovitski
 
 // import react native
-import { Button, Pressable, ScrollView, Switch, Text, useColorScheme, View } from 'react-native';
+import { Button, Pressable, ScrollView, Switch, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
@@ -11,7 +11,7 @@ import NavBar from '../components/nav_bar.js';
 import TabBar from '../components/tab_bar.js';
 import SettingsItem from '../components/settings_item.js';
 import styles from '../components/styles.js';
-import { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, gray5, dark_gray5 } from '../components/styles.js';
+import { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, gray3, gray5, dark_gray3, dark_gray5 } from '../components/styles.js';
 import Selection from '../components/selection.js';
 
 // import icons
@@ -29,7 +29,7 @@ let config = {
   fontSize: 17,
   camera: true,
   notifications: false,
-  appearance: "light",
+  // appearance: "light",
   text: true,
   narrator: true,
   music: true
@@ -60,35 +60,29 @@ const getData = async () => {
   }
 }
 
+//@Author: Tim Suchan
+//deletes all level data from Async Storage 
 const resetLevels = async () => {
   try {
     await AsyncStorage.removeItem('@completions')
     await AsyncStorage.removeItem('lastTask')
-
-
-  } catch (e) {
-    // remove error
   }
-
+  catch (e) { }
 }
 
 // return settings page
 const SettingsPage = ({ navigation }) => {
 
   // light/dark mode
-  const [colorScheme, setColorScheme] = useState(useColorScheme());
+  const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
-  const optionsContainerColor = colorScheme === 'light' ? gray5 : dark_gray5;
-  const selectionColor = colorScheme === 'light' ? light_background_color : dark_background_color;
+  const optionsContainerColor = colorScheme === 'light' ? light_background_color : dark_background_color;
+  const selectionColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   const activeIconColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5;
   const borderColor = colorScheme === "light" ? gray5 : dark_gray5;
 
-  // get data on first render
-  // useEffect(() => {
-  //   getData();
-  // }, []);
 
   const importData = async () => {
     try {
@@ -205,7 +199,9 @@ const SettingsPage = ({ navigation }) => {
   const [fontSize, setFontSize] = useState(17);
   const toggleSwitch2 = () => [
     setIsEnabled2(previousState => !previousState),
-    storeFontSizeData(isEnabled2 ? '17' : '24')
+    setFontSize(isEnabled2 ? '17' : '23'),
+    storeFontSizeData(isEnabled2 ? '17' : '23'),
+    storeLargeFontData(isEnabled2 ? false : true)
   ];
 
   // camera
@@ -226,8 +222,8 @@ const SettingsPage = ({ navigation }) => {
   const [isEnabled5, setIsEnabled5] = useState(false);
   const toggleSwitch5 = () => [
     setIsEnabled5(previousState => !previousState),
-    setColorScheme(isEnabled5 ? 'light' : 'dark'),
-    storeAppearanceData(!isEnabled5)
+    // setColorScheme(isEnabled5 ? 'light' : 'dark'),
+    // storeAppearanceData(isEnabled5 ? 'light' : 'dark')
   ];
 
   // text
@@ -258,10 +254,11 @@ const SettingsPage = ({ navigation }) => {
       const value = JSON.parse(jsonValue);
       if (value !== null) {
         setIsEnabled1(value.language == "german" ? false : true);
+        setFontSize(value.fontSize);
         setIsEnabled2(value.largeFont);
         setIsEnabled3(value.camera);
         setIsEnabled4(value.notifications);
-        setIsEnabled5(value.appearance == "light" ? false : true);
+        // setIsEnabled5(value.appearance == "light" ? false : true);
         setIsEnabled6(value.text);
         setIsEnabled7(value.narrator);
         setIsEnabled8(value.music);
@@ -271,6 +268,7 @@ const SettingsPage = ({ navigation }) => {
     }
   }
 
+  // get data on first render
   useEffect(() => {
     getData();
   }, []);
@@ -307,12 +305,16 @@ const SettingsPage = ({ navigation }) => {
       <View style={[styles.settings_item, containerColor]}>
         <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Language" : "Sprache"}</Text>
         <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
-          <Pressable style={({ pressed }) => [{ backgroundColor: !isEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={!isEnabled1} onPress={toggleSwitch1}>
-            <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "German" : "Deutsch"}</Text>
-          </Pressable>
-          <Pressable style={({ pressed }) => [{ backgroundColor: isEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={isEnabled1} onPress={toggleSwitch1}>
-            <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "English" : "Englisch"}</Text>
-          </Pressable>
+          {/* <Pressable style={({ pressed }) => [{ backgroundColor: !isEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : colorScheme === 'light' ? gray5 : dark_gray5 }, { padding: 12 }, { margin: 4 }, { borderRadius: 16 }]} disabled={!isEnabled1} onPress={toggleSwitch1}> */}
+          <TouchableOpacity style={[{ backgroundColor: !isEnabled1 ? selectionColor : colorScheme === 'light' ? gray5 : dark_gray5 }, { padding: 12 }, { margin: 4 }, { borderRadius: 16 }]} disabled={!isEnabled1} onPress={toggleSwitch1}>
+            <Text style={[{ fontSize: fontSize }, { color: isEnabled1 ? colorScheme === 'light' ? 'black' : 'white' : 'white' }]}>Deutsch</Text>
+          </TouchableOpacity>
+          {/* </Pressable> */}
+          {/* <Pressable style={({ pressed }) => [{ backgroundColor: isEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : colorScheme === 'light' ? gray5 : dark_gray5 }, { padding: 12 }, { margin: 4 }, { borderRadius: 16 }]} disabled={isEnabled1} onPress={toggleSwitch1}> */}
+          <TouchableOpacity style={[{ backgroundColor: isEnabled1 ? selectionColor : colorScheme === 'light' ? gray5 : dark_gray5 }, { padding: 12 }, { margin: 4 }, { borderRadius: 16 }]} disabled={isEnabled1} onPress={toggleSwitch1}>
+            <Text style={[{ fontSize: fontSize }, { color: !isEnabled1 ? colorScheme === 'light' ? 'black' : 'white' : 'white' }]}>English</Text>
+          </TouchableOpacity>
+          {/* </Pressable> */}
         </View>
       </View>
     );
@@ -340,13 +342,14 @@ const SettingsPage = ({ navigation }) => {
   const CameraSettings = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
-        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Camera" : "Kamera"}</Text>
+        <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? gray3 : dark_gray3 }]}>{isEnabled1 ? "Camera" : "Kamera"}</Text>
         <Switch
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
           // ios_backgroundColor={"#3e3e3e"}
           onValueChange={toggleSwitch3}
           value={isEnabled3}
+          disabled={true}
         />
       </View>
     );
@@ -356,13 +359,14 @@ const SettingsPage = ({ navigation }) => {
   const NotificationsSettings = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
-        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Notifications" : "Mitteilungen"}</Text>
+        <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? gray3 : dark_gray3 }]}>{isEnabled1 ? "Notifications" : "Mitteilungen"}</Text>
         <Switch
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
           // ios_backgroundColor={"#3e3e3e"}
           onValueChange={toggleSwitch4}
           value={isEnabled4}
+          disabled={true}
         />
       </View>
     );
@@ -372,7 +376,7 @@ const SettingsPage = ({ navigation }) => {
   const AppearanceSettings = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
-        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Appearance" : "Erscheinungsbild"}</Text>
+        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Dark Mode" : "Dunkelmodus"}</Text>
         {/* <Switch
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
@@ -381,14 +385,15 @@ const SettingsPage = ({ navigation }) => {
           value={isEnabled5}
         /> */}
         {/* <Text style={[{ fontSize: fontSize }, textColor]}>{colorScheme === 'light' ? isEnabled1 ? "Light" : "Hell" : isEnabled1 ? "Dark" : "Dunkel"}</Text> */}
-        <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
+        {/* <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
           <Pressable style={({ pressed }) => [{ backgroundColor: !isEnabled5 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={!isEnabled5} onPress={toggleSwitch5}>
             <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Light" : "Hell"}</Text>
           </Pressable>
           <Pressable style={({ pressed }) => [{ backgroundColor: isEnabled5 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={isEnabled5} onPress={toggleSwitch5}>
             <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Dark" : "Dunkel"}</Text>
           </Pressable>
-        </View>
+        </View> */}
+        <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? gray3 : dark_gray3 }]}>{isEnabled1 ? "System Settings" : "Systemeinstellungen"}</Text>
       </View>
     );
   }
@@ -397,13 +402,14 @@ const SettingsPage = ({ navigation }) => {
   const TextSettings = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
-        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Text" : "Text"}</Text>
+        <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? gray3 : dark_gray3 }]}>{isEnabled1 ? "Text" : "Text"}</Text>
         <Switch
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
           // ios_backgroundColor={"#3e3e3e"}
           onValueChange={toggleSwitch6}
           value={isEnabled6}
+          disabled={true}
         />
       </View>
     );
@@ -413,13 +419,14 @@ const SettingsPage = ({ navigation }) => {
   const NarratorSettings = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
-        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Narrator" : "Sprecherin"}</Text>
+        <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? gray3 : dark_gray3 }]}>{isEnabled1 ? "Narrator" : "Sprecherin"}</Text>
         <Switch
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
           // ios_backgroundColor={"#3e3e3e"}
           onValueChange={toggleSwitch7}
           value={isEnabled7}
+          disabled={true}
         />
       </View>
     );
@@ -429,14 +436,35 @@ const SettingsPage = ({ navigation }) => {
   const MusicSettings = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
-        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Music" : "Musik"}</Text>
+        <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? gray3 : dark_gray3 }]}>{isEnabled1 ? "Music" : "Musik"}</Text>
         <Switch
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
           // ios_backgroundColor={"#3e3e3e"}
           onValueChange={toggleSwitch8}
           value={isEnabled8}
+          disabled={true}
         />
+      </View>
+    );
+  }
+
+  const Reset = () => {
+    return (
+      <View style={[styles.settings_item, containerColor]}>
+        <View>
+          <TouchableOpacity onPress={() => resetLevels()}>
+            <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? light_primary_color : dark_primary_color }]}>{isEnabled1 ? "Reset Progress" : "Fortschritt zurücksetzen"}</Text>
+          </TouchableOpacity>
+          {/* <Text style={[textColor, { opacity: 0.5 }]}>Lokaler Fortschritt wird zurückgesetzt</Text> */}
+        </View>
+        {/* <Switch
+          trackColor={{ false: "#767577", true: green }}
+          thumbColor={'white'}
+          // ios_backgroundColor={"#3e3e3e"}
+          onValueChange={toggleSwitch8}
+          value={isEnabled8}
+        /> */}
       </View>
     );
   }
@@ -460,6 +488,7 @@ const SettingsPage = ({ navigation }) => {
         <TextSettings></TextSettings>
         <NarratorSettings></NarratorSettings>
         <MusicSettings></MusicSettings>
+        <Reset></Reset>
         {/* <View style={[styles.settings_item, containerColor]}>
           <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
             <Pressable style={({ pressed }) => [{ backgroundColor: optionIsEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={optionIsEnabled1} onPress={selectOption1}>
