@@ -290,6 +290,21 @@ server.post("/api/progress", async (req, res) => {
       } else {
         //Insert new patient ID if not present
         // console.log(data.ContentProgress);
+        if (
+          //If upper part of face
+          (Progress >= 1 && Progress < 18) ||
+          (Progress >= 30 && Progress < 37) ||
+          (Progress >= 57 && Progress < 65)
+        ) {
+          up += 1;
+        } else if (
+          //If lower part of face
+          (Progress >= 18 && Progress < 31) ||
+          (Progress >= 44 && Progress < 57)
+        ) {
+          low += 1;
+        }
+
         let insertID =
           "INSERT INTO `patient-progress` (`patientID`, `date" +
           data.ContentProgress +
@@ -298,9 +313,9 @@ server.post("/api/progress", async (req, res) => {
           "', '" +
           progressDate +
           "', '" +
-          "0" +
+          JSON.stringify(up) +
           "', '" +
-          "0" +
+          JSON.stringify(low) +
           "')";
         // console.log("second");
         let qryinsertID = db.query(insertID, (err, results) => {

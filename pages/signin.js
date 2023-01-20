@@ -31,7 +31,6 @@ const SignIn = ({ navigation }) => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [PatientID, setPatientID] = useState("");
-  const [Key, setKey] = useState("");
 
   const submit = async () => {
     var Data = {
@@ -54,9 +53,7 @@ const SignIn = ({ navigation }) => {
       })
         .then((res) => {
           setPatientID(res.data[0].ID);
-          savePatientID(PatientID);
           console.log(res.data[0].ID);
-
           //Navigate to next screen if authentications are valid
           navigation.navigate("Menu");
         })
@@ -92,6 +89,10 @@ const SignIn = ({ navigation }) => {
       //, alert("Email oder Passwort falsch"));
     }
   };
+
+  useEffect(() => {
+    savePatientID(PatientID);
+  }, [PatientID]);
 
   // save PatientID in storage
   const savePatientID = async (PatientID) => {
