@@ -1,24 +1,9 @@
+// authors: Stoil Iliev, Maxim Torgovitski
+
 // import react native
-import {
-  Button,
-  Pressable,
-  ScrollView,
-  Switch,
-  Text,
-  TextInput,
-  useColorScheme,
-  View,
-} from "react-native";
+import { Button, Pressable, ScrollView, Switch, Text, TextInput, useColorScheme, View, } from "react-native";
 import React, { useEffect, useState } from "react";
-import {
-  light_primary_color,
-  dark_primary_color,
-  light_background_color,
-  dark_background_color,
-  green,
-  gray5,
-  dark_gray5,
-} from "../components/styles.js";
+import { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, gray5, dark_gray5, } from "../components/styles.js";
 import axios from "axios";
 //import DropDownPicker from "react-native-dropdown-picker";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -28,18 +13,18 @@ import styles from "../components/styles.js";
 //import Selection from "../components/selection";
 
 const SignUp = ({ navigation }) => {
+
   //styles
-  const [colorScheme, setColorScheme] = useState(useColorScheme());
+  const colorScheme = useState(useColorScheme());
   const [fontSize, setFontSize] = useState(17);
+
   // light/dark mode
-  const containerColor =
-    colorScheme === "light" ? styles.light_container : styles.dark_container;
-  const textColor =
-    colorScheme === "light" ? styles.light_text : styles.dark_text;
+  const containerColor = colorScheme === "light" ? styles.light_container : styles.dark_container;
+  const textColor = colorScheme === "light" ? styles.light_text : styles.dark_text;
   const optionsContainerColor = colorScheme === "light" ? gray5 : dark_gray5;
-  const selectionColor =
-    colorScheme === "light" ? light_background_color : dark_background_color;
-  //signup
+  const selectionColor = colorScheme === "light" ? light_background_color : dark_background_color;
+
+  // signup
   const [Prename, setPrename] = useState("");
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
@@ -47,7 +32,7 @@ const SignUp = ({ navigation }) => {
   const [Birthdate, setBirthdate] = useState("");
   const [Password, setPassword] = useState("");
 
-  //dropdown menu
+  // dropdown menu
   // const [open, setOpen] = useState(false);
   // const [value, setValue] = useState(null);
   // const [items, setItems] = useState([
@@ -56,12 +41,12 @@ const SignUp = ({ navigation }) => {
   //   { label: "Divers", value: "d" },
   // ]);
 
-  //Selection state variables
+  // selection state variables
   const [optionIsEnabled1, setOptionIsEnabled1] = useState(false);
   const [optionIsEnabled2, setOptionIsEnabled2] = useState(false);
   const [optionIsEnabled3, setOptionIsEnabled3] = useState(false);
 
-  //Selection onPress functions
+  // selection onPress functions
   const selectOption1 = () => [
     setOptionIsEnabled1(true),
     setGender("m"),
@@ -81,16 +66,12 @@ const SignUp = ({ navigation }) => {
     setGender("d"),
   ];
 
-  //date picker
+  // date picker
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const showDatePicker = () => {
-    setDatePickerVisibility(true);
-  };
-  const hideDatePicker = () => {
-    setDatePickerVisibility(false);
-  };
+  const showDatePicker = () => { setDatePickerVisibility(true); };
+  const hideDatePicker = () => { setDatePickerVisibility(false); };
   const handleConfirm = (date) => {
-    //console.warn("A date has been picked: ", date);
+    // console.warn("A date has been picked: ", date);
     hideDatePicker();
     setBirthdate(date);
   };
@@ -168,129 +149,143 @@ const SignUp = ({ navigation }) => {
   };
 
   return (
-    <View
-      style={[
-        { flex: 1 },
+    <ScrollView
+      style={
         {
           backgroundColor:
             colorScheme === "light"
               ? light_background_color
               : dark_background_color,
-        },
-        { justifyContent: "center" },
-        { alignItems: "center" },
-      ]}
+        }
+      }
+      showsVerticalScrollIndicator={false}
     >
-      <TextInput
+      <View
         style={[
-          { width: 256 },
-          { padding: 16 },
-          { margin: 16 },
-          { backgroundColor: colorScheme === "light" ? gray5 : dark_gray5 },
-          { fontSize: fontSize },
-          { borderRadius: 8 },
+          { flex: 1 },
+          {
+            backgroundColor:
+              colorScheme === "light"
+                ? light_background_color
+                : dark_background_color,
+          },
+          { justifyContent: "center" },
+          { alignItems: "center" },
+          { paddingTop: 64 },
+          { paddingBottom: 256 }
         ]}
-        placeholder="Vorname"
-        onChangeText={(Prename) => setPrename(Prename)}
-      />
-      <TextInput
-        style={[
-          { width: 256 },
-          { padding: 16 },
-          { margin: 16 },
-          { backgroundColor: colorScheme === "light" ? gray5 : dark_gray5 },
-          { fontSize: fontSize },
-          { borderRadius: 8 },
-        ]}
-        placeholder="Nachname"
-        onChangeText={(Name) => setName(Name)}
-      />
-      <TextInput
-        style={[
-          { width: 256 },
-          { padding: 16 },
-          { margin: 16 },
-          { backgroundColor: colorScheme === "light" ? gray5 : dark_gray5 },
-          { fontSize: fontSize },
-          { borderRadius: 8 },
-        ]}
-        placeholder="E-Mail"
-        onChangeText={(Email) => setEmail(Email)}
-      />
-      <>
-        <View style={[styles.settings_item, containerColor]}>
-          <View
-            style={[
-              { backgroundColor: optionsContainerColor },
-              { padding: 2 },
-              { borderRadius: 12 },
-              { flexDirection: "row" },
-            ]}
-          >
-            <Pressable
-              style={({ pressed }) => [
-                {
-                  backgroundColor: optionIsEnabled1
-                    ? selectionColor
-                    : pressed
-                    ? colorScheme === "light"
-                      ? light_primary_color
-                      : dark_primary_color
-                    : null,
-                },
-                { padding: 8 },
-                { margin: 4 },
-                { borderRadius: 8 },
+      >
+
+        <TextInput
+          style={[
+            { width: 256 },
+            { padding: 16 },
+            { margin: 16 },
+            { backgroundColor: colorScheme === "light" ? gray5 : dark_gray5 },
+            { fontSize: fontSize },
+            { borderRadius: 8 },
+          ]}
+          placeholder="Vorname"
+          onChangeText={(Prename) => setPrename(Prename)}
+        />
+        <TextInput
+          style={[
+            { width: 256 },
+            { padding: 16 },
+            { margin: 16 },
+            { backgroundColor: colorScheme === "light" ? gray5 : dark_gray5 },
+            { fontSize: fontSize },
+            { borderRadius: 8 },
+          ]}
+          placeholder="Nachname"
+          onChangeText={(Name) => setName(Name)}
+        />
+        <TextInput
+          style={[
+            { width: 256 },
+            { padding: 16 },
+            { margin: 16 },
+            { backgroundColor: colorScheme === "light" ? gray5 : dark_gray5 },
+            { fontSize: fontSize },
+            { borderRadius: 8 },
+          ]}
+          placeholder="E-Mail"
+          onChangeText={(Email) => setEmail(Email)}
+        />
+        <>
+          <View style={[styles.settings_item, containerColor]}>
+            <View
+              style={[
+                { backgroundColor: optionsContainerColor },
+                { padding: 2 },
+                { borderRadius: 12 },
+                { flexDirection: "row" },
               ]}
-              disabled={optionIsEnabled1}
-              onPress={selectOption1}
             >
-              <Text style={[{ fontSize: 17 }, textColor]}>männlich</Text>
-            </Pressable>
-            <Pressable
-              style={({ pressed }) => [
-                {
-                  backgroundColor: optionIsEnabled2
-                    ? selectionColor
-                    : pressed
-                    ? colorScheme === "light"
-                      ? light_primary_color
-                      : dark_primary_color
-                    : null,
-                },
-                { padding: 8 },
-                { margin: 4 },
-                { borderRadius: 8 },
-              ]}
-              disabled={optionIsEnabled2}
-              onPress={selectOption2}
-            >
-              <Text style={[{ fontSize: 17 }, textColor]}>weiblich</Text>
-            </Pressable>
-            <Pressable
-              style={({ pressed }) => [
-                {
-                  backgroundColor: optionIsEnabled3
-                    ? selectionColor
-                    : pressed
-                    ? colorScheme === "light"
-                      ? light_primary_color
-                      : dark_primary_color
-                    : null,
-                },
-                { padding: 8 },
-                { margin: 4 },
-                { borderRadius: 8 },
-              ]}
-              disabled={optionIsEnabled3}
-              onPress={selectOption3}
-            >
-              <Text style={[{ fontSize: 17 }, textColor]}>divers</Text>
-            </Pressable>
+              <Pressable
+                style={({ pressed }) => [
+                  {
+                    backgroundColor: optionIsEnabled1
+                      ? selectionColor
+                      : pressed
+                        ? colorScheme === "light"
+                          ? light_primary_color
+                          : dark_primary_color
+                        : null,
+                  },
+                  { padding: 8 },
+                  { margin: 4 },
+                  { borderRadius: 8 },
+                ]}
+                disabled={optionIsEnabled1}
+                onPress={selectOption1}
+              >
+                <Text style={[{ fontSize: 17 }, textColor]}>männlich</Text>
+              </Pressable>
+              <Pressable
+                style={({ pressed }) => [
+                  {
+                    backgroundColor: optionIsEnabled2
+                      ? selectionColor
+                      : pressed
+                        ? colorScheme === "light"
+                          ? light_primary_color
+                          : dark_primary_color
+                        : null,
+                  },
+                  { padding: 8 },
+                  { margin: 4 },
+                  { borderRadius: 8 },
+                ]}
+                disabled={optionIsEnabled2}
+                onPress={selectOption2}
+              >
+                <Text style={[{ fontSize: 17 }, textColor]}>weiblich</Text>
+              </Pressable>
+              <Pressable
+                style={({ pressed }) => [
+                  {
+                    backgroundColor: optionIsEnabled3
+                      ? selectionColor
+                      : pressed
+                        ? colorScheme === "light"
+                          ? light_primary_color
+                          : dark_primary_color
+                        : null,
+                  },
+                  { padding: 8 },
+                  { margin: 4 },
+                  { borderRadius: 8 },
+                ]}
+                disabled={optionIsEnabled3}
+                onPress={selectOption3}
+              >
+                <Text style={[{ fontSize: 17 }, textColor]}>divers</Text>
+              </Pressable>
+            </View>
           </View>
-        </View>
-      </>
-      {/* <DropDownPicker
+        </>
+        {/* <DropDownPicker
         placeholder="Geschlecht auswählen"
         open={open}
         value={value}
@@ -304,8 +299,8 @@ const SignUp = ({ navigation }) => {
           borderColor: "dodgerblue",
         }}
       /> */}
-      <View>
-        {/* <Pressable
+        <View>
+          {/* <Pressable
           style={({ pressed }) => [
             {
               backgroundColor: pressed
@@ -331,6 +326,19 @@ const SignUp = ({ navigation }) => {
             onCancel={hideDatePicker}
           />
         </Pressable> */}
+          <TextInput
+            style={[
+              { width: 256 },
+              { padding: 16 },
+              { margin: 16 },
+              { backgroundColor: colorScheme === "light" ? gray5 : dark_gray5 },
+              { fontSize: fontSize },
+              { borderRadius: 8 },
+            ]}
+            placeholder="Geburtsdatum (JJJJ-MM-TT)"
+            onChangeText={(Birthdate) => setBirthdate(Birthdate)}
+          />
+        </View>
         <TextInput
           style={[
             { width: 256 },
@@ -340,58 +348,47 @@ const SignUp = ({ navigation }) => {
             { fontSize: fontSize },
             { borderRadius: 8 },
           ]}
-          placeholder="Geburtsdatum (JJJJ-MM-TT)"
-          onChangeText={(Birthdate) => setBirthdate(Birthdate)}
+          secureTextEntry={true}
+          placeholder="Passwort"
+          onChangeText={(Password) => setPassword(Password)}
         />
-      </View>
-      <TextInput
-        style={[
-          { width: 256 },
-          { padding: 16 },
-          { margin: 16 },
-          { backgroundColor: colorScheme === "light" ? gray5 : dark_gray5 },
-          { fontSize: fontSize },
-          { borderRadius: 8 },
-        ]}
-        secureTextEntry={true}
-        placeholder="Passwort"
-        onChangeText={(Password) => setPassword(Password)}
-      />
-      <TextInput
-        style={[
-          { width: 256 },
-          { padding: 16 },
-          { margin: 16 },
-          { backgroundColor: colorScheme === "light" ? gray5 : dark_gray5 },
-          { fontSize: fontSize },
-          { borderRadius: 8 },
-        ]}
-        secureTextEntry={true}
-        placeholder="Passwort wiederholen"
+        <TextInput
+          style={[
+            { width: 256 },
+            { padding: 16 },
+            { margin: 16 },
+            { backgroundColor: colorScheme === "light" ? gray5 : dark_gray5 },
+            { fontSize: fontSize },
+            { borderRadius: 8 },
+          ]}
+          secureTextEntry={true}
+          placeholder="Passwort wiederholen"
         // onChangeText={setPassword}
-      />
-      <Pressable
-        style={({ pressed }) => [
-          {
-            backgroundColor: pressed
-              ? green
-              : colorScheme === "light"
-              ? light_primary_color
-              : dark_primary_color,
-          },
-          { padding: 16 },
-          { margin: 16 },
-          { borderRadius: 8 },
-        ]}
-        onPress={() => {
-          submit();
-        }}
-      >
-        <Text style={[{ fontSize: fontSize }, { color: "white" }]}>
-          Registrieren
-        </Text>
-      </Pressable>
-    </View>
+        />
+        <Pressable
+          style={({ pressed }) => [
+            {
+              backgroundColor: pressed
+                ? green
+                : colorScheme === "light"
+                  ? light_primary_color
+                  : dark_primary_color,
+            },
+            { padding: 16 },
+            { margin: 16 },
+            { borderRadius: 8 },
+          ]}
+          onPress={() => {
+            submit();
+          }}
+        >
+          <Text style={[{ fontSize: fontSize }, { color: "white" }]}>
+            Registrieren
+          </Text>
+        </Pressable>
+
+      </View>
+    </ScrollView>
   );
 };
 
