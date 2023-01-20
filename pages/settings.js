@@ -60,19 +60,6 @@ const getData = async () => {
   }
 }
 
-<<<<<<< HEAD
-// const resetLevels = async () => {
-//   try {
-//     await AsyncStorage.removeItem('@completions')
-//     await AsyncStorage.removeItem('lastTask')
-
-
-//   } catch (e) {
-//     // remove error
-//   }
-
-// }
-=======
 //@Author: Tim Suchan
 //deletes all level data from Async Storage 
 const resetLevels = async () => {
@@ -81,7 +68,6 @@ const resetLevels = async () => {
   } 
   catch (e) {}
 }
->>>>>>> 94cc987 (some commenting, made sure not to duplicate async entries, resetLevels fix)
 
 // return settings page
 const SettingsPage = ({ navigation }) => {
