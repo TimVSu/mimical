@@ -448,13 +448,11 @@ const SettingsPage = ({ navigation }) => {
     );
   }
 
-  const reset = () => resetLevels();
-
   const Reset = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
         <View>
-          <TouchableOpacity onPress={reset}>
+          <TouchableOpacity onPress={() => resetLevels()}>
             <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? light_primary_color : dark_primary_color }]}>{isEnabled1 ? "Reset Progress" : "Fortschritt zurücksetzen"}</Text>
           </TouchableOpacity>
           {/* <Text style={[textColor, { opacity: 0.5 }]}>Lokaler Fortschritt wird zurückgesetzt</Text> */}
