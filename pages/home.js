@@ -110,7 +110,7 @@ const Home = ({ navigation }) => {
           { alignItems: "center" },
         ]}
       >
-        <Logo></Logo>
+        {/* <Logo></Logo> */}
         {fetchCompleted && (
           <Exercise
             level={
