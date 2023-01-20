@@ -1,32 +1,12 @@
 //@author: Tim Suchan
 import CameraScreen from "./camera.js";
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  LayoutAnimation,
-  UIManager,
-  Pressable,
-  Modal,
-  Alert,
-  useColorScheme,
-  TouchableOpacity,
-} from "react-native";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { View, StyleSheet, Text, LayoutAnimation, UIManager, Pressable, Modal, Alert, useColorScheme, TouchableOpacity, } from "react-native";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp, } from "react-native-responsive-screen";
 import styles from "./styles";
 import CustomButton from "./customButton.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {
-  getCurrentContent,
-  getCurrentSequence,
-  getTaskDescription,
-  incrementCurrentContent,
-  getCurrentScenario,
-} from "./contentManager.js";
+import { getCurrentContent, getCurrentSequence, getTaskDescription, incrementCurrentContent, getCurrentScenario, } from "./contentManager.js";
 import axios from "axios";
 
 if (Platform.OS === "android") {
@@ -39,34 +19,20 @@ let trainDuration = 1;
 let pauseDuration = 1;
 
 // import colors
-import {
-  light_primary_color,
-  dark_primary_color,
-  light_background_color,
-  dark_background_color,
-  green,
-} from "./styles";
+import { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, } from "./styles";
 
 // import icons
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-  faChevronLeft,
-  faChevronRight,
-  faPause,
-  faPlay,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faChevronRight, faPause, faPlay, } from "@fortawesome/free-solid-svg-icons";
 
 const AlternativeTask = ({ navigation, route, children, downFunction }) => {
   const scenarioName = getCurrentScenario();
 
   // light/dark mode
   const colorScheme = useColorScheme();
-  const containerColor =
-    colorScheme === "light" ? light_background_color : dark_background_color;
-  const buttonColor =
-    colorScheme === "light" ? light_primary_color : dark_primary_color;
-  const textColor =
-    colorScheme === "light" ? styles.light_text : styles.dark_text;
+  const containerColor = colorScheme === "light" ? light_background_color : dark_background_color;
+  const buttonColor = colorScheme === "light" ? light_primary_color : dark_primary_color;
+  const textColor = colorScheme === "light" ? styles.light_text : styles.dark_text;
 
   // VARIABLES:
   //==============================================================================================================================================
@@ -250,15 +216,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
 
   return (
     <View style={[{ flex: 1 }, { backgroundColor: containerColor }]}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
+      <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => { Alert.alert("Modal has been closed."); setModalVisible(!modalVisible); }}>
         <View style={tempStyles.centeredView}>
           <View style={[tempStyles.modalView, {}]}>
             <Text style={tempStyles.modalText}>
@@ -289,16 +247,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
       </Modal>
 
       <View style={{ flex: 1, backgroundColor: containerColor }} />
-      <View
-        id="camContainer"
-        style={{
-          flex: 6,
-          backgroundColor: containerColor,
-          alignContent: "center",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <View id="camContainer" style={{ flex: 6, backgroundColor: containerColor, alignContent: "center", alignItems: "center", justifyContent: "center", }}>
         <CameraScreen size={hp("70%")}>
           {informState
             ? !removed && (
@@ -312,58 +261,18 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
             : !removed && <Text style={styles.time}>{currentTime}</Text>}
         </CameraScreen>
       </View>
-      <View
-        style={{
-          flex: 1.5,
-          paddingLeft: 10,
-          paddingRight: 10,
-          alignContent: "center",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: containerColor,
-        }}
-      >
+      <View style={{ flex: 1.5, paddingLeft: 10, paddingRight: 10, alignContent: "center", alignItems: "center", justifyContent: "center", backgroundColor: containerColor, }}>
         <Text style={[{ fontSize: 17 }, textColor]}>
           {relaxState ? "Entspannen sie ihr Gesicht" : getTaskDescription()}
         </Text>
       </View>
 
-      <View
-        style={[
-          { flexDirection: "row" },
-          { justifyContent: "center" },
-          { paddingBottom: 32 },
-        ]}
-      >
-        <TouchableOpacity
-          style={[
-            { backgroundColor: buttonColor },
-            { padding: 16 },
-            { margin: 8 },
-            { borderRadius: 16 },
-            { flexDirection: "row" },
-            { alignItems: "center" },
-          ]}
-          onPress={() => {
-            navigation.goBack();
-          }}
-        >
-          <FontAwesomeIcon
-            style={{ marginRight: 8 }}
-            icon={faChevronLeft}
-            color="white"
-          />
+      <View style={[{ flexDirection: "row" }, { justifyContent: "center" }, { paddingBottom: 32 },]}>
+        <TouchableOpacity style={[{ backgroundColor: buttonColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 16 }, { flexDirection: "row" }, { alignItems: "center" },]} onPress={() => { navigation.goBack(); }}>
+          <FontAwesomeIcon style={{ marginRight: 8 }} icon={faChevronLeft} color="white" />
           <Text style={[styles.label, { color: "white" }]}>Zurück</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            { backgroundColor: buttonColor },
-            { padding: 16 },
-            { margin: 8 },
-            { borderRadius: 16 },
-            { flexDirection: "row" },
-            { alignItems: "center" },
-          ]}
+        <TouchableOpacity style={[{ backgroundColor: buttonColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 16 }, { flexDirection: "row" }, { alignItems: "center" },]}
           onPress={() => {
             console.log(
               getCurrentSequence()[getCurrentContent()] +
@@ -372,30 +281,12 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
             );
           }}
         >
-          <FontAwesomeIcon
-            style={{ marginRight: 8 }}
-            icon={faPause}
-            color="white"
-          />
+          <FontAwesomeIcon style={{ marginRight: 8 }} icon={faPause} color="white" />
           <Text style={[styles.label, { color: "white" }]}>Pause</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            { backgroundColor: buttonColor },
-            { padding: 16 },
-            { margin: 8 },
-            { borderRadius: 16 },
-            { flexDirection: "row" },
-            { alignItems: "center" },
-          ]}
-          onPress={() => play()}
-        >
+        <TouchableOpacity style={[{ backgroundColor: buttonColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 16 }, { flexDirection: "row" }, { alignItems: "center" },]} onPress={() => play()}>
           <Text style={[styles.label, { color: "white" }]}>Spielen</Text>
-          <FontAwesomeIcon
-            style={{ marginLeft: 8 }}
-            icon={faPlay}
-            color="white"
-          />
+          <FontAwesomeIcon style={{ marginLeft: 8 }} icon={faPlay} color="white" />
         </TouchableOpacity>
       </View>
     </View>
