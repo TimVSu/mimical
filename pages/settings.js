@@ -79,8 +79,8 @@ const SettingsPage = ({ navigation }) => {
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
-  const optionsContainerColor = colorScheme === 'light' ? gray5 : dark_gray5;
-  const selectionColor = colorScheme === 'light' ? light_background_color : dark_background_color;
+  const optionsContainerColor = colorScheme === 'light' ? light_background_color : dark_background_color;
+  const selectionColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   const activeIconColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5;
   const borderColor = colorScheme === "light" ? gray5 : dark_gray5;
@@ -307,12 +307,16 @@ const SettingsPage = ({ navigation }) => {
       <View style={[styles.settings_item, containerColor]}>
         <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Language" : "Sprache"}</Text>
         <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
-          <Pressable style={({ pressed }) => [{ backgroundColor: !isEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={!isEnabled1} onPress={toggleSwitch1}>
-            <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "German" : "Deutsch"}</Text>
-          </Pressable>
-          <Pressable style={({ pressed }) => [{ backgroundColor: isEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : null }, { padding: 8 }, { margin: 4 }, { borderRadius: 8 }]} disabled={isEnabled1} onPress={toggleSwitch1}>
-            <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "English" : "Englisch"}</Text>
-          </Pressable>
+          {/* <Pressable style={({ pressed }) => [{ backgroundColor: !isEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : colorScheme === 'light' ? gray5 : dark_gray5 }, { padding: 12 }, { margin: 4 }, { borderRadius: 16 }]} disabled={!isEnabled1} onPress={toggleSwitch1}> */}
+          <TouchableOpacity style={[{ backgroundColor: !isEnabled1 ? selectionColor : colorScheme === 'light' ? gray5 : dark_gray5 }, { padding: 12 }, { margin: 4 }, { borderRadius: 16 }]} disabled={!isEnabled1} onPress={toggleSwitch1}>
+            <Text style={[{ fontSize: fontSize }, { color: isEnabled1 ? 'black' : 'white' }]}>Deutsch</Text>
+          </TouchableOpacity>
+          {/* </Pressable> */}
+          {/* <Pressable style={({ pressed }) => [{ backgroundColor: isEnabled1 ? selectionColor : pressed ? colorScheme === 'light' ? light_primary_color : dark_primary_color : colorScheme === 'light' ? gray5 : dark_gray5 }, { padding: 12 }, { margin: 4 }, { borderRadius: 16 }]} disabled={isEnabled1} onPress={toggleSwitch1}> */}
+          <TouchableOpacity style={[{ backgroundColor: isEnabled1 ? selectionColor : colorScheme === 'light' ? gray5 : dark_gray5 }, { padding: 12 }, { margin: 4 }, { borderRadius: 16 }]} disabled={isEnabled1} onPress={toggleSwitch1}>
+            <Text style={[{ fontSize: fontSize }, { color: !isEnabled1 ? 'black' : 'white' }]}>English</Text>
+          </TouchableOpacity>
+          {/* </Pressable> */}
         </View>
       </View>
     );
