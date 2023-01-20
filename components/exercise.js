@@ -22,11 +22,12 @@ const gray1 = 'rgb(142, 142, 147)';
 // return exercise component
 const Exercise = ({ navigation, ...props }) => {
 
+  // state variables
   const [titleSize, setTitleSize] = useState(22);
   const [fontSize, setFontSize] = useState(17);
   const [language, setLanguage] = useState("german");
 
-  // retrieve data
+  // retrieve data for state variables
   const getData = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('test');
@@ -57,8 +58,8 @@ const Exercise = ({ navigation, ...props }) => {
   const containerColor = colorScheme === 'light' ? styles.light_square : styles.dark_square;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
   const iconColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
-  const highlightColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
 
+  // (locked) exercise component
   const LockedExercise = () => {
     return (
       <Pressable>
@@ -80,9 +81,10 @@ const Exercise = ({ navigation, ...props }) => {
     );
   }
 
+  // (unlocked) exercise component
   const UnlockedExercise = () => {
     return (
-      <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level", {alreadyCompleted: props.completed}) }}>
+      <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level", { alreadyCompleted: props.completed }) }}>
         <View style={[{ margin: 16 }]}>
           <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
             <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
@@ -101,9 +103,10 @@ const Exercise = ({ navigation, ...props }) => {
     );
   }
 
+  // (completed) exercise component
   const CompletedExercise = () => {
     return (
-      <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level", {alreadyCompleted: props.completed})}}>
+      <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level", { alreadyCompleted: props.completed }) }}>
         <View style={{ margin: 16 }}>
           <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
             <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
@@ -122,9 +125,10 @@ const Exercise = ({ navigation, ...props }) => {
     );
   }
 
+  // (continue) exercise component
   const ContinueExercise = () => {
     return (
-      <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level", {alreadyCompleted: props.completed})}}>
+      <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level", { alreadyCompleted: props.completed }) }}>
         <View style={[{ margin: 0 }, { flexDirection: 'row' }]}>
           <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
             <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
@@ -172,6 +176,7 @@ const Exercise = ({ navigation, ...props }) => {
       );
     }
   }
+  
 }
 
 export default Exercise;

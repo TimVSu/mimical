@@ -1,4 +1,4 @@
-// author: Maxim Torgovitski
+// authors: Tim Suchan, Maxim Torgovitski
 
 // import react native
 import { ScrollView, Text, useColorScheme, View } from 'react-native';
@@ -14,11 +14,12 @@ import styles from './styles.js';
 
 const Scenario = ({ navigation, ...props }) => {
 
+  // state variables
   const [titleSize, setTitleSize] = useState(28);
   const [fontSize, setFontSize] = useState(17);
   const [language, setLanguage] = useState("german");
 
-  // retrieve data
+  // retrieve data for state variables
   const getData = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('test');
@@ -44,9 +45,11 @@ const Scenario = ({ navigation, ...props }) => {
     }, [])
   );
 
+  // light/dark mode
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
+
   const [completionCounter, setCompletionCounter] = useState(0);
 
   // create empty array
@@ -84,6 +87,7 @@ const Scenario = ({ navigation, ...props }) => {
       </ScrollView>
     </View>
   );
+
 }
 
 export default Scenario;

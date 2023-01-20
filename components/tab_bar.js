@@ -23,9 +23,9 @@ const TabBar = ({ navigation, ...props }) => {
       <Pressable onPress={() => navigation.navigate('Menu')}>
         <FontAwesomeIcon icon={faHouse} color={props.home} size={32} />
       </Pressable>
-      <Pressable onPress={() => navigation.navigate('Progress')}>
+      {/* <Pressable onPress={() => navigation.navigate('Progress')}>
         <FontAwesomeIcon icon={faChartSimple} color={props.stats} size={32} />
-      </Pressable>
+      </Pressable> */}
       <Pressable onPress={() => navigation.navigate('Settings')}>
         <FontAwesomeIcon icon={faGear} color={props.settings} size={32} />
       </Pressable>
