@@ -790,54 +790,54 @@ const allContents = {
 
 const defaultScenarios = {
     "Umzug": {
-        "tags": ["LONG_SCENARIO", "UPPER_HALF"],
+        "tags": ["Langes Szenario", "Obere Gesichtshälfte"],
         "indices": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
         "icon" : faTruck
     },
     "Einzug": {
-        "tags": ["LONG_SCENARIO", "LOWER_HALF"],
+        "tags": ["Langes Szenario", "Untere Gesichtshäflte"],
         "indices": [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,],
         "icon": faBox
     },
     "Urlaub": {
-        "tags": ["SHORT_SCENARIO", "UPPER_HALF"],
+        "tags": ["Kurzes Szenario", "Obere Gesichtshälfte"],
         "indices": [31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,],
         "icon": faPlane
     },
     "Einkauf": {
-        "tags": ["SHORT_SCENARIO", "LOWER_HALF"],
+        "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
         "indices": [44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,],
         "icon": faStore
     },
-    "Schnee":  {
-        "tags": ["SHORT_SCENARIO", "UPPER_HALF"],
+    "schnee":  {
+        "tags": ["Kurzes Szenario", "Obere Gesichtshälfte"],
         "indices": [57, 58, 59, 60, 61, 62, 63, 64],
         "icon": faSnowflake
-    },
-    "Bahn":  {
-        "tags": ["SHORT_SCENARIO", "UPPER_HALF"],
-        "indices": [65, 66, 67, 68, 69, 70, 71, 72],
-        "icon": faTrain
-    },
-    "Biergarten":  {
-        "tags": ["SHORT_SCENARIO", "LOWER_HALF"],
-        "indices": [73, 74, 75, 76, 77, 78, 79, 80],
-        "icon": faBeerMugEmpty
-    },
-    "Balkon":  {
-        "tags": ["SHORT_SCENARIO", "LOWER_HALF"],
-        "indices": [81, 82, 83, 84, 85, 86, 87, 88],
-        "icon": faSun
-    },
-    "Bummel":  {
-        "tags": ["SHORT_SCENARIO", "LOWER_HALF"],
-        "indices": [89, 90, 91, 92, 93, 94, 95, 96],
-        "icon": faBagShopping
-    },
-    "Zelten":  {
-        "tags": ["SHORT_SCENARIO", "LOWER_HALF"],
-        "indices": [97, 98, 99, 100, 101, 102, 103, 104],
-        "icon": faCampground
+    // },
+    // "Bahn":  {
+    //     "tags": ["Kurzes Szenario", "Obere Gesichtshälfte"],
+    //     "indices": [65, 66, 67, 68, 69, 70, 71, 72],
+    //     "icon": faTrain
+    // },
+    // "Biergarten":  {
+    //     "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
+    //     "indices": [73, 74, 75, 76, 77, 78, 79, 80],
+    //     "icon": faBeerMugEmpty
+    // },
+    // "Balkon":  {
+    //     "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
+    //     "indices": [81, 82, 83, 84, 85, 86, 87, 88],
+    //     "icon": faSun
+    // },
+    // "Bummel":  {
+    //     "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
+    //     "indices": [89, 90, 91, 92, 93, 94, 95, 96],
+    //     "icon": faBagShopping
+    // },
+    // "Zelten":  {
+    //     "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
+    //     "indices": [97, 98, 99, 100, 101, 102, 103, 104],
+    //     "icon": faCampground
     }
 
 
