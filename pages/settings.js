@@ -344,7 +344,7 @@ const SettingsPage = ({ navigation }) => {
   const CameraSettings = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
-        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Camera" : "Kamera"}</Text>
+        <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? gray3 : dark_gray3 }]}>{isEnabled1 ? "Camera" : "Kamera"}</Text>
         <Switch
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
@@ -361,7 +361,7 @@ const SettingsPage = ({ navigation }) => {
   const NotificationsSettings = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
-        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Notifications" : "Mitteilungen"}</Text>
+        <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? gray3 : dark_gray3 }]}>{isEnabled1 ? "Notifications" : "Mitteilungen"}</Text>
         <Switch
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
@@ -404,7 +404,7 @@ const SettingsPage = ({ navigation }) => {
   const TextSettings = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
-        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Text" : "Text"}</Text>
+        <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? gray3 : dark_gray3 }]}>{isEnabled1 ? "Text" : "Text"}</Text>
         <Switch
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
@@ -421,7 +421,7 @@ const SettingsPage = ({ navigation }) => {
   const NarratorSettings = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
-        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Narrator" : "Sprecherin"}</Text>
+        <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? gray3 : dark_gray3 }]}>{isEnabled1 ? "Narrator" : "Sprecherin"}</Text>
         <Switch
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
@@ -438,7 +438,7 @@ const SettingsPage = ({ navigation }) => {
   const MusicSettings = () => {
     return (
       <View style={[styles.settings_item, containerColor]}>
-        <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Music" : "Musik"}</Text>
+        <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? gray3 : dark_gray3 }]}>{isEnabled1 ? "Music" : "Musik"}</Text>
         <Switch
           trackColor={{ false: "#767577", true: green }}
           thumbColor={'white'}
