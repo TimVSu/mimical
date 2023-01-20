@@ -7,7 +7,7 @@
 
 //@author: tim suchan
 
-import { faTruck, faHouse, faPlane, faStore, faBox, faB, faSnowflake } from "@fortawesome/free-solid-svg-icons"
+import { faTruck, faHouse, faPlane, faStore, faBox, faB, faSnowflake, faTrain } from "@fortawesome/free-solid-svg-icons"
 
 const umzug1 = {
     "baseText": "Es ist Samstagmorgen und Sie ziehen heute in Ihre neue Wohnung ein. Noch ein wenig verschlafen, laufen Sie durch Ihre alte Wohnung. Sie gehen in Gedanken noch einmal die Umzugsplanung für den heutigen Tag durch.",
@@ -461,6 +461,64 @@ const schnee8 = {
     "sound": require("../assets/LetzterSatz_Der_erste_Schnee.wav")
 }
 
+//=====================================================================================================================================
+
+const bahn1 = {
+    "baseText": "1.	Sie sind spät dran und müssen unbedingt die nächste Straßenbahn erreichen, um pünktlich zu einer Veranstaltung zu kommen. Gehetzt schauen Sie auf Ihre Armbanduhr. Es könnte knapp werden.",
+    "highlightedText": "In Sorge, die Straßenbahn zu verpassen, ziehen Sie die Augenbrauen hoch.",
+    "task": "empty",
+    "sound": require("../assets/Eine_Fahrt_mit_der_Straßenbahn/Uebung1_FahrtStraßenbahn.wav")
+}
+
+const bahn2 = {
+    "baseText": "2.	Außer Atem kommen Sie an der Haltestelle an, als Ihre Straßenbahn gerade einfährt. Sie sehen, dass die Bahn überfüllt ist und die Leute bereits an der Tür eng an eng stehen. Es steigen kaum Leute aus.",
+    "highlightedText": "Verärgert ziehen Sie die Augenbrauen zusammen.",
+    "task": "empty",
+    "sound": require("../assets/Eine_Fahrt_mit_der_Straßenbahn/Uebung2_FahrtStraßenbahn.wav")
+}
+
+const bahn3 = {
+    "baseText": "3.	Es hat keinen Zweck. Sie müssen die Straßenbahn nehmen, um pünktlich zu kommen. Sie steigen in die überfüllte Bahn. Es ist sehr eng. Sie hoffen, dass bei der nächsten Station einige Leute aussteigen werden.",
+    "highlightedText": "Abwartend schließen Sie die Augen.",
+    "task": "empty",
+    "sound": require("../assets/Eine_Fahrt_mit_der_Straßenbahn/Uebung3_FahrtStraßenbahn.wav")
+}
+
+const bahn4 = {
+    "baseText": "4.	An der nächsten Station steigen tatsächlich viele Leute aus und die Bahn leert sich. Sie bekommen einen Sitzplatz am Fenster. Die Sonne scheint herein und blendet Sie.",
+    "highlightedText": "Sie kneifen die Augen etwas zusammen.",
+    "task": "empty",
+    "sound": require("../assets/Eine_Fahrt_mit_der_Straßenbahn/Uebung4_FahrtStraßenbahn.wav")
+}
+
+const bahn5 = {
+    "baseText": "5.	Die nächste Haltestelle wird angekündigt und es ist Ihre. Das kann nicht sein. Es müssten noch 3 Stationen sein. Sie sind irritiert und halten nach dem Schild an der Haltestelle Ausschau.",
+    "highlightedText": "Dabei ziehen Sie die Augenbrauen zusammen.",
+    "task": "empty",
+    "sound": require("../assets/Eine_Fahrt_mit_der_Straßenbahn/Uebung5_FahrtStraßenbahn.wav")
+}
+
+const bahn6 = {
+    "baseText": "6.	Es ist ein Fehler, die Durchsage war falsch. Bei der nächsten Station setzt sich eine ältere Dame neben Sie. Sie grüßt freundlich.",
+    "highlightedText": "Sie grüßen freundlich zurück und ziehen dabei die Augenbrauen hoch.",
+    "task": "empty",
+    "sound": require("../assets/Eine_Fahrt_mit_der_Straßenbahn/Uebung6_FahrtStraßenbahn.wav")
+}
+
+const bahn7 = {
+    "baseText": "7.	Gedankenverloren gucken Sie einige Zeit aus dem Fenster. Die Bahn hat angehalten. Sie lesen das Halteschild und merken, dass es Ihre Haltestelle ist.",
+    "highlightedText": "Sie reißen die Augen weit auf.",
+    "task": "empty",
+    "sound": require("../assets/Eine_Fahrt_mit_der_Straßenbahn/Uebung7_FahrtStraßenbahn.wav")
+}
+
+const bahn8 = {
+    "baseText": "Sie stürmen in letzter Minute aus der Straßenbahn. Glück gehabt! Beim nächsten Mal müssen Sie besser aufpassen.",
+    "highlightedText": "Entspannen Sie sich...",
+    "task": "empty",
+    "sound": require("../assets/Eine_Fahrt_mit_der_Straßenbahn/letzter Satz_FahrtStraßenbahn.wav")
+}
+
 //const taskContent3 = new taskContent()
 
 
@@ -482,7 +540,9 @@ const allContents = {
     54: einkauf11, 55: einkauf12, 56: einkauf13,
 
     57: schnee1, 58: schnee2, 59: schnee3, 60: schnee4, 61: schnee5,
-    62: schnee6, 63: schnee7, 64: schnee8 
+    62: schnee6, 63: schnee7, 64: schnee8,
+    
+    65: bahn1, 66: bahn2, 67: bahn3, 68: bahn4, 69: bahn5, 70: bahn6, 71: bahn7, 72: bahn8
 
 };
 
@@ -507,11 +567,17 @@ const defaultScenarios = {
         "indices": [44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,],
         "icon": faStore
     },
-    "schnee":  {
+    "Schnee":  {
         "tags": ["SHORT_SCENARIO", "UPPER_HALF"],
         "indices": [57, 58, 59, 60, 61, 62, 63, 64],
         "icon": faSnowflake
+    },
+    "Bahn":  {
+        "tags": ["SHORT_SCENARIO", "UPPER_HALF"],
+        "indices": [65, 66, 67, 68, 69, 70, 71, 72],
+        "icon": faTrain
     }
+
 }
 
 let currentContent = 1;
