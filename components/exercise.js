@@ -82,7 +82,7 @@ const Exercise = ({ navigation, ...props }) => {
 
   const UnlockedExercise = () => {
     return (
-      <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level") }}>
+      <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level", {alreadyCompleted: props.completed}) }}>
         <View style={[{ margin: 16 }]}>
           <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
             <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
@@ -103,7 +103,7 @@ const Exercise = ({ navigation, ...props }) => {
 
   const CompletedExercise = () => {
     return (
-      <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level") }}>
+      <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level", {alreadyCompleted: props.completed})}}>
         <View style={{ margin: 16 }}>
           <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
             <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
@@ -124,7 +124,7 @@ const Exercise = ({ navigation, ...props }) => {
 
   const ContinueExercise = () => {
     return (
-      <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level") }}>
+      <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level", {alreadyCompleted: props.completed})}}>
         <View style={[{ margin: 0 }, { flexDirection: 'row' }]}>
           <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
             <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>

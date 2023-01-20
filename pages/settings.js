@@ -60,6 +60,7 @@ const getData = async () => {
   }
 }
 
+<<<<<<< HEAD
 // const resetLevels = async () => {
 //   try {
 //     await AsyncStorage.removeItem('@completions')
@@ -71,6 +72,16 @@ const getData = async () => {
 //   }
 
 // }
+=======
+//@Author: Tim Suchan
+//deletes all level data from Async Storage 
+const resetLevels = async () => {
+  try {
+    await AsyncStorage.removeItem('@completions')
+  } 
+  catch (e) {}
+}
+>>>>>>> 94cc987 (some commenting, made sure not to duplicate async entries, resetLevels fix)
 
 // return settings page
 const SettingsPage = ({ navigation }) => {
@@ -451,25 +462,25 @@ const SettingsPage = ({ navigation }) => {
     );
   }
 
-  // const Reset = () => {
-  //   return (
-  //     <View style={[styles.settings_item, containerColor]}>
-  //       <View>
-  //         <TouchableOpacity onPress={resetLevels()}>
-  //           <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? light_primary_color : dark_primary_color }]}>{isEnabled1 ? "Reset Progress" : "Fortschritt zurücksetzen"}</Text>
-  //         </TouchableOpacity>
-  //         {/* <Text style={[textColor, { opacity: 0.5 }]}>Lokaler Fortschritt wird zurückgesetzt</Text> */}
-  //       </View>
-  //       {/* <Switch
-  //         trackColor={{ false: "#767577", true: green }}
-  //         thumbColor={'white'}
-  //         // ios_backgroundColor={"#3e3e3e"}
-  //         onValueChange={toggleSwitch8}
-  //         value={isEnabled8}
-  //       /> */}
-  //     </View>
-  //   );
-  // }
+  const Reset = () => {
+    return (
+      <View style={[styles.settings_item, containerColor]}>
+        <View>
+          <TouchableOpacity onPress={resetLevels}>
+            <Text style={[{ fontSize: fontSize }, { color: colorScheme === 'light' ? light_primary_color : dark_primary_color }]}>{isEnabled1 ? "Reset Progress" : "Fortschritt zurücksetzen"}</Text>
+          </TouchableOpacity>
+          {/* <Text style={[textColor, { opacity: 0.5 }]}>Lokaler Fortschritt wird zurückgesetzt</Text> */}
+        </View>
+        {/* <Switch
+          trackColor={{ false: "#767577", true: green }}
+          thumbColor={'white'}
+          // ios_backgroundColor={"#3e3e3e"}
+          onValueChange={toggleSwitch8}
+          value={isEnabled8}
+        /> */}
+      </View>
+    );
+  }
 
   const [optionIsEnabled1, setOptionIsEnabled1] = useState(false);
   const [optionIsEnabled2, setOptionIsEnabled2] = useState(false);

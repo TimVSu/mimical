@@ -27,7 +27,7 @@ if (
 }
 
 //@author: Tim Suchan
-const LevelLayout = ({ navigation, nextLevelFunction }) => {
+const LevelLayout = ({ route, navigation, nextLevelFunction }) => {
   //console.warn('at level: ' + getCurrentContent() + 'of scenario: ' + getCurrentSequence())
 
   // VARIABLES:

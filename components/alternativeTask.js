@@ -51,6 +51,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
   const ifCompleted = { [thisContent]: "completed" };
   const [PatientID, setPatientID] = useState("");
   const [ContentProgress, setContentProgress] = useState("");
+  const [completions, setCompletions] = useState({});
 
   // FUNCTIONS:
   //==============================================================================================================================================
@@ -86,15 +87,30 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
   //saves the current level as completed
   const saveAsCompleted = async (completedContent) => {
     try {
-      await AsyncStorage.mergeItem(
-        "@completions",
-        JSON.stringify(completedContent)
-      );
+      await AsyncStorage.mergeItem("@completions",JSON.stringify(completedContent));
       console.log("saved completed succesfull");
     } catch (error) {
       console.log("cant save data to async storage");
     }
   };
+
+  //@author: Tim Suchan
+  //Fetches the completions object from async storage
+  // in this case this happens to test if the urrent content has already been completed and not store it twice
+  const fetchCompletions = async () => {
+    try {
+      const item = await AsyncStorage.getItem("@completions");
+      if (item) {
+        setCompletions(JSON.parse(item));
+      }
+    } catch { }
+  }
+
+  //@author: Tim Suchan
+  //triggers fetching of exercise completion states on render
+  useEffect(() => {
+    fetchCompletions();
+  }, []);
 
   //Upload Progress to Database
   const uploadProgress = async () => {
@@ -182,10 +198,12 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
     } else if (!taskRunning) {
       clearInterval(interval);
     }
+    //the system goes into relax state
     if (currentTime == 0 && taskRunning && !relaxState) {
       setCurrentTime(pauseDuration);
       setRelaxState(true);
     }
+    //the system goes back to train state/ stops the task if the counter has reached 3
     if (currentTime == 0 && taskRunning && relaxState) {
       setRelaxState(false);
       if (repCounter == repititions - 1) {
@@ -201,7 +219,11 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
     if (currentTime == 0 && repCounter == repititions - 1) {
       setTaskRunning(false);
       setCurrentTime(0);
+      //making sure not to double store completed levels in async storage
+      if(!Object.keys(completions).includes(getCurrentSequence()[getCurrentContent()])){
       saveAsCompleted(ifCompleted);
+      }
+    
       // setContentProgress(thisContent);
       // uploadProgress();
       saveAsLast(getCurrentSequence()[getCurrentContent()]);

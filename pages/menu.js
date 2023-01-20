@@ -134,7 +134,6 @@ const HomePage = ({ navigation }) => {
   //triggers fetching of exercise completion states on render
   useEffect(() => {
     fetchCompletionStates();
-    console.log('Gets here')
     fetchLastTask();
     getData();
   }, []);
@@ -180,7 +179,7 @@ const HomePage = ({ navigation }) => {
             <View style={[{ marginLeft: 0 }, { justifyContent: 'space-between' }]}>
               {fetchCompleted && (
                 <Exercise
-                  level={getScenario(getScenarioFromTask(nextTask)).indexOf(nextTask) + 1}
+                  level={getScenario(getScenarioFromTask(nextTask)).indexOf(nextTask)}
                   key={nextTask}
                   icon={getIcon(getScenarioFromTask(nextTask))}
                   navigation={navigation}
