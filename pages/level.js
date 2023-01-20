@@ -64,11 +64,12 @@ const LevelLayout = ({ route, navigation, nextLevelFunction }) => {
     }
   }
 
-  // get data on first render
+  // get data on render
   useEffect(() => {
     getData();
   }, []);
 
+  // get data on render
   useFocusEffect(
     useCallback(() => {
       getData();
