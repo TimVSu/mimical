@@ -1,12 +1,8 @@
-//@author: Tim Suchan
+// authors: Tim Suchan, Maxim Torgovitski
 import { useEffect, useState, useCallback } from 'react';
 import { View, TouchableOpacity, Platform, UIManager, Text, ScrollView, useColorScheme } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import Animated, {
-  useSharedValue,
-  withTiming,
-  useAnimatedStyle,
-} from 'react-native-reanimated';
+import Animated, { useSharedValue, withTiming, useAnimatedStyle } from 'react-native-reanimated';
 import Task from '../components/task.js';
 import { getAudio } from '../components/contentManager';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -48,10 +44,11 @@ const LevelLayout = ({ route, navigation, nextLevelFunction }) => {
   // used to create and delete task when needed
   const [taskCreated, setTaskCreated] = useState(false);
 
+  // state variables
   const [titleSize, setTitleSize] = useState(28);
   const [fontSize, setFontSize] = useState(28);
 
-  // retrieve data
+  // retrieve data for state variables
   const getData = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('test');
@@ -216,7 +213,7 @@ const LevelLayout = ({ route, navigation, nextLevelFunction }) => {
     playSound();
   }, [])
 
-
+  // light/dark mode
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;

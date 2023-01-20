@@ -503,7 +503,7 @@ const SettingsPage = ({ navigation }) => {
           </View>
         </View> */}
         {/* <Selection title="Geschlecht" option1="männlich" option2="weiblich" option3="divers" fontSize={fontSize} /> */}
-        <View style={[{ borderTopWidth: 1 }, { borderBottomWidth: 1 }, { borderColor: borderColor }, { flexDirection: 'row' }, { flexWrap: 'wrap' }, { justifyContent: 'space-between' }]}>
+        {/* <View style={[{ borderTopWidth: 1 }, { borderBottomWidth: 1 }, { borderColor: borderColor }, { flexDirection: 'row' }, { flexWrap: 'wrap' }, { justifyContent: 'space-between' }]}>
           <Button
             title='set data'
             onPress={storeData}
@@ -524,7 +524,7 @@ const SettingsPage = ({ navigation }) => {
             title='test'
             onPress={() => writeItemToStorage(JSON.stringify(config))}
           />
-        </View>
+        </View> */}
         {/* <Text>Language: {isEnabled1}, {language}</Text> */}
         {/* <Text style={[{ fontWeight: 'bold' }, textColor]}>Output</Text>
         <Text style={textColor}>Font Size: {fontSize}</Text> */}

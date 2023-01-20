@@ -1,4 +1,4 @@
-//@author: Tim Suchan
+// authors: Tim Suchan, Maxim Torgovitski
 import CameraScreen from "./camera.js";
 import React, { useCallback, useEffect, useState } from 'react';
 import { View, StyleSheet, Text, LayoutAnimation, UIManager, Pressable, Modal, Alert, useColorScheme, TouchableOpacity, } from "react-native";
@@ -238,7 +238,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
     return () => clearInterval(interval);
   }, [taskRunning, currentTime, relaxState, informState]);
 
-  // retrieve data
+  // retrieve font size data
   const getData = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('test');
