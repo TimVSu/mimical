@@ -86,7 +86,7 @@ const SignIn = ({ navigation }) => {
       })
         .then((res) => {
           //console.log(res.data);
-          alert("Ihre Key ist: " + res.data[0].therapistAddKey);
+          alert("Ihr Key ist: " + res.data[0].therapistAddKey);
         })
         .catch((err) => console.log(err));
       //, alert("Email oder Passwort falsch"));

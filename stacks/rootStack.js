@@ -23,12 +23,17 @@ const RootStack = () => {
         animation: "none"
       }}
     >
-      <Stack.Screen name="Menu" component={Menu} />
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{ title: "Welcome" }}
+      />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="HomeLogin" component={Homelogin} />
       <Stack.Screen name="Sign In" component={SignIn} />
       <Stack.Screen name="Sign Up" component={SignUp} />
       <Stack.Screen name="Level" component={LevelLayout} />
+      <Stack.Screen name="Menu" component={Menu} />
       <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="Progress" component={Progress} />
       <Stack.Screen name="Api" component={Api} />
