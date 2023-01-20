@@ -46,16 +46,18 @@ const LevelLayout = ({ route, navigation, nextLevelFunction }) => {
 
   // state variables
   const [titleSize, setTitleSize] = useState(28);
+  const [descriptionSize, setDescriptionSize] = useState(28);
   const [fontSize, setFontSize] = useState(28);
 
   // retrieve data for state variables
   const getData = async () => {
     try {
-      const jsonValue = await AsyncStorage.getItem('test');
+      const jsonValue = await AsyncStorage.getItem('settings');
       const value = JSON.parse(jsonValue);
       if (value !== null) {
         setTitleSize(value.fontSize == 17 ? 34 : 40);
-        setFontSize(value.fontSize == 17 ? 28 : 34);
+        setDescriptionSize(value.fontSize == 17 ? 28 : 34);
+        setFontSize(value.fontSize);
       }
     } catch (error) {
       // error retrieving data
@@ -275,9 +277,10 @@ const LevelLayout = ({ route, navigation, nextLevelFunction }) => {
         // contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', marginRight: '5%', marginLeft: '5%' }}
         showsVerticalScrollIndicator={false}
       >
-        <View style={[{ borderWidth: 0 }, { borderColor: light_primary_color }]}>
-          <Text style={[{ fontSize: fontSize }, textColor, { padding: 16 }]}>{currentText}</Text>
-          <Text style={[{ borderWidth: 0 }, { fontSize: fontSize }, { fontWeight: 'bold' }, { color: colorScheme === "light" ? light_primary_color : dark_primary_color }, { padding: 16 }]}>{currentHighlightedText} </Text>
+        <View style={[{ borderColor: light_primary_color }]}>
+          <Text style={[{ fontSize: descriptionSize }, textColor, { padding: 16 }]}>{currentText}
+            <Text style={[{ fontSize: descriptionSize }, { fontWeight: 'bold' }, { color: colorScheme === "light" ? light_primary_color : dark_primary_color }]}> {currentHighlightedText}</Text>
+          </Text>
         </View>
       </ScrollView>
 
@@ -289,7 +292,7 @@ const LevelLayout = ({ route, navigation, nextLevelFunction }) => {
 
       <View style={[{ paddingTop: 8 }, { borderTopWidth: 1 }, { borderColor: borderColor }, { marginBottom: 32 }, { alignItems: 'center' }]}>
         <TouchableOpacity style={[{ backgroundColor: buttonColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 16 }, { flexDirection: 'row' }, { justifyContent: 'center' }, { alignItems: 'center' }]} onPress={toggleSwitch}>
-          <Text style={[{ fontSize: 17 }, { color: 'white' }]}>Übung starten</Text>
+          <Text style={[{ fontSize: fontSize }, { color: 'white' }]}>Übung starten</Text>
         </TouchableOpacity>
       </View>
       {/* </View> */}
