@@ -299,13 +299,13 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
         <CameraScreen size={hp("70%")}>
           {informState
             ? !removed && (
-                <View style={styles.informView}>
-                  <Text style={styles.informText}>
-                    {getTaskDescription() + "in"}
-                  </Text>
-                  <Text style={styles.informTime}>{currentTime}</Text>
-                </View>
-              )
+              <View style={styles.informView}>
+                <Text style={styles.informText}>
+                  {getTaskDescription() + "in"}
+                </Text>
+                <Text style={styles.informTime}>{currentTime}</Text>
+              </View>
+            )
             : !removed && <Text style={styles.time}>{currentTime}</Text>}
         </CameraScreen>
       </View>
@@ -321,7 +321,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
         }}
       >
         <Text style={styles.taskDescription} size="lg">
-          {getTaskDescription()}
+          {relaxState ? "Entspannen sie ihr Gesicht" : getTaskDescription()}
         </Text>
       </View>
 
@@ -364,8 +364,8 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
           onPress={() => {
             console.log(
               getCurrentSequence()[getCurrentContent()] +
-                " : " +
-                getCurrentContent()
+              " : " +
+              getCurrentContent()
             );
           }}
         >

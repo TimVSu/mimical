@@ -163,13 +163,13 @@ const HomePage = ({ navigation }) => {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {Object.keys(tagStates).map(tag => (
 
-            <View key={tag} style={[{ backgroundColor: tagStates[tag] ? activeFilterColor : inactiveFilterColor }, { borderRadius: 16 }, { padding: 12 }, { margin: 16 }]}>
-              <TouchableOpacity style={[{ flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => setTagFilter(tag)}>
+              <TouchableOpacity key={tag} style={[{ flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => setTagFilter(tag)}>
+              <View style={[{ backgroundColor: tagStates[tag] ? activeFilterColor : inactiveFilterColor }, { borderRadius: 16 }, { padding: 12 }, { margin: 16 }]}>
                 {/* <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' /> */}
                 <Text style={[{ fontSize: 12 }, { fontWeight: 'bold' }, { color: tagStates[tag] ? 'white' : filterTextColor }]}>{tag}</Text>
+                </View>
               </TouchableOpacity>
 
-            </View>
           ))}
         </ScrollView>
       </View>

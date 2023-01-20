@@ -136,7 +136,7 @@ const Exercise = ({ navigation, ...props }) => {
           <View style={[{ marginLeft: 16 }, { justifyContent: 'space-between' }]}>
             <View>
               <Text style={[{ fontSize: fontSize }, textColor]}>
-                [Szenario]
+                {props.scenarioKey}
               </Text>
               <Text style={[{ fontSize: fontSize }, textColor]}>
                 {language == "german" ? "Übung" : "Exercise"} {props.level}
