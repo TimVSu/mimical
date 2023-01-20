@@ -37,7 +37,7 @@ const HomePage = ({ navigation }) => {
   const activeIconColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
   const inactiveIconColor = colorScheme === 'light' ? gray5 : dark_gray5;
   const activeFilterColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
-  const inactiveFilterColor = colorScheme === 'light' ? gray5 : dark_gray5;
+  const inactiveFilterColor = colorScheme === 'light' ? gray6 : dark_gray6;
   const filterTextColor = colorScheme === 'light' ? 'black' : 'white';
 
 

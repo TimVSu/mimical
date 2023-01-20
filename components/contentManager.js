@@ -507,7 +507,7 @@ const defaultScenarios = {
         "indices": [44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,],
         "icon": faStore
     },
-    "schnee":  {
+    "Schnee":  {
         "tags": ["Kurzes Szenario", "Obere Gesichtshälfte"],
         "indices": [57, 58, 59, 60, 61, 62, 63, 64],
         "icon": faSnowflake
