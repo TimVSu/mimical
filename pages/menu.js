@@ -161,7 +161,6 @@ const HomePage = ({ navigation }) => {
 
             <TouchableOpacity key={tag} style={[{ flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => setTagFilter(tag)}>
               <View style={[{ backgroundColor: tagStates[tag] ? activeFilterColor : inactiveFilterColor }, { borderRadius: 16 }, { padding: 12 }, { margin: 16 }]}>
-                {/* <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' /> */}
                 <Text style={[{ fontSize: 12 }, { fontWeight: 'bold' }, { color: tagStates[tag] ? 'white' : filterTextColor }]}>{tag}</Text>
               </View>
             </TouchableOpacity>
