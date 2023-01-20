@@ -26,6 +26,18 @@
   - Enter command: npm start (if the app does not start, you have to enter npm install --legacy-peer-deps first)
   - Follow instructions in terminal
 
+- 2023-01-12 -- 1.0.0
+
+  - added app icon
+  - added splash screen icon
+  - filter is fully functional
+  - added sounds
+  - added scenarios
+  - bugfixes
+  - contiune is in the menu instead of homescreen
+  - login is fully functional
+  - register is fully functional
+
 - 2023-01-13 -- 0.0.4
 
   - added modal for transitioning between tasks and the menu
