@@ -168,7 +168,6 @@ export default StyleSheet.create({
   },
   label: {
     fontSize: 17
-    // fontSize: getData().fontSize
   },
   light_text: {
     color: 'black'

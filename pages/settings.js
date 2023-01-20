@@ -201,8 +201,8 @@ const SettingsPage = ({ navigation }) => {
   const [fontSize, setFontSize] = useState(17);
   const toggleSwitch2 = () => [
     setIsEnabled2(previousState => !previousState),
-    setFontSize(isEnabled2 ? '17' : '24'),
-    storeFontSizeData(isEnabled2 ? '17' : '24'),
+    setFontSize(isEnabled2 ? '17' : '23'),
+    storeFontSizeData(isEnabled2 ? '17' : '23'),
     storeLargeFontData(isEnabled2 ? false : true)
   ];
 
@@ -224,8 +224,8 @@ const SettingsPage = ({ navigation }) => {
   const [isEnabled5, setIsEnabled5] = useState(false);
   const toggleSwitch5 = () => [
     setIsEnabled5(previousState => !previousState),
-    setColorScheme(isEnabled5 ? 'light' : 'dark'),
-    storeAppearanceData(isEnabled5 ? 'light' : 'dark')
+    // setColorScheme(isEnabled5 ? 'light' : 'dark'),
+    // storeAppearanceData(isEnabled5 ? 'light' : 'dark')
   ];
 
   // text

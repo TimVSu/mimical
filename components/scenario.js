@@ -14,6 +14,7 @@ import styles from './styles.js';
 
 const Scenario = ({ navigation, ...props }) => {
 
+  const [titleSize, setTitleSize] = useState(28);
   const [fontSize, setFontSize] = useState(17);
   const [language, setLanguage] = useState("german");
 
@@ -23,6 +24,7 @@ const Scenario = ({ navigation, ...props }) => {
       const jsonValue = await AsyncStorage.getItem('test');
       const value = JSON.parse(jsonValue);
       if (value !== null) {
+        setTitleSize(value.fontSize == 17 ? 28 : 34)
         setFontSize(value.fontSize);
         setLanguage(value.language);
       }
@@ -60,7 +62,7 @@ const Scenario = ({ navigation, ...props }) => {
   // return scenario component
   return (
     <View style={[containerColor, { marginTop: 16 }, { marginBottom: 16 }]}>
-      <Text style={[styles.title2, textColor, { marginLeft: 16 }]}>{props.title}</Text>
+      <Text style={[{ fontSize: titleSize }, { fontWeight: 'bold' }, textColor, { marginLeft: 16 }]}>{props.title}</Text>
       <View style={[{ flexDirection: 'row' }, { alignItems: 'center' }, { marginTop: 8 }, { marginLeft: 16 }]}>
         <Text style={[{ fontSize: fontSize }, textColor, { marginRight: 8 }]}>{language == "german" ? "Fortschritt" : "Progress"} ({props.completions.length}/{scenarioLength}):</Text>
         <ProgressBar exercises={scenarioLength} progress={props.completions.length} />
