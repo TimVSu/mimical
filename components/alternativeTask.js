@@ -245,7 +245,6 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
     return () => clearInterval(interval);
   }, [taskRunning, currentTime, relaxState, informState]);
 
-<<<<<<< HEAD
   return (
     <View style={[{ flex: 1 }, { backgroundColor: containerColor }]}>
       <Modal
@@ -263,51 +262,6 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
               {" "}
               "Gut gemacht! Level abschlossen!"{" "}
             </Text>
-=======
-    //@author: Tim Suchan
-    // The code for the Game Timer 
-    // Using useEffect as the timer changing is a side effect in this case
-    useEffect(() => {
-        let interval = null;
-        if (taskRunning) {
-            interval = setInterval(() => {
-                removeIncrementReplace();
-            }, 1000);
-        } else if (!taskRunning) {
-            clearInterval(interval);
-        }
-        if (currentTime == 0 && taskRunning && !relaxState) {
-            setCurrentTime(pauseDuration);
-            setRelaxState(true);
-        }
-        if (currentTime == 0 && taskRunning && relaxState) {
-            setRelaxState(false);
-            if (repCounter == repititions - 1) {
-                setRepCounter(0);
-                setTaskRunning(false);
-                setInformState(false);
-                clearInterval(interval);
-            }
-            else {
-                setRepCounter(repCounter => repCounter + 1);
-                play();
-            }
-        }
-        if (currentTime == 0 && repCounter == repititions - 1) {
-            setTaskRunning(false);
-            setCurrentTime(0);
-            saveAsCompleted(ifCompleted);
-            
-            saveAsLast(getCurrentSequence()[getCurrentContent()]);
-            // nextLevelFunction();
-            setModalVisible(true);
-        }
-        if (currentTime == 3 && taskRunning && relaxState) {
-            setInformState(true);
-        }
-        return () => clearInterval(interval);
-    }, [taskRunning, currentTime, relaxState, informState]);
->>>>>>> 110f6b6 (forgot)
 
             <View style={tempStyles.buttonView}>
               <CustomButton
