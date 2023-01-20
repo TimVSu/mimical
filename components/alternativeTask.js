@@ -11,6 +11,7 @@ import {
   Modal,
   Alert,
   useColorScheme,
+  TouchableOpacity,
 } from "react-native";
 import {
   widthPercentageToDP as wp,
@@ -64,6 +65,8 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
     colorScheme === "light" ? light_background_color : dark_background_color;
   const buttonColor =
     colorScheme === "light" ? light_primary_color : dark_primary_color;
+  const textColor =
+    colorScheme === "light" ? styles.light_text : styles.dark_text;
 
   // VARIABLES:
   //==============================================================================================================================================
@@ -285,12 +288,12 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
         </View>
       </Modal>
 
-      <View style={{ flex: 1, backgroundColor: "white" }} />
+      <View style={{ flex: 1, backgroundColor: containerColor }} />
       <View
         id="camContainer"
         style={{
           flex: 6,
-          backgroundColor: "white",
+          backgroundColor: containerColor,
           alignContent: "center",
           alignItems: "center",
           justifyContent: "center",
@@ -317,10 +320,10 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
           alignContent: "center",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "white",
+          backgroundColor: containerColor,
         }}
       >
-        <Text style={styles.taskDescription} size="lg">
+        <Text style={[{ fontSize: 17 }, textColor]}>
           {relaxState ? "Entspannen sie ihr Gesicht" : getTaskDescription()}
         </Text>
       </View>
@@ -332,12 +335,12 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
           { paddingBottom: 32 },
         ]}
       >
-        <Pressable
-          style={({ pressed }) => [
-            { backgroundColor: pressed ? green : buttonColor },
+        <TouchableOpacity
+          style={[
+            { backgroundColor: buttonColor },
             { padding: 16 },
             { margin: 8 },
-            { borderRadius: 8 },
+            { borderRadius: 16 },
             { flexDirection: "row" },
             { alignItems: "center" },
           ]}
@@ -351,13 +354,13 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
             color="white"
           />
           <Text style={[styles.label, { color: "white" }]}>Zurück</Text>
-        </Pressable>
-        <Pressable
-          style={({ pressed }) => [
-            { backgroundColor: pressed ? green : buttonColor },
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            { backgroundColor: buttonColor },
             { padding: 16 },
             { margin: 8 },
-            { borderRadius: 8 },
+            { borderRadius: 16 },
             { flexDirection: "row" },
             { alignItems: "center" },
           ]}
@@ -375,13 +378,13 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
             color="white"
           />
           <Text style={[styles.label, { color: "white" }]}>Pause</Text>
-        </Pressable>
-        <Pressable
-          style={({ pressed }) => [
-            { backgroundColor: pressed ? green : buttonColor },
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            { backgroundColor: buttonColor },
             { padding: 16 },
             { margin: 8 },
-            { borderRadius: 8 },
+            { borderRadius: 16 },
             { flexDirection: "row" },
             { alignItems: "center" },
           ]}
@@ -393,7 +396,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
             icon={faPlay}
             color="white"
           />
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </View>
   );
