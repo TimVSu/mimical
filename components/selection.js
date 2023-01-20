@@ -8,7 +8,6 @@ import React, { useState } from 'react';
 import styles from '../components/styles.js';
 import { light_primary_color, dark_primary_color, light_background_color, dark_background_color, gray5, dark_gray5 } from '../components/styles.js';
 
-// return selection component
 const Selection = (props) => {
 
     // light/dark mode
@@ -28,6 +27,7 @@ const Selection = (props) => {
     const selectOption2 = () => [setOptionIsEnabled1(false), setOptionIsEnabled2(true), setOptionIsEnabled3(false)];
     const selectOption3 = () => [setOptionIsEnabled1(false), setOptionIsEnabled2(false), setOptionIsEnabled3(true)];
 
+    // return selection component
     return (
         <View style={[styles.settings_item, containerColor]}>
             <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
@@ -43,6 +43,7 @@ const Selection = (props) => {
             </View>
         </View>
     );
+
 }
 
 export default Selection;

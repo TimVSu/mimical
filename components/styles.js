@@ -2,7 +2,6 @@
 
 // import react native
 import { StyleSheet } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 // default light mode colors
@@ -60,17 +59,7 @@ const light_primary_color = blue;
 const dark_primary_color = dark_blue;
 const light_background_color = 'rgb(255, 255, 255)';
 const dark_background_color = 'rgb(0, 0, 0)';
-export { light_primary_color, dark_primary_color, light_background_color, dark_background_color, red, green, gray3, gray5, gray6, dark_red, dark_gray3, dark_gray5, dark_gray6 };
-
-// retrieve data
-const getData = async () => {
-  try {
-    const jsonValue = await AsyncStorage.getItem('test');
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
-  } catch (error) {
-    // error retrieving data
-  }
-}
+export { light_primary_color, dark_primary_color, light_background_color, dark_background_color, red, green, gray1, gray3, gray5, gray6, dark_red, dark_gray3, dark_gray5, dark_gray6 };
 
 // styles sorted alphabetically
 export default StyleSheet.create({

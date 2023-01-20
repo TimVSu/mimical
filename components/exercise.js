@@ -16,10 +16,9 @@ import Button from './button.js';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCircleCheck, faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons';
 
-// colors
-const gray1 = 'rgb(142, 142, 147)';
+// import colors
+import { gray1 } from './styles';
 
-// return exercise component
 const Exercise = ({ navigation, ...props }) => {
 
   // state variables
@@ -42,11 +41,12 @@ const Exercise = ({ navigation, ...props }) => {
     }
   }
 
-  // get data on first render
+  // get data on render
   useEffect(() => {
     getData();
   }, []);
 
+  // get data on render
   useFocusEffect(
     useCallback(() => {
       getData();
@@ -156,6 +156,7 @@ const Exercise = ({ navigation, ...props }) => {
     );
   }
 
+  // return exercise component
   if (props.fromHomeScreen) {
     return (
       <ContinueExercise></ContinueExercise>

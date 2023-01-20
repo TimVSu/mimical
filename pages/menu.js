@@ -24,13 +24,12 @@ const tagStates = {
   'Kurzes Szenario': false
 }
 
-
-
-// return home page
 const HomePage = ({ navigation }) => {
 
   //VARIABLES:
   //===============================================================================================================================================
+
+  // light/dark mode
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
@@ -40,7 +39,7 @@ const HomePage = ({ navigation }) => {
   const inactiveFilterColor = colorScheme === 'light' ? gray6 : dark_gray6;
   const filterTextColor = colorScheme === 'light' ? 'black' : 'white';
 
-
+  // state variables
   const [tag, setTag] = useState('All')
   const [keyArray, setKeyArray] = useState(Object.keys(getDefaultScenarios()))
   const [filteredKeyArray, setFilteredKeyArray] = useState(Object.keys(getDefaultScenarios()))
@@ -49,18 +48,15 @@ const HomePage = ({ navigation }) => {
   const [nextTask, setNextTask] = useState(1);
   const [fetchCompleted, setFetchCompleted] = useState(false);
 
-  
-
-
-
   // since this component is higher in hirarchy thatn the level component i use it to control the current content
   // All contets are stored with unique id's this hook stores the current starting pooint and passes it to the level component
 
   //FUNCTIONS:
   //===============================================================================================================================================
+
   setCurrentContent(1);
 
-  // retrieve data
+  // retrieve language data
   const getData = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('test');
@@ -154,6 +150,7 @@ const HomePage = ({ navigation }) => {
     return trueTags.every(tag => getTags(scenarioKey).includes(tag));
   }
 
+  // return home page
   return (
     <View style={[{ flex: 1 }, containerColor]}>
       <NavBar page_title={language == "german" ? "Übersicht" : "Overview"} navigation={navigation} />
@@ -162,12 +159,12 @@ const HomePage = ({ navigation }) => {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {Object.keys(tagStates).map(tag => (
 
-              <TouchableOpacity key={tag} style={[{ flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => setTagFilter(tag)}>
+            <TouchableOpacity key={tag} style={[{ flexDirection: 'row' }, { alignItems: 'center' }]} onPress={() => setTagFilter(tag)}>
               <View style={[{ backgroundColor: tagStates[tag] ? activeFilterColor : inactiveFilterColor }, { borderRadius: 16 }, { padding: 12 }, { margin: 16 }]}>
                 {/* <FontAwesomeIcon style={{ marginRight: 8 }} icon={faFaceSmile} color='white' /> */}
                 <Text style={[{ fontSize: 12 }, { fontWeight: 'bold' }, { color: tagStates[tag] ? 'white' : filterTextColor }]}>{tag}</Text>
-                </View>
-              </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
 
           ))}
         </ScrollView>

@@ -7,7 +7,6 @@ import React from 'react';
 // import components
 import styles from './styles';
 
-// return navigation bar component
 const NavBar = ({ navigation, ...props }) => {
 
   // light/dark mode
@@ -15,6 +14,7 @@ const NavBar = ({ navigation, ...props }) => {
   const containerColor = colorScheme === 'light' ? styles.light_container : styles.dark_container;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
 
+  // return navigation bar component
   return (
     <View style={[styles.nav_bar, containerColor]}>
       <Text style={[styles.title1, textColor]}>{props.page_title}</Text>

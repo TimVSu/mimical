@@ -7,7 +7,6 @@ import React from 'react';
 // import components
 import styles from './styles';
 
-// return progress bar component
 const ProgressBar = (props) => {
 
   // light/dark mode
@@ -19,6 +18,7 @@ const ProgressBar = (props) => {
   const x = 100 / props.exercises;
   const y = x * props.progress * 2;
 
+  // return progress bar component
   return (
     <View style={[{ width: 200 }, { height: 8 }, { borderRadius: 4 }, barColor]}>
       <View style={[{ width: y }, { height: 8 }, { borderRadius: 4 }, progressColor]}></View>

@@ -15,7 +15,7 @@ import styles from "../components/styles.js";
 const SignUp = ({ navigation }) => {
 
   //styles
-  const colorScheme = useState(useColorScheme());
+  const colorScheme = useColorScheme();
   const [fontSize, setFontSize] = useState(17);
 
   // light/dark mode

@@ -1,4 +1,4 @@
-// authors: Tim Suchan, Maxim Torgovitski
+// authors: Maxim Torgovitski
 
 // import react native
 import { useColorScheme, View } from "react-native";
@@ -9,13 +9,13 @@ import Button from "../components/button";
 import styles from "../components/styles";
 import Logo from "../components/logo";
 
-// return home page
 const Home = ({ navigation }) => {
 
   // light/dark mode
   const colorScheme = useColorScheme();
   const containerColor = colorScheme === "light" ? styles.light_container : styles.dark_container;
 
+  // return home page
   return (
     <View style={[{ flex: 1 }, containerColor, { justifyContent: "center" }, { alignItems: "center" },]}>
       <Logo></Logo>
