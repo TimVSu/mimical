@@ -109,6 +109,10 @@ const SignUp = ({ navigation }) => {
       /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i
     );
 
+    var checkBirthday = RegExp(
+      /\d{4}-(?:0?[1-9]|1[012])-(?:0?[1-9]|[12][0-9]|3[01])*/
+    );
+
     //Check if Email is provided
     if (Email.length == 0 || Password.length == 0) {
       alert("Email fehlt");
@@ -134,8 +138,10 @@ const SignUp = ({ navigation }) => {
       ) {
         alert("Vollständige Namen fehlen");
       } else {
-        if (Gender == 0 || Birthdate == 0) {
+        if (Gender == 0 || Birthdate == 0 || Birthdate.length == 0) {
           alert("Zusätzliche Daten fehlen");
+        } else if (!checkBirthday.test(Birthdate)) {
+          alert("Kein Datum im JJJJ-MM-TT Format");
         } else {
           await axios({
             method: "post",
@@ -152,6 +158,10 @@ const SignUp = ({ navigation }) => {
           })
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
+
+          alert("Erfolgreich! Bitte loggen Sie sich ein!");
+          //Navigate to log in screen if authentications are valid
+          navigation.navigate("Sign In");
         }
       }
     }
@@ -235,7 +245,7 @@ const SignUp = ({ navigation }) => {
               disabled={optionIsEnabled1}
               onPress={selectOption1}
             >
-              <Text style={[{ fontSize: 17 }, textColor]}>mannlich</Text>
+              <Text style={[{ fontSize: 17 }, textColor]}>männlich</Text>
             </Pressable>
             <Pressable
               style={({ pressed }) => [
@@ -291,24 +301,11 @@ const SignUp = ({ navigation }) => {
         onChangeValue={(Gender) => setGender(Gender)}
         style={{
           marginHorizontal: 50,
-          //   borderWidth: 2,
-          //   borderTopLeftRadius: 10,
-          //   borderTopRightRadius: 10,
-          //   borderBottomLeftRadius: 10,
-          //   borderBottomRightRadius: 10,
           borderColor: "dodgerblue",
-          //   shadowColor: "#000",
-          //   shadowOffset: {
-          //     width: 0,
-          //     height: 3,
-          //   },
-          //   zIndex: 20,
-          //   shadowOpacity: 0.1,
-          //   shadowRadius: 0.41,
         }}
       /> */}
       <View>
-        <Pressable
+        {/* <Pressable
           style={({ pressed }) => [
             {
               backgroundColor: pressed
@@ -333,7 +330,19 @@ const SignUp = ({ navigation }) => {
             onConfirm={handleConfirm}
             onCancel={hideDatePicker}
           />
-        </Pressable>
+        </Pressable> */}
+        <TextInput
+          style={[
+            { width: 256 },
+            { padding: 16 },
+            { margin: 16 },
+            { backgroundColor: colorScheme === "light" ? gray5 : dark_gray5 },
+            { fontSize: fontSize },
+            { borderRadius: 8 },
+          ]}
+          placeholder="Geburtsdatum (JJJJ-MM-TT)"
+          onChangeText={(Birthdate) => setBirthdate(Birthdate)}
+        />
       </View>
       <TextInput
         style={[
@@ -376,8 +385,6 @@ const SignUp = ({ navigation }) => {
         ]}
         onPress={() => {
           submit();
-          //Navigate to log in screen if authentications are valid
-          navigation.navigate("Sign In");
         }}
       >
         <Text style={[{ fontSize: fontSize }, { color: "white" }]}>

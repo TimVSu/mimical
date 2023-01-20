@@ -31,6 +31,7 @@ const SignIn = ({ navigation }) => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [PatientID, setPatientID] = useState("");
+  const [Key, setKey] = useState("");
 
   const submit = async () => {
     var Data = {
@@ -40,7 +41,7 @@ const SignIn = ({ navigation }) => {
 
     //Check if account exists
     if (Email.length == 0 || Password.length == 0) {
-      alert("Email fehlt");
+      alert("Email oder Passwort fehlt");
     } else {
       await axios({
         method: "post",
@@ -54,12 +55,41 @@ const SignIn = ({ navigation }) => {
         .then((res) => {
           setPatientID(res.data[0].ID);
           savePatientID(PatientID);
-          //console.log(res.data[0].ID);
+          console.log(res.data[0].ID);
 
           //Navigate to next screen if authentications are valid
           navigation.navigate("Menu");
         })
         .catch((err) => console.log(err));
+      //, alert("Email oder Passwort falsch"));
+    }
+  };
+
+  const getKey = async () => {
+    var Data = {
+      Email: Email,
+      Password: Password,
+    };
+
+    //Check if account exists
+    if (Email.length == 0 || Password.length == 0) {
+      alert("Email oder Passwort fehlt");
+    } else {
+      await axios({
+        method: "post",
+        data: {
+          Email: Email,
+          Password: Password,
+        },
+        // Must be changed depending on device for testing
+        url: "http://192.168.1.98:3000/api/key",
+      })
+        .then((res) => {
+          //console.log(res.data);
+          alert("Ihre Key ist: " + res.data[0].therapistAddKey);
+        })
+        .catch((err) => console.log(err));
+      //, alert("Email oder Passwort falsch"));
     }
   };
 
@@ -129,6 +159,25 @@ const SignIn = ({ navigation }) => {
       >
         <Text style={[{ fontSize: fontSize }, { color: "white" }]}>
           Anmelden
+        </Text>
+      </Pressable>
+      <Pressable
+        style={({ pressed }) => [
+          {
+            backgroundColor: pressed
+              ? green
+              : colorScheme === "light"
+              ? light_primary_color
+              : dark_primary_color,
+          },
+          { padding: 16 },
+          { margin: 16 },
+          { borderRadius: 8 },
+        ]}
+        onPress={getKey}
+      >
+        <Text style={[{ fontSize: fontSize }, { color: "white" }]}>
+          Key Anzeigen
         </Text>
       </Pressable>
     </View>

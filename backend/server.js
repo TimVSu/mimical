@@ -38,28 +38,100 @@ server.get("/api", function (req, res) {
 // Sign In data
 server.post("/api/signin", (req, res) => {
   let data = req.body;
-  let user = data.ID;
-  let sql = "SELECT * FROM patients WHERE email = ?";
-  let query = db.query(sql, [data.Email], (err, results) => {
-    if (err) throw err;
-    if (results) {
-      //Check if password is correct
-      bcrypt.compare(data.Password, results[0].password, (error, response) => {
-        if (response) {
-          console.log("Angemeldet");
-        } else {
-          console.log("Passwort ist falsch");
-        }
-      });
-      let sqlid = "SELECT ID FROM patients WHERE email = ?";
-      let queryid = db.query(sqlid, [data.Email], (err, results) => {
-        if (err) throw err;
-        if (results) {
-          res.send(results);
-        }
-      });
+  let checkemail = "SELECT COUNT(*) AS cnt FROM patients WHERE email = ?";
+  let qryemail = db.query(checkemail, [data.Email], (err, results) => {
+    if (err) {
+      throw err;
     } else {
-      console.log("Sie haben noch kein Konto");
+      if (results[0].cnt == 0) {
+        //Email ist falsch
+        console.log("Email ist falsch");
+        //res.send(results);
+      } else {
+        //Email ist richtig
+        let sql = "SELECT * FROM patients WHERE email = ?";
+        let query = db.query(sql, [data.Email], (err, results) => {
+          if (err) throw err;
+          if (results) {
+            //Check if password is correct
+            bcrypt.compare(
+              data.Password,
+              results[0].password,
+              (error, response) => {
+                if (response) {
+                  console.log("Angemeldet");
+                  let sqlid = "SELECT ID FROM patients WHERE email = ?";
+                  let queryid = db.query(
+                    sqlid,
+                    [data.Email],
+                    (err, results) => {
+                      if (err) throw err;
+                      if (results) {
+                        res.send(results);
+                      }
+                    }
+                  );
+                } else {
+                  console.log("Passwort ist falsch");
+                }
+              }
+            );
+          } else {
+            console.log("Sie haben noch kein Konto");
+          }
+        });
+        console.log("Email ist richtig");
+      }
+    }
+  });
+});
+
+//Get Patient Key
+server.post("/api/key", (req, res) => {
+  let data = req.body;
+  let checkemail = "SELECT COUNT(*) AS cnt FROM patients WHERE email = ?";
+  let qryemail = db.query(checkemail, [data.Email], (err, results) => {
+    if (err) {
+      throw err;
+    } else {
+      if (results[0].cnt == 0) {
+        //Email ist falsch
+      } else {
+        //Email ist richtig
+        let sql = "SELECT * FROM patients WHERE email = ?";
+        let query = db.query(sql, [data.Email], (err, results) => {
+          if (err) throw err;
+          if (results) {
+            //Check if password is correct
+            bcrypt.compare(
+              data.Password,
+              results[0].password,
+              (error, response) => {
+                if (response) {
+                  let sqlkey =
+                    "SELECT therapistAddKey FROM patients WHERE email = ?";
+                  let queryid = db.query(
+                    sqlkey,
+                    [data.Email],
+                    (err, results) => {
+                      if (err) throw err;
+                      if (results) {
+                        res.send(results);
+                        // console.log(results);
+                      }
+                    }
+                  );
+                  console.log("Daten sind richtig");
+                } else {
+                  console.log("Passwort ist falsch");
+                }
+              }
+            );
+          } else {
+            console.log("Sie haben noch kein Konto");
+          }
+        });
+      }
     }
   });
 });
@@ -87,7 +159,7 @@ server.post("/api/signup", async (req, res) => {
   //Set expiration date
   const today = new Date();
   const tomorrow = new Date(today);
-  tomorrow.setDate(tomorrow.getDate() - 1);
+  tomorrow.setDate(tomorrow.getDate() + 1);
   tomorrow.setHours(tomorrow.getHours() + 1);
   //Convert Date to string
   let tomorrowstring = tomorrow.toISOString();
