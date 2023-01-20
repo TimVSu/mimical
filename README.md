@@ -29,12 +29,11 @@
 - 2023-01-12 -- 1.0.0
 
   - added app icon
-  - added splash screen icon
   - filter is fully functional
   - added sounds
   - added scenarios
-  - bugfixes
-  - contiune is in the menu instead of homescreen
+  - bug fixes
+  - continue is in the menu instead of homescreen
   - login is fully functional
   - register is fully functional
 
