@@ -198,6 +198,7 @@ const LevelLayout = ({ route, navigation, nextLevelFunction }) => {
       setCurrentText(getText());
       setCurrentHighlightedText(getHighlightedText());
       setCurrentAudio(getAudio());
+      playSound();
     }, [])
   );
 
