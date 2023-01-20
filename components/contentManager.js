@@ -770,7 +770,7 @@ const allContents = {
 
     57: schnee1, 58: schnee2, 59: schnee3, 60: schnee4, 61: schnee5,
     62: schnee6, 63: schnee7, 64: schnee8,
-    
+
     65: bahn1, 66: bahn2, 67: bahn3, 68: bahn4, 69: bahn5, 70: bahn6,
     71: bahn7, 72: bahn8,
 
@@ -792,7 +792,7 @@ const defaultScenarios = {
     "Umzug": {
         "tags": ["Langes Szenario", "Obere Gesichtshälfte"],
         "indices": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-        "icon" : faTruck
+        "icon": faTruck
     },
     "Einzug": {
         "tags": ["Langes Szenario", "Untere Gesichtshälfte"],
@@ -800,41 +800,41 @@ const defaultScenarios = {
         "icon": faBox
     },
     "Urlaub": {
-        "tags": ["Kurzes Szenario", "Obere Gesichtshälfte"],
+        "tags": ["Langes Szenario", "Obere Gesichtshälfte"],
         "indices": [31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,],
         "icon": faPlane
     },
     "Einkauf": {
-        "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
+        "tags": ["Langes Szenario", "Untere Gesichtshälfte"],
         "indices": [44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,],
         "icon": faStore
     },
-    "Schnee":  {
+    "Schnee": {
         "tags": ["Kurzes Szenario", "Obere Gesichtshälfte"],
         "indices": [57, 58, 59, 60, 61, 62, 63, 64],
         "icon": faSnowflake
     },
-    "Bahn":  {
+    "Bahn": {
         "tags": ["Kurzes Szenario", "Obere Gesichtshälfte"],
         "indices": [65, 66, 67, 68, 69, 70, 71, 72],
         "icon": faTrain
     },
-    "Biergarten":  {
+    "Biergarten": {
         "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
         "indices": [73, 74, 75, 76, 77, 78, 79, 80],
         "icon": faBeerMugEmpty
     },
-    "Balkon":  {
+    "Balkon": {
         "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
         "indices": [81, 82, 83, 84, 85, 86, 87, 88],
         "icon": faSun
     },
-    "Bummel":  {
+    "Bummel": {
         "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
         "indices": [89, 90, 91, 92, 93, 94, 95, 96],
         "icon": faBagShopping
     },
-    "Zelten":  {
+    "Zelten": {
         "tags": ["Kurzes Szenario", "Untere Gesichtshälfte"],
         "indices": [97, 98, 99, 100, 101, 102, 103, 104],
         "icon": faCampground
@@ -867,13 +867,13 @@ const setCurrentContent = (number) => {
 }
 
 const getIcon = (key) => {
-    if(key === "NO_SCENARIO_FOR_THIS_ID"){
+    if (key === "NO_SCENARIO_FOR_THIS_ID") {
         return faTruck
     }
-    else{
-    return defaultScenarios[key]["icon"];
-}
-    
+    else {
+        return defaultScenarios[key]["icon"];
+    }
+
 }
 
 const incrementCurrentContent = () => {
@@ -897,22 +897,22 @@ const getDefaultScenarios = () => {
 }
 
 const getText = () => {
-    var keyNum = currentSequence[currentContent-1];
+    var keyNum = currentSequence[currentContent - 1];
     return allContents[keyNum]["baseText"];
 }
 
 const getHighlightedText = () => {
-    var keyNum = currentSequence[currentContent-1];
+    var keyNum = currentSequence[currentContent - 1];
     return allContents[keyNum]["highlightedText"];
 }
 
 const getTaskDescription = () => {
-    var keyNum = currentSequence[currentContent-1];
+    var keyNum = currentSequence[currentContent - 1];
     return allContents[keyNum]["task"]
 }
 
 const getAudio = () => {
-    var keyNum = currentSequence[currentContent-1];
+    var keyNum = currentSequence[currentContent - 1];
     return allContents[keyNum]["sound"];
 }
 
@@ -942,12 +942,12 @@ const getCurrentScenario = () => {
     return currentScenario;
 }
 
-const getTaskCount = () =>{
+const getTaskCount = () => {
     return Object.keys(allContents).length;
 }
-const getScenarioFromTask = (contentID) =>{
-    for (let i = 0; i < Object.keys(defaultScenarios).length; i++){
-        if(defaultScenarios[Object.keys(defaultScenarios)[i]]["indices"].includes(contentID)){
+const getScenarioFromTask = (contentID) => {
+    for (let i = 0; i < Object.keys(defaultScenarios).length; i++) {
+        if (defaultScenarios[Object.keys(defaultScenarios)[i]]["indices"].includes(contentID)) {
             return Object.keys(defaultScenarios)[i];
         }
     }
@@ -960,7 +960,7 @@ const getScenarioFromTask = (contentID) =>{
 
 
 export {
-    getAllContents, getDefaultScenarios, getIcon, getCurrentScenario, getTaskCount, getScenarioFromTask, 
+    getAllContents, getDefaultScenarios, getIcon, getCurrentScenario, getTaskCount, getScenarioFromTask,
     startLevel, getScenario, getHighlightedText, getScenarioLength, setCurrentContent, incrementCurrentContent,
     setCurrentSequence, getText, getAudio, getCurrentContent, getCurrentSequence, getTags, getTaskDescription
 };
