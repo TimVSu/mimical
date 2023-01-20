@@ -10,7 +10,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import NavBar from '../components/nav_bar.js';
 import TabBar from '../components/tab_bar.js';
 import styles from '../components/styles.js';
-import { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, gray3, gray5, dark_gray3, dark_gray5 } from '../components/styles.js';
+import { light_primary_color, dark_primary_color, light_background_color, dark_background_color, green, gray3, gray5, gray6, dark_gray3, dark_gray5, dark_gray6 } from '../components/styles.js';
 
 // default config
 let config = {
@@ -225,10 +225,10 @@ const SettingsPage = ({ navigation }) => {
       <View style={[styles.settings_item, containerColor]}>
         <Text style={[{ fontSize: fontSize }, textColor]}>{isEnabled1 ? "Language" : "Sprache"}</Text>
         <View style={[{ backgroundColor: optionsContainerColor }, { padding: 2 }, { borderRadius: 12 }, { flexDirection: 'row' }]}>
-          <TouchableOpacity style={[{ backgroundColor: !isEnabled1 ? selectionColor : colorScheme === 'light' ? gray5 : dark_gray5 }, { padding: 12 }, { margin: 4 }, { borderRadius: 16 }]} disabled={!isEnabled1} onPress={toggleSwitch1}>
+          <TouchableOpacity style={[{ backgroundColor: !isEnabled1 ? selectionColor : colorScheme === 'light' ? gray6 : dark_gray6 }, { padding: 12 }, { margin: 4 }, { borderRadius: 16 }]} disabled={!isEnabled1} onPress={toggleSwitch1}>
             <Text style={[{ fontSize: fontSize }, { color: isEnabled1 ? colorScheme === 'light' ? 'black' : 'white' : 'white' }]}>Deutsch</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[{ backgroundColor: isEnabled1 ? selectionColor : colorScheme === 'light' ? gray5 : dark_gray5 }, { padding: 12 }, { margin: 4 }, { borderRadius: 16 }]} disabled={isEnabled1} onPress={toggleSwitch1}>
+          <TouchableOpacity style={[{ backgroundColor: isEnabled1 ? selectionColor : colorScheme === 'light' ? gray6 : dark_gray6 }, { padding: 12 }, { margin: 4 }, { borderRadius: 16 }]} disabled={isEnabled1} onPress={toggleSwitch1}>
             <Text style={[{ fontSize: fontSize }, { color: !isEnabled1 ? colorScheme === 'light' ? 'black' : 'white' : 'white' }]}>English</Text>
           </TouchableOpacity>
         </View>
