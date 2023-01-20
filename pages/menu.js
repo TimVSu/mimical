@@ -160,7 +160,6 @@ const HomePage = ({ navigation }) => {
   return (
     <View style={[{ flex: 1 }, containerColor]}>
       <NavBar page_title={language == "german" ? "Übersicht" : "Overview"} navigation={navigation} />
-      <FilterBar></FilterBar>
 
       <View style={[styles.filter_bar, containerColor]}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
