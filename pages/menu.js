@@ -19,7 +19,6 @@ import { getDefaultScenarios, setCurrentContent, getScenario, getIcon, getTags }
 import Button from "../components/button";
 
 const tagStates = {
-  'Alle' : true,
   'Obere Gesichtshälfte': false,
   'Untere Gesichtshälfte': false,
   'Langes Szenario': false,
@@ -129,15 +128,8 @@ const HomePage = ({ navigation }) => {
   //@author: Tim Suchan
   //returns true if both tags of a given scenario are set to true in the tagStates object
   const checkTags = (scenarioKey) => {
-    console.log('here' + JSON.stringify(tagStates));
-    if (!tagStates["Alle"]){
-      console.log('in false')
-    return (tagStates[getTags(scenarioKey)[0]] === true || tagStates[getTags(scenarioKey)[1]] === true);
-    }
-    else{
-      console.log('in true')
-      return true;
-    }
+    trueTags = Object.keys(tagStates).filter((tagState) => tagStates[tagState]);
+    return trueTags.every(tag => getTags(scenarioKey).includes(tag));
   }
 
   return (
