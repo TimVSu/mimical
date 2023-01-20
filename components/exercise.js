@@ -58,6 +58,7 @@ const Exercise = ({ navigation, ...props }) => {
   const containerColor = colorScheme === 'light' ? styles.light_square : styles.dark_square;
   const textColor = colorScheme === 'light' ? styles.light_text : styles.dark_text;
   const iconColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
+  const buttonColor = colorScheme === 'light' ? light_primary_color : dark_primary_color;
 
   // (locked) exercise component
   const LockedExercise = () => {
@@ -128,30 +129,30 @@ const Exercise = ({ navigation, ...props }) => {
   // (continue) exercise component
   const ContinueExercise = () => {
     return (
-      <TouchableOpacity onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level", { alreadyCompleted: props.completed }) }}>
-        <View style={[{ margin: 0 }, { flexDirection: 'row' }]}>
-          <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
-            <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
-            <View style={[{ alignItems: 'center' }]}>
-              <FontAwesomeIcon style={{ opacity: 0.5 }} icon={props.icon} size={64} color={gray1} />
-            </View>
-            <View style={[{ alignItems: 'flex-end' }]}>
-              <FontAwesomeIcon style={{ opacity: 0 }} icon={faLockOpen} size={16} color={iconColor} />
-            </View>
+      <View style={[{ margin: 0 }, { flexDirection: 'row' }]}>
+        <View style={[styles.square, containerColor, { justifyContent: 'space-between' }]}>
+          <Text style={[{ fontSize: 16 }, textColor, { opacity: 0 }]}>{props.tags}</Text>
+          <View style={[{ alignItems: 'center' }]}>
+            <FontAwesomeIcon style={{ opacity: 0.5 }} icon={props.icon} size={64} color={gray1} />
           </View>
-          <View style={[{ marginLeft: 16 }, { justifyContent: 'space-between' }]}>
-            <View>
-              <Text style={[{ fontSize: titleSize }, { fontWeight: 'bold' }, textColor]}>
-                {props.scenarioKey}
-              </Text>
-              <Text style={[{ fontSize: fontSize }, textColor]}>
-                {language == "german" ? "Übung" : "Exercise"} {props.level}
-              </Text>
-            </View>
-            <Button label={language == "german" ? "Fortsetzen" : "Continue"} />
+          <View style={[{ alignItems: 'flex-end' }]}>
+            <FontAwesomeIcon style={{ opacity: 0 }} icon={faLockOpen} size={16} color={iconColor} />
           </View>
         </View>
-      </TouchableOpacity>
+        <View style={[{ marginLeft: 16 }, { justifyContent: 'space-between' }]}>
+          <View>
+            <Text style={[{ fontSize: titleSize }, { fontWeight: 'bold' }, textColor]}>
+              {props.scenarioKey}
+            </Text>
+            <Text style={[{ fontSize: fontSize }, textColor]}>
+              {language == "german" ? "Übung" : "Exercise"} {props.level}
+            </Text>
+          </View>
+          <TouchableOpacity style={[{ backgroundColor: buttonColor }, { padding: 16 }, { margin: 0 }, { borderRadius: 16 }, { flexDirection: 'row' }, { justifyContent: 'center' }, { alignItems: 'center' }]} onPress={() => { startLevel(props.level, props.scenarioKey), navigation.navigate("Level", { alreadyCompleted: props.completed }) }}>
+            <Text style={[{ fontSize: fontSize }, { color: 'white' }]}>{language == "german" ? "Fortsetzen" : "Continue"}</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     );
   }
 
@@ -176,7 +177,7 @@ const Exercise = ({ navigation, ...props }) => {
       );
     }
   }
-  
+
 }
 
 export default Exercise;
