@@ -25,23 +25,27 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SignIn = ({ navigation }) => {
+  //styles
   const [colorScheme, setColorScheme] = useState(useColorScheme());
   const [fontSize, setFontSize] = useState(17);
-  //signin
+
+  //signin state variables
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [PatientID, setPatientID] = useState("");
 
+  //Login funciton
   const submit = async () => {
     var Data = {
       Email: Email,
       Password: Password,
     };
 
-    //Check if account exists
+    //Check if email or password are missing
     if (Email.length == 0 || Password.length == 0) {
       alert("Email oder Passwort fehlt");
     } else {
+      //Send Axios Post request
       await axios({
         method: "post",
         data: {
@@ -52,6 +56,7 @@ const SignIn = ({ navigation }) => {
         url: "http://192.168.1.98:3000/api/signin",
       })
         .then((res) => {
+          //Save patient ID on device storage
           setPatientID(res.data[0].ID);
           console.log(res.data[0].ID);
           //Navigate to next screen if authentications are valid
@@ -62,17 +67,19 @@ const SignIn = ({ navigation }) => {
     }
   };
 
+  //Fetching patient key
   const getKey = async () => {
     var Data = {
       Email: Email,
       Password: Password,
     };
 
-    //Check if account exists
+    //Check if email or password are missing
     if (Email.length == 0 || Password.length == 0) {
       alert("Email oder Passwort fehlt");
     } else {
       await axios({
+        //Send Axios Post request
         method: "post",
         data: {
           Email: Email,
@@ -82,7 +89,7 @@ const SignIn = ({ navigation }) => {
         url: "http://192.168.1.98:3000/api/key",
       })
         .then((res) => {
-          //console.log(res.data);
+          //Show patient key
           alert("Ihr Key ist: " + res.data[0].therapistAddKey);
         })
         .catch((err) => console.log(err));
@@ -90,11 +97,12 @@ const SignIn = ({ navigation }) => {
     }
   };
 
+  //Save patient ID on device storage
+
   useEffect(() => {
     savePatientID(PatientID);
   }, [PatientID]);
 
-  // save PatientID in storage
   const savePatientID = async (PatientID) => {
     try {
       await AsyncStorage.setItem("ID", JSON.stringify(PatientID));
@@ -118,6 +126,7 @@ const SignIn = ({ navigation }) => {
         { alignItems: "center" },
       ]}
     >
+      {/* Email input field */}
       <TextInput
         style={[
           { width: 256 },
@@ -130,6 +139,7 @@ const SignIn = ({ navigation }) => {
         placeholder="E-Mail"
         onChangeText={setEmail}
       />
+      {/* Password input field */}
       <TextInput
         style={[
           { width: 256 },

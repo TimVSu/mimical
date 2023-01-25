@@ -19,6 +19,7 @@ db.connect((err) => {
   console.log("Connected to database");
 });
 
+//Body Parser
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(
@@ -38,28 +39,32 @@ server.get("/api", function (req, res) {
 // Sign In data
 server.post("/api/signin", (req, res) => {
   let data = req.body;
+  //Count the number of patients with the provided email
   let checkemail = "SELECT COUNT(*) AS cnt FROM patients WHERE email = ?";
   let qryemail = db.query(checkemail, [data.Email], (err, results) => {
     if (err) {
       throw err;
     } else {
       if (results[0].cnt == 0) {
-        //Email ist falsch
+        //Email is wrong
         console.log("Email ist falsch");
         //res.send(results);
       } else {
-        //Email ist richtig
+        //Email is correct
+        //Select all patient with this email
         let sql = "SELECT * FROM patients WHERE email = ?";
         let query = db.query(sql, [data.Email], (err, results) => {
           if (err) throw err;
           if (results) {
-            //Check if password is correct
+            //Check if password is correct using bcrypt
             bcrypt.compare(
               data.Password,
               results[0].password,
               (error, response) => {
                 if (response) {
+                  //Password is correct
                   console.log("Angemeldet");
+                  //Fetch and send the patient ID
                   let sqlid = "SELECT ID FROM patients WHERE email = ?";
                   let queryid = db.query(
                     sqlid,
@@ -89,15 +94,17 @@ server.post("/api/signin", (req, res) => {
 //Get Patient Key
 server.post("/api/key", (req, res) => {
   let data = req.body;
+  //Count the number of patients with the provided email
   let checkemail = "SELECT COUNT(*) AS cnt FROM patients WHERE email = ?";
   let qryemail = db.query(checkemail, [data.Email], (err, results) => {
     if (err) {
       throw err;
     } else {
       if (results[0].cnt == 0) {
-        //Email ist falsch
+        //Email is wrong
       } else {
-        //Email ist richtig
+        //Email is correct
+        //Select all patient with this email
         let sql = "SELECT * FROM patients WHERE email = ?";
         let query = db.query(sql, [data.Email], (err, results) => {
           if (err) throw err;
@@ -108,6 +115,8 @@ server.post("/api/key", (req, res) => {
               results[0].password,
               (error, response) => {
                 if (response) {
+                  //Password is correct
+                  //Fetch and send the patient ID
                   let sqlkey =
                     "SELECT therapistAddKey FROM patients WHERE email = ?";
                   let queryid = db.query(
@@ -161,6 +170,7 @@ server.post("/api/signup", async (req, res) => {
   const tomorrow = new Date(today);
   tomorrow.setDate(tomorrow.getDate() + 1);
   tomorrow.setHours(tomorrow.getHours() + 1);
+
   //Convert Date to string
   let tomorrowstring = tomorrow.toISOString();
 
@@ -177,12 +187,14 @@ server.post("/api/signup", async (req, res) => {
     year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
 
   //Check if email is already registered
+  //Select all patient with this email
   let checkemail = "SELECT COUNT(*) AS cnt FROM patients WHERE email = ?";
   let qryemail = db.query(checkemail, [data.Email], (err, results) => {
     if (err) {
       throw err;
     } else {
       if (results[0].cnt > 0) {
+        //This email is already being used
         console.log("Sie haben schon ein Konto");
       } else {
         //Check if thepist is already assigned
@@ -227,9 +239,11 @@ server.post("/api/progress", async (req, res) => {
   let data = req.body;
   const todayDate = new Date();
 
+  //Varibles for counting exercises for upper (up) and lower (low) part of the face
   let up = 0;
   let low = 0;
 
+  //Convert today's date to string
   let today = todayDate.toISOString();
   //Extract date-time parts from string
   let year = today.substring(0, 4);
