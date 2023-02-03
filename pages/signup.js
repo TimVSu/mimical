@@ -149,7 +149,7 @@ const SignUp = ({ navigation }) => {
                 Gender: Gender,
               },
               // Must be changed depending on device for testing
-              url: "http://192.168.1.98:3000/api/signup",
+              url: "http://192.168.2.195:4501/api/signup",
             })
               .then((res) => console.log(res))
               .catch((err) => console.log(err));

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "emotional",
-    "slug": "emotional",
+    "name": "mimical",
+    "slug": "mimical",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,16 +21,22 @@
       "supportsTablet": true,
       "infoPlist": {
         "NSCameraUsageDescription": "Allow user access to camera preview."
-       }
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/mimical_logo.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.timvsu.mimical"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5ab3c102-9beb-4040-8a0a-9cbe22fd00c1"
+      }
     }
   }
 }

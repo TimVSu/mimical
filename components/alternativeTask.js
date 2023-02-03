@@ -128,7 +128,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
         PatientID: PatientID,
       },
       // Must be changed depending on device for testing
-      url: "http://192.168.1.98:3000/api/progress",
+      url: "http://192.168.2.195:4501/api/progress",
     })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
@@ -331,7 +331,7 @@ const AlternativeTask = ({ navigation, route, children, downFunction }) => {
             );
           }}
         >
-          <FontAwesomeIcon style={{ marginRight: 8 }} icon={faPause} color="white" />
+          <FontAwesomeIcon style={{ marginRight: 8 }} icon={faPause} color="white" onPress={()=> pause()}/>
           <Text style={[styles.label, { color: "white" }]}>Pause</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[{ backgroundColor: buttonColor }, { padding: 16 }, { margin: 8 }, { borderRadius: 16 }, { flexDirection: "row" }, { alignItems: "center" },]} onPress={() => play()}>

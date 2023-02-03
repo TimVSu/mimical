@@ -24,7 +24,7 @@ server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://http://192.168.2.195:4501",
     credentials: true,
   })
 );
@@ -341,8 +341,8 @@ server.post("/api/progress", async (req, res) => {
   });
 });
 
-//Listen in port 3000
-server.listen(3000, (err) => {
+//Listen in port 4500
+server.listen(4501, (err) => {
   if (err) throw err;
-  console.log("> Server is ready on http://localhost:3000");
+  console.log("> Server is ready on http://localhost:4501");
 });

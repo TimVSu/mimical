@@ -53,7 +53,7 @@ const SignIn = ({ navigation }) => {
           Password: Password,
         },
         // Must be changed depending on device for testing
-        url: "http://192.168.1.98:3000/api/signin",
+        url: "http://192.168.2.195:4501/api/signin",
       })
         .then((res) => {
           //Save patient ID on device storage
@@ -86,7 +86,7 @@ const SignIn = ({ navigation }) => {
           Password: Password,
         },
         // Must be changed depending on device for testing
-        url: "http://192.168.1.98:3000/api/key",
+        url: "hhttp://192.168.2.195:4501/api/key",
       })
         .then((res) => {
           //Show patient key
